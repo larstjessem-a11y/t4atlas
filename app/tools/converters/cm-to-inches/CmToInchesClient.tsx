@@ -58,7 +58,7 @@ const result = value
           <ul className="text-gray-600 space-y-1">
             {tool.examples.map((example) => (
               <li key={example}>
-                {example} {tool.unitFrom} = (example * tool.factor).toFixed(2) {tool.unitTo}
+                {example} {tool.unitFrom} = {(example * tool.factor).toFixed(2)} {tool.unitTo}
               </li>
             ))}
           </ul>
