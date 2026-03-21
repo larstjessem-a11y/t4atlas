@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import ToolTemplate from "@/components/ToolTemplate";
+import FinanceTemplate from "@/components/FinanceTemplate";
 import { tools } from "@/data/tools";
 
 type PageProps = {
@@ -25,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: `${tool.name} | T4 Atlas`,
-    description: `Convert ${tool.unitFrom} to ${tool.unitTo} instantly.`,
+    description: `${tool.name} on T4 Atlas.`,
   };
 }
 
@@ -40,5 +41,9 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
- return <ToolTemplate tool={tool} />;
+  if (tool.type === "finance") {
+    return <FinanceTemplate tool={tool} />;
+  }
+
+  return <ToolTemplate tool={tool} />;
 }

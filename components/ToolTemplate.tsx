@@ -128,17 +128,19 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
                 <p className="text-gray-600">{tool.formula}</p>
               </section>
 
-              <section>
-                <h2 className="text-xl font-semibold mb-2">Examples</h2>
-                <ul className="space-y-2 text-gray-600">
-                  {tool.examples.map((example) => (
-                    <li key={example}>
-                      {example} {tool.unitFrom} ={" "}
-                      {(example * tool.factor).toFixed(2)} {tool.unitTo}
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              {tool.examples && tool.factor && tool.unitFrom && tool.unitTo && (
+  <section>
+    <h2 className="text-xl font-semibold mb-2">Examples</h2>
+    <ul className="space-y-2 text-gray-600">
+      {tool.examples.map((example) => (
+        <li key={example}>
+          {example} {tool.unitFrom} ={" "}
+          {(example * tool.factor).toFixed(2)} {tool.unitTo}
+        </li>
+      ))}
+    </ul>
+  </section>
+)}
             </div>
 
             <div className="my-8 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
@@ -185,6 +187,12 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
                 >
                   All {tool.category}
                 </Link>
+<Link
+  href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
+  className="text-gray-600 hover:text-gray-900 capitalize"
+>
+  {subcategoryLabel} {categoryLabel}
+</Link>
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"

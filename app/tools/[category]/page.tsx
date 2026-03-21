@@ -56,15 +56,21 @@ export default async function CategoryPage({ params }: PageProps) {
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {subcategories.map((subcategory) => (
-                <Link
-                  key={subcategory}
-                  href={`/tools/${category}/subcategory/${subcategory}`}
-                  className="inline-block rounded-lg border px-3 py-2 text-sm capitalize hover:bg-gray-50"
-                >
-                  {subcategory}
-                </Link>
-              ))}
+              {subcategories.map((subcategory) => {
+  const count = categoryTools.filter(
+    (tool) => tool.subcategory === subcategory
+  ).length;
+
+  return (
+    <Link
+      key={subcategory}
+      href={`/tools/${category}/subcategory/${subcategory}`}
+      className="inline-block rounded-lg border px-3 py-2 text-sm capitalize hover:bg-gray-50"
+    >
+      {subcategory} ({count})
+    </Link>
+  );
+})}
             </div>
 
             <div className="mt-6 rounded-lg border border-dashed px-4 py-6 text-xs text-gray-400 text-center">
