@@ -9,14 +9,20 @@ type Tool = {
   name: string;
   category: string;
   subcategory: string;
-  factor: number;
-  unitFrom: string;
-  unitTo: string;
-  formula: string;
-  examples: number[];
+  type: "converter" | "finance";
+  factor?: number;
+  unitFrom?: string;
+  unitTo?: string;
+  formula?: string;
+  examples?: number[];
   reverseSlug?: string;
+  financeType?:
+    | "simple-interest"
+    | "compound-interest"
+    | "loan-payment"
+    | "roi-calculator"
+    | "savings-growth";
 };
-
 export default function ToolTemplate({ tool }: { tool?: Tool }) {
   const [value, setValue] = useState("");
 
