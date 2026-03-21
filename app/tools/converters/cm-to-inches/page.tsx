@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import CmToInchesClient from "./CmToInchesClient";
+import ToolTemplate from "@/components/ToolTemplate";
 import { tools } from "@/data/tools";
 
 const tool = tools.find((t) => t.slug === "cm-to-inches");
@@ -10,5 +10,5 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  return <CmToInchesClient tool={tool} />;
+ return <ToolTemplate tool={tool} />;
 }

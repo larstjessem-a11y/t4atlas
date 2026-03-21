@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import CmToInchesClient from "../../converters/cm-to-inches/CmToInchesClient";
+import ToolTemplate from "@/components/ToolTemplate";
 import { tools } from "@/data/tools";
 
 type PageProps = {
@@ -40,5 +40,5 @@ export default async function Page({ params }: PageProps) {
     notFound();
   }
 
-  return <CmToInchesClient tool={tool} />;
+ return <ToolTemplate tool={tool} />;
 }
