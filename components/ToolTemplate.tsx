@@ -30,7 +30,8 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
     return <main className="p-10">Tool not found.</main>;
   }
 
-  const result = value ? (parseFloat(value) * tool.factor).toFixed(2) : "0";
+  const result =
+  value && tool.factor ? (parseFloat(value) * tool.factor).toFixed(2) : "0";
 
   const relatedTools = tools
     .filter(
