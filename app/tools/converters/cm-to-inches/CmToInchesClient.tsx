@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useState } from "react";
 
@@ -11,6 +12,7 @@ type Tool = {
   unitTo: string;
   formula: string;
   examples: number[];
+  reverseSlug?: string;
 };
 
 export default function CmToInchesClient({ tool }: { tool?: Tool }) {
@@ -32,6 +34,16 @@ const result = value
         <p className="text-gray-600 mb-6">
           Convert {tool.unitFrom} to {tool.unitTo} instantly using this free tool.
         </p>
+{tool.reverseSlug && (
+  <div className="mb-6">
+    <Link
+      href={`/tools/${tool.category}/${tool.reverseSlug}`}
+      className="inline-block rounded-lg border px-4 py-2 text-sm font-medium hover:bg-gray-50"
+    >
+      Switch to {tool.unitTo} to {tool.unitFrom}
+    </Link>
+  </div>
+)}
 
         <input
           type="number"
