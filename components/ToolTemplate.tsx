@@ -142,7 +142,7 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
       {tool.examples.map((example) => (
         <li key={example}>
           {example} {tool.unitFrom} ={" "}
-          {(example * tool.factor).toFixed(2)} {tool.unitTo}
+          {(example * (tool.factor ?? 0)).toFixed(2)} {tool.unitTo}
         </li>
       ))}
     </ul>
