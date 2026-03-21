@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import CmToInchesClient from "./CmToInchesClient";
+import { tools } from "@/data/tools";
+
+const tool = tools.find((t) => t.slug === "cm-to-inches");
 
 export const metadata: Metadata = {
-  title: "CM to Inches Converter | T4 Atlas",
-  description:
-    "Convert centimeters to inches instantly with this free online CM to Inches Converter. Includes formula, examples, and common conversions.",
+  title: `${tool?.name} | T4 Atlas`,
+  description: `Convert ${tool?.unitFrom} to ${tool?.unitTo} instantly.`,
 };
 
 export default function Page() {
-  return <CmToInchesClient />;
+  return <CmToInchesClient tool={tool} />;
 }
