@@ -9,7 +9,7 @@ type Tool = {
   name: string;
   category: string;
   subcategory: string;
-  type: "finance";
+  type: "converter" | "finance";
   financeType?:
     | "simple-interest"
     | "compound-interest"
@@ -17,7 +17,6 @@ type Tool = {
     | "roi-calculator"
     | "savings-growth";
 };
-
 export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const [principal, setPrincipal] = useState("");
   const [rate, setRate] = useState("");
