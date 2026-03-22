@@ -10,7 +10,7 @@ export type Tool = {
   unitFrom?: string;
   unitTo?: string;
   formula?: string;
-  examples?: string[];
+  examples?: number[];
   reverseSlug?: string;
   financeType?:
     | "simple-interest"

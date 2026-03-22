@@ -16,7 +16,7 @@ type Tool = {
   unitFrom?: string;
   unitTo?: string;
   formula?: string;
-  examples?: string[];
+  examples?: number[];
   reverseSlug?: string;
   financeType?:
     | "simple-interest"
@@ -154,18 +154,12 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
                   <section>
                     <h2 className="text-xl font-semibold mb-2">Examples</h2>
                     <ul className="space-y-2 text-gray-600">
-                      {tool.examples.map((example) => {
-                        const numericExample = parseFloat(example);
-                        if (Number.isNaN(numericExample)) return null;
-
-                        return (
-                          <li key={example}>
-                            {numericExample} {tool.unitFrom} ={" "}
-                           {(numericExample * (tool.factor ?? 0)).toFixed(2)}{" "}
-                            {tool.unitTo}
-                          </li>
-                        );
-                      })}
+                      {tool.examples.map((example) => (
+  <li key={example}>
+    {example} {tool.unitFrom} ={" "}
+    {(example * (tool.factor ?? 0)).toFixed(2)} {tool.unitTo}
+  </li>
+))}
                     </ul>
                   </section>
                 )}
