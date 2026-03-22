@@ -495,4 +495,16 @@ seoIntro:
     "Estimate your monthly mortgage payment based on loan amount, interest rate, and loan term.",
   seoIntro:
     "A mortgage calculator helps you estimate your monthly home loan payments based on interest rate, loan term, and principal. It is essential when comparing mortgages and planning home purchases."
+},
+{
+  slug: "dividend-yield-calculator",
+  name: "Dividend Yield Calculator",
+  category: "finance",
+  subcategory: "investing",
+  type: "finance",
+  financeType: "roi-calculator",
+  description:
+    "Calculate dividend yield based on annual dividends and share price to evaluate income-generating investments.",
+  seoIntro:
+    "A dividend yield calculator helps you determine how much income you earn from a stock relative to its price. It is widely used by investors to compare dividend-paying stocks and assess passive income potential."
 },];
