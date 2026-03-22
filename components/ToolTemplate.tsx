@@ -161,7 +161,7 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
                         return (
                           <li key={example}>
                             {numericExample} {tool.unitFrom} ={" "}
-                            {(numericExample * tool.factor).toFixed(2)}{" "}
+                           {(numericExample * (tool.factor ?? 0)).toFixed(2)}{" "}
                             {tool.unitTo}
                           </li>
                         );
