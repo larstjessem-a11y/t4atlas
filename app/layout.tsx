@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { Analytics } from "@vercel/analytics/react";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -29,6 +30,9 @@ export default function RootLayout({
                 <Link href="/tools/converters" className="hover:text-gray-900">
                   Converters
                 </Link>
+                <Link href="/tools/finance" className="hover:text-gray-900">
+                  Finance
+                </Link>
               </nav>
             </div>
           </header>
@@ -52,6 +56,9 @@ export default function RootLayout({
                     </Link>
                     <Link href="/tools/converters" className="hover:text-gray-900">
                       Converters
+                    </Link>
+                    <Link href="/tools/finance" className="hover:text-gray-900">
+                      Finance
                     </Link>
                   </div>
                 </div>
@@ -81,6 +88,8 @@ export default function RootLayout({
             </div>
           </footer>
         </div>
+
+        <Analytics />
       </body>
     </html>
   );
