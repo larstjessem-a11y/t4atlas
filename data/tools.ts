@@ -425,6 +425,9 @@ description:
   "Calculate simple interest based on principal, interest rate, and time without compounding.",
 seoIntro:
   "A simple interest calculator helps you estimate how much interest you earn or pay on a fixed principal over time without compounding. It is useful for basic loans, savings, and short-term financial planning.",
+seoTitle: "Simple Interest Calculator – Calculate Interest Easily",
+seoDescription:
+  "Use this free simple interest calculator to estimate interest and total amount based on principal, rate, and time.",
 },
 {
   slug: "compound-interest",
@@ -437,6 +440,9 @@ description:
   "Estimate how your investment grows over time with compound interest, including optional annual contributions.",
 seoIntro:
   "A compound interest calculator shows how your investment grows over time when interest is reinvested. It is essential for understanding long-term investing, savings, and exponential growth.",
+seoTitle: "Compound Interest Calculator – Estimate Investment Growth",
+seoDescription:
+  "Use this compound interest calculator to estimate investment growth with optional annual contributions over time.",
 },
 {
   slug: "loan-payment",
@@ -449,6 +455,9 @@ description:
   "Calculate monthly loan payments and total repayment cost based on interest rate and loan duration.",
 seoIntro:
   "A loan payment calculator helps you estimate your monthly payments and total repayment amount based on interest rate and loan term. It is commonly used for mortgages, car loans, and personal loans.",
+seoTitle: "Loan Payment Calculator – Estimate Monthly Loan Payments",
+seoDescription:
+  "Calculate monthly loan payments and total repayment using this free loan payment calculator.",
 },
 {
   slug: "roi-calculator",
@@ -461,6 +470,9 @@ description:
   "Calculate return on investment (ROI) based on the initial investment and final value.",
 seoIntro:
   "An ROI calculator helps you measure the profitability of an investment by comparing the initial cost with the final value. It is useful for evaluating business decisions, trades, and investment opportunities.",
+seoTitle: "ROI Calculator – Calculate Return on Investment",
+seoDescription:
+  "Use this ROI calculator to measure return on investment and profit based on initial cost and final value.",
 },
 {
   slug: "savings-growth",
@@ -473,6 +485,9 @@ description:
   "Estimate how your savings grow over time with monthly contributions and compound interest.",
 seoIntro:
   "A savings growth calculator estimates how your savings will grow over time with regular contributions and compound interest. It is useful for long-term planning such as retirement or wealth building.",
+seoTitle: "Savings Growth Calculator – Estimate Future Savings",
+seoDescription:
+  "Estimate how your savings can grow over time with monthly contributions and compound returns.",
 },
 {
   slug: "cagr-calculator",
@@ -485,6 +500,9 @@ seoIntro:
     "Calculate the compound annual growth rate (CAGR) to measure the average yearly return of an investment over time.",
   seoIntro:
     "A CAGR calculator helps you measure the average annual return of an investment over multiple years. It is useful when you want to compare investments with different time horizons on a like-for-like basis.",
+seoTitle: "CAGR Calculator – Calculate Compound Annual Growth Rate",
+seoDescription:
+  "Use this CAGR calculator to find the annualized return of an investment over multiple years.",
 },
 {
   slug: "mortgage-calculator",
@@ -511,5 +529,8 @@ seoIntro:
   description:
     "Calculate dividend yield based on annual dividends and share price to evaluate income-generating investments.",
   seoIntro:
-    "A dividend yield calculator helps you determine how much income you earn from a stock relative to its price. It is widely used by investors to compare dividend-paying stocks and assess passive income potential."
+    "A dividend yield calculator helps you determine how much income you earn from a stock relative to its price. It is widely used by investors to compare dividend-paying stocks and assess passive income potential.",
+seoTitle: "Dividend Yield Calculator – Calculate Stock Dividend Yield",
+seoDescription:
+  "Calculate dividend yield from annual dividend and share price using this free dividend yield calculator.",
 },];
