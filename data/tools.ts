@@ -483,4 +483,16 @@ seoIntro:
     "Calculate the compound annual growth rate (CAGR) to measure the average yearly return of an investment over time.",
   seoIntro:
     "A CAGR calculator helps you measure the average annual return of an investment over multiple years. It is useful when you want to compare investments with different time horizons on a like-for-like basis.",
+},
+{
+  slug: "mortgage-calculator",
+  name: "Mortgage Calculator",
+  category: "finance",
+  subcategory: "loans",
+  type: "finance",
+  financeType: "loan-payment",
+  description:
+    "Estimate your monthly mortgage payment based on loan amount, interest rate, and loan term.",
+  seoIntro:
+    "A mortgage calculator helps you estimate your monthly home loan payments based on interest rate, loan term, and principal. It is essential when comparing mortgages and planning home purchases."
 },];

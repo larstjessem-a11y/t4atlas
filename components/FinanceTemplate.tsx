@@ -46,6 +46,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const isROI = tool.financeType === "roi-calculator";
   const isSavings = tool.financeType === "savings-growth";
   const isCAGR = tool.financeType === "cagr";
+  const isMortgage = tool.slug === "mortgage-calculator";
 
   let primaryValue = 0;
   let secondaryValue = 0;
@@ -84,7 +85,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
 
     primaryValue = monthlyPayment;
     secondaryValue = totalPaid;
-    primaryLabel = "Monthly payment";
+    primaryLabel = isMortgage ? "Monthly mortgage payment" : "Monthly payment";
     secondaryLabel = "Total paid";
   } else if (isROI) {
     const profit = f - p;
@@ -189,15 +190,17 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 ? tool.description
                 : isCompound
                   ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
-                  : isLoan
-                    ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
-                    : isROI
-                      ? "Calculate return on investment (ROI) based on your initial investment and final value."
-                      : isSavings
-                        ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
-                        : isCAGR
-                          ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
-                          : "Calculate simple interest based on principal, interest rate, and time."}
+                  : isMortgage
+                    ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
+                    : isLoan
+                      ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+                      : isROI
+                        ? "Calculate return on investment (ROI) based on your initial investment and final value."
+                        : isSavings
+                          ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+                          : isCAGR
+                            ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+                            : "Calculate simple interest based on principal, interest rate, and time."}
             </p>
           </div>
         </div>
@@ -221,29 +224,33 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               <div className="space-y-5 p-5 md:p-6">
                 <div>
                   <label className="mb-2 block text-sm font-medium text-gray-700">
-                    {isLoan
-                      ? "Loan amount"
-                      : isROI
-                        ? "Initial investment"
-                        : isSavings
-                          ? "Initial savings"
-                          : isCAGR
-                            ? "Beginning value"
-                            : "Initial amount"}
+                    {isMortgage
+                      ? "Mortgage amount"
+                      : isLoan
+                        ? "Loan amount"
+                        : isROI
+                          ? "Initial investment"
+                          : isSavings
+                            ? "Initial savings"
+                            : isCAGR
+                              ? "Beginning value"
+                              : "Initial amount"}
                   </label>
                   <input
                     type="number"
                     value={principal}
                     placeholder={
-                      isLoan
-                        ? "Enter loan amount"
-                        : isROI
-                          ? "Enter initial investment"
-                          : isSavings
-                            ? "Enter initial savings"
-                            : isCAGR
-                              ? "Enter beginning value"
-                              : "Enter initial amount"
+                      isMortgage
+                        ? "Enter mortgage amount"
+                        : isLoan
+                          ? "Enter loan amount"
+                          : isROI
+                            ? "Enter initial investment"
+                            : isSavings
+                              ? "Enter initial savings"
+                              : isCAGR
+                                ? "Enter beginning value"
+                                : "Enter initial amount"
                     }
                     onChange={(e) => setPrincipal(e.target.value)}
                     className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
@@ -281,12 +288,12 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 {!isROI && (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
-                      Time (years)
+                      {isMortgage ? "Mortgage term (years)" : "Time (years)"}
                     </label>
                     <input
                       type="number"
                       value={years}
-                      placeholder="Enter years"
+                      placeholder={isMortgage ? "Enter mortgage term" : "Enter years"}
                       onChange={(e) => setYears(e.target.value)}
                       className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                     />
@@ -404,15 +411,17 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 <p className="text-gray-600">
                   {isCompound
                     ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
-                    : isLoan
-                      ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
-                      : isROI
-                        ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
-                        : isSavings
-                          ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
-                          : isCAGR
-                            ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
-                            : "Enter your starting amount, annual interest rate, and number of years."}
+                    : isMortgage
+                      ? "Enter your mortgage amount, annual interest rate, and repayment term to estimate your monthly mortgage payment and total paid."
+                      : isLoan
+                        ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
+                        : isROI
+                          ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
+                          : isSavings
+                            ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
+                            : isCAGR
+                              ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
+                              : "Enter your starting amount, annual interest rate, and number of years."}
                 </p>
               </section>
             </div>
@@ -448,28 +457,32 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     <h3 className="mb-2 font-medium text-gray-900">
                       {isCompound
                         ? "What does compound interest mean?"
-                        : isLoan
-                          ? "How is a loan payment calculated?"
-                          : isROI
-                            ? "What is a good ROI?"
-                            : isSavings
-                              ? "How does savings growth work?"
-                              : isCAGR
-                                ? "What does CAGR tell you?"
-                                : "What is simple interest?"}
+                        : isMortgage
+                          ? "How is a mortgage payment calculated?"
+                          : isLoan
+                            ? "How is a loan payment calculated?"
+                            : isROI
+                              ? "What is a good ROI?"
+                              : isSavings
+                                ? "How does savings growth work?"
+                                : isCAGR
+                                  ? "What does CAGR tell you?"
+                                  : "What is simple interest?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
                         ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
-                        : isLoan
-                          ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
-                          : isROI
-                            ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
-                            : isSavings
-                              ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
-                              : isCAGR
-                                ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
-                                : "Simple interest is calculated only on the original principal, not on accumulated interest."}
+                        : isMortgage
+                          ? "Mortgage payments are typically based on the home loan amount, interest rate, and mortgage term, with each payment covering both interest and principal."
+                          : isLoan
+                            ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
+                            : isROI
+                              ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
+                              : isSavings
+                                ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
+                                : isCAGR
+                                  ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
+                                  : "Simple interest is calculated only on the original principal, not on accumulated interest."}
                     </p>
                   </div>
 
@@ -477,28 +490,32 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     <h3 className="mb-2 font-medium text-gray-900">
                       {isCompound
                         ? "Why use a compound interest calculator?"
-                        : isLoan
-                          ? "Why use a loan payment calculator?"
-                          : isROI
-                            ? "Why use an ROI calculator?"
-                            : isSavings
-                              ? "Why use a savings growth calculator?"
-                              : isCAGR
-                                ? "Why use a CAGR calculator?"
-                                : "Why use a simple interest calculator?"}
+                        : isMortgage
+                          ? "Why use a mortgage calculator?"
+                          : isLoan
+                            ? "Why use a loan payment calculator?"
+                            : isROI
+                              ? "Why use an ROI calculator?"
+                              : isSavings
+                                ? "Why use a savings growth calculator?"
+                                : isCAGR
+                                  ? "Why use a CAGR calculator?"
+                                  : "Why use a simple interest calculator?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
                         ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
-                        : isLoan
-                          ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
-                          : isROI
-                            ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
-                            : isSavings
-                              ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
-                              : isCAGR
-                                ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
-                                : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
+                        : isMortgage
+                          ? "It helps you estimate home loan costs, compare mortgage options, and understand what your monthly housing payment could look like."
+                          : isLoan
+                            ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
+                            : isROI
+                              ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
+                              : isSavings
+                                ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
+                                : isCAGR
+                                  ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
+                                  : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
                     </p>
                   </div>
                 </div>
@@ -538,15 +555,17 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
             <p className="text-sm leading-6 text-gray-600">
               {isCompound
                 ? "Estimates long-term growth with compound interest and contributions."
-                : isLoan
-                  ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
-                  : isROI
-                    ? "Calculates ROI and profit based on an investment's starting amount and final value."
-                    : isSavings
-                      ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
-                      : isCAGR
-                        ? "Calculates the annualized growth rate of an investment over time."
-                        : "Calculates simple interest without compounding."}
+                : isMortgage
+                  ? "Estimates monthly mortgage payments and total repayment cost for a home loan."
+                  : isLoan
+                    ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
+                    : isROI
+                      ? "Calculates ROI and profit based on an investment's starting amount and final value."
+                      : isSavings
+                        ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
+                        : isCAGR
+                          ? "Calculates the annualized growth rate of an investment over time."
+                          : "Calculates simple interest without compounding."}
             </p>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-4">
@@ -584,6 +603,15 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Compound Interest
+                  </Link>
+                )}
+
+                {tool.slug !== "mortgage-calculator" && (
+                  <Link
+                    href="/tools/finance/mortgage-calculator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Mortgage Calculator
                   </Link>
                 )}
 
