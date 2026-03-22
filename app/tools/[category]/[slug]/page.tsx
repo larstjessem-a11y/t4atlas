@@ -11,7 +11,9 @@ type PageProps = {
   }>;
 };
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: PageProps): Promise<Metadata> {
   const { category, slug } = await params;
 
   const tool = tools.find(
@@ -21,16 +23,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!tool) {
     return {
       title: "Tool Not Found | T4 Atlas",
+      description: "The requested tool could not be found.",
     };
   }
 
   return {
-    title: `${tool.name} | T4 Atlas`,
-    description: `${tool.name} on T4 Atlas.`,
+    title: tool.seoTitle ?? `${tool.name} | T4 Atlas`,
+    description:
+      tool.seoDescription ??
+      tool.description ??
+      `Use the ${tool.name} on T4 Atlas.`,
   };
 }
 
-export default async function Page({ params }: PageProps) {
+export default async function ToolPage({ params }: PageProps) {
   const { category, slug } = await params;
 
   const tool = tools.find(

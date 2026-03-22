@@ -6,6 +6,8 @@ export type Tool = {
   type: "converter" | "finance";
   description?: string;
   seoIntro?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   factor?: number;
   unitFrom?: string;
   unitTo?: string;
@@ -494,7 +496,10 @@ seoIntro:
   description:
     "Estimate your monthly mortgage payment based on loan amount, interest rate, and loan term.",
   seoIntro:
-    "A mortgage calculator helps you estimate your monthly home loan payments based on interest rate, loan term, and principal. It is essential when comparing mortgages and planning home purchases."
+    "A mortgage calculator helps you estimate your monthly home loan payments based on interest rate, loan term, and principal. It is essential when comparing mortgages and planning home purchases.",
+  seoTitle: "Mortgage Calculator – Estimate Monthly Mortgage Payments",
+  seoDescription:
+    "Use this free mortgage calculator to estimate monthly mortgage payments, total repayment, and borrowing costs based on loan amount, rate, and term.",
 },
 {
   slug: "dividend-yield-calculator",
