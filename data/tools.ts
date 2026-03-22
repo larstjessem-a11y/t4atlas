@@ -4,13 +4,21 @@ export type Tool = {
   category: string;
   subcategory: string;
   type: "converter" | "finance";
-  financeType?: "simple-interest" | "compound-interest" | "loan-payment" | "roi-calculator" | "savings-growth"; 
+  description?: string;
+  seoIntro?: string;
   factor?: number;
   unitFrom?: string;
   unitTo?: string;
   formula?: string;
-  examples?: number[];
+  examples?: string[];
   reverseSlug?: string;
+  financeType?:
+    | "simple-interest"
+    | "compound-interest"
+    | "loan-payment"
+    | "roi-calculator"
+    | "savings-growth"
+    | "cagr";
 };
 
 export const tools: Tool[] = [
