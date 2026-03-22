@@ -10,19 +10,23 @@ type Tool = {
   category: string;
   subcategory: string;
   type: "converter" | "finance";
+  description?: string;
+  seoIntro?: string;
   factor?: number;
   unitFrom?: string;
   unitTo?: string;
   formula?: string;
-  examples?: number[];
+  examples?: string[];
   reverseSlug?: string;
   financeType?:
     | "simple-interest"
     | "compound-interest"
     | "loan-payment"
     | "roi-calculator"
-    | "savings-growth";
+    | "savings-growth"
+    | "cagr";
 };
+
 export default function ToolTemplate({ tool }: { tool?: Tool }) {
   const [value, setValue] = useState("");
 
@@ -30,8 +34,9 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
     return <main className="p-10">Tool not found.</main>;
   }
 
+  const numericValue = parseFloat(value) || 0;
   const result =
-  value && tool.factor ? (parseFloat(value) * tool.factor).toFixed(2) : "0";
+    value && tool.factor ? (numericValue * tool.factor).toFixed(2) : "0";
 
   const relatedTools = tools
     .filter(
@@ -44,9 +49,9 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
 
   if (relatedTools.length === 0) {
     relatedTools.push(
-      ...tools.filter(
-        (t) => t.category === tool.category && t.slug !== tool.slug
-      )
+      ...tools
+        .filter((t) => t.category === tool.category && t.slug !== tool.slug)
+        .slice(0, 5)
     );
   }
 
@@ -62,7 +67,10 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
               Tools
             </Link>
             <span>→</span>
-            <Link href={`/tools/${tool.category}`} className="hover:text-gray-900 capitalize">
+            <Link
+              href={`/tools/${tool.category}`}
+              className="hover:text-gray-900 capitalize"
+            >
               {categoryLabel}
             </Link>
             <span>→</span>
@@ -83,7 +91,9 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
           </h1>
 
           <p className="text-lg text-gray-600 max-w-2xl">
-            Convert {tool.unitFrom} to {tool.unitTo} instantly using this free online tool.
+            {tool.description
+              ? tool.description
+              : `Convert ${tool.unitFrom} to ${tool.unitTo} instantly using this free online tool.`}
           </p>
         </div>
 
@@ -93,7 +103,7 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
               Ad slot (top)
             </div>
 
-            {tool.reverseSlug && (
+            {tool.reverseSlug && tool.unitFrom && tool.unitTo && (
               <div className="mb-6">
                 <Link
                   href={`/tools/${tool.category}/${tool.reverseSlug}`}
@@ -112,7 +122,7 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
               <input
                 type="number"
                 value={value}
-                placeholder={`Enter ${tool.unitFrom}`}
+                placeholder={`Enter ${tool.unitFrom ?? "value"}`}
                 onChange={(e) => setValue(e.target.value)}
                 className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
               />
@@ -131,23 +141,34 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
 
             <div className="grid gap-6">
               <section>
-                <h2 className="text-xl font-semibold mb-2">Conversion formula</h2>
+                <h2 className="text-xl font-semibold mb-2">
+                  Conversion formula
+                </h2>
                 <p className="text-gray-600">{tool.formula}</p>
               </section>
 
-              {tool.examples && tool.factor && tool.unitFrom && tool.unitTo && (
-  <section>
-    <h2 className="text-xl font-semibold mb-2">Examples</h2>
-    <ul className="space-y-2 text-gray-600">
-      {tool.examples.map((example) => (
-        <li key={example}>
-          {example} {tool.unitFrom} ={" "}
-          {(example * (tool.factor ?? 0)).toFixed(2)} {tool.unitTo}
-        </li>
-      ))}
-    </ul>
-  </section>
-)}
+              {tool.examples &&
+                tool.factor &&
+                tool.unitFrom &&
+                tool.unitTo && (
+                  <section>
+                    <h2 className="text-xl font-semibold mb-2">Examples</h2>
+                    <ul className="space-y-2 text-gray-600">
+                      {tool.examples.map((example) => {
+                        const numericExample = parseFloat(example);
+                        if (Number.isNaN(numericExample)) return null;
+
+                        return (
+                          <li key={example}>
+                            {numericExample} {tool.unitFrom} ={" "}
+                            {(numericExample * tool.factor).toFixed(2)}{" "}
+                            {tool.unitTo}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </section>
+                )}
             </div>
 
             <div className="my-8 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
@@ -181,12 +202,15 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
           <aside className="rounded-2xl border bg-white p-6 shadow-sm h-fit">
             <h3 className="text-lg font-semibold mb-3">About this tool</h3>
             <p className="text-sm text-gray-600">
-              This tool helps you convert {tool.unitFrom} to {tool.unitTo} quickly and accurately.
-              It belongs to the {subcategoryLabel} section within {categoryLabel}.
+              This tool helps you convert {tool.unitFrom} to {tool.unitTo} quickly
+              and accurately. It belongs to the {subcategoryLabel} section within{" "}
+              {categoryLabel}.
             </p>
 
             <div className="mt-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">Quick links</h4>
+              <h4 className="text-sm font-semibold text-gray-900 mb-2">
+                Quick links
+              </h4>
               <div className="flex flex-col gap-2 text-sm">
                 <Link
                   href={`/tools/${tool.category}`}
@@ -194,19 +218,15 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
                 >
                   All {tool.category}
                 </Link>
-<Link
-  href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
-  className="text-gray-600 hover:text-gray-900 capitalize"
->
-  {subcategoryLabel} {categoryLabel}
-</Link>
+
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"
                 >
                   {subcategoryLabel} {categoryLabel}
                 </Link>
-                {tool.reverseSlug && (
+
+                {tool.reverseSlug && tool.unitFrom && tool.unitTo && (
                   <Link
                     href={`/tools/${tool.category}/${tool.reverseSlug}`}
                     className="text-gray-600 hover:text-gray-900"
