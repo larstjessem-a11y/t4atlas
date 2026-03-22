@@ -150,10 +150,10 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
     .slice(0, 5);
 
   return (
-    <main className="py-10 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-8">
-          <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-3">
+    <main className="py-10 px-4 md:px-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
+          <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
             <Link href="/tools" className="hover:text-gray-900">
               Tools
             </Link>
@@ -173,16 +173,18 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
             </Link>
           </div>
 
-          <p className="text-sm font-medium text-gray-500 mb-2 capitalize">
-            {subcategoryLabel} {categoryLabel}
-          </p>
+          <div className="mb-3">
+            <span className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
+              {subcategoryLabel} {categoryLabel}
+            </span>
+          </div>
 
-          <div className="mb-6">
-            <h1 className="text-4xl font-semibold tracking-tight mb-3">
+          <div className="max-w-3xl">
+            <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
               {tool.name}
             </h1>
 
-            <p className="text-lg text-gray-600 max-w-2xl">
+            <p className="text-base leading-7 text-gray-600 md:text-lg">
               {tool.description
                 ? tool.description
                 : isCompound
@@ -200,146 +202,163 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
           </div>
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[2fr,1fr]">
-          <section className="rounded-2xl border bg-white p-6 shadow-sm">
-            <div className="mb-6 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
+        <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),360px]">
+          <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+            <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
               Ad slot (top)
             </div>
 
-            <div className="rounded-2xl bg-gray-50 p-5 border space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
-                  {isLoan
-                    ? "Loan amount"
-                    : isROI
-                      ? "Initial investment"
-                      : isSavings
-                        ? "Initial savings"
-                        : isCAGR
-                          ? "Beginning value"
-                          : "Initial amount"}
-                </label>
-                <input
-                  type="number"
-                  value={principal}
-                  placeholder={
-                    isLoan
-                      ? "Enter loan amount"
-                      : isROI
-                        ? "Enter initial investment"
-                        : isSavings
-                          ? "Enter initial savings"
-                          : isCAGR
-                            ? "Enter beginning value"
-                            : "Enter initial amount"
-                  }
-                  onChange={(e) => setPrincipal(e.target.value)}
-                  className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
-                />
+            <div className="overflow-hidden rounded-3xl border bg-gray-50">
+              <div className="border-b bg-white/80 px-5 py-4">
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Calculator
+                </h2>
+                <p className="mt-1 text-sm text-gray-500">
+                  Enter your numbers below to see the result instantly.
+                </p>
               </div>
 
-              {isROI || isCAGR ? (
+              <div className="space-y-5 p-5 md:p-6">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Final value
+                  <label className="mb-2 block text-sm font-medium text-gray-700">
+                    {isLoan
+                      ? "Loan amount"
+                      : isROI
+                        ? "Initial investment"
+                        : isSavings
+                          ? "Initial savings"
+                          : isCAGR
+                            ? "Beginning value"
+                            : "Initial amount"}
                   </label>
                   <input
                     type="number"
-                    value={finalValue}
-                    placeholder="Enter final value"
-                    onChange={(e) => setFinalValue(e.target.value)}
-                    className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
+                    value={principal}
+                    placeholder={
+                      isLoan
+                        ? "Enter loan amount"
+                        : isROI
+                          ? "Enter initial investment"
+                          : isSavings
+                            ? "Enter initial savings"
+                            : isCAGR
+                              ? "Enter beginning value"
+                              : "Enter initial amount"
+                    }
+                    onChange={(e) => setPrincipal(e.target.value)}
+                    className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                   />
                 </div>
-              ) : (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Annual interest rate (%)
-                  </label>
-                  <input
-                    type="number"
-                    value={rate}
-                    placeholder="Enter interest rate"
-                    onChange={(e) => setRate(e.target.value)}
-                    className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
-                  />
-                </div>
-              )}
 
-              {!isROI && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Time (years)
-                  </label>
-                  <input
-                    type="number"
-                    value={years}
-                    placeholder="Enter years"
-                    onChange={(e) => setYears(e.target.value)}
-                    className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
-                  />
-                </div>
-              )}
+                {isROI || isCAGR ? (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Final value
+                    </label>
+                    <input
+                      type="number"
+                      value={finalValue}
+                      placeholder="Enter final value"
+                      onChange={(e) => setFinalValue(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
+                ) : (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Annual interest rate (%)
+                    </label>
+                    <input
+                      type="number"
+                      value={rate}
+                      placeholder="Enter interest rate"
+                      onChange={(e) => setRate(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
+                )}
 
-              {isCompound && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Annual contribution
-                  </label>
-                  <input
-                    type="number"
-                    value={annualContribution}
-                    placeholder="Optional yearly contribution"
-                    onChange={(e) => setAnnualContribution(e.target.value)}
-                    className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
-                  />
-                </div>
-              )}
+                {!isROI && (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Time (years)
+                    </label>
+                    <input
+                      type="number"
+                      value={years}
+                      placeholder="Enter years"
+                      onChange={(e) => setYears(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
+                )}
 
-              {isSavings && (
-                <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
-                    Monthly contribution
-                  </label>
-                  <input
-                    type="number"
-                    value={monthlyContribution}
-                    placeholder="Enter monthly contribution"
-                    onChange={(e) => setMonthlyContribution(e.target.value)}
-                    className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
-                  />
-                </div>
-              )}
+                {isCompound && (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Annual contribution
+                    </label>
+                    <input
+                      type="number"
+                      value={annualContribution}
+                      placeholder="Optional yearly contribution"
+                      onChange={(e) => setAnnualContribution(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
+                )}
 
-              <div className="mt-6 rounded-xl bg-white border p-5 text-center">
-                <div className="text-sm text-gray-500 mb-1">{primaryLabel}</div>
-                <div className="text-3xl font-bold tracking-tight mb-4">
-                  {primaryValue.toFixed(2)}
-                </div>
+                {isSavings && (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Monthly contribution
+                    </label>
+                    <input
+                      type="number"
+                      value={monthlyContribution}
+                      placeholder="Enter monthly contribution"
+                      onChange={(e) => setMonthlyContribution(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
+                )}
 
-                <div className="text-sm text-gray-500 mb-1">
-                  {secondaryLabel}
-                </div>
-                <div className="text-3xl font-bold tracking-tight">
-                  {secondaryValue.toFixed(2)}
+                <div className="grid gap-4 rounded-3xl border bg-white p-5 md:grid-cols-2">
+                  <div className="rounded-2xl bg-gray-50 p-4">
+                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
+                      {primaryLabel}
+                    </div>
+                    <div className="text-3xl font-semibold tracking-tight text-gray-900">
+                      {primaryValue.toFixed(2)}
+                    </div>
+                  </div>
+
+                  <div className="rounded-2xl bg-gray-50 p-4">
+                    <div className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-500">
+                      {secondaryLabel}
+                    </div>
+                    <div className="text-3xl font-semibold tracking-tight text-gray-900">
+                      {secondaryValue.toFixed(2)}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="my-6 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
+            <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
               Ad slot (middle)
             </div>
 
             <div className="grid gap-6">
-              <section>
-                <h2 className="text-xl font-semibold mb-2">Formula</h2>
+              <section className="rounded-2xl border p-5">
+                <h2 className="mb-2 text-xl font-semibold">Formula</h2>
                 {isCompound ? (
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-2 text-gray-600">
                     <p>A = P × (1 + r)^t</p>
                     <p>Contributions are added annually and compounded forward.</p>
                   </div>
                 ) : isLoan ? (
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-2 text-gray-600">
                     <p>M = P × r / (1 - (1 + r)^-n)</p>
                     <p>
                       Where M is monthly payment, P is principal, r is monthly
@@ -347,7 +366,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     </p>
                   </div>
                 ) : isROI ? (
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-2 text-gray-600">
                     <p>
                       ROI (%) = ((Final Value - Initial Investment) / Initial
                       Investment) × 100
@@ -355,7 +374,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     <p>Profit = Final Value - Initial Investment</p>
                   </div>
                 ) : isSavings ? (
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-2 text-gray-600">
                     <p>
                       FV = P × (1 + r/12)^(12t) + PMT × (((1 + r/12)^(12t) - 1) /
                       (r/12))
@@ -366,7 +385,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     </p>
                   </div>
                 ) : isCAGR ? (
-                  <div className="text-gray-600 space-y-2">
+                  <div className="space-y-2 text-gray-600">
                     <p>CAGR = (Ending Value / Beginning Value)^(1 / Years) - 1</p>
                     <p>
                       This shows the average annual growth rate over a period of
@@ -380,8 +399,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 )}
               </section>
 
-              <section>
-                <h2 className="text-xl font-semibold mb-2">How to use</h2>
+              <section className="rounded-2xl border p-5">
+                <h2 className="mb-2 text-xl font-semibold">How to use</h2>
                 <p className="text-gray-600">
                   {isCompound
                     ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
@@ -399,8 +418,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
             </div>
 
             <div className="mt-10 space-y-8">
-              <section>
-                <h2 className="text-xl font-semibold mb-2">
+              <section className="rounded-2xl border p-5">
+                <h2 className="mb-2 text-xl font-semibold">
                   What is {tool.name}?
                 </h2>
                 <p className="text-gray-600">
@@ -412,8 +431,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 </p>
               </section>
 
-              <section>
-                <h2 className="text-xl font-semibold mb-2">Why this matters</h2>
+              <section className="rounded-2xl border p-5">
+                <h2 className="mb-2 text-xl font-semibold">Why this matters</h2>
                 <p className="text-gray-600">
                   Understanding your financial results helps you make better
                   decisions, compare different scenarios, and plan for the future
@@ -421,12 +440,12 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 </p>
               </section>
 
-              <section>
-                <h2 className="text-xl font-semibold mb-4">FAQ</h2>
+              <section className="rounded-2xl border p-5">
+                <h2 className="mb-4 text-xl font-semibold">FAQ</h2>
 
                 <div className="space-y-4">
-                  <div className="rounded-xl border p-4">
-                    <h3 className="font-medium mb-2">
+                  <div className="rounded-2xl bg-gray-50 p-4">
+                    <h3 className="mb-2 font-medium text-gray-900">
                       {isCompound
                         ? "What does compound interest mean?"
                         : isLoan
@@ -439,7 +458,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                                 ? "What does CAGR tell you?"
                                 : "What is simple interest?"}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-sm text-gray-600">
                       {isCompound
                         ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
                         : isLoan
@@ -454,8 +473,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     </p>
                   </div>
 
-                  <div className="rounded-xl border p-4">
-                    <h3 className="font-medium mb-2">
+                  <div className="rounded-2xl bg-gray-50 p-4">
+                    <h3 className="mb-2 font-medium text-gray-900">
                       {isCompound
                         ? "Why use a compound interest calculator?"
                         : isLoan
@@ -468,7 +487,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                                 ? "Why use a CAGR calculator?"
                                 : "Why use a simple interest calculator?"}
                     </h3>
-                    <p className="text-gray-600 text-sm">
+                    <p className="text-sm text-gray-600">
                       {isCompound
                         ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
                         : isLoan
@@ -486,19 +505,19 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               </section>
             </div>
 
-            <div className="my-8 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
+            <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
               Ad slot (bottom)
             </div>
 
             <div className="border-t pt-6">
-              <h2 className="text-xl font-semibold mb-3">Related tools</h2>
+              <h2 className="mb-3 text-xl font-semibold">Related tools</h2>
 
               <div className="flex flex-wrap gap-2">
                 {relatedTools.map((related) => (
                   <Link
                     key={related.slug}
                     href={`/tools/${related.category}/${related.slug}`}
-                    className="inline-block rounded-lg border px-3 py-2 text-sm hover:bg-gray-50"
+                    className="inline-block rounded-xl border px-3 py-2 text-sm hover:bg-gray-50"
                   >
                     {related.name}
                   </Link>
@@ -506,7 +525,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
 
                 <Link
                   href={`/tools/${tool.category}`}
-                  className="inline-block rounded-lg border px-3 py-2 text-sm hover:bg-gray-50"
+                  className="inline-block rounded-xl border px-3 py-2 text-sm hover:bg-gray-50"
                 >
                   All {tool.category}
                 </Link>
@@ -514,9 +533,9 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
             </div>
           </section>
 
-          <aside className="rounded-2xl border bg-white p-6 shadow-sm h-fit">
-            <h3 className="text-lg font-semibold mb-3">About this tool</h3>
-            <p className="text-sm text-gray-600">
+          <aside className="h-fit rounded-3xl border bg-white p-6 shadow-sm">
+            <h3 className="mb-3 text-lg font-semibold">About this tool</h3>
+            <p className="text-sm leading-6 text-gray-600">
               {isCompound
                 ? "Estimates long-term growth with compound interest and contributions."
                 : isLoan
@@ -530,8 +549,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                         : "Calculates simple interest without compounding."}
             </p>
 
-            <div className="mt-6">
-              <h4 className="text-sm font-semibold text-gray-900 mb-2">
+            <div className="mt-6 rounded-2xl bg-gray-50 p-4">
+              <h4 className="mb-3 text-sm font-semibold text-gray-900">
                 Quick links
               </h4>
 
@@ -606,7 +625,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               </div>
             </div>
 
-            <div className="mt-6 rounded-xl border border-dashed p-4 text-xs text-center text-gray-400">
+            <div className="mt-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
               Sidebar promo / ad slot
             </div>
           </aside>
