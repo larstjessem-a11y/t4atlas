@@ -10,13 +10,17 @@ type Tool = {
   category: string;
   subcategory: string;
   type: "converter" | "finance";
+  description?: string;
+  seoIntro?: string;
   financeType?:
     | "simple-interest"
     | "compound-interest"
     | "loan-payment"
     | "roi-calculator"
-    | "savings-growth";
+    | "savings-growth"
+    | "cagr";
 };
+
 export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const [principal, setPrincipal] = useState("");
   const [rate, setRate] = useState("");
@@ -41,6 +45,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const isSimple = tool.financeType === "simple-interest";
   const isROI = tool.financeType === "roi-calculator";
   const isSavings = tool.financeType === "savings-growth";
+  const isCAGR = tool.financeType === "cagr";
 
   let primaryValue = 0;
   let secondaryValue = 0;
@@ -114,6 +119,14 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
     secondaryValue = growth;
     primaryLabel = "Total savings";
     secondaryLabel = "Growth";
+  } else if (isCAGR) {
+    const cagr =
+      p > 0 && f > 0 && t > 0 ? (Math.pow(f / p, 1 / t) - 1) * 100 : 0;
+
+    primaryValue = cagr;
+    secondaryValue = f - p;
+    primaryLabel = "CAGR (%)";
+    secondaryLabel = "Total growth";
   } else if (isSimple) {
     const interest = p * r * t;
     const total = p + interest;
@@ -164,21 +177,27 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
             {subcategoryLabel} {categoryLabel}
           </p>
 
-          <h1 className="text-4xl font-semibold tracking-tight mb-3">
-            {tool.name}
-          </h1>
+          <div className="mb-6">
+            <h1 className="text-4xl font-semibold tracking-tight mb-3">
+              {tool.name}
+            </h1>
 
-          <p className="text-lg text-gray-600 max-w-2xl">
-            {isCompound
-              ? "Estimate growth from compound interest, including optional annual contributions."
-              : isLoan
-              ? "Estimate monthly loan payments based on principal, interest rate, and loan term."
-              : isROI
-              ? "Calculate ROI based on the amount invested and the final value of the investment."
-              : isSavings
-              ? "Estimate how your savings can grow over time with monthly contributions and compound growth."
-              : "Calculate simple interest based on principal, annual rate, and time."}
-          </p>
+            <p className="text-lg text-gray-600 max-w-2xl">
+              {tool.description
+                ? tool.description
+                : isCompound
+                  ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
+                  : isLoan
+                    ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+                    : isROI
+                      ? "Calculate return on investment (ROI) based on your initial investment and final value."
+                      : isSavings
+                        ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+                        : isCAGR
+                          ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+                          : "Calculate simple interest based on principal, interest rate, and time."}
+            </p>
+          </div>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[2fr,1fr]">
@@ -193,10 +212,12 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   {isLoan
                     ? "Loan amount"
                     : isROI
-                    ? "Initial investment"
-                    : isSavings
-                    ? "Initial savings"
-                    : "Initial amount"}
+                      ? "Initial investment"
+                      : isSavings
+                        ? "Initial savings"
+                        : isCAGR
+                          ? "Beginning value"
+                          : "Initial amount"}
                 </label>
                 <input
                   type="number"
@@ -205,17 +226,19 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     isLoan
                       ? "Enter loan amount"
                       : isROI
-                      ? "Enter initial investment"
-                      : isSavings
-                      ? "Enter initial savings"
-                      : "Enter initial amount"
+                        ? "Enter initial investment"
+                        : isSavings
+                          ? "Enter initial savings"
+                          : isCAGR
+                            ? "Enter beginning value"
+                            : "Enter initial amount"
                   }
                   onChange={(e) => setPrincipal(e.target.value)}
                   className="w-full rounded-xl border bg-white p-4 text-lg outline-none focus:border-gray-400"
                 />
               </div>
 
-              {isROI ? (
+              {isROI || isCAGR ? (
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-2">
                     Final value
@@ -294,7 +317,9 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   {primaryValue.toFixed(2)}
                 </div>
 
-                <div className="text-sm text-gray-500 mb-1">{secondaryLabel}</div>
+                <div className="text-sm text-gray-500 mb-1">
+                  {secondaryLabel}
+                </div>
                 <div className="text-3xl font-bold tracking-tight">
                   {secondaryValue.toFixed(2)}
                 </div>
@@ -317,20 +342,35 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   <div className="text-gray-600 space-y-2">
                     <p>M = P × r / (1 - (1 + r)^-n)</p>
                     <p>
-                      Where M is monthly payment, P is principal, r is monthly interest rate,
-                      and n is total number of monthly payments.
+                      Where M is monthly payment, P is principal, r is monthly
+                      interest rate, and n is total number of monthly payments.
                     </p>
                   </div>
                 ) : isROI ? (
                   <div className="text-gray-600 space-y-2">
-                    <p>ROI (%) = ((Final Value - Initial Investment) / Initial Investment) × 100</p>
+                    <p>
+                      ROI (%) = ((Final Value - Initial Investment) / Initial
+                      Investment) × 100
+                    </p>
                     <p>Profit = Final Value - Initial Investment</p>
                   </div>
                 ) : isSavings ? (
                   <div className="text-gray-600 space-y-2">
-                    <p>FV = P × (1 + r/12)^(12t) + PMT × (((1 + r/12)^(12t) - 1) / (r/12))</p>
                     <p>
-                      This estimates savings growth from an initial balance plus recurring monthly contributions.
+                      FV = P × (1 + r/12)^(12t) + PMT × (((1 + r/12)^(12t) - 1) /
+                      (r/12))
+                    </p>
+                    <p>
+                      This estimates savings growth from an initial balance plus
+                      recurring monthly contributions.
+                    </p>
+                  </div>
+                ) : isCAGR ? (
+                  <div className="text-gray-600 space-y-2">
+                    <p>CAGR = (Ending Value / Beginning Value)^(1 / Years) - 1</p>
+                    <p>
+                      This shows the average annual growth rate over a period of
+                      time, assuming compounding.
                     </p>
                   </div>
                 ) : (
@@ -346,13 +386,103 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   {isCompound
                     ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
                     : isLoan
-                    ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
-                    : isROI
-                    ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
-                    : isSavings
-                    ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
-                    : "Enter your starting amount, annual interest rate, and number of years."}
+                      ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
+                      : isROI
+                        ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
+                        : isSavings
+                          ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
+                          : isCAGR
+                            ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
+                            : "Enter your starting amount, annual interest rate, and number of years."}
                 </p>
+              </section>
+            </div>
+
+            <div className="mt-10 space-y-8">
+              <section>
+                <h2 className="text-xl font-semibold mb-2">
+                  What is {tool.name}?
+                </h2>
+                <p className="text-gray-600">
+                  {tool.seoIntro
+                    ? tool.seoIntro
+                    : tool.description
+                      ? tool.description
+                      : "This calculator helps you estimate financial outcomes based on your inputs."}
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-2">Why this matters</h2>
+                <p className="text-gray-600">
+                  Understanding your financial results helps you make better
+                  decisions, compare different scenarios, and plan for the future
+                  with more confidence.
+                </p>
+              </section>
+
+              <section>
+                <h2 className="text-xl font-semibold mb-4">FAQ</h2>
+
+                <div className="space-y-4">
+                  <div className="rounded-xl border p-4">
+                    <h3 className="font-medium mb-2">
+                      {isCompound
+                        ? "What does compound interest mean?"
+                        : isLoan
+                          ? "How is a loan payment calculated?"
+                          : isROI
+                            ? "What is a good ROI?"
+                            : isSavings
+                              ? "How does savings growth work?"
+                              : isCAGR
+                                ? "What does CAGR tell you?"
+                                : "What is simple interest?"}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {isCompound
+                        ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
+                        : isLoan
+                          ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
+                          : isROI
+                            ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
+                            : isSavings
+                              ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
+                              : isCAGR
+                                ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
+                                : "Simple interest is calculated only on the original principal, not on accumulated interest."}
+                    </p>
+                  </div>
+
+                  <div className="rounded-xl border p-4">
+                    <h3 className="font-medium mb-2">
+                      {isCompound
+                        ? "Why use a compound interest calculator?"
+                        : isLoan
+                          ? "Why use a loan payment calculator?"
+                          : isROI
+                            ? "Why use an ROI calculator?"
+                            : isSavings
+                              ? "Why use a savings growth calculator?"
+                              : isCAGR
+                                ? "Why use a CAGR calculator?"
+                                : "Why use a simple interest calculator?"}
+                    </h3>
+                    <p className="text-gray-600 text-sm">
+                      {isCompound
+                        ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
+                        : isLoan
+                          ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
+                          : isROI
+                            ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
+                            : isSavings
+                              ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
+                              : isCAGR
+                                ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
+                                : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
+                    </p>
+                  </div>
+                </div>
               </section>
             </div>
 
@@ -390,18 +520,21 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               {isCompound
                 ? "Estimates long-term growth with compound interest and contributions."
                 : isLoan
-                ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
-                : isROI
-                ? "Calculates ROI and profit based on an investment's starting amount and final value."
-                : isSavings
-                ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
-                : "Calculates simple interest without compounding."}
+                  ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
+                  : isROI
+                    ? "Calculates ROI and profit based on an investment's starting amount and final value."
+                    : isSavings
+                      ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
+                      : isCAGR
+                        ? "Calculates the annualized growth rate of an investment over time."
+                        : "Calculates simple interest without compounding."}
             </p>
 
             <div className="mt-6">
               <h4 className="text-sm font-semibold text-gray-900 mb-2">
                 Quick links
               </h4>
+
               <div className="flex flex-col gap-2 text-sm">
                 <Link
                   href={`/tools/${tool.category}`}
@@ -409,21 +542,15 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 >
                   All {tool.category}
                 </Link>
+
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"
                 >
                   {subcategoryLabel} {categoryLabel}
                 </Link>
-                {tool.financeType === "simple-interest" && (
-                  <Link
-                    href="/tools/finance/compound-interest"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Compound Interest
-                  </Link>
-                )}
-                {tool.financeType === "compound-interest" && (
+
+                {tool.financeType !== "simple-interest" && (
                   <Link
                     href="/tools/finance/simple-interest"
                     className="text-gray-600 hover:text-gray-900"
@@ -431,6 +558,16 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     Simple Interest
                   </Link>
                 )}
+
+                {tool.financeType !== "compound-interest" && (
+                  <Link
+                    href="/tools/finance/compound-interest"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Compound Interest
+                  </Link>
+                )}
+
                 {tool.financeType !== "loan-payment" && (
                   <Link
                     href="/tools/finance/loan-payment"
@@ -439,6 +576,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     Loan Payment Calculator
                   </Link>
                 )}
+
                 {tool.financeType !== "roi-calculator" && (
                   <Link
                     href="/tools/finance/roi-calculator"
@@ -447,12 +585,22 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     ROI Calculator
                   </Link>
                 )}
+
                 {tool.financeType !== "savings-growth" && (
                   <Link
                     href="/tools/finance/savings-growth"
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Savings Growth Calculator
+                  </Link>
+                )}
+
+                {tool.financeType !== "cagr" && (
+                  <Link
+                    href="/tools/finance/cagr-calculator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    CAGR Calculator
                   </Link>
                 )}
               </div>

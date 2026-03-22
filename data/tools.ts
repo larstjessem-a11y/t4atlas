@@ -411,6 +411,10 @@ export const tools: Tool[] = [
   subcategory: "interest",
   type: "finance",
 financeType: "simple-interest",
+description:
+  "Calculate simple interest based on principal, interest rate, and time without compounding.",
+seoIntro:
+  "A simple interest calculator helps you estimate how much interest you earn or pay on a fixed principal over time without compounding. It is useful for basic loans, savings, and short-term financial planning.",
 },
 {
   slug: "compound-interest",
@@ -419,6 +423,10 @@ financeType: "simple-interest",
   subcategory: "interest",
   type: "finance",
   financeType: "compound-interest",
+description:
+  "Estimate how your investment grows over time with compound interest, including optional annual contributions.",
+seoIntro:
+  "A compound interest calculator shows how your investment grows over time when interest is reinvested. It is essential for understanding long-term investing, savings, and exponential growth.",
 },
 {
   slug: "loan-payment",
@@ -427,6 +435,10 @@ financeType: "simple-interest",
   subcategory: "loans",
   type: "finance",
   financeType: "loan-payment",
+description:
+  "Calculate monthly loan payments and total repayment cost based on interest rate and loan duration.",
+seoIntro:
+  "A loan payment calculator helps you estimate your monthly payments and total repayment amount based on interest rate and loan term. It is commonly used for mortgages, car loans, and personal loans.",
 },
 {
   slug: "roi-calculator",
@@ -435,6 +447,10 @@ financeType: "simple-interest",
   subcategory: "returns",
   type: "finance",
   financeType: "roi-calculator",
+description:
+  "Calculate return on investment (ROI) based on the initial investment and final value.",
+seoIntro:
+  "An ROI calculator helps you measure the profitability of an investment by comparing the initial cost with the final value. It is useful for evaluating business decisions, trades, and investment opportunities.",
 },
 {
   slug: "savings-growth",
@@ -443,5 +459,20 @@ financeType: "simple-interest",
   subcategory: "savings",
   type: "finance",
   financeType: "savings-growth",
+description:
+  "Estimate how your savings grow over time with monthly contributions and compound interest.",
+seoIntro:
+  "A savings growth calculator estimates how your savings will grow over time with regular contributions and compound interest. It is useful for long-term planning such as retirement or wealth building.",
 },
-];
+{
+  slug: "cagr-calculator",
+  name: "CAGR Calculator",
+  category: "finance",
+  subcategory: "investment",
+  type: "finance",
+  financeType: "cagr",
+  description:
+    "Calculate the compound annual growth rate (CAGR) to measure the average yearly return of an investment over time.",
+  seoIntro:
+    "A CAGR calculator helps you measure the average annual return of an investment over multiple years. It is useful when you want to compare investments with different time horizons on a like-for-like basis.",
+},];
