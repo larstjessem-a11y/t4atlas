@@ -25,6 +25,12 @@ export type Tool = {
 longTailScenarios?: {
   slug: string;
   label: string;
+  prefill?: {
+    principal?: string;
+    rate?: string;
+    years?: string;
+    finalValue?: string;
+  };
 }[];
 };
 
@@ -563,10 +569,16 @@ longTailScenarios: [
   {
     slug: "5-percent-interest",
     label: "Mortgage calculator with 5% interest",
+    prefill: {
+      rate: "5",
+    },
   },
   {
     slug: "30-year-mortgage",
     label: "30 year mortgage calculator",
+    prefill: {
+      years: "30",
+    },
   },
   {
     slug: "extra-payments",
@@ -575,6 +587,9 @@ longTailScenarios: [
   {
     slug: "different-loan-amounts",
     label: "Mortgage calculator for different loan amounts",
+    prefill: {
+      principal: "500000",
+    },
   },
 ],},
 {
@@ -595,18 +610,34 @@ longTailScenarios: [
   {
     slug: "income-stocks",
     label: "Dividend yield calculator for income stocks",
+    prefill: {
+      principal: "100",
+      finalValue: "5",
+    },
   },
   {
     slug: "high-vs-low-yield",
     label: "High dividend yield vs low dividend yield",
+    prefill: {
+      principal: "100",
+      finalValue: "8",
+    },
   },
   {
     slug: "by-share-price",
     label: "Dividend yield calculator by share price",
+    prefill: {
+      principal: "50",
+      finalValue: "2",
+    },
   },
   {
     slug: "long-term-investors",
     label: "Dividend income calculator for long term investors",
+    prefill: {
+      principal: "120",
+      finalValue: "6",
+    },
   },
 ],
 },
@@ -628,18 +659,38 @@ longTailScenarios: [
   {
     slug: "small-business",
     label: "Break-even calculator for small business",
+    prefill: {
+      principal: "50",
+      rate: "10000",
+      finalValue: "20",
+    },
   },
   {
     slug: "saas-pricing",
     label: "Break-even calculator for SaaS pricing",
+    prefill: {
+      principal: "30",
+      rate: "20000",
+      finalValue: "5",
+    },
   },
   {
     slug: "how-many-units",
     label: "How many units to sell to break even",
+    prefill: {
+      principal: "40",
+      rate: "12000",
+      finalValue: "15",
+    },
   },
   {
     slug: "product-pricing",
     label: "Break-even analysis for product pricing",
+    prefill: {
+      principal: "80",
+      rate: "25000",
+      finalValue: "35",
+    },
   },
 ],
 },];

@@ -23,6 +23,12 @@ type Tool = {
 longTailScenarios?: {
   slug: string;
   label: string;
+  prefill?: {
+    principal?: string;
+    rate?: string;
+    years?: string;
+    finalValue?: string;
+  };
 }[];};
 
 export default function FinanceTemplate({
@@ -60,17 +66,30 @@ export default function FinanceTemplate({
   const isBreakEven = tool.financeType === "break-even";
   const isMortgage = tool.slug === "mortgage-calculator";
 useEffect(() => {
-  if (!scenario || !isMortgage) return;
+  if (!scenario) return;
 
-  if (scenario === "5-percent-interest") {
-    setRate("5");
+  const matchedScenario = tool.longTailScenarios?.find(
+    (item) => item.slug === scenario
+  );
+
+  if (!matchedScenario?.prefill) return;
+
+  if (matchedScenario.prefill.principal !== undefined) {
+    setPrincipal(matchedScenario.prefill.principal);
   }
 
-  if (scenario === "30-year-mortgage") {
-    setYears("30");
+  if (matchedScenario.prefill.rate !== undefined) {
+    setRate(matchedScenario.prefill.rate);
   }
-}, [scenario, isMortgage]);
-  const isDividendYield = tool.slug === "dividend-yield-calculator";
+
+  if (matchedScenario.prefill.years !== undefined) {
+    setYears(matchedScenario.prefill.years);
+  }
+
+  if (matchedScenario.prefill.finalValue !== undefined) {
+    setFinalValue(matchedScenario.prefill.finalValue);
+  }
+}, [scenario, tool.longTailScenarios]);  const isDividendYield = tool.slug === "dividend-yield-calculator";
 
   let primaryValue = 0;
   let secondaryValue = 0;
@@ -112,13 +131,22 @@ useEffect(() => {
     primaryLabel = isMortgage ? "Monthly mortgage payment" : "Monthly payment";
     secondaryLabel = "Total paid";
   } else if (isROI) {
+  if (isDividendYield) {
+    const dividendYield = p > 0 ? (f / p) * 100 : 0;
+
+    primaryValue = dividendYield;
+    secondaryValue = f;
+    primaryLabel = "Dividend yield (%)";
+    secondaryLabel = "Annual dividend";
+  } else {
     const profit = f - p;
     const roiPercent = p > 0 ? (profit / p) * 100 : 0;
 
     primaryValue = roiPercent;
     secondaryValue = profit;
-    primaryLabel = isDividendYield ? "Dividend yield (%)" : "ROI (%)";
-    secondaryLabel = isDividendYield ? "Annual dividend" : "Profit";
+    primaryLabel = "ROI (%)";
+    secondaryLabel = "Profit";
+  }
   } else if (isSavings) {
     const monthlyRate = r / 12;
     const numberOfMonths = t * 12;
