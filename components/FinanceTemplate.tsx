@@ -20,6 +20,7 @@ type Tool = {
     | "savings-growth"
     | "cagr"
     | "break-even";
+longTailScenarios?: string[];
 };
 
 export default function FinanceTemplate({ tool }: { tool?: Tool }) {
@@ -501,6 +502,31 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                 </p>
               </section>
             </div>
+
+{tool.longTailScenarios && tool.longTailScenarios.length > 0 && (
+  <section className="mt-8 rounded-2xl border p-5">
+    <h2 className="mb-3 text-xl font-semibold">
+      {isMortgage ? "Mortgage calculator scenarios" : "Popular scenarios"}
+    </h2>
+
+    <div className="space-y-3 text-sm text-gray-600">
+      <p>
+        Many users search for specific scenarios. Here are common variations you can explore:
+      </p>
+
+      <ul className="list-disc pl-5 space-y-2">
+        {tool.longTailScenarios.map((scenario) => (
+          <li key={scenario}>{scenario}</li>
+        ))}
+      </ul>
+
+      <p>
+        Adjust the inputs above to test different scenarios and understand how the result changes based on your assumptions.
+      </p>
+    </div>
+  </section>
+)}
+
 
             <div className="mt-10 space-y-8">
               <section className="rounded-2xl border p-5">

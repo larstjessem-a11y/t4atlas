@@ -22,6 +22,7 @@ export type Tool = {
   | "savings-growth"
   | "cagr"
   | "break-even";
+longTailScenarios?: string[];
 };
 
 export const tools: Tool[] = [
@@ -459,6 +460,12 @@ seoIntro:
 seoTitle: "Loan Payment Calculator – Estimate Monthly Loan Payments",
 seoDescription:
   "Calculate monthly loan payments and total repayment using this free loan payment calculator.",
+longTailScenarios: [
+  "Loan payment calculator for 5 year loan",
+  "Monthly loan calculator with interest",
+  "Loan payment calculator by term length",
+  "How much will my loan payment be",
+],
 },
 {
   slug: "roi-calculator",
@@ -504,6 +511,12 @@ seoDescription:
 seoTitle: "CAGR Calculator – Calculate Compound Annual Growth Rate",
 seoDescription:
   "Use this CAGR calculator to find the annualized return of an investment over multiple years.",
+longTailScenarios: [
+  "CAGR calculator for stock returns",
+  "CAGR calculator over 5 years",
+  "Annualized return calculator for investments",
+  "CAGR vs average annual return",
+],
 },
 {
   slug: "mortgage-calculator",
@@ -519,6 +532,12 @@ seoDescription:
   seoTitle: "Mortgage Calculator – Estimate Monthly Mortgage Payments",
   seoDescription:
     "Use this free mortgage calculator to estimate monthly mortgage payments, total repayment, and borrowing costs based on loan amount, rate, and term.",
+longTailScenarios: [
+  "Mortgage calculator with 5% interest",
+  "30 year mortgage calculator",
+  "Mortgage calculator with extra payments",
+  "Mortgage calculator for different loan amounts",
+],
 },
 {
   slug: "dividend-yield-calculator",
@@ -534,6 +553,12 @@ seoDescription:
 seoTitle: "Dividend Yield Calculator – Calculate Stock Dividend Yield",
 seoDescription:
   "Calculate dividend yield from annual dividend and share price using this free dividend yield calculator.",
+longTailScenarios: [
+  "Dividend yield calculator for income stocks",
+  "High dividend yield vs low dividend yield",
+  "Dividend yield calculator by share price",
+  "Dividend income calculator for long term investors",
+],
 },
 {
   slug: "break-even-calculator",
@@ -549,4 +574,10 @@ seoDescription:
   seoTitle: "Break-Even Calculator – Calculate Break-Even Point",
   seoDescription:
     "Use this free break-even calculator to estimate how many units you need to sell to cover fixed and variable costs.",
+longTailScenarios: [
+  "Break-even calculator for small business",
+  "Break-even calculator for SaaS pricing",
+  "How many units to sell to break even",
+  "Break-even analysis for product pricing",
+],
 },];
