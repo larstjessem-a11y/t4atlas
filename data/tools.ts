@@ -22,7 +22,10 @@ export type Tool = {
   | "savings-growth"
   | "cagr"
   | "break-even";
-longTailScenarios?: string[];
+longTailScenarios?: {
+  slug: string;
+  label: string;
+}[];
 };
 
 export const tools: Tool[] = [
@@ -461,10 +464,22 @@ seoTitle: "Loan Payment Calculator – Estimate Monthly Loan Payments",
 seoDescription:
   "Calculate monthly loan payments and total repayment using this free loan payment calculator.",
 longTailScenarios: [
-  "Loan payment calculator for 5 year loan",
-  "Monthly loan calculator with interest",
-  "Loan payment calculator by term length",
-  "How much will my loan payment be",
+  {
+    slug: "5-year-loan",
+    label: "Loan payment calculator for 5 year loan",
+  },
+  {
+    slug: "monthly-loan-with-interest",
+    label: "Monthly loan calculator with interest",
+  },
+  {
+    slug: "by-term-length",
+    label: "Loan payment calculator by term length",
+  },
+  {
+    slug: "how-much-will-my-loan-payment-be",
+    label: "How much will my loan payment be",
+  },
 ],
 },
 {
@@ -512,10 +527,22 @@ seoTitle: "CAGR Calculator – Calculate Compound Annual Growth Rate",
 seoDescription:
   "Use this CAGR calculator to find the annualized return of an investment over multiple years.",
 longTailScenarios: [
-  "CAGR calculator for stock returns",
-  "CAGR calculator over 5 years",
-  "Annualized return calculator for investments",
-  "CAGR vs average annual return",
+  {
+    slug: "stock-returns",
+    label: "CAGR calculator for stock returns",
+  },
+  {
+    slug: "over-5-years",
+    label: "CAGR calculator over 5 years",
+  },
+  {
+    slug: "annualized-return",
+    label: "Annualized return calculator for investments",
+  },
+  {
+    slug: "vs-average-annual-return",
+    label: "CAGR vs average annual return",
+  },
 ],
 },
 {
@@ -533,12 +560,23 @@ longTailScenarios: [
   seoDescription:
     "Use this free mortgage calculator to estimate monthly mortgage payments, total repayment, and borrowing costs based on loan amount, rate, and term.",
 longTailScenarios: [
-  "Mortgage calculator with 5% interest",
-  "30 year mortgage calculator",
-  "Mortgage calculator with extra payments",
-  "Mortgage calculator for different loan amounts",
-],
-},
+  {
+    slug: "5-percent-interest",
+    label: "Mortgage calculator with 5% interest",
+  },
+  {
+    slug: "30-year-mortgage",
+    label: "30 year mortgage calculator",
+  },
+  {
+    slug: "extra-payments",
+    label: "Mortgage calculator with extra payments",
+  },
+  {
+    slug: "different-loan-amounts",
+    label: "Mortgage calculator for different loan amounts",
+  },
+],},
 {
   slug: "dividend-yield-calculator",
   name: "Dividend Yield Calculator",
@@ -554,10 +592,22 @@ seoTitle: "Dividend Yield Calculator – Calculate Stock Dividend Yield",
 seoDescription:
   "Calculate dividend yield from annual dividend and share price using this free dividend yield calculator.",
 longTailScenarios: [
-  "Dividend yield calculator for income stocks",
-  "High dividend yield vs low dividend yield",
-  "Dividend yield calculator by share price",
-  "Dividend income calculator for long term investors",
+  {
+    slug: "income-stocks",
+    label: "Dividend yield calculator for income stocks",
+  },
+  {
+    slug: "high-vs-low-yield",
+    label: "High dividend yield vs low dividend yield",
+  },
+  {
+    slug: "by-share-price",
+    label: "Dividend yield calculator by share price",
+  },
+  {
+    slug: "long-term-investors",
+    label: "Dividend income calculator for long term investors",
+  },
 ],
 },
 {
@@ -575,9 +625,21 @@ longTailScenarios: [
   seoDescription:
     "Use this free break-even calculator to estimate how many units you need to sell to cover fixed and variable costs.",
 longTailScenarios: [
-  "Break-even calculator for small business",
-  "Break-even calculator for SaaS pricing",
-  "How many units to sell to break even",
-  "Break-even analysis for product pricing",
+  {
+    slug: "small-business",
+    label: "Break-even calculator for small business",
+  },
+  {
+    slug: "saas-pricing",
+    label: "Break-even calculator for SaaS pricing",
+  },
+  {
+    slug: "how-many-units",
+    label: "How many units to sell to break even",
+  },
+  {
+    slug: "product-pricing",
+    label: "Break-even analysis for product pricing",
+  },
 ],
 },];

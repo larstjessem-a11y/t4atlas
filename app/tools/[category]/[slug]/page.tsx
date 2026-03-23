@@ -9,12 +9,18 @@ type PageProps = {
     category: string;
     slug: string;
   }>;
+  searchParams?: Promise<{
+    scenario?: string;
+  }>;
 };
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const { category, slug } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const scenario = resolvedSearchParams?.scenario;
 
   const tool = tools.find(
     (t) => t.category === category && t.slug === slug
@@ -27,17 +33,33 @@ export async function generateMetadata({
     };
   }
 
-  return {
-    title: tool.seoTitle ?? `${tool.name} | T4 Atlas`,
-    description:
-      tool.seoDescription ??
+  const activeScenario = tool.longTailScenarios?.find(
+    (item) => item.slug === scenario
+  );
+
+  const title = activeScenario
+    ? `${activeScenario.label} | T4 Atlas`
+    : tool.seoTitle ?? `${tool.name} | T4 Atlas`;
+
+  const description = activeScenario
+    ? `Use this ${activeScenario.label.toLowerCase()} tool on T4 Atlas to explore this specific scenario and compare different assumptions.`
+    : tool.seoDescription ??
       tool.description ??
-      `Use the ${tool.name} on T4 Atlas.`,
+      `Use the ${tool.name} on T4 Atlas.`;
+
+  return {
+    title,
+    description,
   };
 }
 
-export default async function ToolPage({ params }: PageProps) {
+export default async function ToolPage({
+  params,
+  searchParams,
+}: PageProps) {
   const { category, slug } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const scenario = resolvedSearchParams?.scenario;
 
   const tool = tools.find(
     (t) => t.category === category && t.slug === slug
@@ -48,7 +70,7 @@ export default async function ToolPage({ params }: PageProps) {
   }
 
   if (tool.type === "finance") {
-    return <FinanceTemplate tool={tool} />;
+    return <FinanceTemplate tool={tool} scenario={scenario} />;
   }
 
   return <ToolTemplate tool={tool} />;

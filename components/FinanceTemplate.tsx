@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { tools } from "@/data/tools";
 
@@ -20,16 +20,25 @@ type Tool = {
     | "savings-growth"
     | "cagr"
     | "break-even";
-longTailScenarios?: string[];
-};
+longTailScenarios?: {
+  slug: string;
+  label: string;
+}[];};
 
-export default function FinanceTemplate({ tool }: { tool?: Tool }) {
+export default function FinanceTemplate({
+  tool,
+  scenario,
+}: {
+  tool?: Tool;
+  scenario?: string;
+}) {
   const [principal, setPrincipal] = useState("");
   const [rate, setRate] = useState("");
   const [years, setYears] = useState("");
   const [annualContribution, setAnnualContribution] = useState("");
   const [finalValue, setFinalValue] = useState("");
   const [monthlyContribution, setMonthlyContribution] = useState("");
+
 
   if (!tool) {
     return <main className="p-10">Tool not found.</main>;
@@ -50,6 +59,17 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const isCAGR = tool.financeType === "cagr";
   const isBreakEven = tool.financeType === "break-even";
   const isMortgage = tool.slug === "mortgage-calculator";
+useEffect(() => {
+  if (!scenario || !isMortgage) return;
+
+  if (scenario === "5-percent-interest") {
+    setRate("5");
+  }
+
+  if (scenario === "30-year-mortgage") {
+    setYears("30");
+  }
+}, [scenario, isMortgage]);
   const isDividendYield = tool.slug === "dividend-yield-calculator";
 
   let primaryValue = 0;
@@ -162,6 +182,9 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
         t.slug !== tool.slug
     )
     .slice(0, 5);
+const activeScenario = tool.longTailScenarios?.find(
+  (item) => item.slug === scenario
+);
 
   return (
     <main className="py-10 px-4 md:px-6">
@@ -194,31 +217,33 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
           </div>
 
           <div className="max-w-3xl">
-            <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-              {tool.name}
-            </h1>
+           <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+  {activeScenario ? activeScenario.label : tool.name}
+</h1>
 
-            <p className="text-base leading-7 text-gray-600 md:text-lg">
-              {tool.description
-                ? tool.description
-                : isCompound
-                ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
-                : isMortgage
-                ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
-                : isDividendYield
-                ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
-                : isBreakEven
-                ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
-                : isLoan
-                ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
-                : isROI
-                ? "Calculate return on investment (ROI) based on your initial investment and final value."
-                : isSavings
-                ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
-                : isCAGR
-                ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
-                : "Calculate simple interest based on principal, interest rate, and time."}
-            </p>
+           <p className="text-base leading-7 text-gray-600 md:text-lg">
+  {activeScenario
+    ? `Use this ${activeScenario.label.toLowerCase()} tool to explore this specific scenario and compare how different assumptions affect your result.`
+    : tool.description
+    ? tool.description
+    : isCompound
+    ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
+    : isMortgage
+    ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
+    : isDividendYield
+    ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
+    : isBreakEven
+    ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
+    : isLoan
+    ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+    : isROI
+    ? "Calculate return on investment (ROI) based on your initial investment and final value."
+    : isSavings
+    ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+    : isCAGR
+    ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+    : "Calculate simple interest based on principal, interest rate, and time."}
+</p>
           </div>
         </div>
 
@@ -514,11 +539,18 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
         Many users search for specific scenarios. Here are common variations you can explore:
       </p>
 
-      <ul className="list-disc pl-5 space-y-2">
-        {tool.longTailScenarios.map((scenario) => (
-          <li key={scenario}>{scenario}</li>
-        ))}
-      </ul>
+  <ul className="list-disc pl-5 space-y-2">
+  {tool.longTailScenarios.map((scenario) => (
+    <li key={scenario.slug}>
+      <Link
+        href={`/tools/${tool.category}/${tool.slug}?scenario=${scenario.slug}`}
+        className="hover:underline"
+      >
+        {scenario.label}
+      </Link>
+    </li>
+  ))}
+</ul>
 
       <p>
         Adjust the inputs above to test different scenarios and understand how the result changes based on your assumptions.
