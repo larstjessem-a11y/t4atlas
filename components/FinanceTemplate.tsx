@@ -735,6 +735,13 @@ const activeScenario = tool.longTailScenarios?.find(
                   All {tool.category}
                 </Link>
 
+<Link
+  href="/tools/finance/mortgage-vs-rent"
+  className="text-gray-600 hover:text-gray-900"
+>
+  Mortgage vs Rent Guide
+</Link>
+
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"
@@ -777,6 +784,12 @@ const activeScenario = tool.longTailScenarios?.find(
                     Dividend Yield Calculator
                   </Link>
                 )}
+<Link
+  href="/tools/finance/how-to-calculate-dividend-yield"
+  className="text-gray-600 hover:text-gray-900"
+>
+  Dividend Yield Guide
+</Link>
 
                 {tool.slug !== "break-even-calculator" && (
                   <Link
