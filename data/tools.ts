@@ -14,14 +14,15 @@ export type Tool = {
   formula?: string;
   examples?: number[];
   reverseSlug?: string;
- financeType?:
+financeType?:
   | "simple-interest"
   | "compound-interest"
   | "loan-payment"
   | "roi-calculator"
   | "savings-growth"
   | "cagr"
-  | "break-even";
+  | "break-even"
+  | "apr-calculator";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -693,4 +694,57 @@ longTailScenarios: [
     },
   },
 ],
+},
+{
+  slug: "apr-calculator",
+  name: "APR Calculator",
+  category: "finance",
+  subcategory: "loans",
+  type: "finance",
+  financeType: "apr-calculator",
+  description:
+    "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs.",
+  seoIntro:
+    "An APR calculator helps you estimate the annual percentage rate of a loan by taking into account both interest and certain borrowing costs. It is useful when comparing loans, credit products, and financing offers.",
+  seoTitle: "APR Calculator – Estimate Annual Percentage Rate",
+  seoDescription:
+    "Use this free APR calculator to estimate annual percentage rate and compare borrowing costs across different loan offers.",
+  longTailScenarios: [
+    {
+      slug: "personal-loan-apr",
+      label: "APR calculator for personal loans",
+      prefill: {
+        principal: "10000",
+        rate: "500",
+        finalValue: "1200",
+      },
+    },
+    {
+      slug: "loan-fees-and-apr",
+      label: "Loan fees and APR calculator",
+      prefill: {
+        principal: "20000",
+        rate: "1000",
+        finalValue: "1800",
+      },
+    },
+    {
+      slug: "compare-loan-offers",
+      label: "APR calculator to compare loan offers",
+      prefill: {
+        principal: "15000",
+        rate: "750",
+        finalValue: "1500",
+      },
+    },
+    {
+      slug: "credit-cost-comparison",
+      label: "Credit cost comparison calculator",
+      prefill: {
+        principal: "5000",
+        rate: "250",
+        finalValue: "700",
+      },
+    },
+  ],
 },];

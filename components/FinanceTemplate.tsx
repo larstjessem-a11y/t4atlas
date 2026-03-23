@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { tools } from "@/data/tools";
 
@@ -19,17 +19,19 @@ type Tool = {
     | "roi-calculator"
     | "savings-growth"
     | "cagr"
-    | "break-even";
-longTailScenarios?: {
-  slug: string;
-  label: string;
-  prefill?: {
-    principal?: string;
-    rate?: string;
-    years?: string;
-    finalValue?: string;
-  };
-}[];};
+    | "break-even"
+    | "apr-calculator";
+  longTailScenarios?: {
+    slug: string;
+    label: string;
+    prefill?: {
+      principal?: string;
+      rate?: string;
+      years?: string;
+      finalValue?: string;
+    };
+  }[];
+};
 
 export default function FinanceTemplate({
   tool,
@@ -44,7 +46,6 @@ export default function FinanceTemplate({
   const [annualContribution, setAnnualContribution] = useState("");
   const [finalValue, setFinalValue] = useState("");
   const [monthlyContribution, setMonthlyContribution] = useState("");
-
 
   if (!tool) {
     return <main className="p-10">Tool not found.</main>;
@@ -64,32 +65,35 @@ export default function FinanceTemplate({
   const isSavings = tool.financeType === "savings-growth";
   const isCAGR = tool.financeType === "cagr";
   const isBreakEven = tool.financeType === "break-even";
+  const isAPR = tool.financeType === "apr-calculator";
   const isMortgage = tool.slug === "mortgage-calculator";
-useEffect(() => {
-  if (!scenario) return;
+  const isDividendYield = tool.slug === "dividend-yield-calculator";
 
-  const matchedScenario = tool.longTailScenarios?.find(
-    (item) => item.slug === scenario
-  );
+  useEffect(() => {
+    if (!scenario) return;
 
-  if (!matchedScenario?.prefill) return;
+    const matchedScenario = tool.longTailScenarios?.find(
+      (item) => item.slug === scenario
+    );
 
-  if (matchedScenario.prefill.principal !== undefined) {
-    setPrincipal(matchedScenario.prefill.principal);
-  }
+    if (!matchedScenario?.prefill) return;
 
-  if (matchedScenario.prefill.rate !== undefined) {
-    setRate(matchedScenario.prefill.rate);
-  }
+    if (matchedScenario.prefill.principal !== undefined) {
+      setPrincipal(matchedScenario.prefill.principal);
+    }
 
-  if (matchedScenario.prefill.years !== undefined) {
-    setYears(matchedScenario.prefill.years);
-  }
+    if (matchedScenario.prefill.rate !== undefined) {
+      setRate(matchedScenario.prefill.rate);
+    }
 
-  if (matchedScenario.prefill.finalValue !== undefined) {
-    setFinalValue(matchedScenario.prefill.finalValue);
-  }
-}, [scenario, tool.longTailScenarios]);  const isDividendYield = tool.slug === "dividend-yield-calculator";
+    if (matchedScenario.prefill.years !== undefined) {
+      setYears(matchedScenario.prefill.years);
+    }
+
+    if (matchedScenario.prefill.finalValue !== undefined) {
+      setFinalValue(matchedScenario.prefill.finalValue);
+    }
+  }, [scenario, tool.longTailScenarios]);
 
   let primaryValue = 0;
   let secondaryValue = 0;
@@ -131,22 +135,22 @@ useEffect(() => {
     primaryLabel = isMortgage ? "Monthly mortgage payment" : "Monthly payment";
     secondaryLabel = "Total paid";
   } else if (isROI) {
-  if (isDividendYield) {
-    const dividendYield = p > 0 ? (f / p) * 100 : 0;
+    if (isDividendYield) {
+      const dividendYield = p > 0 ? (f / p) * 100 : 0;
 
-    primaryValue = dividendYield;
-    secondaryValue = f;
-    primaryLabel = "Dividend yield (%)";
-    secondaryLabel = "Annual dividend";
-  } else {
-    const profit = f - p;
-    const roiPercent = p > 0 ? (profit / p) * 100 : 0;
+      primaryValue = dividendYield;
+      secondaryValue = f;
+      primaryLabel = "Dividend yield (%)";
+      secondaryLabel = "Annual dividend";
+    } else {
+      const profit = f - p;
+      const roiPercent = p > 0 ? (profit / p) * 100 : 0;
 
-    primaryValue = roiPercent;
-    secondaryValue = profit;
-    primaryLabel = "ROI (%)";
-    secondaryLabel = "Profit";
-  }
+      primaryValue = roiPercent;
+      secondaryValue = profit;
+      primaryLabel = "ROI (%)";
+      secondaryLabel = "Profit";
+    }
   } else if (isSavings) {
     const monthlyRate = r / 12;
     const numberOfMonths = t * 12;
@@ -181,14 +185,25 @@ useEffect(() => {
     primaryLabel = "CAGR (%)";
     secondaryLabel = "Total growth";
   } else if (isBreakEven) {
-    const contributionMargin = p - f;
+    const fixedCosts = parseFloat(rate) || 0;
+    const variableCostPerUnit = parseFloat(finalValue) || 0;
+    const contributionMargin = p - variableCostPerUnit;
     const breakEvenUnits =
-      contributionMargin > 0 ? r / contributionMargin : 0;
+      contributionMargin > 0 ? fixedCosts / contributionMargin : 0;
 
     primaryValue = breakEvenUnits;
     secondaryValue = contributionMargin;
     primaryLabel = "Break-even units";
     secondaryLabel = "Contribution margin per unit";
+  } else if (isAPR) {
+    const fees = parseFloat(rate) || 0;
+    const totalInterest = parseFloat(finalValue) || 0;
+    const apr = p > 0 ? ((fees + totalInterest) / p) * 100 : 0;
+
+    primaryValue = apr;
+    secondaryValue = fees + totalInterest;
+    primaryLabel = "APR estimate (%)";
+    secondaryLabel = "Total borrowing cost";
   } else if (isSimple) {
     const interest = p * r * t;
     const total = p + interest;
@@ -210,9 +225,10 @@ useEffect(() => {
         t.slug !== tool.slug
     )
     .slice(0, 5);
-const activeScenario = tool.longTailScenarios?.find(
-  (item) => item.slug === scenario
-);
+
+  const activeScenario = tool.longTailScenarios?.find(
+    (item) => item.slug === scenario
+  );
 
   return (
     <main className="py-10 px-4 md:px-6">
@@ -245,33 +261,35 @@ const activeScenario = tool.longTailScenarios?.find(
           </div>
 
           <div className="max-w-3xl">
-           <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-  {activeScenario ? activeScenario.label : tool.name}
-</h1>
+            <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
+              {activeScenario ? activeScenario.label : tool.name}
+            </h1>
 
-           <p className="text-base leading-7 text-gray-600 md:text-lg">
-  {activeScenario
-    ? `Use this ${activeScenario.label.toLowerCase()} tool to explore this specific scenario and compare how different assumptions affect your result.`
-    : tool.description
-    ? tool.description
-    : isCompound
-    ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
-    : isMortgage
-    ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
-    : isDividendYield
-    ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
-    : isBreakEven
-    ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
-    : isLoan
-    ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
-    : isROI
-    ? "Calculate return on investment (ROI) based on your initial investment and final value."
-    : isSavings
-    ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
-    : isCAGR
-    ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
-    : "Calculate simple interest based on principal, interest rate, and time."}
-</p>
+            <p className="text-base leading-7 text-gray-600 md:text-lg">
+              {activeScenario
+                ? `Use this ${activeScenario.label.toLowerCase()} tool to explore this specific scenario and compare how different assumptions affect your result.`
+                : tool.description
+                ? tool.description
+                : isCompound
+                ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
+                : isMortgage
+                ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
+                : isDividendYield
+                ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
+                : isBreakEven
+                ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
+                : isAPR
+                ? "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs."
+                : isLoan
+                ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+                : isROI
+                ? "Calculate return on investment (ROI) based on your initial investment and final value."
+                : isSavings
+                ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+                : isCAGR
+                ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+                : "Calculate simple interest based on principal, interest rate, and time."}
+            </p>
           </div>
         </div>
 
@@ -300,6 +318,8 @@ const activeScenario = tool.longTailScenarios?.find(
                       ? "Share price"
                       : isBreakEven
                       ? "Selling price per unit"
+                      : isAPR
+                      ? "Loan amount"
                       : isLoan
                       ? "Loan amount"
                       : isROI
@@ -320,6 +340,8 @@ const activeScenario = tool.longTailScenarios?.find(
                         ? "Enter share price"
                         : isBreakEven
                         ? "Enter selling price per unit"
+                        : isAPR
+                        ? "Enter loan amount"
                         : isLoan
                         ? "Enter loan amount"
                         : isROI
@@ -363,6 +385,34 @@ const activeScenario = tool.longTailScenarios?.find(
                       />
                     </div>
                   </>
+                ) : isAPR ? (
+                  <>
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Loan fees
+                      </label>
+                      <input
+                        type="number"
+                        value={rate}
+                        placeholder="Enter loan fees"
+                        onChange={(e) => setRate(e.target.value)}
+                        className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Total interest cost
+                      </label>
+                      <input
+                        type="number"
+                        value={finalValue}
+                        placeholder="Enter total interest cost"
+                        onChange={(e) => setFinalValue(e.target.value)}
+                        className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                      />
+                    </div>
+                  </>
                 ) : isROI || isCAGR ? (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -395,7 +445,7 @@ const activeScenario = tool.longTailScenarios?.find(
                   </div>
                 )}
 
-                {!isROI && !isBreakEven && (
+                {!isROI && !isBreakEven && !isAPR && (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       {isMortgage ? "Mortgage term (years)" : "Time (years)"}
@@ -492,10 +542,23 @@ const activeScenario = tool.longTailScenarios?.find(
                   </div>
                 ) : isBreakEven ? (
                   <div className="space-y-2 text-gray-600">
-                    <p>Break-even units = Fixed Costs / (Selling Price per Unit - Variable Cost per Unit)</p>
+                    <p>
+                      Break-even units = Fixed Costs / (Selling Price per Unit -
+                      Variable Cost per Unit)
+                    </p>
                     <p>
                       This shows how many units you need to sell before total revenue
                       equals total costs.
+                    </p>
+                  </div>
+                ) : isAPR ? (
+                  <div className="space-y-2 text-gray-600">
+                    <p>
+                      APR (%) ≈ ((Loan Fees + Total Interest Cost) / Loan Amount) × 100
+                    </p>
+                    <p>
+                      This simplified APR estimate helps compare the total borrowing
+                      cost of different loan offers.
                     </p>
                   </div>
                 ) : isROI ? (
@@ -543,6 +606,8 @@ const activeScenario = tool.longTailScenarios?.find(
                     ? "Enter the current share price and annual dividend per share to calculate dividend yield."
                     : isBreakEven
                     ? "Enter fixed costs, selling price per unit, and variable cost per unit to calculate your break-even point."
+                    : isAPR
+                    ? "Enter loan amount, total fees, and total interest cost to estimate the annual percentage rate."
                     : isLoan
                     ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
                     : isROI
@@ -556,37 +621,36 @@ const activeScenario = tool.longTailScenarios?.find(
               </section>
             </div>
 
-{tool.longTailScenarios && tool.longTailScenarios.length > 0 && (
-  <section className="mt-8 rounded-2xl border p-5">
-    <h2 className="mb-3 text-xl font-semibold">
-      {isMortgage ? "Mortgage calculator scenarios" : "Popular scenarios"}
-    </h2>
+            {tool.longTailScenarios && tool.longTailScenarios.length > 0 && (
+              <section className="mt-8 rounded-2xl border p-5">
+                <h2 className="mb-3 text-xl font-semibold">
+                  {isMortgage ? "Mortgage calculator scenarios" : "Popular scenarios"}
+                </h2>
 
-    <div className="space-y-3 text-sm text-gray-600">
-      <p>
-        Many users search for specific scenarios. Here are common variations you can explore:
-      </p>
+                <div className="space-y-3 text-sm text-gray-600">
+                  <p>
+                    Many users search for specific scenarios. Here are common variations you can explore:
+                  </p>
 
-  <ul className="list-disc pl-5 space-y-2">
-  {tool.longTailScenarios.map((scenario) => (
-    <li key={scenario.slug}>
-      <Link
-        href={`/tools/${tool.category}/${tool.slug}?scenario=${scenario.slug}`}
-        className="hover:underline"
-      >
-        {scenario.label}
-      </Link>
-    </li>
-  ))}
-</ul>
+                  <ul className="list-disc pl-5 space-y-2">
+                    {tool.longTailScenarios.map((scenarioItem) => (
+                      <li key={scenarioItem.slug}>
+                        <Link
+                          href={`/tools/${tool.category}/${tool.slug}?scenario=${scenarioItem.slug}`}
+                          className="hover:underline"
+                        >
+                          {scenarioItem.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
 
-      <p>
-        Adjust the inputs above to test different scenarios and understand how the result changes based on your assumptions.
-      </p>
-    </div>
-  </section>
-)}
-
+                  <p>
+                    Adjust the inputs above to test different scenarios and understand how the result changes based on your assumptions.
+                  </p>
+                </div>
+              </section>
+            )}
 
             <div className="mt-10 space-y-8">
               <section className="rounded-2xl border p-5">
@@ -625,6 +689,8 @@ const activeScenario = tool.longTailScenarios?.find(
                         ? "What does dividend yield tell you?"
                         : isBreakEven
                         ? "What is a break-even point?"
+                        : isAPR
+                        ? "What does APR tell you?"
                         : isLoan
                         ? "How is a loan payment calculated?"
                         : isROI
@@ -644,6 +710,8 @@ const activeScenario = tool.longTailScenarios?.find(
                         ? "Dividend yield tells you how much annual dividend income a stock generates relative to its share price, shown as a percentage."
                         : isBreakEven
                         ? "The break-even point is the number of units you must sell to cover all fixed and variable costs before making a profit."
+                        : isAPR
+                        ? "APR helps show the total borrowing cost of a loan by including interest and certain fees in one comparable percentage figure."
                         : isLoan
                         ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
                         : isROI
@@ -666,6 +734,8 @@ const activeScenario = tool.longTailScenarios?.find(
                         ? "Why use a dividend yield calculator?"
                         : isBreakEven
                         ? "Why use a break-even calculator?"
+                        : isAPR
+                        ? "Why use an APR calculator?"
                         : isLoan
                         ? "Why use a loan payment calculator?"
                         : isROI
@@ -685,6 +755,8 @@ const activeScenario = tool.longTailScenarios?.find(
                         ? "It helps you compare dividend-paying stocks and evaluate whether the income from a stock matches your investing goals."
                         : isBreakEven
                         ? "It helps you understand how much you need to sell before becoming profitable, which is critical for pricing, planning, and business decisions."
+                        : isAPR
+                        ? "It helps you compare loans more fairly by combining borrowing fees and interest costs into a single estimate."
                         : isLoan
                         ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
                         : isROI
@@ -739,6 +811,8 @@ const activeScenario = tool.longTailScenarios?.find(
                 ? "Calculates dividend yield based on annual dividend and share price."
                 : isBreakEven
                 ? "Calculates the number of units needed to cover fixed and variable costs."
+                : isAPR
+                ? "Estimates annual percentage rate based on loan amount, fees, and interest costs."
                 : isLoan
                 ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
                 : isROI
@@ -763,18 +837,25 @@ const activeScenario = tool.longTailScenarios?.find(
                   All {tool.category}
                 </Link>
 
-<Link
-  href="/tools/finance/mortgage-vs-rent"
-  className="text-gray-600 hover:text-gray-900"
->
-  Mortgage vs Rent Guide
-</Link>
-
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"
                 >
                   {subcategoryLabel} {categoryLabel}
+                </Link>
+
+                <Link
+                  href="/tools/finance/mortgage-vs-rent"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Mortgage vs Rent Guide
+                </Link>
+
+                <Link
+                  href="/tools/finance/how-to-calculate-dividend-yield"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Dividend Yield Guide
                 </Link>
 
                 {tool.financeType !== "simple-interest" && (
@@ -812,12 +893,6 @@ const activeScenario = tool.longTailScenarios?.find(
                     Dividend Yield Calculator
                   </Link>
                 )}
-<Link
-  href="/tools/finance/how-to-calculate-dividend-yield"
-  className="text-gray-600 hover:text-gray-900"
->
-  Dividend Yield Guide
-</Link>
 
                 {tool.slug !== "break-even-calculator" && (
                   <Link
@@ -825,6 +900,15 @@ const activeScenario = tool.longTailScenarios?.find(
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Break-Even Calculator
+                  </Link>
+                )}
+
+                {tool.slug !== "apr-calculator" && (
+                  <Link
+                    href="/tools/finance/apr-calculator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    APR Calculator
                   </Link>
                 )}
 
