@@ -18,7 +18,8 @@ type Tool = {
     | "loan-payment"
     | "roi-calculator"
     | "savings-growth"
-    | "cagr";
+    | "cagr"
+    | "break-even";
 };
 
 export default function FinanceTemplate({ tool }: { tool?: Tool }) {
@@ -46,6 +47,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
   const isROI = tool.financeType === "roi-calculator";
   const isSavings = tool.financeType === "savings-growth";
   const isCAGR = tool.financeType === "cagr";
+  const isBreakEven = tool.financeType === "break-even";
   const isMortgage = tool.slug === "mortgage-calculator";
   const isDividendYield = tool.slug === "dividend-yield-calculator";
 
@@ -129,6 +131,15 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
     secondaryValue = f - p;
     primaryLabel = "CAGR (%)";
     secondaryLabel = "Total growth";
+  } else if (isBreakEven) {
+    const contributionMargin = p - f;
+    const breakEvenUnits =
+      contributionMargin > 0 ? r / contributionMargin : 0;
+
+    primaryValue = breakEvenUnits;
+    secondaryValue = contributionMargin;
+    primaryLabel = "Break-even units";
+    secondaryLabel = "Contribution margin per unit";
   } else if (isSimple) {
     const interest = p * r * t;
     const total = p + interest;
@@ -190,20 +201,22 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               {tool.description
                 ? tool.description
                 : isCompound
-                  ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
-                  : isMortgage
-                    ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
-                    : isDividendYield
-                      ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
-                      : isLoan
-                        ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
-                        : isROI
-                          ? "Calculate return on investment (ROI) based on your initial investment and final value."
-                          : isSavings
-                            ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
-                            : isCAGR
-                              ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
-                              : "Calculate simple interest based on principal, interest rate, and time."}
+                ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
+                : isMortgage
+                ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
+                : isDividendYield
+                ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
+                : isBreakEven
+                ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
+                : isLoan
+                ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+                : isROI
+                ? "Calculate return on investment (ROI) based on your initial investment and final value."
+                : isSavings
+                ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+                : isCAGR
+                ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+                : "Calculate simple interest based on principal, interest rate, and time."}
             </p>
           </div>
         </div>
@@ -230,16 +243,18 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     {isMortgage
                       ? "Mortgage amount"
                       : isDividendYield
-                        ? "Share price"
-                        : isLoan
-                          ? "Loan amount"
-                          : isROI
-                            ? "Initial investment"
-                            : isSavings
-                              ? "Initial savings"
-                              : isCAGR
-                                ? "Beginning value"
-                                : "Initial amount"}
+                      ? "Share price"
+                      : isBreakEven
+                      ? "Selling price per unit"
+                      : isLoan
+                      ? "Loan amount"
+                      : isROI
+                      ? "Initial investment"
+                      : isSavings
+                      ? "Initial savings"
+                      : isCAGR
+                      ? "Beginning value"
+                      : "Initial amount"}
                   </label>
                   <input
                     type="number"
@@ -248,23 +263,53 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                       isMortgage
                         ? "Enter mortgage amount"
                         : isDividendYield
-                          ? "Enter share price"
-                          : isLoan
-                            ? "Enter loan amount"
-                            : isROI
-                              ? "Enter initial investment"
-                              : isSavings
-                                ? "Enter initial savings"
-                                : isCAGR
-                                  ? "Enter beginning value"
-                                  : "Enter initial amount"
+                        ? "Enter share price"
+                        : isBreakEven
+                        ? "Enter selling price per unit"
+                        : isLoan
+                        ? "Enter loan amount"
+                        : isROI
+                        ? "Enter initial investment"
+                        : isSavings
+                        ? "Enter initial savings"
+                        : isCAGR
+                        ? "Enter beginning value"
+                        : "Enter initial amount"
                     }
                     onChange={(e) => setPrincipal(e.target.value)}
                     className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                   />
                 </div>
 
-                {isROI || isCAGR ? (
+                {isBreakEven ? (
+                  <>
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Fixed costs
+                      </label>
+                      <input
+                        type="number"
+                        value={rate}
+                        placeholder="Enter fixed costs"
+                        onChange={(e) => setRate(e.target.value)}
+                        className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        Variable cost per unit
+                      </label>
+                      <input
+                        type="number"
+                        value={finalValue}
+                        placeholder="Enter variable cost per unit"
+                        onChange={(e) => setFinalValue(e.target.value)}
+                        className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                      />
+                    </div>
+                  </>
+                ) : isROI || isCAGR ? (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       {isDividendYield ? "Annual dividend per share" : "Final value"}
@@ -296,7 +341,7 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   </div>
                 )}
 
-                {!isROI && (
+                {!isROI && !isBreakEven && (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       {isMortgage ? "Mortgage term (years)" : "Time (years)"}
@@ -391,6 +436,14 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                       relative to its current share price.
                     </p>
                   </div>
+                ) : isBreakEven ? (
+                  <div className="space-y-2 text-gray-600">
+                    <p>Break-even units = Fixed Costs / (Selling Price per Unit - Variable Cost per Unit)</p>
+                    <p>
+                      This shows how many units you need to sell before total revenue
+                      equals total costs.
+                    </p>
+                  </div>
                 ) : isROI ? (
                   <div className="space-y-2 text-gray-600">
                     <p>
@@ -431,18 +484,20 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   {isCompound
                     ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
                     : isMortgage
-                      ? "Enter your mortgage amount, annual interest rate, and repayment term to estimate your monthly mortgage payment and total paid."
-                      : isDividendYield
-                        ? "Enter the current share price and annual dividend per share to calculate dividend yield."
-                        : isLoan
-                          ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
-                          : isROI
-                            ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
-                            : isSavings
-                              ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
-                              : isCAGR
-                                ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
-                                : "Enter your starting amount, annual interest rate, and number of years."}
+                    ? "Enter your mortgage amount, annual interest rate, and repayment term to estimate your monthly mortgage payment and total paid."
+                    : isDividendYield
+                    ? "Enter the current share price and annual dividend per share to calculate dividend yield."
+                    : isBreakEven
+                    ? "Enter fixed costs, selling price per unit, and variable cost per unit to calculate your break-even point."
+                    : isLoan
+                    ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
+                    : isROI
+                    ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
+                    : isSavings
+                    ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
+                    : isCAGR
+                    ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
+                    : "Enter your starting amount, annual interest rate, and number of years."}
                 </p>
               </section>
             </div>
@@ -456,8 +511,8 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                   {tool.seoIntro
                     ? tool.seoIntro
                     : tool.description
-                      ? tool.description
-                      : "This calculator helps you estimate financial outcomes based on your inputs."}
+                    ? tool.description
+                    : "This calculator helps you estimate financial outcomes based on your inputs."}
                 </p>
               </section>
 
@@ -479,35 +534,39 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                       {isCompound
                         ? "What does compound interest mean?"
                         : isMortgage
-                          ? "How is a mortgage payment calculated?"
-                          : isDividendYield
-                            ? "What does dividend yield tell you?"
-                            : isLoan
-                              ? "How is a loan payment calculated?"
-                              : isROI
-                                ? "What is a good ROI?"
-                                : isSavings
-                                  ? "How does savings growth work?"
-                                  : isCAGR
-                                    ? "What does CAGR tell you?"
-                                    : "What is simple interest?"}
+                        ? "How is a mortgage payment calculated?"
+                        : isDividendYield
+                        ? "What does dividend yield tell you?"
+                        : isBreakEven
+                        ? "What is a break-even point?"
+                        : isLoan
+                        ? "How is a loan payment calculated?"
+                        : isROI
+                        ? "What is a good ROI?"
+                        : isSavings
+                        ? "How does savings growth work?"
+                        : isCAGR
+                        ? "What does CAGR tell you?"
+                        : "What is simple interest?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
                         ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
                         : isMortgage
-                          ? "Mortgage payments are typically based on the home loan amount, interest rate, and mortgage term, with each payment covering both interest and principal."
-                          : isDividendYield
-                            ? "Dividend yield tells you how much annual dividend income a stock generates relative to its share price, shown as a percentage."
-                            : isLoan
-                              ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
-                              : isROI
-                                ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
-                                : isSavings
-                                  ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
-                                  : isCAGR
-                                    ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
-                                    : "Simple interest is calculated only on the original principal, not on accumulated interest."}
+                        ? "Mortgage payments are typically based on the home loan amount, interest rate, and mortgage term, with each payment covering both interest and principal."
+                        : isDividendYield
+                        ? "Dividend yield tells you how much annual dividend income a stock generates relative to its share price, shown as a percentage."
+                        : isBreakEven
+                        ? "The break-even point is the number of units you must sell to cover all fixed and variable costs before making a profit."
+                        : isLoan
+                        ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
+                        : isROI
+                        ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
+                        : isSavings
+                        ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
+                        : isCAGR
+                        ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
+                        : "Simple interest is calculated only on the original principal, not on accumulated interest."}
                     </p>
                   </div>
 
@@ -516,35 +575,39 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                       {isCompound
                         ? "Why use a compound interest calculator?"
                         : isMortgage
-                          ? "Why use a mortgage calculator?"
-                          : isDividendYield
-                            ? "Why use a dividend yield calculator?"
-                            : isLoan
-                              ? "Why use a loan payment calculator?"
-                              : isROI
-                                ? "Why use an ROI calculator?"
-                                : isSavings
-                                  ? "Why use a savings growth calculator?"
-                                  : isCAGR
-                                    ? "Why use a CAGR calculator?"
-                                    : "Why use a simple interest calculator?"}
+                        ? "Why use a mortgage calculator?"
+                        : isDividendYield
+                        ? "Why use a dividend yield calculator?"
+                        : isBreakEven
+                        ? "Why use a break-even calculator?"
+                        : isLoan
+                        ? "Why use a loan payment calculator?"
+                        : isROI
+                        ? "Why use an ROI calculator?"
+                        : isSavings
+                        ? "Why use a savings growth calculator?"
+                        : isCAGR
+                        ? "Why use a CAGR calculator?"
+                        : "Why use a simple interest calculator?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
                         ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
                         : isMortgage
-                          ? "It helps you estimate home loan costs, compare mortgage options, and understand what your monthly housing payment could look like."
-                          : isDividendYield
-                            ? "It helps you compare dividend-paying stocks and evaluate whether the income from a stock matches your investing goals."
-                            : isLoan
-                              ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
-                              : isROI
-                                ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
-                                : isSavings
-                                  ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
-                                  : isCAGR
-                                    ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
-                                    : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
+                        ? "It helps you estimate home loan costs, compare mortgage options, and understand what your monthly housing payment could look like."
+                        : isDividendYield
+                        ? "It helps you compare dividend-paying stocks and evaluate whether the income from a stock matches your investing goals."
+                        : isBreakEven
+                        ? "It helps you understand how much you need to sell before becoming profitable, which is critical for pricing, planning, and business decisions."
+                        : isLoan
+                        ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
+                        : isROI
+                        ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
+                        : isSavings
+                        ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
+                        : isCAGR
+                        ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
+                        : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
                     </p>
                   </div>
                 </div>
@@ -585,18 +648,20 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
               {isCompound
                 ? "Estimates long-term growth with compound interest and contributions."
                 : isMortgage
-                  ? "Estimates monthly mortgage payments and total repayment cost for a home loan."
-                  : isDividendYield
-                    ? "Calculates dividend yield based on annual dividend and share price."
-                    : isLoan
-                      ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
-                      : isROI
-                        ? "Calculates ROI and profit based on an investment's starting amount and final value."
-                        : isSavings
-                          ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
-                          : isCAGR
-                            ? "Calculates the annualized growth rate of an investment over time."
-                            : "Calculates simple interest without compounding."}
+                ? "Estimates monthly mortgage payments and total repayment cost for a home loan."
+                : isDividendYield
+                ? "Calculates dividend yield based on annual dividend and share price."
+                : isBreakEven
+                ? "Calculates the number of units needed to cover fixed and variable costs."
+                : isLoan
+                ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
+                : isROI
+                ? "Calculates ROI and profit based on an investment's starting amount and final value."
+                : isSavings
+                ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
+                : isCAGR
+                ? "Calculates the annualized growth rate of an investment over time."
+                : "Calculates simple interest without compounding."}
             </p>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-4">
@@ -652,6 +717,15 @@ export default function FinanceTemplate({ tool }: { tool?: Tool }) {
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Dividend Yield Calculator
+                  </Link>
+                )}
+
+                {tool.slug !== "break-even-calculator" && (
+                  <Link
+                    href="/tools/finance/break-even-calculator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Break-Even Calculator
                   </Link>
                 )}
 

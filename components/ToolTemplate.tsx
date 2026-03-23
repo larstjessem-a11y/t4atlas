@@ -18,13 +18,14 @@ type Tool = {
   formula?: string;
   examples?: number[];
   reverseSlug?: string;
-  financeType?:
-    | "simple-interest"
-    | "compound-interest"
-    | "loan-payment"
-    | "roi-calculator"
-    | "savings-growth"
-    | "cagr";
+ financeType?:
+  | "simple-interest"
+  | "compound-interest"
+  | "loan-payment"
+  | "roi-calculator"
+  | "savings-growth"
+  | "cagr"
+  | "break-even";
 };
 
 export default function ToolTemplate({ tool }: { tool?: Tool }) {

@@ -14,13 +14,14 @@ export type Tool = {
   formula?: string;
   examples?: number[];
   reverseSlug?: string;
-  financeType?:
-    | "simple-interest"
-    | "compound-interest"
-    | "loan-payment"
-    | "roi-calculator"
-    | "savings-growth"
-    | "cagr";
+ financeType?:
+  | "simple-interest"
+  | "compound-interest"
+  | "loan-payment"
+  | "roi-calculator"
+  | "savings-growth"
+  | "cagr"
+  | "break-even";
 };
 
 export const tools: Tool[] = [
@@ -533,4 +534,19 @@ seoDescription:
 seoTitle: "Dividend Yield Calculator – Calculate Stock Dividend Yield",
 seoDescription:
   "Calculate dividend yield from annual dividend and share price using this free dividend yield calculator.",
+},
+{
+  slug: "break-even-calculator",
+  name: "Break-Even Calculator",
+  category: "finance",
+  subcategory: "business",
+  type: "finance",
+  financeType: "break-even",
+  description:
+    "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit.",
+  seoIntro:
+    "A break-even calculator helps you find out how many units you need to sell to cover your costs. It is useful for pricing decisions, business planning, and understanding when a product or service becomes profitable.",
+  seoTitle: "Break-Even Calculator – Calculate Break-Even Point",
+  seoDescription:
+    "Use this free break-even calculator to estimate how many units you need to sell to cover fixed and variable costs.",
 },];
