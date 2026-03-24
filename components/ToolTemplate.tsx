@@ -27,7 +27,8 @@ financeType?:
   | "cagr"
   | "break-even"
   | "apr-calculator"
-  | "investment-return";
+  | "investment-return"
+  | "payback-period";
 };
 
 export default function ToolTemplate({ tool }: { tool?: Tool }) {

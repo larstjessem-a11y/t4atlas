@@ -21,7 +21,8 @@ type Tool = {
     | "cagr"
     | "break-even"
     | "apr-calculator"
-    | "investment-return";
+    | "investment-return"
+    | "payback-period";
   longTailScenarios?: {
     slug: string;
     label: string;
@@ -30,6 +31,7 @@ type Tool = {
       rate?: string;
       years?: string;
       finalValue?: string;
+      annualContribution?: string;
     };
   }[];
 };
@@ -68,6 +70,7 @@ export default function FinanceTemplate({
   const isBreakEven = tool.financeType === "break-even";
   const isAPR = tool.financeType === "apr-calculator";
   const isInvestmentReturn = tool.financeType === "investment-return";
+  const isPaybackPeriod = tool.financeType === "payback-period";
   const isMortgage = tool.slug === "mortgage-calculator";
   const isDividendYield = tool.slug === "dividend-yield-calculator";
 
@@ -94,6 +97,10 @@ export default function FinanceTemplate({
 
     if (matchedScenario.prefill.finalValue !== undefined) {
       setFinalValue(matchedScenario.prefill.finalValue);
+    }
+
+    if (matchedScenario.prefill.annualContribution !== undefined) {
+      setAnnualContribution(matchedScenario.prefill.annualContribution);
     }
   }, [scenario, tool.longTailScenarios]);
 
@@ -214,6 +221,13 @@ export default function FinanceTemplate({
     secondaryValue = fees + totalInterest;
     primaryLabel = "APR estimate (%)";
     secondaryLabel = "Total borrowing cost";
+  } else if (isPaybackPeriod) {
+    const paybackYears = c > 0 ? p / c : 0;
+
+    primaryValue = paybackYears;
+    secondaryValue = c;
+    primaryLabel = "Payback period (years)";
+    secondaryLabel = "Annual cash flow";
   } else if (isSimple) {
     const interest = p * r * t;
     const total = p + interest;
@@ -292,6 +306,8 @@ export default function FinanceTemplate({
                 ? "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs."
                 : isInvestmentReturn
                 ? "Calculate investment return based on starting value and ending value to evaluate overall portfolio performance."
+                : isPaybackPeriod
+                ? "Calculate how long it takes for an investment to recover its initial cost based on annual cash flow or annual savings."
                 : isLoan
                 ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
                 : isROI
@@ -336,6 +352,8 @@ export default function FinanceTemplate({
                       ? "Loan amount"
                       : isInvestmentReturn
                       ? "Starting value"
+                      : isPaybackPeriod
+                      ? "Initial investment"
                       : isROI
                       ? "Initial investment"
                       : isSavings
@@ -360,6 +378,8 @@ export default function FinanceTemplate({
                         ? "Enter loan amount"
                         : isInvestmentReturn
                         ? "Enter starting value"
+                        : isPaybackPeriod
+                        ? "Enter initial investment"
                         : isROI
                         ? "Enter initial investment"
                         : isSavings
@@ -452,6 +472,19 @@ export default function FinanceTemplate({
                       className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                     />
                   </div>
+                ) : isPaybackPeriod ? (
+                  <div>
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                      Annual cash flow
+                    </label>
+                    <input
+                      type="number"
+                      value={annualContribution}
+                      placeholder="Enter annual cash flow"
+                      onChange={(e) => setAnnualContribution(e.target.value)}
+                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                    />
+                  </div>
                 ) : (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
@@ -467,20 +500,26 @@ export default function FinanceTemplate({
                   </div>
                 )}
 
-                {!isROI && !isBreakEven && !isAPR && !isInvestmentReturn && (
-                  <div>
-                    <label className="mb-2 block text-sm font-medium text-gray-700">
-                      {isMortgage ? "Mortgage term (years)" : "Time (years)"}
-                    </label>
-                    <input
-                      type="number"
-                      value={years}
-                      placeholder={isMortgage ? "Enter mortgage term" : "Enter years"}
-                      onChange={(e) => setYears(e.target.value)}
-                      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
-                    />
-                  </div>
-                )}
+                {!isROI &&
+                  !isBreakEven &&
+                  !isAPR &&
+                  !isInvestmentReturn &&
+                  !isPaybackPeriod && (
+                    <div>
+                      <label className="mb-2 block text-sm font-medium text-gray-700">
+                        {isMortgage ? "Mortgage term (years)" : "Time (years)"}
+                      </label>
+                      <input
+                        type="number"
+                        value={years}
+                        placeholder={
+                          isMortgage ? "Enter mortgage term" : "Enter years"
+                        }
+                        onChange={(e) => setYears(e.target.value)}
+                        className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+                      />
+                    </div>
+                  )}
 
                 {isCompound && (
                   <div>
@@ -576,7 +615,8 @@ export default function FinanceTemplate({
                 ) : isAPR ? (
                   <div className="space-y-2 text-gray-600">
                     <p>
-                      APR (%) ≈ ((Loan Fees + Total Interest Cost) / Loan Amount) × 100
+                      APR (%) ≈ ((Loan Fees + Total Interest Cost) / Loan Amount) ×
+                      100
                     </p>
                     <p>
                       This simplified APR estimate helps compare the total borrowing
@@ -586,11 +626,20 @@ export default function FinanceTemplate({
                 ) : isInvestmentReturn ? (
                   <div className="space-y-2 text-gray-600">
                     <p>
-                      Investment Return (%) = ((Ending Value - Starting Value) / Starting Value) × 100
+                      Investment Return (%) = ((Ending Value - Starting Value) /
+                      Starting Value) × 100
                     </p>
                     <p>
                       This shows the total percentage gain or loss of an investment
                       over the period measured.
+                    </p>
+                  </div>
+                ) : isPaybackPeriod ? (
+                  <div className="space-y-2 text-gray-600">
+                    <p>Payback Period = Initial Investment / Annual Cash Flow</p>
+                    <p>
+                      This shows how many years it takes for cumulative cash flow or
+                      savings to recover the upfront investment.
                     </p>
                   </div>
                 ) : isROI ? (
@@ -642,6 +691,8 @@ export default function FinanceTemplate({
                     ? "Enter loan amount, total fees, and total interest cost to estimate the annual percentage rate."
                     : isInvestmentReturn
                     ? "Enter the starting value and ending value to calculate the total return of an investment."
+                    : isPaybackPeriod
+                    ? "Enter the upfront investment and the expected annual cash flow or annual savings to estimate how many years it takes to recover the initial cost."
                     : isLoan
                     ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
                     : isROI
@@ -663,7 +714,8 @@ export default function FinanceTemplate({
 
                 <div className="space-y-3 text-sm text-gray-600">
                   <p>
-                    Many users search for specific scenarios. Here are common variations you can explore:
+                    Many users search for specific scenarios. Here are common
+                    variations you can explore:
                   </p>
 
                   <ul className="list-disc pl-5 space-y-2">
@@ -680,7 +732,8 @@ export default function FinanceTemplate({
                   </ul>
 
                   <p>
-                    Adjust the inputs above to test different scenarios and understand how the result changes based on your assumptions.
+                    Adjust the inputs above to test different scenarios and
+                    understand how the result changes based on your assumptions.
                   </p>
                 </div>
               </section>
@@ -727,6 +780,8 @@ export default function FinanceTemplate({
                         ? "What does APR tell you?"
                         : isInvestmentReturn
                         ? "What does investment return tell you?"
+                        : isPaybackPeriod
+                        ? "What does payback period mean?"
                         : isLoan
                         ? "How is a loan payment calculated?"
                         : isROI
@@ -750,6 +805,8 @@ export default function FinanceTemplate({
                         ? "APR helps show the total borrowing cost of a loan by including interest and certain fees in one comparable percentage figure."
                         : isInvestmentReturn
                         ? "Investment return shows the total percentage gain or loss between the starting value and ending value of an investment."
+                        : isPaybackPeriod
+                        ? "Payback period is the length of time it takes for an investment to recover its original cost through annual cash flow, savings, or profit."
                         : isLoan
                         ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
                         : isROI
@@ -776,6 +833,8 @@ export default function FinanceTemplate({
                         ? "Why use an APR calculator?"
                         : isInvestmentReturn
                         ? "Why use an investment return calculator?"
+                        : isPaybackPeriod
+                        ? "Why use a payback period calculator?"
                         : isLoan
                         ? "Why use a loan payment calculator?"
                         : isROI
@@ -799,6 +858,8 @@ export default function FinanceTemplate({
                         ? "It helps you compare loans more fairly by combining borrowing fees and interest costs into a single estimate."
                         : isInvestmentReturn
                         ? "It helps you evaluate whether an investment gained or lost value over time and compare overall outcomes across investments."
+                        : isPaybackPeriod
+                        ? "It helps you compare investments, equipment purchases, solar projects, and business decisions by showing how quickly the upfront cost may be recovered."
                         : isLoan
                         ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
                         : isROI
@@ -857,6 +918,8 @@ export default function FinanceTemplate({
                 ? "Estimates annual percentage rate based on loan amount, fees, and interest costs."
                 : isInvestmentReturn
                 ? "Calculates total investment return based on starting and ending value."
+                : isPaybackPeriod
+                ? "Estimates how many years it takes to recover an upfront investment from annual cash flow or annual savings."
                 : isLoan
                 ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
                 : isROI
@@ -965,6 +1028,15 @@ export default function FinanceTemplate({
                   </Link>
                 )}
 
+                {tool.slug !== "payback-period" && (
+                  <Link
+                    href="/tools/finance/payback-period"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Payback Period Calculator
+                  </Link>
+                )}
+
                 {tool.financeType !== "loan-payment" && (
                   <Link
                     href="/tools/finance/loan-payment"
@@ -1000,6 +1072,14 @@ export default function FinanceTemplate({
                     CAGR Calculator
                   </Link>
                 )}
+                {tool.slug !== "payback-period" && (
+  <Link
+    href="/tools/finance/payback-period"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Payback Period Calculator
+  </Link>
+)}
               </div>
             </div>
 

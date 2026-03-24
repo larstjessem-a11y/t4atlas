@@ -88,6 +88,73 @@ export default function DividendYieldGuidePage() {
             </div>
           </section>
 
+<section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+  <h2 className="mb-3 text-2xl font-semibold">
+    Dividend yield vs other investment metrics
+  </h2>
+
+  <p className="mb-4 text-gray-600">
+    Dividend yield is just one way to evaluate an investment. To get a more complete picture, it is often used alongside other financial metrics that measure growth, profitability, and total return.
+  </p>
+
+  <div className="overflow-x-auto">
+    <table className="w-full border rounded-2xl overflow-hidden text-sm">
+      <thead className="bg-gray-50">
+        <tr>
+          <th className="text-left p-3">Metric</th>
+          <th className="text-left p-3">What it measures</th>
+          <th className="text-left p-3">Best used for</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr className="border-t">
+          <td className="p-3 font-medium">Dividend Yield</td>
+          <td className="p-3">Income relative to price</td>
+          <td className="p-3">Comparing dividend-paying stocks</td>
+        </tr>
+        <tr className="border-t">
+          <td className="p-3 font-medium">ROI</td>
+          <td className="p-3">Profit relative to investment</td>
+          <td className="p-3">Evaluating investment efficiency</td>
+        </tr>
+        <tr className="border-t">
+          <td className="p-3 font-medium">CAGR</td>
+          <td className="p-3">Annualized growth rate</td>
+          <td className="p-3">Long-term investment performance</td>
+        </tr>
+        <tr className="border-t">
+          <td className="p-3 font-medium">Investment Return</td>
+          <td className="p-3">Total gain or loss</td>
+          <td className="p-3">Overall performance evaluation</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div className="mt-4 flex flex-wrap gap-3">
+    <Link
+      href="/tools/finance/roi-calculator"
+      className="inline-flex rounded-xl border px-3 py-2 text-sm hover:bg-gray-50"
+    >
+      ROI Calculator
+    </Link>
+
+    <Link
+      href="/tools/finance/cagr-calculator"
+      className="inline-flex rounded-xl border px-3 py-2 text-sm hover:bg-gray-50"
+    >
+      CAGR Calculator
+    </Link>
+
+    <Link
+      href="/tools/finance/investment-return-calculator"
+      className="inline-flex rounded-xl border px-3 py-2 text-sm hover:bg-gray-50"
+    >
+      Investment Return Calculator
+    </Link>
+  </div>
+</section>
+
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">
               Use our dividend yield calculator
@@ -144,6 +211,34 @@ export default function DividendYieldGuidePage() {
               </p>
             </div>
           </section>
+
+<section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+  <h2 className="mb-3 text-2xl font-semibold">
+    How to interpret dividend yield
+  </h2>
+
+  <div className="space-y-4 text-gray-600">
+    <p>
+      Dividend yield is most useful when you compare it in context. A 4% yield
+      may look attractive, but the number only becomes meaningful when you also
+      consider the quality of the business, the sustainability of the payout,
+      and the broader return profile of the stock.
+    </p>
+
+    <p>
+      In practice, investors often interpret dividend yield alongside payout
+      ratio, earnings stability, balance sheet strength, and long-term return.
+      A lower but sustainable yield can be more valuable than a very high yield
+      that may later be reduced.
+    </p>
+
+    <p>
+      It is also important to remember that yield changes as the stock price
+      moves. A rising yield can reflect higher income potential, but it can also
+      signal that the market expects weaker performance ahead.
+    </p>
+  </div>
+</section>
 
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">
@@ -204,6 +299,43 @@ export default function DividendYieldGuidePage() {
           <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (bottom)
           </div>
+
+<section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
+  <h2 className="mb-3 text-2xl font-semibold">
+    Next step: compare income, growth, and total return
+  </h2>
+
+  <p className="mb-5 max-w-3xl leading-7 text-gray-600">
+    Dividend yield is useful for evaluating income, but it should rarely be used on its own. To get a better picture of an investment, compare dividend income with total return, annualized growth, and overall profitability.
+  </p>
+
+  <div className="flex flex-wrap gap-3">
+    <Link
+      href="/tools/finance/dividend-yield-calculator"
+      className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+    >
+      Calculate Dividend Yield
+    </Link>
+
+    <Link
+      href="/tools/finance/cagr-calculator"
+      className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+    >
+      Compare with CAGR
+    </Link>
+
+    <Link
+      href="/tools/finance/investment-return-calculator"
+      className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+    >
+      Check Investment Return
+    </Link>
+  </div>
+
+  <div className="mt-5 rounded-2xl border border-dashed p-4 text-sm text-gray-500">
+    Future lead capture block: get investing frameworks, comparison checklists, or tool updates by email.
+  </div>
+</section>
 
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">Related finance tools</h2>

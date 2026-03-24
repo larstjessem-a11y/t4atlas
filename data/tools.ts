@@ -23,7 +23,8 @@ financeType?:
   | "cagr"
   | "break-even"
   | "apr-calculator"
-  | "investment-return";
+  | "investment-return"
+  | "payback-period";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -32,6 +33,7 @@ longTailScenarios?: {
     rate?: string;
     years?: string;
     finalValue?: string;
+    annualContribution?: string;
   };
 }[];
 };
@@ -798,4 +800,54 @@ longTailScenarios: [
       },
     ],
   },
+{
+  slug: "payback-period",
+  name: "Payback Period Calculator",
+  category: "finance",
+  subcategory: "investment-analysis",
+  type: "finance",
+  financeType: "payback-period",
+  description:
+    "Calculate how long it takes to recover an initial investment based on recurring cash flow.",
+  seoIntro:
+    "Use this payback period calculator to estimate how long it will take for an investment to pay for itself. It is useful for business purchases, rental properties, solar panels, equipment investments, and side projects.",
+  seoTitle:
+    "Payback Period Calculator | Calculate Investment Recovery Time",
+  seoDescription:
+    "Free payback period calculator for investments, equipment, solar panels, and business decisions. Estimate how long it takes to recover your upfront cost.",
+  longTailScenarios: [
+    {
+      slug: "solar-panel-payback-period-calculator",
+      label: "Solar panel payback period calculator",
+      prefill: {
+        principal: "150000",
+        annualContribution: "18000",
+      },
+    },
+    {
+      slug: "rental-property-payback-period-calculator",
+      label: "Rental property payback period calculator",
+      prefill: {
+        principal: "500000",
+        annualContribution: "60000",
+      },
+    },
+    {
+      slug: "equipment-payback-period-calculator",
+      label: "Equipment payback period calculator",
+      prefill: {
+        principal: "120000",
+        annualContribution: "30000",
+      },
+    },
+    {
+      slug: "small-business-investment-payback-calculator",
+      label: "Small business investment payback calculator",
+      prefill: {
+        principal: "80000",
+        annualContribution: "20000",
+      },
+    },
+  ],
+},
 ];
