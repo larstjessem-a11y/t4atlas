@@ -22,7 +22,8 @@ financeType?:
   | "savings-growth"
   | "cagr"
   | "break-even"
-  | "apr-calculator";
+  | "apr-calculator"
+  | "investment-return";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -739,7 +740,7 @@ longTailScenarios: [
     },
     {
       slug: "credit-cost-comparison",
-      label: "Credit cost comparison calculator",
+         label: "Credit cost comparison calculator",
       prefill: {
         principal: "5000",
         rate: "250",
@@ -747,4 +748,54 @@ longTailScenarios: [
       },
     },
   ],
-},];
+  },
+  {
+    slug: "investment-return-calculator",
+    name: "Investment Return Calculator",
+    category: "finance",
+    subcategory: "investing",
+    type: "finance",
+    financeType: "investment-return",
+    description:
+      "Calculate investment return based on starting value and ending value to evaluate overall portfolio performance.",
+    seoIntro:
+      "An investment return calculator helps you measure how much an investment has gained or lost over time. It is useful for comparing portfolio performance, evaluating trades, and understanding absolute returns.",
+    seoTitle: "Investment Return Calculator – Measure Portfolio Performance",
+    seoDescription:
+      "Use this free investment return calculator to estimate total investment return based on starting and ending value.",
+    longTailScenarios: [
+      {
+        slug: "stock-investment-return",
+        label: "Investment return calculator for stocks",
+        prefill: {
+          principal: "10000",
+          finalValue: "12500",
+        },
+      },
+      {
+        slug: "portfolio-performance",
+        label: "Portfolio performance calculator",
+        prefill: {
+          principal: "50000",
+          finalValue: "58000",
+        },
+      },
+      {
+        slug: "gain-or-loss",
+        label: "Investment gain or loss calculator",
+        prefill: {
+          principal: "8000",
+          finalValue: "7200",
+        },
+      },
+      {
+        slug: "compare-investment-outcomes",
+        label: "Compare investment outcomes",
+        prefill: {
+          principal: "15000",
+          finalValue: "19500",
+        },
+      },
+    ],
+  },
+];

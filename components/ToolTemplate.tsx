@@ -26,7 +26,8 @@ financeType?:
   | "savings-growth"
   | "cagr"
   | "break-even"
-  | "apr-calculator";
+  | "apr-calculator"
+  | "investment-return";
 };
 
 export default function ToolTemplate({ tool }: { tool?: Tool }) {

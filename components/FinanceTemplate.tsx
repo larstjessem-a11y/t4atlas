@@ -20,7 +20,8 @@ type Tool = {
     | "savings-growth"
     | "cagr"
     | "break-even"
-    | "apr-calculator";
+    | "apr-calculator"
+    | "investment-return";
   longTailScenarios?: {
     slug: string;
     label: string;
@@ -66,6 +67,7 @@ export default function FinanceTemplate({
   const isCAGR = tool.financeType === "cagr";
   const isBreakEven = tool.financeType === "break-even";
   const isAPR = tool.financeType === "apr-calculator";
+  const isInvestmentReturn = tool.financeType === "investment-return";
   const isMortgage = tool.slug === "mortgage-calculator";
   const isDividendYield = tool.slug === "dividend-yield-calculator";
 
@@ -134,7 +136,7 @@ export default function FinanceTemplate({
     secondaryValue = totalPaid;
     primaryLabel = isMortgage ? "Monthly mortgage payment" : "Monthly payment";
     secondaryLabel = "Total paid";
-  } else if (isROI) {
+  } else if (isROI || isInvestmentReturn) {
     if (isDividendYield) {
       const dividendYield = p > 0 ? (f / p) * 100 : 0;
 
@@ -142,6 +144,14 @@ export default function FinanceTemplate({
       secondaryValue = f;
       primaryLabel = "Dividend yield (%)";
       secondaryLabel = "Annual dividend";
+    } else if (isInvestmentReturn) {
+      const investmentReturn = p > 0 ? ((f - p) / p) * 100 : 0;
+      const gainLoss = f - p;
+
+      primaryValue = investmentReturn;
+      secondaryValue = gainLoss;
+      primaryLabel = "Investment return (%)";
+      secondaryLabel = "Gain / Loss";
     } else {
       const profit = f - p;
       const roiPercent = p > 0 ? (profit / p) * 100 : 0;
@@ -280,6 +290,8 @@ export default function FinanceTemplate({
                 ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
                 : isAPR
                 ? "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs."
+                : isInvestmentReturn
+                ? "Calculate investment return based on starting value and ending value to evaluate overall portfolio performance."
                 : isLoan
                 ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
                 : isROI
@@ -322,6 +334,8 @@ export default function FinanceTemplate({
                       ? "Loan amount"
                       : isLoan
                       ? "Loan amount"
+                      : isInvestmentReturn
+                      ? "Starting value"
                       : isROI
                       ? "Initial investment"
                       : isSavings
@@ -344,6 +358,8 @@ export default function FinanceTemplate({
                         ? "Enter loan amount"
                         : isLoan
                         ? "Enter loan amount"
+                        : isInvestmentReturn
+                        ? "Enter starting value"
                         : isROI
                         ? "Enter initial investment"
                         : isSavings
@@ -413,10 +429,14 @@ export default function FinanceTemplate({
                       />
                     </div>
                   </>
-                ) : isROI || isCAGR ? (
+                ) : isROI || isCAGR || isInvestmentReturn ? (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
-                      {isDividendYield ? "Annual dividend per share" : "Final value"}
+                      {isDividendYield
+                        ? "Annual dividend per share"
+                        : isInvestmentReturn
+                        ? "Ending value"
+                        : "Final value"}
                     </label>
                     <input
                       type="number"
@@ -424,6 +444,8 @@ export default function FinanceTemplate({
                       placeholder={
                         isDividendYield
                           ? "Enter annual dividend"
+                          : isInvestmentReturn
+                          ? "Enter ending value"
                           : "Enter final value"
                       }
                       onChange={(e) => setFinalValue(e.target.value)}
@@ -445,7 +467,7 @@ export default function FinanceTemplate({
                   </div>
                 )}
 
-                {!isROI && !isBreakEven && !isAPR && (
+                {!isROI && !isBreakEven && !isAPR && !isInvestmentReturn && (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       {isMortgage ? "Mortgage term (years)" : "Time (years)"}
@@ -561,6 +583,16 @@ export default function FinanceTemplate({
                       cost of different loan offers.
                     </p>
                   </div>
+                ) : isInvestmentReturn ? (
+                  <div className="space-y-2 text-gray-600">
+                    <p>
+                      Investment Return (%) = ((Ending Value - Starting Value) / Starting Value) × 100
+                    </p>
+                    <p>
+                      This shows the total percentage gain or loss of an investment
+                      over the period measured.
+                    </p>
+                  </div>
                 ) : isROI ? (
                   <div className="space-y-2 text-gray-600">
                     <p>
@@ -608,6 +640,8 @@ export default function FinanceTemplate({
                     ? "Enter fixed costs, selling price per unit, and variable cost per unit to calculate your break-even point."
                     : isAPR
                     ? "Enter loan amount, total fees, and total interest cost to estimate the annual percentage rate."
+                    : isInvestmentReturn
+                    ? "Enter the starting value and ending value to calculate the total return of an investment."
                     : isLoan
                     ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
                     : isROI
@@ -691,6 +725,8 @@ export default function FinanceTemplate({
                         ? "What is a break-even point?"
                         : isAPR
                         ? "What does APR tell you?"
+                        : isInvestmentReturn
+                        ? "What does investment return tell you?"
                         : isLoan
                         ? "How is a loan payment calculated?"
                         : isROI
@@ -712,6 +748,8 @@ export default function FinanceTemplate({
                         ? "The break-even point is the number of units you must sell to cover all fixed and variable costs before making a profit."
                         : isAPR
                         ? "APR helps show the total borrowing cost of a loan by including interest and certain fees in one comparable percentage figure."
+                        : isInvestmentReturn
+                        ? "Investment return shows the total percentage gain or loss between the starting value and ending value of an investment."
                         : isLoan
                         ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
                         : isROI
@@ -736,6 +774,8 @@ export default function FinanceTemplate({
                         ? "Why use a break-even calculator?"
                         : isAPR
                         ? "Why use an APR calculator?"
+                        : isInvestmentReturn
+                        ? "Why use an investment return calculator?"
                         : isLoan
                         ? "Why use a loan payment calculator?"
                         : isROI
@@ -757,6 +797,8 @@ export default function FinanceTemplate({
                         ? "It helps you understand how much you need to sell before becoming profitable, which is critical for pricing, planning, and business decisions."
                         : isAPR
                         ? "It helps you compare loans more fairly by combining borrowing fees and interest costs into a single estimate."
+                        : isInvestmentReturn
+                        ? "It helps you evaluate whether an investment gained or lost value over time and compare overall outcomes across investments."
                         : isLoan
                         ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
                         : isROI
@@ -813,6 +855,8 @@ export default function FinanceTemplate({
                 ? "Calculates the number of units needed to cover fixed and variable costs."
                 : isAPR
                 ? "Estimates annual percentage rate based on loan amount, fees, and interest costs."
+                : isInvestmentReturn
+                ? "Calculates total investment return based on starting and ending value."
                 : isLoan
                 ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
                 : isROI
@@ -909,6 +953,15 @@ export default function FinanceTemplate({
                     className="text-gray-600 hover:text-gray-900"
                   >
                     APR Calculator
+                  </Link>
+                )}
+
+                {tool.slug !== "investment-return-calculator" && (
+                  <Link
+                    href="/tools/finance/investment-return-calculator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Investment Return Calculator
                   </Link>
                 )}
 
