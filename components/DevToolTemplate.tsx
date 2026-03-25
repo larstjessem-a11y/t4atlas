@@ -505,6 +505,13 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   Best JSON Tools for Developers
                 </Link>
 
+<Link
+  href="/tools/development/best-encoding-tools-for-developers"
+  className="text-gray-600 hover:text-gray-900"
+>
+  Best Encoding Tools for Developers
+</Link>
+
                 {tool.slug !== "json-formatter" && (
                   <Link
                     href="/tools/development/json-formatter"
