@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import ToolTemplate from "@/components/ToolTemplate";
 import FinanceTemplate from "@/components/FinanceTemplate";
 import { tools } from "@/data/tools";
+import DevToolTemplate from "@/components/DevToolTemplate";
 
 type PageProps = {
   params: Promise<{
@@ -69,9 +70,13 @@ export default async function ToolPage({
     notFound();
   }
 
-  if (tool.type === "finance") {
-    return <FinanceTemplate tool={tool} scenario={scenario} />;
-  }
+if (tool.type === "finance") {
+  return <FinanceTemplate tool={tool} scenario={scenario} />;
+}
 
-  return <ToolTemplate tool={tool} />;
+if (tool.type === "dev") {
+  return <DevToolTemplate tool={tool} />;
+}
+
+return <ToolTemplate tool={tool} />;
 }

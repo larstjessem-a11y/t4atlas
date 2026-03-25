@@ -9,7 +9,7 @@ type Tool = {
   name: string;
   category: string;
   subcategory: string;
-  type: "converter" | "finance";
+  type: "converter" | "finance" | "dev";
   description?: string;
   seoIntro?: string;
   financeType?:

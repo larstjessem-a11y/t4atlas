@@ -33,6 +33,9 @@ export default function RootLayout({
                 <Link href="/tools/finance" className="hover:text-gray-900">
                   Finance
                 </Link>
+<Link href="/tools/development" className="hover:text-gray-900">
+  Development Tools
+</Link>
               </nav>
             </div>
           </header>
@@ -60,6 +63,9 @@ export default function RootLayout({
                     <Link href="/tools/finance" className="hover:text-gray-900">
                       Finance
                     </Link>
+<Link href="/tools/development" className="hover:text-gray-900">
+  Development Tools
+</Link>
                   </div>
                 </div>
 
@@ -75,6 +81,9 @@ export default function RootLayout({
                     <Link href="/tools/converters/subcategory/temperature" className="hover:text-gray-900">
                       Temperature Converters
                     </Link>
+<Link href="/tools/development" className="hover:text-gray-900">
+  Development Tools
+</Link>
                   </div>
                 </div>
 

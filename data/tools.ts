@@ -3,7 +3,7 @@ export type Tool = {
   name: string;
   category: string;
   subcategory: string;
-  type: "converter" | "finance";
+  type: "finance" | "converter" | "dev";
   description?: string;
   seoIntro?: string;
   seoTitle?: string;
@@ -25,6 +25,16 @@ financeType?:
   | "apr-calculator"
   | "investment-return"
   | "payback-period";
+devToolType?:
+  | "json-formatter"
+  | "json-minifier"
+  | "json-validator"
+  | "base64-encoder"
+  | "base64-decoder"
+  | "url-encoder"
+  | "url-decoder"
+  | "unix-timestamp-converter"
+  | "uuid-generator";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -849,5 +859,140 @@ longTailScenarios: [
       },
     },
   ],
+},
+{
+  slug: "json-formatter",
+  name: "JSON Formatter",
+  category: "development",
+  subcategory: "json-tools",
+  type: "dev",
+  devToolType: "json-formatter",
+  description:
+    "Format and prettify raw JSON so it is easier to read, inspect, and debug.",
+  seoIntro:
+    "Use this JSON formatter to prettify raw JSON, make nested objects easier to read, and inspect structured data directly in the browser.",
+  seoTitle: "JSON Formatter | Format and Prettify JSON Online",
+  seoDescription:
+    "Free JSON formatter to prettify, validate, and inspect raw JSON online. Clean up and format structured JSON instantly in your browser.",
+},
+{
+  slug: "json-minifier",
+  name: "JSON Minifier",
+  category: "development",
+  subcategory: "json-tools",
+  type: "dev",
+  devToolType: "json-minifier",
+  description:
+    "Minify JSON by removing whitespace and unnecessary formatting.",
+  seoIntro:
+    "Use this JSON minifier to compress formatted JSON into a compact version without changing the underlying data.",
+  seoTitle: "JSON Minifier | Minify JSON Online",
+  seoDescription:
+    "Free JSON minifier to compress and validate JSON online. Remove whitespace and generate compact JSON instantly in your browser.",
+},
+{
+  slug: "json-validator",
+  name: "JSON Validator",
+  category: "development",
+  subcategory: "json-tools",
+  type: "dev",
+  devToolType: "json-validator",
+  description:
+    "Validate JSON syntax and check whether your input is properly structured.",
+  seoIntro:
+    "Use this JSON validator to test whether your JSON is valid and identify malformed input before using it in applications, APIs, or configs.",
+  seoTitle: "JSON Validator | Validate JSON Online",
+  seoDescription:
+    "Free JSON validator to check JSON syntax online. Validate structured JSON input and catch malformed JSON instantly in your browser.",
+},
+{
+  slug: "base64-encoder",
+  name: "Base64 Encoder",
+  category: "development",
+  subcategory: "encoding-tools",
+  type: "dev",
+  devToolType: "base64-encoder",
+  description:
+    "Encode plain text into Base64 format directly in your browser.",
+  seoIntro:
+    "Use this Base64 encoder to convert plain text into Base64 format for development, APIs, debugging, and quick transformations.",
+  seoTitle: "Base64 Encoder | Encode Text to Base64 Online",
+  seoDescription:
+    "Free Base64 encoder to convert text into Base64 online. Fast browser-based encoding for developers and technical workflows.",
+},
+{
+  slug: "base64-decoder",
+  name: "Base64 Decoder",
+  category: "development",
+  subcategory: "encoding-tools",
+  type: "dev",
+  devToolType: "base64-decoder",
+  description:
+    "Decode Base64 text back into readable plain text.",
+  seoIntro:
+    "Use this Base64 decoder to convert Base64 strings back into readable text for debugging, APIs, and development workflows.",
+  seoTitle: "Base64 Decoder | Decode Base64 Online",
+  seoDescription:
+    "Free Base64 decoder to decode Base64 strings online. Convert encoded text back into readable output instantly in your browser.",
+},
+{
+  slug: "url-encoder",
+  name: "URL Encoder",
+  category: "development",
+  subcategory: "encoding-tools",
+  type: "dev",
+  devToolType: "url-encoder",
+  description:
+    "Encode text for safe use in URLs, query strings, and technical workflows.",
+  seoIntro:
+    "Use this URL encoder to convert text into URL-safe encoded format for query parameters, links, APIs, and browser-based debugging.",
+  seoTitle: "URL Encoder | Encode URL Components Online",
+  seoDescription:
+    "Free URL encoder to encode text and query parameters online. Convert strings into URL-safe format instantly in your browser.",
+},
+{
+  slug: "url-decoder",
+  name: "URL Decoder",
+  category: "development",
+  subcategory: "encoding-tools",
+  type: "dev",
+  devToolType: "url-decoder",
+  description:
+    "Decode URL-encoded text into readable plain text.",
+  seoIntro:
+    "Use this URL decoder to convert encoded URL components back into readable text for debugging links, parameters, and web requests.",
+  seoTitle: "URL Decoder | Decode URL Components Online",
+  seoDescription:
+    "Free URL decoder to decode URL-encoded text online. Convert encoded strings back into readable text instantly in your browser.",
+},
+{
+  slug: "unix-timestamp-converter",
+  name: "Unix Timestamp Converter",
+  category: "development",
+  subcategory: "time-tools",
+  type: "dev",
+  devToolType: "unix-timestamp-converter",
+  description:
+    "Convert Unix timestamps into readable dates and convert readable dates back into Unix timestamps.",
+  seoIntro:
+    "Use this Unix timestamp converter to convert epoch timestamps into readable date formats and turn human-readable dates into Unix timestamps for debugging, APIs, and development workflows.",
+  seoTitle: "Unix Timestamp Converter | Convert Epoch Time Online",
+  seoDescription:
+    "Free Unix timestamp converter to convert epoch time into readable dates and convert dates into Unix timestamps online.",
+},
+{
+  slug: "uuid-generator",
+  name: "UUID Generator",
+  category: "development",
+  subcategory: "id-tools",
+  type: "dev",
+  devToolType: "uuid-generator",
+  description:
+    "Generate a random UUID instantly in your browser for development, testing, and identifiers.",
+  seoIntro:
+    "Use this UUID generator to create random UUIDs instantly in the browser for IDs, testing, debugging, and development workflows.",
+  seoTitle: "UUID Generator | Generate Random UUID Online",
+  seoDescription:
+    "Free UUID generator to create random UUIDs online. Generate browser-based UUIDs instantly for development and testing.",
 },
 ];
