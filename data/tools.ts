@@ -34,7 +34,8 @@ devToolType?:
   | "url-encoder"
   | "url-decoder"
   | "unix-timestamp-converter"
-  | "uuid-generator";
+  | "uuid-generator"
+  | "hash-generator";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -994,5 +995,20 @@ longTailScenarios: [
   seoTitle: "UUID Generator | Generate Random UUID Online",
   seoDescription:
     "Free UUID generator to create random UUIDs online. Generate browser-based UUIDs instantly for development and testing.",
+},
+{
+  slug: "hash-generator",
+  name: "Hash Generator",
+  category: "development",
+  subcategory: "security-tools",
+  type: "dev",
+  devToolType: "hash-generator",
+  description:
+    "Generate SHA-1 and SHA-256 hashes from input text directly in your browser.",
+  seoIntro:
+    "Use this hash generator to create SHA-1 and SHA-256 hashes from text for development, debugging, signatures, and technical workflows.",
+  seoTitle: "Hash Generator | Generate SHA-1 and SHA-256 Online",
+  seoDescription:
+    "Free hash generator to create SHA-1 and SHA-256 hashes online. Generate secure text hashes instantly in your browser.",
 },
 ];

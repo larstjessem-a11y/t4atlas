@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { tools } from "@/data/tools";
 
@@ -23,16 +23,76 @@ type Tool = {
     | "url-encoder"
     | "url-decoder"
     | "unix-timestamp-converter"
-    | "uuid-generator";
+    | "uuid-generator"
+    | "hash-generator";
 };
+
+function bufferToHex(buffer: ArrayBuffer): string {
+  return Array.from(new Uint8Array(buffer))
+    .map((byte) => byte.toString(16).padStart(2, "0"))
+    .join("");
+}
 
 export default function DevToolTemplate({ tool }: { tool?: Tool }) {
   const [input, setInput] = useState("");
   const [copied, setCopied] = useState(false);
+  const [hashOutput, setHashOutput] = useState("");
+  const [hashStatus, setHashStatus] = useState<
+    "idle" | "success" | "error"
+  >("idle");
+  const [hashMessage, setHashMessage] = useState("Enter input to get started.");
 
   if (!tool) {
     return <main className="p-10">Tool not found.</main>;
   }
+
+  useEffect(() => {
+    async function generateHash() {
+      if (!tool || tool.devToolType !== "hash-generator") return;
+
+      if (!input.trim()) {
+        setHashOutput("");
+        setHashStatus("idle");
+        setHashMessage("Enter input to get started.");
+        return;
+      }
+
+      try {
+        if (
+          typeof crypto === "undefined" ||
+          !crypto.subtle ||
+          typeof TextEncoder === "undefined"
+        ) {
+          throw new Error("Hash generation is not available in this browser.");
+        }
+
+        const encoder = new TextEncoder();
+        const data = encoder.encode(input);
+
+        const sha1Buffer = await crypto.subtle.digest("SHA-1", data);
+        const sha256Buffer = await crypto.subtle.digest("SHA-256", data);
+
+        const output = [
+          "Hash Output",
+          "-----------",
+          `SHA-1: ${bufferToHex(sha1Buffer)}`,
+          `SHA-256: ${bufferToHex(sha256Buffer)}`,
+        ].join("\n");
+
+        setHashOutput(output);
+        setHashStatus("success");
+        setHashMessage("Generated SHA-1 and SHA-256 hashes successfully.");
+      } catch (error) {
+        setHashOutput("");
+        setHashStatus("error");
+        setHashMessage(
+          error instanceof Error ? error.message : "Unable to generate hash."
+        );
+      }
+    }
+
+    generateHash();
+  }, [input, tool.devToolType]);
 
   const result = useMemo(() => {
     if (tool.devToolType === "uuid-generator") {
@@ -47,6 +107,14 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
         message: uuid
           ? "Generated UUID successfully."
           : "UUID generation is not available in this browser.",
+      };
+    }
+
+    if (tool.devToolType === "hash-generator") {
+      return {
+        output: hashOutput,
+        status: hashStatus,
+        message: hashMessage,
       };
     }
 
@@ -175,7 +243,7 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
         message: error instanceof Error ? error.message : "Invalid input.",
       };
     }
-  }, [input, tool.devToolType]);
+  }, [hashMessage, hashOutput, hashStatus, input, tool.devToolType]);
 
   const categoryLabel =
     tool.category === "development"
@@ -191,6 +259,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
       ? "Time Tools"
       : tool.subcategory === "id-tools"
       ? "ID Tools"
+      : tool.subcategory === "security-tools"
+      ? "Security Tools"
       : tool.subcategory.replace(/-/g, " ");
 
   const relatedTools = tools
@@ -280,6 +350,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   placeholder={
                     tool.devToolType === "unix-timestamp-converter"
                       ? "Enter a Unix timestamp or date string, for example:\n1742899200\nor\n2026-03-25T12:00:00Z"
+                      : tool.devToolType === "hash-generator"
+                      ? "Enter text to generate hashes..."
                       : "Enter input..."
                   }
                   className="min-h-[300px] w-full rounded-2xl border p-4 font-mono text-sm"
@@ -338,6 +410,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     ? "Paste either a Unix timestamp or a readable date string to convert between timestamp and human-readable formats."
                     : tool.devToolType === "uuid-generator"
                     ? "Use this tool to generate a random UUID instantly in the browser."
+                    : tool.devToolType === "hash-generator"
+                    ? "Paste any text into the input box to generate SHA-1 and SHA-256 hashes."
                     : "Paste your content into the input box and review the transformed output."}
                 </p>
               </section>
@@ -363,6 +437,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     ? "This tool converts Unix timestamps into readable date formats and converts readable dates back into Unix timestamps."
                     : tool.devToolType === "uuid-generator"
                     ? "This tool generates a random UUID that can be used for identifiers, debugging, and development workflows."
+                    : tool.devToolType === "hash-generator"
+                    ? "This tool generates SHA-1 and SHA-256 hashes from input text directly in the browser."
                     : "This tool helps developers transform structured text quickly in the browser."}
                 </p>
               </section>
@@ -408,19 +484,26 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   {subcategoryLabel}
                 </Link>
 
-<Link
-  href="/tools/development/what-is-a-unix-timestamp"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is a Unix Timestamp?
-</Link>
+                <Link
+                  href="/tools/development/what-is-a-unix-timestamp"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  What Is a Unix Timestamp?
+                </Link>
 
 <Link
-  href="/tools/development/best-json-tools-for-developers"
+  href="/tools/development/what-is-hashing"
   className="text-gray-600 hover:text-gray-900"
 >
-  Best JSON Tools for Developers
+  What Is Hashing?
 </Link>
+
+                <Link
+                  href="/tools/development/best-json-tools-for-developers"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Best JSON Tools for Developers
+                </Link>
 
                 {tool.slug !== "json-formatter" && (
                   <Link
@@ -500,6 +583,15 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     className="text-gray-600 hover:text-gray-900"
                   >
                     UUID Generator
+                  </Link>
+                )}
+
+                {tool.slug !== "hash-generator" && (
+                  <Link
+                    href="/tools/development/hash-generator"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    Hash Generator
                   </Link>
                 )}
               </div>
