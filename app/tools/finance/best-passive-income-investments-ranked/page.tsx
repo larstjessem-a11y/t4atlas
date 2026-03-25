@@ -387,6 +387,14 @@ export default function BestPassiveIncomeInvestmentsRankedPage() {
               >
                 Dividend Yield Calculator
               </Link>
+
+<Link
+  href="/tools/finance/best-investments-with-fastest-payback-period"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm hover:bg-gray-50"
+>
+  Fastest Payback Investments
+</Link>
+
               <Link
                 href="/tools/finance/how-to-calculate-dividend-yield"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm hover:bg-gray-50"

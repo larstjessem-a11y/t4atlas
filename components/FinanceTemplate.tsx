@@ -944,6 +944,20 @@ export default function FinanceTemplate({
                   All {tool.category}
                 </Link>
 
+<Link
+  href="/tools/finance/best-investments-with-fastest-payback-period"
+  className="text-gray-600 hover:text-gray-900"
+>
+  Fastest Payback Investments
+</Link>
+
+<Link
+  href="/tools/finance/best-passive-income-investments-ranked"
+  className="text-gray-600 hover:text-gray-900"
+>
+  Best Passive Income Investments
+</Link>
+
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
                   className="text-gray-600 hover:text-gray-900 capitalize"

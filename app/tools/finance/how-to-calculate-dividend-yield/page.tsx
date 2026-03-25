@@ -317,6 +317,13 @@ export default function DividendYieldGuidePage() {
       Calculate Dividend Yield
     </Link>
 
+<Link
+  href="/tools/finance/best-passive-income-investments-ranked"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+>
+  Compare Passive Income Investments
+</Link>
+
     <Link
       href="/tools/finance/cagr-calculator"
       className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"

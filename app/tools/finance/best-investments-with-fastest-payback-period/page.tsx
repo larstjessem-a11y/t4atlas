@@ -371,6 +371,14 @@ export default function BestInvestmentsWithFastestPaybackPeriodPage() {
               >
                 Payback Period Calculator
               </Link>
+
+<Link
+  href="/tools/finance/best-passive-income-investments-ranked"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm hover:bg-gray-50"
+>
+  Best Passive Income Investments
+</Link>
+
               <Link
                 href="/tools/finance/roi-calculator"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm hover:bg-gray-50"
