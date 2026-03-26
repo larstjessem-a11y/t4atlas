@@ -498,6 +498,13 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
   What Is Hashing?
 </Link>
 
+<Link
+  href="/tools/development/what-is-base64-encoding"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is Base64 Encoding?
+</Link>
+
                 <Link
                   href="/tools/development/best-json-tools-for-developers"
                   className="text-gray-600 hover:text-gray-900"
