@@ -520,6 +520,13 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
 </Link>
 
 <Link
+  href="/tools/development/json-vs-base64-vs-url-encoding"
+  className="text-gray-600 hover:text-gray-900"
+>
+  JSON vs Base64 vs URL Encoding
+</Link>
+
+<Link
   href="/tools/development/best-debugging-tools-for-developers"
   className="text-gray-600 hover:text-gray-900"
 >

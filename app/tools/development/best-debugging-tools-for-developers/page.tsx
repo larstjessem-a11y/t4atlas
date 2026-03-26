@@ -335,6 +335,12 @@ export default function BestDebuggingToolsForDevelopersPage() {
               >
                 Unix Timestamp Converter
               </Link>
+<Link
+  href="/tools/development/json-vs-base64-vs-url-encoding"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+>
+  JSON vs Base64 vs URL Encoding
+</Link>
               <Link
                 href="/tools/development/base64-decoder"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
