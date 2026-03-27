@@ -35,7 +35,8 @@ devToolType?:
   | "url-decoder"
   | "unix-timestamp-converter"
   | "uuid-generator"
-  | "hash-generator";
+  | "hash-generator"
+  | "jwt-decoder";
 longTailScenarios?: {
   slug: string;
   label: string;
@@ -1010,5 +1011,20 @@ longTailScenarios: [
   seoTitle: "Hash Generator | Generate SHA-1 and SHA-256 Online",
   seoDescription:
     "Free hash generator to create SHA-1 and SHA-256 hashes online. Generate secure text hashes instantly in your browser.",
+},
+{
+  slug: "jwt-decoder",
+  name: "JWT Decoder",
+  category: "development",
+  subcategory: "auth-tools",
+  type: "dev",
+  devToolType: "jwt-decoder",
+  description:
+    "Decode JWT tokens in the browser by inspecting the header, payload, and signature parts.",
+  seoIntro:
+    "Use this JWT decoder to inspect token headers and payloads directly in the browser for debugging authentication flows, APIs, and auth-related workflows.",
+  seoTitle: "JWT Decoder | Decode JWT Tokens Online",
+  seoDescription:
+    "Free JWT decoder to inspect token headers and payloads online. Decode JWTs instantly in your browser for debugging and development.",
 },
 ];

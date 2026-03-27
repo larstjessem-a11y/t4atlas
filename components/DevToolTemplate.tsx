@@ -24,7 +24,8 @@ type Tool = {
     | "url-decoder"
     | "unix-timestamp-converter"
     | "uuid-generator"
-    | "hash-generator";
+    | "hash-generator"
+    | "jwt-decoder";
 };
 
 function bufferToHex(buffer: ArrayBuffer): string {
@@ -33,13 +34,32 @@ function bufferToHex(buffer: ArrayBuffer): string {
     .join("");
 }
 
+function decodeBase64Url(input: string): string {
+  const normalized = input.replace(/-/g, "+").replace(/_/g, "/");
+  const padded = normalized.padEnd(
+    normalized.length + ((4 - (normalized.length % 4)) % 4),
+    "="
+  );
+  return atob(padded);
+}
+
+function formatJwtPart(part: string): string {
+  const decoded = decodeBase64Url(part);
+  try {
+    const parsed = JSON.parse(decoded);
+    return JSON.stringify(parsed, null, 2);
+  } catch {
+    return decoded;
+  }
+}
+
 export default function DevToolTemplate({ tool }: { tool?: Tool }) {
   const [input, setInput] = useState("");
   const [copied, setCopied] = useState(false);
   const [hashOutput, setHashOutput] = useState("");
-  const [hashStatus, setHashStatus] = useState<
-    "idle" | "success" | "error"
-  >("idle");
+  const [hashStatus, setHashStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
   const [hashMessage, setHashMessage] = useState("Enter input to get started.");
 
   if (!tool) {
@@ -92,7 +112,7 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
     }
 
     generateHash();
-  }, [input, tool.devToolType]);
+  }, [input, tool]);
 
   const result = useMemo(() => {
     if (tool.devToolType === "uuid-generator") {
@@ -231,6 +251,35 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
         };
       }
 
+      if (tool.devToolType === "jwt-decoder") {
+        const trimmed = input.trim();
+        const parts = trimmed.split(".");
+
+        if (parts.length !== 3) {
+          throw new Error("Enter a valid JWT with header.payload.signature.");
+        }
+
+        const [header, payload, signature] = parts;
+
+        return {
+          output: [
+            "JWT Header",
+            "----------",
+            formatJwtPart(header),
+            "",
+            "JWT Payload",
+            "-----------",
+            formatJwtPart(payload),
+            "",
+            "JWT Signature",
+            "-------------",
+            signature,
+          ].join("\n"),
+          status: "success" as const,
+          message: "Decoded JWT header and payload successfully.",
+        };
+      }
+
       return {
         output: input,
         status: "idle" as const,
@@ -261,6 +310,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
       ? "ID Tools"
       : tool.subcategory === "security-tools"
       ? "Security Tools"
+      : tool.subcategory === "auth-tools"
+      ? "Auth Tools"
       : tool.subcategory.replace(/-/g, " ");
 
   const relatedTools = tools
@@ -352,6 +403,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                       ? "Enter a Unix timestamp or date string, for example:\n1742899200\nor\n2026-03-25T12:00:00Z"
                       : tool.devToolType === "hash-generator"
                       ? "Enter text to generate hashes..."
+                      : tool.devToolType === "jwt-decoder"
+                      ? "Paste a JWT token here..."
                       : "Enter input..."
                   }
                   className="min-h-[300px] w-full rounded-2xl border p-4 font-mono text-sm"
@@ -412,6 +465,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     ? "Use this tool to generate a random UUID instantly in the browser."
                     : tool.devToolType === "hash-generator"
                     ? "Paste any text into the input box to generate SHA-1 and SHA-256 hashes."
+                    : tool.devToolType === "jwt-decoder"
+                    ? "Paste a JWT token to decode the header and payload without verifying the signature."
                     : "Paste your content into the input box and review the transformed output."}
                 </p>
               </section>
@@ -439,6 +494,8 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     ? "This tool generates a random UUID that can be used for identifiers, debugging, and development workflows."
                     : tool.devToolType === "hash-generator"
                     ? "This tool generates SHA-1 and SHA-256 hashes from input text directly in the browser."
+                    : tool.devToolType === "jwt-decoder"
+                    ? "This tool decodes the JWT header and payload from Base64URL into readable text or JSON."
                     : "This tool helps developers transform structured text quickly in the browser."}
                 </p>
               </section>
@@ -491,18 +548,24 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   What Is a Unix Timestamp?
                 </Link>
 
-<Link
-  href="/tools/development/what-is-hashing"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is Hashing?
-</Link>
+                <Link
+                  href="/tools/development/what-is-hashing"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  What Is Hashing?
+                </Link>
 
+                <Link
+                  href="/tools/development/what-is-base64-encoding"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  What Is Base64 Encoding?
+                </Link>
 <Link
-  href="/tools/development/what-is-base64-encoding"
+  href="/tools/development/what-is-a-jwt"
   className="text-gray-600 hover:text-gray-900"
 >
-  What Is Base64 Encoding?
+  What Is a JWT?
 </Link>
 
                 <Link
@@ -512,25 +575,32 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   Best JSON Tools for Developers
                 </Link>
 
-<Link
-  href="/tools/development/best-encoding-tools-for-developers"
-  className="text-gray-600 hover:text-gray-900"
->
-  Best Encoding Tools for Developers
-</Link>
+                <Link
+                  href="/tools/development/best-encoding-tools-for-developers"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Best Encoding Tools for Developers
+                </Link>
+
+                <Link
+                  href="/tools/development/json-vs-base64-vs-url-encoding"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  JSON vs Base64 vs URL Encoding
+                </Link>
+
+                <Link
+                  href="/tools/development/best-debugging-tools-for-developers"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Best Debugging Tools for Developers
+                </Link>
 
 <Link
-  href="/tools/development/json-vs-base64-vs-url-encoding"
+  href="/tools/development/best-jwt-tools-for-developers"
   className="text-gray-600 hover:text-gray-900"
 >
-  JSON vs Base64 vs URL Encoding
-</Link>
-
-<Link
-  href="/tools/development/best-debugging-tools-for-developers"
-  className="text-gray-600 hover:text-gray-900"
->
-  Best Debugging Tools for Developers
+  Best JWT Tools for Developers
 </Link>
 
                 {tool.slug !== "json-formatter" && (
@@ -620,6 +690,15 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                     className="text-gray-600 hover:text-gray-900"
                   >
                     Hash Generator
+                  </Link>
+                )}
+
+                {tool.slug !== "jwt-decoder" && (
+                  <Link
+                    href="/tools/development/jwt-decoder"
+                    className="text-gray-600 hover:text-gray-900"
+                  >
+                    JWT Decoder
                   </Link>
                 )}
               </div>
