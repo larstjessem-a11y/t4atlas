@@ -562,6 +562,13 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   What Is Base64 Encoding?
                 </Link>
 <Link
+  href="/tools/development/what-is-json"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is JSON?
+</Link>
+
+<Link
   href="/tools/development/what-is-a-jwt"
   className="text-gray-600 hover:text-gray-900"
 >
