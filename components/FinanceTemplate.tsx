@@ -943,6 +943,12 @@ export default function FinanceTemplate({
                 >
                   All {tool.category}
                 </Link>
+<Link
+  href="/tools/finance/roi-vs-cagr-vs-payback"
+  className="text-gray-600 hover:text-gray-900"
+>
+  ROI vs CAGR vs Payback
+</Link>
 
 <Link
   href="/tools/finance/best-investments-with-fastest-payback-period"
