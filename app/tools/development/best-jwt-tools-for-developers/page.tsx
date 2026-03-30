@@ -314,6 +314,13 @@ export default function BestJwtToolsForDevelopersPage() {
                 JWT Decoder
               </Link>
 
+<Link
+  href="/tools/development/jwt-vs-sessions"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+>
+  JWT vs Sessions
+</Link>
+
               <Link
                 href="/tools/development/base64-decoder"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"

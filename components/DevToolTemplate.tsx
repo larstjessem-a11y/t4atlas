@@ -568,6 +568,13 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
   What Is a JWT?
 </Link>
 
+<Link
+  href="/tools/development/jwt-vs-sessions"
+  className="text-gray-600 hover:text-gray-900"
+>
+  JWT vs Sessions
+</Link>
+
                 <Link
                   href="/tools/development/best-json-tools-for-developers"
                   className="text-gray-600 hover:text-gray-900"
