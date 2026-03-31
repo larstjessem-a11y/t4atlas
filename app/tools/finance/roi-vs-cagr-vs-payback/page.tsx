@@ -97,6 +97,14 @@ export default function RoiVsCagrVsPaybackPage() {
               <Link href="/tools/finance/roi-calculator" className="border rounded-2xl px-4 py-2.5 text-sm hover:bg-gray-50">
                 ROI Calculator
               </Link>
+
+<Link
+  href="/tools/finance/what-is-roi"
+  className="border rounded-2xl px-4 py-2.5 text-sm hover:bg-gray-50"
+>
+  What Is ROI?
+</Link>
+
             </div>
           </section>
 

@@ -28,7 +28,11 @@ financeType?:
   | "break-even"
   | "apr-calculator"
   | "investment-return"
-  | "payback-period";
+  | "payback-period"
+  | "annualized-return"
+  | "total-return"
+  | "return-multiple"
+  | "rule-of-72";
 };
 
 export default function ToolTemplate({ tool }: { tool?: Tool }) {

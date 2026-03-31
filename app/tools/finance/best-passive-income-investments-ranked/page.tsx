@@ -360,6 +360,13 @@ export default function BestPassiveIncomeInvestmentsRankedPage() {
                 Open Dividend Yield Calculator
               </Link>
 
+<Link
+  href="/tools/finance/what-is-roi"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+>
+  What Is ROI?
+</Link>
+
               <Link
                 href="/tools/finance/payback-period"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"

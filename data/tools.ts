@@ -24,7 +24,11 @@ financeType?:
   | "break-even"
   | "apr-calculator"
   | "investment-return"
-  | "payback-period";
+  | "payback-period"
+  | "annualized-return"
+  | "total-return"
+  | "return-multiple"
+  | "rule-of-72";
 devToolType?:
   | "json-formatter"
   | "json-minifier"
@@ -858,6 +862,170 @@ longTailScenarios: [
       prefill: {
         principal: "80000",
         annualContribution: "20000",
+      },
+    },
+  ],
+},
+{
+  slug: "annualized-return-calculator",
+  name: "Annualized Return Calculator",
+  category: "finance",
+  subcategory: "investment-analysis",
+  type: "finance",
+  financeType: "annualized-return",
+  description:
+    "Calculate annualized return to compare investments across different time periods.",
+  seoIntro:
+    "Use this annualized return calculator to convert total growth into an annual rate so you can compare investments held over different time horizons.",
+  seoTitle: "Annualized Return Calculator | Compare Investment Growth",
+  seoDescription:
+    "Free annualized return calculator to compare investments over different time periods. Convert total growth into an annual return rate instantly.",
+  longTailScenarios: [
+    {
+      slug: "stock-portfolio-annualized-return",
+      label: "Stock Portfolio Annualized Return Calculator",
+      prefill: {
+        principal: "10000",
+        finalValue: "15800",
+        years: "5",
+      },
+    },
+    {
+      slug: "real-estate-annualized-return",
+      label: "Real Estate Annualized Return Calculator",
+      prefill: {
+        principal: "250000",
+        finalValue: "340000",
+        years: "7",
+      },
+    },
+    {
+      slug: "fund-investment-annualized-return",
+      label: "Fund Investment Annualized Return Calculator",
+      prefill: {
+        principal: "5000",
+        finalValue: "7600",
+        years: "4",
+      },
+    },
+  ],
+},
+{
+  slug: "total-return-calculator",
+  name: "Total Return Calculator",
+  category: "finance",
+  subcategory: "investment-analysis",
+  type: "finance",
+  financeType: "total-return",
+  description:
+    "Calculate total return as the full percentage gain or loss between starting value and ending value.",
+  seoIntro:
+    "Use this total return calculator to measure the full percentage gain or loss of an investment over the period you held it.",
+  seoTitle: "Total Return Calculator | Measure Full Investment Return",
+  seoDescription:
+    "Free total return calculator to measure the full gain or loss of an investment. Compare starting and ending value instantly.",
+  longTailScenarios: [
+    {
+      slug: "stock-total-return",
+      label: "Stock Total Return Calculator",
+      prefill: {
+        principal: "12000",
+        finalValue: "15600",
+      },
+    },
+    {
+      slug: "index-fund-total-return",
+      label: "Index Fund Total Return Calculator",
+      prefill: {
+        principal: "20000",
+        finalValue: "27800",
+      },
+    },
+    {
+      slug: "property-total-return",
+      label: "Property Total Return Calculator",
+      prefill: {
+        principal: "300000",
+        finalValue: "390000",
+      },
+    },
+  ],
+},
+{
+  slug: "return-multiple-calculator",
+  name: "Return Multiple Calculator",
+  category: "finance",
+  subcategory: "investment-analysis",
+  type: "finance",
+  financeType: "return-multiple",
+  description:
+    "Calculate return multiple to see how many times your original investment has grown.",
+  seoIntro:
+    "Use this return multiple calculator to measure how many times your original investment has grown, such as 2x, 3x, or more.",
+  seoTitle: "Return Multiple Calculator | Measure 2x, 3x, and More",
+  seoDescription:
+    "Free return multiple calculator to see how many times an investment has grown. Calculate 2x, 3x, and other return multiples instantly.",
+  longTailScenarios: [
+    {
+      slug: "venture-investment-multiple",
+      label: "Venture Investment Multiple Calculator",
+      prefill: {
+        principal: "50000",
+        finalValue: "175000",
+      },
+    },
+    {
+      slug: "stock-return-multiple",
+      label: "Stock Return Multiple Calculator",
+      prefill: {
+        principal: "8000",
+        finalValue: "18400",
+      },
+    },
+    {
+      slug: "crypto-return-multiple",
+      label: "Crypto Return Multiple Calculator",
+      prefill: {
+        principal: "3000",
+        finalValue: "9600",
+      },
+    },
+  ],
+},
+{
+  slug: "rule-of-72-calculator",
+  name: "Rule of 72 Calculator",
+  category: "finance",
+  subcategory: "investment-analysis",
+  type: "finance",
+  financeType: "rule-of-72",
+  description:
+    "Estimate how long it takes an investment to double using the Rule of 72.",
+  seoIntro:
+    "Use this Rule of 72 calculator to estimate how many years it takes for money to double at a given annual interest or return rate.",
+  seoTitle: "Rule of 72 Calculator | Estimate Doubling Time",
+  seoDescription:
+    "Free Rule of 72 calculator to estimate how long it takes an investment to double based on annual return or interest rate.",
+  longTailScenarios: [
+    {
+      slug: "rule-of-72-8-percent",
+      label: "Rule of 72 at 8% Return",
+      prefill: {
+        rate: "8",
+      },
+    },
+    {
+      slug: "rule-of-72-10-percent",
+      label: "Rule of 72 at 10% Return",
+      prefill: {
+        rate: "10",
+      },
+    },
+    {
+      slug: "rule-of-72-12-percent",
+      label: "Rule of 72 at 12% Return",
+      prefill: {
+        rate: "12",
       },
     },
   ],

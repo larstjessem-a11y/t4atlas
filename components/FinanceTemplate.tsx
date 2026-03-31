@@ -12,17 +12,21 @@ type Tool = {
   type: "converter" | "finance" | "dev";
   description?: string;
   seoIntro?: string;
-  financeType?:
-    | "simple-interest"
-    | "compound-interest"
-    | "loan-payment"
-    | "roi-calculator"
-    | "savings-growth"
-    | "cagr"
-    | "break-even"
-    | "apr-calculator"
-    | "investment-return"
-    | "payback-period";
+financeType?:
+  | "simple-interest"
+  | "compound-interest"
+  | "loan-payment"
+  | "roi-calculator"
+  | "savings-growth"
+  | "cagr"
+  | "break-even"
+  | "apr-calculator"
+  | "investment-return"
+  | "payback-period"
+  | "annualized-return"
+  | "total-return"
+  | "return-multiple"
+  | "rule-of-72";
   longTailScenarios?: {
     slug: string;
     label: string;
@@ -73,6 +77,10 @@ export default function FinanceTemplate({
   const isPaybackPeriod = tool.financeType === "payback-period";
   const isMortgage = tool.slug === "mortgage-calculator";
   const isDividendYield = tool.slug === "dividend-yield-calculator";
+  const isAnnualizedReturn = tool.financeType === "annualized-return";
+  const isTotalReturn = tool.financeType === "total-return";
+  const isReturnMultiple = tool.financeType === "return-multiple";
+  const isRuleOf72 = tool.financeType === "rule-of-72";
 
   useEffect(() => {
     if (!scenario) return;
@@ -193,15 +201,46 @@ export default function FinanceTemplate({
     secondaryValue = growth;
     primaryLabel = "Total savings";
     secondaryLabel = "Growth";
-  } else if (isCAGR) {
-    const cagr =
-      p > 0 && f > 0 && t > 0 ? (Math.pow(f / p, 1 / t) - 1) * 100 : 0;
+ } else if (isCAGR) {
+  const cagr =
+    p > 0 && f > 0 && t > 0 ? (Math.pow(f / p, 1 / t) - 1) * 100 : 0;
 
-    primaryValue = cagr;
-    secondaryValue = f - p;
-    primaryLabel = "CAGR (%)";
-    secondaryLabel = "Total growth";
-  } else if (isBreakEven) {
+  primaryValue = cagr;
+  secondaryValue = f - p;
+  primaryLabel = "CAGR (%)";
+  secondaryLabel = "Total growth";
+} else if (isAnnualizedReturn) {
+  const annualizedReturn =
+    p > 0 && f > 0 && t > 0 ? (Math.pow(f / p, 1 / t) - 1) * 100 : 0;
+
+  primaryValue = annualizedReturn;
+  secondaryValue = f - p;
+  primaryLabel = "Annualized return (%)";
+  secondaryLabel = "Total growth";
+} else if (isTotalReturn) {
+  const totalReturn = p > 0 ? ((f - p) / p) * 100 : 0;
+  const gainLoss = f - p;
+
+  primaryValue = totalReturn;
+  secondaryValue = gainLoss;
+  primaryLabel = "Total return (%)";
+  secondaryLabel = "Gain / Loss";
+} else if (isReturnMultiple) {
+  const multiple = p > 0 ? f / p : 0;
+  const gainLoss = f - p;
+
+  primaryValue = multiple;
+  secondaryValue = gainLoss;
+  primaryLabel = "Return multiple (x)";
+  secondaryLabel = "Gain / Loss";
+} else if (isRuleOf72) {
+  const doublingTime = r > 0 ? 72 / (r * 100) : 0;
+
+  primaryValue = doublingTime;
+  secondaryValue = r * 100;
+  primaryLabel = "Years to double";
+  secondaryLabel = "Interest rate (%)";
+} else if (isBreakEven) {
     const fixedCosts = parseFloat(rate) || 0;
     const variableCostPerUnit = parseFloat(finalValue) || 0;
     const contributionMargin = p - variableCostPerUnit;
@@ -296,27 +335,35 @@ export default function FinanceTemplate({
                 ? tool.description
                 : isCompound
                 ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
-                : isMortgage
-                ? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
-                : isDividendYield
-                ? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
-                : isBreakEven
-                ? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
-                : isAPR
-                ? "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs."
-                : isInvestmentReturn
-                ? "Calculate investment return based on starting value and ending value to evaluate overall portfolio performance."
-                : isPaybackPeriod
-                ? "Calculate how long it takes for an investment to recover its initial cost based on annual cash flow or annual savings."
-                : isLoan
-                ? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
-                : isROI
-                ? "Calculate return on investment (ROI) based on your initial investment and final value."
-                : isSavings
-                ? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
-                : isCAGR
-                ? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
-                : "Calculate simple interest based on principal, interest rate, and time."}
+                : isCompound
+? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
+: isMortgage
+? "Estimate your monthly mortgage payment based on home loan amount, interest rate, and repayment term."
+: isDividendYield
+? "Calculate dividend yield using annual dividend and share price to compare income-producing stocks."
+: isBreakEven
+? "Calculate the break-even point based on fixed costs, selling price, and variable cost per unit."
+: isAPR
+? "Estimate annual percentage rate (APR) based on loan amount, fees, and interest costs."
+: isInvestmentReturn
+? "Calculate investment return based on starting value and ending value to evaluate overall portfolio performance."
+: isAnnualizedReturn
+? "Calculate annualized return to compare investments held over different time periods on a like-for-like basis."
+: isTotalReturn
+? "Calculate total return to measure the full percentage gain or loss between starting value and ending value."
+: isReturnMultiple
+? "Calculate return multiple to see how many times your original investment has grown."
+: isRuleOf72
+? "Estimate how many years it takes for money to double based on a given annual return or interest rate."
+: isLoan
+? "Calculate monthly loan payments and total repayment based on interest rate and loan duration."
+: isROI
+? "Calculate return on investment (ROI) based on your initial investment and final value."
+: isSavings
+? "Estimate how your savings grow over time with regular monthly contributions and compound interest."
+: isCAGR
+? "Calculate the compound annual growth rate (CAGR) to understand the average yearly return of an investment."
+: "Calculate simple interest based on principal, interest rate, and time."}
             </p>
           </div>
         </div>
@@ -338,60 +385,60 @@ export default function FinanceTemplate({
               </div>
 
               <div className="space-y-5 p-5 md:p-6">
-                <div>
+               {!isRuleOf72 && (
+  <div>
                   <label className="mb-2 block text-sm font-medium text-gray-700">
                     {isMortgage
-                      ? "Mortgage amount"
-                      : isDividendYield
-                      ? "Share price"
-                      : isBreakEven
-                      ? "Selling price per unit"
-                      : isAPR
-                      ? "Loan amount"
-                      : isLoan
-                      ? "Loan amount"
-                      : isInvestmentReturn
-                      ? "Starting value"
-                      : isPaybackPeriod
-                      ? "Initial investment"
-                      : isROI
-                      ? "Initial investment"
-                      : isSavings
-                      ? "Initial savings"
-                      : isCAGR
-                      ? "Beginning value"
-                      : "Initial amount"}
+  ? "Mortgage amount"
+  : isDividendYield
+  ? "Share price"
+  : isBreakEven
+  ? "Selling price per unit"
+  : isAPR
+  ? "Loan amount"
+  : isLoan
+  ? "Loan amount"
+  : isInvestmentReturn || isAnnualizedReturn || isTotalReturn || isReturnMultiple
+  ? "Starting value"
+  : isROI
+  ? "Initial investment"
+  : isSavings
+  ? "Initial savings"
+  : isCAGR
+  ? "Beginning value"
+  : isRuleOf72
+  ? "Unused"
+  : "Initial amount"}
                   </label>
                   <input
                     type="number"
                     value={principal}
-                    placeholder={
-                      isMortgage
-                        ? "Enter mortgage amount"
-                        : isDividendYield
-                        ? "Enter share price"
-                        : isBreakEven
-                        ? "Enter selling price per unit"
-                        : isAPR
-                        ? "Enter loan amount"
-                        : isLoan
-                        ? "Enter loan amount"
-                        : isInvestmentReturn
-                        ? "Enter starting value"
-                        : isPaybackPeriod
-                        ? "Enter initial investment"
-                        : isROI
-                        ? "Enter initial investment"
-                        : isSavings
-                        ? "Enter initial savings"
-                        : isCAGR
-                        ? "Enter beginning value"
-                        : "Enter initial amount"
-                    }
+                    placeholder={isMortgage
+  ? "Enter mortgage amount"
+  : isDividendYield
+  ? "Enter share price"
+  : isBreakEven
+  ? "Enter selling price per unit"
+  : isAPR
+  ? "Enter loan amount"
+  : isLoan
+  ? "Enter loan amount"
+  : isInvestmentReturn || isAnnualizedReturn || isTotalReturn || isReturnMultiple
+  ? "Enter starting value"
+  : isROI
+  ? "Enter initial investment"
+  : isSavings
+  ? "Enter initial savings"
+  : isCAGR
+  ? "Enter beginning value"
+  : isRuleOf72
+  ? "Enter initial amount"
+  : "Enter initial amount"}
                     onChange={(e) => setPrincipal(e.target.value)}
                     className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                   />
-                </div>
+                  </div>
+)}
 
                 {isBreakEven ? (
                   <>
@@ -449,25 +496,36 @@ export default function FinanceTemplate({
                       />
                     </div>
                   </>
-                ) : isROI || isCAGR || isInvestmentReturn ? (
+) : isRuleOf72 ? (
+  <div>
+    <label className="mb-2 block text-sm font-medium text-gray-700">
+      Annual interest rate (%)
+    </label>
+    <input
+      type="number"
+      value={rate}
+      placeholder="Enter annual rate"
+      onChange={(e) => setRate(e.target.value)}
+      className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
+    />
+  </div>
+                ) : isROI || isCAGR || isInvestmentReturn || isAnnualizedReturn || isTotalReturn || isReturnMultiple ? (
                   <div>
                     <label className="mb-2 block text-sm font-medium text-gray-700">
                       {isDividendYield
-                        ? "Annual dividend per share"
-                        : isInvestmentReturn
-                        ? "Ending value"
-                        : "Final value"}
+  ? "Annual dividend per share"
+  : isInvestmentReturn || isAnnualizedReturn || isTotalReturn || isReturnMultiple
+  ? "Ending value"
+  : "Final value"}
                     </label>
                     <input
                       type="number"
                       value={finalValue}
-                      placeholder={
-                        isDividendYield
-                          ? "Enter annual dividend"
-                          : isInvestmentReturn
-                          ? "Enter ending value"
-                          : "Enter final value"
-                      }
+                      placeholder={isDividendYield
+  ? "Enter annual dividend"
+  : isInvestmentReturn || isAnnualizedReturn || isTotalReturn || isReturnMultiple
+  ? "Enter ending value"
+  : "Enter final value"}
                       onChange={(e) => setFinalValue(e.target.value)}
                       className="w-full rounded-2xl border bg-white p-4 text-lg outline-none transition focus:border-gray-400"
                     />
@@ -501,10 +559,11 @@ export default function FinanceTemplate({
                 )}
 
                 {!isROI &&
-                  !isBreakEven &&
-                  !isAPR &&
-                  !isInvestmentReturn &&
-                  !isPaybackPeriod && (
+  !isBreakEven &&
+  !isAPR &&
+  !isInvestmentReturn &&
+  !isTotalReturn &&
+  !isReturnMultiple && (
                     <div>
                       <label className="mb-2 block text-sm font-medium text-gray-700">
                         {isMortgage ? "Mortgage term (years)" : "Time (years)"}
@@ -662,14 +721,43 @@ export default function FinanceTemplate({
                     </p>
                   </div>
                 ) : isCAGR ? (
-                  <div className="space-y-2 text-gray-600">
-                    <p>CAGR = (Ending Value / Beginning Value)^(1 / Years) - 1</p>
-                    <p>
-                      This shows the average annual growth rate over a period of
-                      time, assuming compounding.
-                    </p>
-                  </div>
-                ) : (
+  <div className="space-y-2 text-gray-600">
+    <p>CAGR = (Ending Value / Beginning Value)^(1 / Years) - 1</p>
+    <p>
+      This shows the average annual growth rate over a period of
+      time, assuming compounding.
+    </p>
+  </div>
+) : isAnnualizedReturn ? (
+  <div className="space-y-2 text-gray-600">
+    <p>Annualized Return = (Ending Value / Starting Value)^(1 / Years) - 1</p>
+    <p>
+      This converts total growth into an annualized rate so different holding
+      periods can be compared more fairly.
+    </p>
+  </div>
+) : isTotalReturn ? (
+  <div className="space-y-2 text-gray-600">
+    <p>Total Return (%) = ((Ending Value - Starting Value) / Starting Value) × 100</p>
+    <p>
+      This shows the full percentage gain or loss over the full holding period.
+    </p>
+  </div>
+) : isReturnMultiple ? (
+  <div className="space-y-2 text-gray-600">
+    <p>Return Multiple = Ending Value / Starting Value</p>
+    <p>
+      This shows how many times the original investment has grown, such as 2x or 3x.
+    </p>
+  </div>
+) : isRuleOf72 ? (
+  <div className="space-y-2 text-gray-600">
+    <p>Years to Double ≈ 72 / Annual Return Rate (%)</p>
+    <p>
+      This quick rule estimates how long it takes for money to double at a given annual rate.
+    </p>
+  </div>
+) : (
                   <p className="text-gray-600">
                     Interest = principal × rate × time
                   </p>
@@ -680,28 +768,34 @@ export default function FinanceTemplate({
                 <h2 className="mb-2 text-xl font-semibold">How to use</h2>
                 <p className="text-gray-600">
                   {isCompound
-                    ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
-                    : isMortgage
-                    ? "Enter your mortgage amount, annual interest rate, and repayment term to estimate your monthly mortgage payment and total paid."
-                    : isDividendYield
-                    ? "Enter the current share price and annual dividend per share to calculate dividend yield."
-                    : isBreakEven
-                    ? "Enter fixed costs, selling price per unit, and variable cost per unit to calculate your break-even point."
-                    : isAPR
-                    ? "Enter loan amount, total fees, and total interest cost to estimate the annual percentage rate."
-                    : isInvestmentReturn
-                    ? "Enter the starting value and ending value to calculate the total return of an investment."
-                    : isPaybackPeriod
-                    ? "Enter the upfront investment and the expected annual cash flow or annual savings to estimate how many years it takes to recover the initial cost."
-                    : isLoan
-                    ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
-                    : isROI
-                    ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
-                    : isSavings
-                    ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
-                    : isCAGR
-                    ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
-                    : "Enter your starting amount, annual interest rate, and number of years."}
+  ? "Enter your starting amount, interest rate, time horizon, and optional yearly contributions."
+  : isMortgage
+  ? "Enter your mortgage amount, annual interest rate, and repayment term to estimate your monthly mortgage payment and total paid."
+  : isDividendYield
+  ? "Enter the current share price and annual dividend per share to calculate dividend yield."
+  : isBreakEven
+  ? "Enter fixed costs, selling price per unit, and variable cost per unit to calculate your break-even point."
+  : isAPR
+  ? "Enter loan amount, total fees, and total interest cost to estimate the annual percentage rate."
+  : isInvestmentReturn
+  ? "Enter the starting value and ending value to calculate the total return of an investment."
+  : isAnnualizedReturn
+  ? "Enter the starting value, ending value, and number of years to calculate annualized return."
+  : isTotalReturn
+  ? "Enter the starting value and ending value to calculate total return percentage and gain or loss."
+  : isReturnMultiple
+  ? "Enter the starting value and ending value to calculate how many times your investment has grown."
+  : isRuleOf72
+  ? "Enter the annual return or interest rate to estimate how many years it takes for money to double."
+  : isLoan
+  ? "Enter loan amount, annual interest rate, and loan term to estimate monthly payment and total paid."
+  : isROI
+  ? "Enter the amount invested and the final value to calculate ROI percentage and profit."
+  : isSavings
+  ? "Enter your current savings, expected annual return, number of years, and monthly contribution to estimate future savings."
+  : isCAGR
+  ? "Enter the beginning value, ending value, and the number of years to calculate the annualized return."
+  : "Enter your starting amount, annual interest rate, and number of years."}
                 </p>
               </section>
             </div>
@@ -768,107 +862,131 @@ export default function FinanceTemplate({
                 <div className="space-y-4">
                   <div className="rounded-2xl bg-gray-50 p-4">
                     <h3 className="mb-2 font-medium text-gray-900">
-                      {isCompound
-                        ? "What does compound interest mean?"
-                        : isMortgage
-                        ? "How is a mortgage payment calculated?"
-                        : isDividendYield
-                        ? "What does dividend yield tell you?"
-                        : isBreakEven
-                        ? "What is a break-even point?"
-                        : isAPR
-                        ? "What does APR tell you?"
-                        : isInvestmentReturn
-                        ? "What does investment return tell you?"
-                        : isPaybackPeriod
-                        ? "What does payback period mean?"
-                        : isLoan
-                        ? "How is a loan payment calculated?"
-                        : isROI
-                        ? "What is a good ROI?"
-                        : isSavings
-                        ? "How does savings growth work?"
-                        : isCAGR
-                        ? "What does CAGR tell you?"
-                        : "What is simple interest?"}
+                     {isCompound
+  ? "What does compound interest mean?"
+  : isMortgage
+  ? "How is a mortgage payment calculated?"
+  : isDividendYield
+  ? "What does dividend yield tell you?"
+  : isBreakEven
+  ? "What is a break-even point?"
+  : isAPR
+  ? "What does APR tell you?"
+  : isInvestmentReturn
+  ? "What does investment return tell you?"
+  : isAnnualizedReturn
+  ? "What does annualized return tell you?"
+  : isTotalReturn
+  ? "What does total return tell you?"
+  : isReturnMultiple
+  ? "What does return multiple mean?"
+  : isRuleOf72
+  ? "What is the Rule of 72?"
+  : isLoan
+  ? "How is a loan payment calculated?"
+  : isROI
+  ? "What is a good ROI?"
+  : isSavings
+  ? "How does savings growth work?"
+  : isCAGR
+  ? "What does CAGR tell you?"
+  : "What is simple interest?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
-                        ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
-                        : isMortgage
-                        ? "Mortgage payments are typically based on the home loan amount, interest rate, and mortgage term, with each payment covering both interest and principal."
-                        : isDividendYield
-                        ? "Dividend yield tells you how much annual dividend income a stock generates relative to its share price, shown as a percentage."
-                        : isBreakEven
-                        ? "The break-even point is the number of units you must sell to cover all fixed and variable costs before making a profit."
-                        : isAPR
-                        ? "APR helps show the total borrowing cost of a loan by including interest and certain fees in one comparable percentage figure."
-                        : isInvestmentReturn
-                        ? "Investment return shows the total percentage gain or loss between the starting value and ending value of an investment."
-                        : isPaybackPeriod
-                        ? "Payback period is the length of time it takes for an investment to recover its original cost through annual cash flow, savings, or profit."
-                        : isLoan
-                        ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
-                        : isROI
-                        ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
-                        : isSavings
-                        ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
-                        : isCAGR
-                        ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
-                        : "Simple interest is calculated only on the original principal, not on accumulated interest."}
+  ? "Compound interest means you earn interest on both your original amount and the interest already added over time."
+  : isMortgage
+  ? "Mortgage payments are typically based on the home loan amount, interest rate, and mortgage term, with each payment covering both interest and principal."
+  : isDividendYield
+  ? "Dividend yield tells you how much annual dividend income a stock generates relative to its share price, shown as a percentage."
+  : isBreakEven
+  ? "The break-even point is the number of units you must sell to cover all fixed and variable costs before making a profit."
+  : isAPR
+  ? "APR helps show the total borrowing cost of a loan by including interest and certain fees in one comparable percentage figure."
+  : isInvestmentReturn
+  ? "Investment return shows the total percentage gain or loss between the starting value and ending value of an investment."
+  : isAnnualizedReturn
+  ? "Annualized return shows the average yearly return of an investment across the full holding period."
+  : isTotalReturn
+  ? "Total return shows the full gain or loss over the entire period, without adjusting for time."
+  : isReturnMultiple
+  ? "Return multiple shows how many times the original investment has grown, such as 2x or 3x."
+  : isRuleOf72
+  ? "The Rule of 72 is a shortcut that estimates how many years it takes for an investment to double at a given annual return."
+  : isLoan
+  ? "Loan payments are usually based on the loan amount, interest rate, and repayment period, with each payment covering both interest and principal."
+  : isROI
+  ? "A good ROI depends on the type of investment, risk level, and time horizon, but higher ROI generally indicates a more profitable investment."
+  : isSavings
+  ? "Savings growth comes from your starting balance, regular contributions, and any interest or returns earned over time."
+  : isCAGR
+  ? "CAGR shows the average annual growth rate of an investment over multiple years, assuming the returns were compounded."
+  : "Simple interest is calculated only on the original principal, not on accumulated interest."}
                     </p>
                   </div>
 
                   <div className="rounded-2xl bg-gray-50 p-4">
                     <h3 className="mb-2 font-medium text-gray-900">
                       {isCompound
-                        ? "Why use a compound interest calculator?"
-                        : isMortgage
-                        ? "Why use a mortgage calculator?"
-                        : isDividendYield
-                        ? "Why use a dividend yield calculator?"
-                        : isBreakEven
-                        ? "Why use a break-even calculator?"
-                        : isAPR
-                        ? "Why use an APR calculator?"
-                        : isInvestmentReturn
-                        ? "Why use an investment return calculator?"
-                        : isPaybackPeriod
-                        ? "Why use a payback period calculator?"
-                        : isLoan
-                        ? "Why use a loan payment calculator?"
-                        : isROI
-                        ? "Why use an ROI calculator?"
-                        : isSavings
-                        ? "Why use a savings growth calculator?"
-                        : isCAGR
-                        ? "Why use a CAGR calculator?"
-                        : "Why use a simple interest calculator?"}
+  ? "Why use a compound interest calculator?"
+  : isMortgage
+  ? "Why use a mortgage calculator?"
+  : isDividendYield
+  ? "Why use a dividend yield calculator?"
+  : isBreakEven
+  ? "Why use a break-even calculator?"
+  : isAPR
+  ? "Why use an APR calculator?"
+  : isInvestmentReturn
+  ? "Why use an investment return calculator?"
+  : isAnnualizedReturn
+  ? "Why use an annualized return calculator?"
+  : isTotalReturn
+  ? "Why use a total return calculator?"
+  : isReturnMultiple
+  ? "Why use a return multiple calculator?"
+  : isRuleOf72
+  ? "Why use a Rule of 72 calculator?"
+  : isLoan
+  ? "Why use a loan payment calculator?"
+  : isROI
+  ? "Why use an ROI calculator?"
+  : isSavings
+  ? "Why use a savings growth calculator?"
+  : isCAGR
+  ? "Why use a CAGR calculator?"
+  : "Why use a simple interest calculator?"}
                     </h3>
                     <p className="text-sm text-gray-600">
                       {isCompound
-                        ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
-                        : isMortgage
-                        ? "It helps you estimate home loan costs, compare mortgage options, and understand what your monthly housing payment could look like."
-                        : isDividendYield
-                        ? "It helps you compare dividend-paying stocks and evaluate whether the income from a stock matches your investing goals."
-                        : isBreakEven
-                        ? "It helps you understand how much you need to sell before becoming profitable, which is critical for pricing, planning, and business decisions."
-                        : isAPR
-                        ? "It helps you compare loans more fairly by combining borrowing fees and interest costs into a single estimate."
-                        : isInvestmentReturn
-                        ? "It helps you evaluate whether an investment gained or lost value over time and compare overall outcomes across investments."
-                        : isPaybackPeriod
-                        ? "It helps you compare investments, equipment purchases, solar projects, and business decisions by showing how quickly the upfront cost may be recovered."
-                        : isLoan
-                        ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
-                        : isROI
-                        ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
-                        : isSavings
-                        ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
-                        : isCAGR
-                        ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
-                        : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
+  ? "It helps you estimate long-term investment growth and understand how contributions and reinvested returns affect the final outcome."
+  : isMortgage
+  ? "It helps you estimate home loan costs, compare mortgage options, and understand what your monthly housing payment could look like."
+  : isDividendYield
+  ? "It helps you compare dividend-paying stocks and evaluate whether the income from a stock matches your investing goals."
+  : isBreakEven
+  ? "It helps you understand how much you need to sell before becoming profitable, which is critical for pricing, planning, and business decisions."
+  : isAPR
+  ? "It helps you compare loans more fairly by combining borrowing fees and interest costs into a single estimate."
+  : isInvestmentReturn
+  ? "It helps you evaluate whether an investment gained or lost value over time and compare overall outcomes across investments."
+  : isAnnualizedReturn
+  ? "It helps you compare investments across different holding periods by converting total growth into an annual rate."
+  : isTotalReturn
+  ? "It helps you measure the full gain or loss of an investment quickly without adjusting for time."
+  : isReturnMultiple
+  ? "It helps you see how many times an investment has grown, which is especially useful in venture, private equity, or high-growth scenarios."
+  : isRuleOf72
+  ? "It helps you estimate how quickly money can double at a given annual return, making long-term growth easier to visualize."
+  : isLoan
+  ? "It helps you compare borrowing costs and understand what your monthly payments may look like before taking on debt."
+  : isROI
+  ? "It helps you compare investments and quickly see whether a project or trade produced a positive return."
+  : isSavings
+  ? "It helps you plan future savings goals and see how recurring deposits may grow over time."
+  : isCAGR
+  ? "It helps you compare investments with different time periods by converting total growth into an annualized return."
+  : "It helps you quickly estimate interest earned or paid in straightforward non-compounding scenarios."}
                     </p>
                   </div>
                 </div>
@@ -907,28 +1025,34 @@ export default function FinanceTemplate({
             <h3 className="mb-3 text-lg font-semibold">About this tool</h3>
             <p className="text-sm leading-6 text-gray-600">
               {isCompound
-                ? "Estimates long-term growth with compound interest and contributions."
-                : isMortgage
-                ? "Estimates monthly mortgage payments and total repayment cost for a home loan."
-                : isDividendYield
-                ? "Calculates dividend yield based on annual dividend and share price."
-                : isBreakEven
-                ? "Calculates the number of units needed to cover fixed and variable costs."
-                : isAPR
-                ? "Estimates annual percentage rate based on loan amount, fees, and interest costs."
-                : isInvestmentReturn
-                ? "Calculates total investment return based on starting and ending value."
-                : isPaybackPeriod
-                ? "Estimates how many years it takes to recover an upfront investment from annual cash flow or annual savings."
-                : isLoan
-                ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
-                : isROI
-                ? "Calculates ROI and profit based on an investment's starting amount and final value."
-                : isSavings
-                ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
-                : isCAGR
-                ? "Calculates the annualized growth rate of an investment over time."
-                : "Calculates simple interest without compounding."}
+  ? "Estimates long-term growth with compound interest and contributions."
+  : isMortgage
+  ? "Estimates monthly mortgage payments and total repayment cost for a home loan."
+  : isDividendYield
+  ? "Calculates dividend yield based on annual dividend and share price."
+  : isBreakEven
+  ? "Calculates the number of units needed to cover fixed and variable costs."
+  : isAPR
+  ? "Estimates annual percentage rate based on loan amount, fees, and interest costs."
+  : isInvestmentReturn
+  ? "Calculates total investment return based on starting and ending value."
+  : isAnnualizedReturn
+  ? "Calculates annualized return so investments across different time periods can be compared."
+  : isTotalReturn
+  ? "Calculates the full percentage gain or loss between starting value and ending value."
+  : isReturnMultiple
+  ? "Calculates how many times an investment has grown, such as 2x or 3x."
+  : isRuleOf72
+  ? "Estimates how many years it takes for money to double at a given annual return."
+  : isLoan
+  ? "Estimates monthly payments and total repayment cost for a standard amortizing loan."
+  : isROI
+  ? "Calculates ROI and profit based on an investment's starting amount and final value."
+  : isSavings
+  ? "Estimates future savings value using an initial balance, monthly contributions, and annual return."
+  : isCAGR
+  ? "Calculates the annualized growth rate of an investment over time."
+  : "Calculates simple interest without compounding."}
             </p>
 
             <div className="mt-6 rounded-2xl bg-gray-50 p-4">
@@ -951,6 +1075,20 @@ export default function FinanceTemplate({
 </Link>
 
 <Link
+  href="/tools/finance/what-is-roi"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is ROI?
+</Link>
+
+<Link
+  href="/tools/finance/what-is-cagr"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is CAGR?
+</Link>
+
+<Link
   href="/tools/finance/best-investments-with-fastest-payback-period"
   className="text-gray-600 hover:text-gray-900"
 >
@@ -963,6 +1101,7 @@ export default function FinanceTemplate({
 >
   Best Passive Income Investments
 </Link>
+
 
                 <Link
                   href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
@@ -1074,6 +1213,43 @@ export default function FinanceTemplate({
                     ROI Calculator
                   </Link>
                 )}
+
+{tool.slug !== "annualized-return-calculator" && (
+  <Link
+    href="/tools/finance/annualized-return-calculator"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Annualized Return Calculator
+  </Link>
+)}
+
+{tool.slug !== "total-return-calculator" && (
+  <Link
+    href="/tools/finance/total-return-calculator"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Total Return Calculator
+  </Link>
+)}
+
+{tool.slug !== "return-multiple-calculator" && (
+  <Link
+    href="/tools/finance/return-multiple-calculator"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Return Multiple Calculator
+  </Link>
+)}
+
+{tool.slug !== "rule-of-72-calculator" && (
+  <Link
+    href="/tools/finance/rule-of-72-calculator"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Rule of 72 Calculator
+  </Link>
+)}
+
 
                 {tool.financeType !== "savings-growth" && (
                   <Link
