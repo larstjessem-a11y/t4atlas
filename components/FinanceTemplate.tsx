@@ -1089,6 +1089,21 @@ export default function FinanceTemplate({
 </Link>
 
 <Link
+  href="/tools/finance/what-is-payback-period"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is Payback Period?
+</Link>
+
+<Link
+  href="/tools/finance/what-is-total-return"
+  className="text-gray-600 hover:text-gray-900"
+>
+  What Is Total Return?
+</Link>
+
+
+<Link
   href="/tools/finance/best-investments-with-fastest-payback-period"
   className="text-gray-600 hover:text-gray-900"
 >
@@ -1186,6 +1201,24 @@ export default function FinanceTemplate({
                     Investment Return Calculator
                   </Link>
                 )}
+
+{tool.slug !== "total-return-calculator" && (
+  <Link
+    href="/tools/finance/total-return-calculator"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    Total Return Calculator
+  </Link>
+)}
+
+{tool.slug === "total-return-calculator" && (
+  <Link
+    href="/tools/finance/what-is-total-return"
+    className="text-gray-600 hover:text-gray-900"
+  >
+    What Is Total Return?
+  </Link>
+)}
 
                 {tool.slug !== "payback-period" && (
                   <Link

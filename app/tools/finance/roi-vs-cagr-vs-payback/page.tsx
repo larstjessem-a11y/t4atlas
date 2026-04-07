@@ -133,6 +133,13 @@ export default function RoiVsCagrVsPaybackPage() {
               <Link href="/tools/finance/payback-period" className="border rounded-2xl px-4 py-2.5 text-sm hover:bg-gray-50">
                 Payback Calculator
               </Link>
+<Link
+  href="/tools/finance/what-is-payback-period"
+  className="border rounded-2xl px-4 py-2.5 text-sm hover:bg-gray-50"
+>
+  What Is Payback Period?
+</Link>
+
             </div>
           </section>
 

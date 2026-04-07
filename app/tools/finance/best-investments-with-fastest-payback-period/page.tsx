@@ -357,6 +357,13 @@ export default function BestInvestmentsWithFastestPaybackPeriodPage() {
   ROI vs CAGR vs Payback
 </Link>
 
+<Link
+  href="/tools/finance/what-is-payback-period"
+  className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+>
+  What Is Payback Period?
+</Link>
+
             </div>
 
             <div className="mt-5 rounded-2xl border border-dashed p-4 text-sm text-gray-500">
