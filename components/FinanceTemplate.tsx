@@ -3,6 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { tools } from "@/data/tools";
+import { financeNavigation } from "@/data/navigation";
+import {
+  monetizationConfig,
+  defaultMonetizationConfig,
+} from "@/data/monetization";
 
 type Tool = {
   slug: string;
@@ -27,17 +32,21 @@ financeType?:
   | "total-return"
   | "return-multiple"
   | "rule-of-72";
-  longTailScenarios?: {
-    slug: string;
-    label: string;
-    prefill?: {
-      principal?: string;
-      rate?: string;
-      years?: string;
-      finalValue?: string;
-      annualContribution?: string;
-    };
-  }[];
+longTailScenarios?: {
+  slug: string;
+  label: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  intro?: string;
+  prefill?: {
+    principal?: string;
+    rate?: string;
+    years?: string;
+    finalValue?: string;
+    annualContribution?: string;
+    monthlyContribution?: string;
+  };
+}[];
 };
 
 export default function FinanceTemplate({
@@ -292,6 +301,8 @@ export default function FinanceTemplate({
   const activeScenario = tool.longTailScenarios?.find(
     (item) => item.slug === scenario
   );
+  const financeMonetization =
+    monetizationConfig[tool.category] ?? defaultMonetizationConfig;
 
   return (
     <main className="py-10 px-4 md:px-6">
@@ -330,8 +341,9 @@ export default function FinanceTemplate({
 
             <p className="text-base leading-7 text-gray-600 md:text-lg">
               {activeScenario
-                ? `Use this ${activeScenario.label.toLowerCase()} tool to explore this specific scenario and compare how different assumptions affect your result.`
-                : tool.description
+  ? activeScenario.intro ??
+    `Use this ${activeScenario.label.toLowerCase()} tool to explore this specific scenario and compare how different assumptions affect your result.`
+  : tool.description
                 ? tool.description
                 : isCompound
                 ? "Estimate how your investment grows over time with compound interest, including optional annual contributions."
@@ -370,9 +382,11 @@ export default function FinanceTemplate({
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),360px]">
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (top)
-            </div>
+            {financeMonetization.ads.top && (
+  <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+    Ad slot (top)
+  </div>
+)}
 
             <div className="overflow-hidden rounded-3xl border bg-gray-50">
               <div className="border-b bg-white/80 px-5 py-4">
@@ -632,9 +646,11 @@ export default function FinanceTemplate({
               </div>
             </div>
 
-            <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (middle)
-            </div>
+           {financeMonetization.ads.middle && (
+  <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+    Ad slot (middle)
+  </div>
+)}
 
             <div className="grid gap-6">
               <section className="rounded-2xl border p-5">
@@ -993,9 +1009,11 @@ export default function FinanceTemplate({
               </section>
             </div>
 
-            <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (bottom)
-            </div>
+            {financeMonetization.ads.bottom && (
+  <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+    Ad slot (bottom)
+  </div>
+)}
 
             <div className="border-t pt-6">
               <h2 className="mb-3 text-xl font-semibold">Related tools</h2>
@@ -1061,260 +1079,69 @@ export default function FinanceTemplate({
               </h4>
 
               <div className="flex flex-col gap-2 text-sm">
-                <Link
-                  href={`/tools/${tool.category}`}
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  All {tool.category}
-                </Link>
-<Link
-  href="/tools/finance/roi-vs-cagr-vs-payback"
+               <Link
+  href={`/tools/${tool.category}`}
   className="text-gray-600 hover:text-gray-900"
 >
-  ROI vs CAGR vs Payback
+  All {tool.category}
 </Link>
 
 <Link
-  href="/tools/finance/what-is-roi"
-  className="text-gray-600 hover:text-gray-900"
+  href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
+  className="text-gray-600 hover:text-gray-900 capitalize"
 >
-  What Is ROI?
+  {subcategoryLabel} {categoryLabel}
 </Link>
 
-<Link
-  href="/tools/finance/what-is-cagr"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is CAGR?
-</Link>
-
-<Link
-  href="/tools/finance/what-is-payback-period"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is Payback Period?
-</Link>
-
-<Link
-  href="/tools/finance/what-is-total-return"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is Total Return?
-</Link>
-
-
-<Link
-  href="/tools/finance/best-investments-with-fastest-payback-period"
-  className="text-gray-600 hover:text-gray-900"
->
-  Fastest Payback Investments
-</Link>
-
-<Link
-  href="/tools/finance/best-passive-income-investments-ranked"
-  className="text-gray-600 hover:text-gray-900"
->
-  Best Passive Income Investments
-</Link>
-
-
-                <Link
-                  href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
-                  className="text-gray-600 hover:text-gray-900 capitalize"
-                >
-                  {subcategoryLabel} {categoryLabel}
-                </Link>
-
-                <Link
-                  href="/tools/finance/mortgage-vs-rent"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Mortgage vs Rent Guide
-                </Link>
-
-                <Link
-                  href="/tools/finance/how-to-calculate-dividend-yield"
-                  className="text-gray-600 hover:text-gray-900"
-                >
-                  Dividend Yield Guide
-                </Link>
-
-                {tool.financeType !== "simple-interest" && (
-                  <Link
-                    href="/tools/finance/simple-interest"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Simple Interest
-                  </Link>
-                )}
-
-                {tool.financeType !== "compound-interest" && (
-                  <Link
-                    href="/tools/finance/compound-interest"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Compound Interest
-                  </Link>
-                )}
-
-                {tool.slug !== "mortgage-calculator" && (
-                  <Link
-                    href="/tools/finance/mortgage-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Mortgage Calculator
-                  </Link>
-                )}
-
-                {tool.slug !== "dividend-yield-calculator" && (
-                  <Link
-                    href="/tools/finance/dividend-yield-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Dividend Yield Calculator
-                  </Link>
-                )}
-
-                {tool.slug !== "break-even-calculator" && (
-                  <Link
-                    href="/tools/finance/break-even-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Break-Even Calculator
-                  </Link>
-                )}
-
-                {tool.slug !== "apr-calculator" && (
-                  <Link
-                    href="/tools/finance/apr-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    APR Calculator
-                  </Link>
-                )}
-
-                {tool.slug !== "investment-return-calculator" && (
-                  <Link
-                    href="/tools/finance/investment-return-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Investment Return Calculator
-                  </Link>
-                )}
-
-{tool.slug !== "total-return-calculator" && (
+{financeNavigation.guides.map((item) => (
   <Link
-    href="/tools/finance/total-return-calculator"
+    key={item.href}
+    href={item.href}
     className="text-gray-600 hover:text-gray-900"
   >
-    Total Return Calculator
+    {item.name}
   </Link>
-)}
+))}
 
-{tool.slug === "total-return-calculator" && (
+{financeNavigation.comparisons.map((item) => (
   <Link
-    href="/tools/finance/what-is-total-return"
+    key={item.href}
+    href={item.href}
     className="text-gray-600 hover:text-gray-900"
   >
-    What Is Total Return?
+    {item.name}
   </Link>
-)}
+))}
 
-                {tool.slug !== "payback-period" && (
-                  <Link
-                    href="/tools/finance/payback-period"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Payback Period Calculator
-                  </Link>
-                )}
-
-                {tool.financeType !== "loan-payment" && (
-                  <Link
-                    href="/tools/finance/loan-payment"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Loan Payment Calculator
-                  </Link>
-                )}
-
-                {tool.financeType !== "roi-calculator" && !isDividendYield && (
-                  <Link
-                    href="/tools/finance/roi-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    ROI Calculator
-                  </Link>
-                )}
-
-{tool.slug !== "annualized-return-calculator" && (
+{financeNavigation.moneyPages.map((item) => (
   <Link
-    href="/tools/finance/annualized-return-calculator"
+    key={item.href}
+    href={item.href}
     className="text-gray-600 hover:text-gray-900"
   >
-    Annualized Return Calculator
+    {item.name}
   </Link>
-)}
+))}
 
-{tool.slug !== "total-return-calculator" && (
-  <Link
-    href="/tools/finance/total-return-calculator"
-    className="text-gray-600 hover:text-gray-900"
-  >
-    Total Return Calculator
-  </Link>
-)}
-
-{tool.slug !== "return-multiple-calculator" && (
-  <Link
-    href="/tools/finance/return-multiple-calculator"
-    className="text-gray-600 hover:text-gray-900"
-  >
-    Return Multiple Calculator
-  </Link>
-)}
-
-{tool.slug !== "rule-of-72-calculator" && (
-  <Link
-    href="/tools/finance/rule-of-72-calculator"
-    className="text-gray-600 hover:text-gray-900"
-  >
-    Rule of 72 Calculator
-  </Link>
-)}
-
-
-                {tool.financeType !== "savings-growth" && (
-                  <Link
-                    href="/tools/finance/savings-growth"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    Savings Growth Calculator
-                  </Link>
-                )}
-
-                {tool.financeType !== "cagr" && (
-                  <Link
-                    href="/tools/finance/cagr-calculator"
-                    className="text-gray-600 hover:text-gray-900"
-                  >
-                    CAGR Calculator
-                  </Link>
-                )}
-                {tool.slug !== "payback-period" && (
-  <Link
-    href="/tools/finance/payback-period"
-    className="text-gray-600 hover:text-gray-900"
-  >
-    Payback Period Calculator
-  </Link>
-)}
+{financeNavigation.tools
+  .filter((item) => item.href !== `/tools/${tool.category}/${tool.slug}`)
+  .map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      className="text-gray-600 hover:text-gray-900"
+    >
+      {item.name}
+    </Link>
+  ))}
               </div>
             </div>
 
-            <div className="mt-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Sidebar promo / ad slot
-            </div>
+            {financeMonetization.ads.sidebar && (
+  <div className="mt-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+    Sidebar promo / ad slot
+  </div>
+)}
           </aside>
         </div>
       </div>

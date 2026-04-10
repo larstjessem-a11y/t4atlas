@@ -3,6 +3,10 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import { tools } from "@/data/tools";
+import {
+  monetizationConfig,
+  defaultMonetizationConfig,
+} from "@/data/monetization";
 
 type Tool = {
   slug: string;
@@ -112,7 +116,7 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
     }
 
     generateHash();
-  }, [input, tool]);
+  }, [input, tool.devToolType]);
 
   const result = useMemo(() => {
     if (tool.devToolType === "uuid-generator") {
@@ -333,6 +337,9 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
     } catch {}
   }
 
+  const devMonetization =
+    monetizationConfig[tool.category] ?? defaultMonetizationConfig;
+
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-6xl">
@@ -372,9 +379,11 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),360px]">
           <section className="rounded-3xl border bg-white p-6 shadow-sm">
-            <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (top)
-            </div>
+            {devMonetization.ads.top && (
+              <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+                Ad slot (top)
+              </div>
+            )}
 
             {tool.devToolType === "uuid-generator" ? (
               <div>
@@ -437,9 +446,11 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
               )}
             </div>
 
-            <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (middle)
-            </div>
+            {devMonetization.ads.middle && (
+              <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+                Ad slot (middle)
+              </div>
+            )}
 
             <div className="grid gap-6">
               <section className="rounded-2xl border p-5">
@@ -501,9 +512,11 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
               </section>
             </div>
 
-            <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-              Ad slot (bottom)
-            </div>
+            {devMonetization.ads.bottom && (
+              <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+                Ad slot (bottom)
+              </div>
+            )}
           </section>
 
           <aside className="rounded-3xl border bg-white p-6 shadow-sm">
@@ -561,26 +574,27 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                 >
                   What Is Base64 Encoding?
                 </Link>
-<Link
-  href="/tools/development/what-is-json"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is JSON?
-</Link>
 
-<Link
-  href="/tools/development/what-is-a-jwt"
-  className="text-gray-600 hover:text-gray-900"
->
-  What Is a JWT?
-</Link>
+                <Link
+                  href="/tools/development/what-is-json"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  What Is JSON?
+                </Link>
 
-<Link
-  href="/tools/development/jwt-vs-sessions"
-  className="text-gray-600 hover:text-gray-900"
->
-  JWT vs Sessions
-</Link>
+                <Link
+                  href="/tools/development/what-is-a-jwt"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  What Is a JWT?
+                </Link>
+
+                <Link
+                  href="/tools/development/jwt-vs-sessions"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  JWT vs Sessions
+                </Link>
 
                 <Link
                   href="/tools/development/best-json-tools-for-developers"
@@ -610,12 +624,12 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                   Best Debugging Tools for Developers
                 </Link>
 
-<Link
-  href="/tools/development/best-jwt-tools-for-developers"
-  className="text-gray-600 hover:text-gray-900"
->
-  Best JWT Tools for Developers
-</Link>
+                <Link
+                  href="/tools/development/best-jwt-tools-for-developers"
+                  className="text-gray-600 hover:text-gray-900"
+                >
+                  Best JWT Tools for Developers
+                </Link>
 
                 {tool.slug !== "json-formatter" && (
                   <Link
@@ -717,6 +731,12 @@ export default function DevToolTemplate({ tool }: { tool?: Tool }) {
                 )}
               </div>
             </div>
+
+            {devMonetization.ads.sidebar && (
+              <div className="mt-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+                Sidebar promo / ad slot
+              </div>
+            )}
           </aside>
         </div>
       </div>

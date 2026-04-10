@@ -38,12 +38,17 @@ export async function generateMetadata({
     (item) => item.slug === scenario
   );
 
-  const title = activeScenario
+   const title = activeScenario?.seoTitle
+    ? activeScenario.seoTitle
+    : activeScenario
     ? `${activeScenario.label} | T4 Atlas`
     : tool.seoTitle ?? `${tool.name} | T4 Atlas`;
 
-  const description = activeScenario
-    ? `Use this ${activeScenario.label.toLowerCase()} tool on T4 Atlas to explore this specific scenario and compare different assumptions.`
+  const description = activeScenario?.seoDescription
+    ? activeScenario.seoDescription
+    : activeScenario
+    ? activeScenario.intro ??
+      `Use this ${activeScenario.label.toLowerCase()} tool on T4 Atlas to explore this specific scenario and compare different assumptions.`
     : tool.seoDescription ??
       tool.description ??
       `Use the ${tool.name} on T4 Atlas.`;

@@ -44,12 +44,16 @@ devToolType?:
 longTailScenarios?: {
   slug: string;
   label: string;
+  seoTitle?: string;
+  seoDescription?: string;
+  intro?: string;
   prefill?: {
     principal?: string;
     rate?: string;
     years?: string;
     finalValue?: string;
     annualContribution?: string;
+    monthlyContribution?: string;
   };
 }[];
 };
@@ -474,7 +478,130 @@ seoIntro:
 seoTitle: "Compound Interest Calculator – Estimate Investment Growth",
 seoDescription:
   "Use this compound interest calculator to estimate investment growth with optional annual contributions over time.",
-},
+longTailScenarios: [
+  {
+    slug: "1000-invested-for-5-years-at-5-percent",
+    label: "$1,000 Invested for 5 Years at 5%",
+    seoTitle:
+      "$1,000 Invested for 5 Years at 5% | Compound Interest Calculator",
+    seoDescription:
+      "See how much $1,000 grows to after 5 years at 5% with compound interest using this scenario calculator.",
+    intro:
+      "Use this scenario to estimate how much $1,000 could grow over 5 years at a 5% annual return.",
+    prefill: {
+      principal: "1000",
+      rate: "5",
+      years: "5",
+    },
+  },
+  {
+    slug: "5000-invested-for-10-years-at-7-percent",
+    label: "$5,000 Invested for 10 Years at 7%",
+    seoTitle:
+      "$5,000 Invested for 10 Years at 7% | Compound Interest Calculator",
+    seoDescription:
+      "Estimate how much $5,000 could grow to after 10 years at 7% with compound interest.",
+    intro:
+      "Use this scenario to estimate how much $5,000 could grow over 10 years at a 7% annual return.",
+    prefill: {
+      principal: "5000",
+      rate: "7",
+      years: "10",
+    },
+  },
+  {
+    slug: "10000-invested-for-10-years-at-7-percent",
+    label: "$10,000 Invested for 10 Years at 7%",
+    seoTitle:
+      "$10,000 Invested for 10 Years at 7% | Compound Interest Calculator",
+    seoDescription:
+      "See how much $10,000 grows to after 10 years at 7% with compound interest using this scenario calculator.",
+    intro:
+      "Use this scenario to estimate how much $10,000 could grow over 10 years at a 7% annual return.",
+    prefill: {
+      principal: "10000",
+      rate: "7",
+      years: "10",
+    },
+  },
+  {
+    slug: "10000-invested-for-20-years-at-8-percent",
+    label: "$10,000 Invested for 20 Years at 8%",
+    seoTitle:
+      "$10,000 Invested for 20 Years at 8% | Compound Interest Calculator",
+    seoDescription:
+      "Calculate how much $10,000 could grow to after 20 years at 8% with compound interest.",
+    intro:
+      "Use this scenario to estimate long-term compounding on $10,000 over 20 years at an 8% annual return.",
+    prefill: {
+      principal: "10000",
+      rate: "8",
+      years: "20",
+    },
+  },
+  {
+    slug: "50000-invested-for-20-years-at-7-percent",
+    label: "$50,000 Invested for 20 Years at 7%",
+    seoTitle:
+      "$50,000 Invested for 20 Years at 7% | Compound Interest Calculator",
+    seoDescription:
+      "Estimate how much $50,000 could grow to after 20 years at 7% using compound interest.",
+    intro:
+      "Use this scenario to estimate how much $50,000 could grow over 20 years at a 7% annual return.",
+    prefill: {
+      principal: "50000",
+      rate: "7",
+      years: "20",
+    },
+  },
+  {
+    slug: "100000-invested-for-30-years-at-10-percent",
+    label: "$100,000 Invested for 30 Years at 10%",
+    seoTitle:
+      "$100,000 Invested for 30 Years at 10% | Compound Interest Calculator",
+    seoDescription:
+      "Estimate how much $100,000 could grow to after 30 years at 10% using compound interest.",
+    intro:
+      "Use this scenario to estimate long-term compounding on $100,000 invested for 30 years at 10%.",
+    prefill: {
+      principal: "100000",
+      rate: "10",
+      years: "30",
+    },
+  },
+  {
+    slug: "1000-per-year-for-20-years-at-7-percent",
+    label: "$1,000 per Year for 20 Years at 7%",
+    seoTitle:
+      "$1,000 per Year for 20 Years at 7% | Compound Interest Calculator",
+    seoDescription:
+      "Estimate the future value of investing $1,000 per year for 20 years at 7% with compound interest.",
+    intro:
+      "Use this scenario to model annual contributions of $1,000 over 20 years at a 7% annual return.",
+    prefill: {
+      principal: "0",
+      rate: "7",
+      years: "20",
+      annualContribution: "1000",
+    },
+  },
+  {
+    slug: "5000-per-year-for-30-years-at-8-percent",
+    label: "$5,000 per Year for 30 Years at 8%",
+    seoTitle:
+      "$5,000 per Year for 30 Years at 8% | Compound Interest Calculator",
+    seoDescription:
+      "Estimate the future value of investing $5,000 per year for 30 years at 8% using compound interest.",
+    intro:
+      "Use this scenario to model annual contributions of $5,000 over 30 years at an 8% annual return.",
+    prefill: {
+      principal: "0",
+      rate: "8",
+      years: "30",
+      annualContribution: "5000",
+    },
+  },
+],},
 {
   slug: "loan-payment",
   name: "Loan Payment Calculator",
@@ -537,7 +664,136 @@ seoIntro:
 seoTitle: "Savings Growth Calculator – Estimate Future Savings",
 seoDescription:
   "Estimate how your savings can grow over time with monthly contributions and compound returns.",
-},
+longTailScenarios: [
+  {
+    slug: "100-per-month-for-10-years-at-5-percent",
+    label: "$100 per Month for 10 Years at 5%",
+    seoTitle:
+      "$100 per Month for 10 Years at 5% | Savings Growth Calculator",
+    seoDescription:
+      "See how much savings could grow if you invest $100 per month for 10 years at 5% annual return.",
+    intro:
+      "Use this scenario to estimate the future value of saving $100 per month for 10 years at a 5% annual return.",
+    prefill: {
+      principal: "0",
+      rate: "5",
+      years: "10",
+      monthlyContribution: "100",
+    },
+  },
+  {
+    slug: "500-per-month-for-10-years-at-7-percent",
+    label: "$500 per Month for 10 Years at 7%",
+    seoTitle:
+      "$500 per Month for 10 Years at 7% | Savings Growth Calculator",
+    seoDescription:
+      "Estimate how much $500 monthly savings could grow to over 10 years at 7% annual return.",
+    intro:
+      "Use this scenario to estimate savings growth from investing $500 per month for 10 years at 7%.",
+    prefill: {
+      principal: "0",
+      rate: "7",
+      years: "10",
+      monthlyContribution: "500",
+    },
+  },
+  {
+    slug: "1000-per-month-for-10-years-at-7-percent",
+    label: "$1,000 per Month for 10 Years at 7%",
+    seoTitle:
+      "$1,000 per Month for 10 Years at 7% | Savings Growth Calculator",
+    seoDescription:
+      "See how much savings could grow if you invest $1,000 per month for 10 years at 7% annual return.",
+    intro:
+      "Use this scenario to estimate the future value of saving $1,000 per month for 10 years at 7%.",
+    prefill: {
+      principal: "0",
+      rate: "7",
+      years: "10",
+      monthlyContribution: "1000",
+    },
+  },
+  {
+    slug: "500-per-month-for-20-years-at-8-percent",
+    label: "$500 per Month for 20 Years at 8%",
+    seoTitle:
+      "$500 per Month for 20 Years at 8% | Savings Growth Calculator",
+    seoDescription:
+      "Estimate how much $500 monthly savings could grow to over 20 years at 8% annual return.",
+    intro:
+      "Use this scenario to estimate long-term savings growth from investing $500 per month for 20 years at 8%.",
+    prefill: {
+      principal: "0",
+      rate: "8",
+      years: "20",
+      monthlyContribution: "500",
+    },
+  },
+  {
+    slug: "1000-per-month-for-20-years-at-7-percent",
+    label: "$1,000 per Month for 20 Years at 7%",
+    seoTitle:
+      "$1,000 per Month for 20 Years at 7% | Savings Growth Calculator",
+    seoDescription:
+      "Estimate how much $1,000 monthly savings could grow to over 20 years at 7% annual return.",
+    intro:
+      "Use this scenario to estimate long-term savings growth from investing $1,000 per month for 20 years at 7%.",
+    prefill: {
+      principal: "0",
+      rate: "7",
+      years: "20",
+      monthlyContribution: "1000",
+    },
+  },
+  {
+    slug: "2000-per-month-for-15-years-at-6-percent",
+    label: "$2,000 per Month for 15 Years at 6%",
+    seoTitle:
+      "$2,000 per Month for 15 Years at 6% | Savings Growth Calculator",
+    seoDescription:
+      "Calculate the future value of saving $2,000 per month for 15 years at a 6% annual return.",
+    intro:
+      "Use this scenario to estimate savings growth from monthly contributions of $2,000 over 15 years at 6%.",
+    prefill: {
+      principal: "0",
+      rate: "6",
+      years: "15",
+      monthlyContribution: "2000",
+    },
+  },
+  {
+    slug: "100000-starting-balance-and-1000-per-month-for-20-years",
+    label: "$100,000 Starting Balance + $1,000 per Month for 20 Years",
+    seoTitle:
+      "$100,000 Starting Balance and $1,000 per Month for 20 Years | Savings Growth Calculator",
+    seoDescription:
+      "Estimate how much $100,000 plus monthly contributions of $1,000 could grow to over 20 years.",
+    intro:
+      "Use this scenario to model a large starting balance combined with ongoing monthly contributions over 20 years.",
+    prefill: {
+      principal: "100000",
+      rate: "7",
+      years: "20",
+      monthlyContribution: "1000",
+    },
+  },
+  {
+    slug: "50000-starting-balance-and-500-per-month-for-30-years",
+    label: "$50,000 Starting Balance + $500 per Month for 30 Years",
+    seoTitle:
+      "$50,000 Starting Balance and $500 per Month for 30 Years | Savings Growth Calculator",
+    seoDescription:
+      "Estimate how much $50,000 plus monthly contributions of $500 could grow to over 30 years at compound returns.",
+    intro:
+      "Use this scenario to model a starting balance of $50,000 plus monthly contributions of $500 over 30 years.",
+    prefill: {
+      principal: "50000",
+      rate: "7",
+      years: "30",
+      monthlyContribution: "500",
+    },
+  },
+],},
 {
   slug: "cagr-calculator",
   name: "CAGR Calculator",
@@ -1006,29 +1262,112 @@ longTailScenarios: [
   seoTitle: "Rule of 72 Calculator | Estimate Doubling Time",
   seoDescription:
     "Free Rule of 72 calculator to estimate how long it takes an investment to double based on annual return or interest rate.",
-  longTailScenarios: [
-    {
-      slug: "rule-of-72-8-percent",
-      label: "Rule of 72 at 8% Return",
-      prefill: {
-        rate: "8",
-      },
+ longTailScenarios: [
+  {
+    slug: "how-long-to-double-money-at-4-percent",
+    label: "How Long to Double Money at 4%",
+    seoTitle:
+      "How Long to Double Money at 4%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 4% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 4% annual return.",
+    prefill: {
+      rate: "4",
     },
-    {
-      slug: "rule-of-72-10-percent",
-      label: "Rule of 72 at 10% Return",
-      prefill: {
-        rate: "10",
-      },
+  },
+  {
+    slug: "how-long-to-double-money-at-5-percent",
+    label: "How Long to Double Money at 5%",
+    seoTitle:
+      "How Long to Double Money at 5%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 5% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 5% annual return.",
+    prefill: {
+      rate: "5",
     },
-    {
-      slug: "rule-of-72-12-percent",
-      label: "Rule of 72 at 12% Return",
-      prefill: {
-        rate: "12",
-      },
+  },
+  {
+    slug: "how-long-to-double-money-at-6-percent",
+    label: "How Long to Double Money at 6%",
+    seoTitle:
+      "How Long to Double Money at 6%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 6% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 6% annual return.",
+    prefill: {
+      rate: "6",
     },
-  ],
+  },
+  {
+    slug: "how-long-to-double-money-at-7-percent",
+    label: "How Long to Double Money at 7%",
+    seoTitle:
+      "How Long to Double Money at 7%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 7% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 7% annual return.",
+    prefill: {
+      rate: "7",
+    },
+  },
+  {
+    slug: "how-long-to-double-money-at-8-percent",
+    label: "How Long to Double Money at 8%",
+    seoTitle:
+      "How Long to Double Money at 8%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at an 8% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at an 8% annual return.",
+    prefill: {
+      rate: "8",
+    },
+  },
+  {
+    slug: "how-long-to-double-money-at-10-percent",
+    label: "How Long to Double Money at 10%",
+    seoTitle:
+      "How Long to Double Money at 10%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 10% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 10% annual return.",
+    prefill: {
+      rate: "10",
+    },
+  },
+  {
+    slug: "how-long-to-double-money-at-12-percent",
+    label: "How Long to Double Money at 12%",
+    seoTitle:
+      "How Long to Double Money at 12%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 12% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 12% annual return.",
+    prefill: {
+      rate: "12",
+    },
+  },
+  {
+    slug: "how-long-to-double-money-at-15-percent",
+    label: "How Long to Double Money at 15%",
+    seoTitle:
+      "How Long to Double Money at 15%? | Rule of 72 Calculator",
+    seoDescription:
+      "Estimate how long it takes to double money at a 15% annual return using the Rule of 72.",
+    intro:
+      "Use this scenario to estimate how many years it takes to double money at a 15% annual return.",
+    prefill: {
+      rate: "15",
+    },
+  },
+],
 },
 {
   slug: "json-formatter",
