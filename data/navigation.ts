@@ -110,3 +110,31 @@ export const financeNavigation: CategoryNavigation = {
     },
   ],
 };
+export const aiNavigation: CategoryNavigation = {
+  guides: [],
+  comparisons: [
+    {
+      name: "ChatGPT vs Claude",
+      href: "/tools/ai/chatgpt-vs-claude",
+    },
+    {
+      name: "Perplexity vs ChatGPT",
+      href: "/tools/ai/perplexity-vs-chatgpt",
+    },
+  ],
+  moneyPages: [
+    {
+      name: "Best AI Tools for Writing",
+      href: "/tools/ai/best-ai-tools-for-writing",
+    },
+    {
+      name: "Alternatives to ChatGPT",
+      href: "/tools/ai/alternatives-to-chatgpt",
+    },
+    {
+      name: "Best AI Tools for Coding",
+      href: "/tools/ai/best-ai-tools-for-coding",
+    },
+  ],
+  tools: [],
+};

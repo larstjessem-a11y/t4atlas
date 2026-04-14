@@ -105,4 +105,35 @@ export const hubs: HubItem[] = [
       },
     ],
   },
+{
+  slug: "ai",
+  name: "AI Tools",
+  href: "/tools/ai",
+  description:
+    "Best AI tools, alternatives, and comparisons for writing, coding, research, image generation, video, and productivity.",
+  categories: [
+    "best tools",
+    "alternatives",
+    "comparisons",
+    "productivity",
+  ],
+  featuredLinks: [
+    {
+      name: "Best AI Tools for Writing",
+      href: "/tools/ai/best-ai-tools-for-writing",
+    },
+    {
+      name: "Alternatives to ChatGPT",
+      href: "/tools/ai/alternatives-to-chatgpt",
+    },
+    {
+      name: "ChatGPT vs Claude",
+      href: "/tools/ai/chatgpt-vs-claude",
+    },
+    {
+      name: "Best AI Tools for Coding",
+      href: "/tools/ai/best-ai-tools-for-coding",
+    },
+  ],
+},
 ];
