@@ -121,6 +121,14 @@ export const aiNavigation: CategoryNavigation = {
       name: "Perplexity vs ChatGPT",
       href: "/tools/ai/perplexity-vs-chatgpt",
     },
+    {
+      name: "Claude vs Perplexity",
+      href: "/tools/ai/claude-vs-perplexity",
+    },
+    {
+      name: "ChatGPT vs Copilot",
+      href: "/tools/ai/chatgpt-vs-copilot",
+    },
   ],
   moneyPages: [
     {
@@ -128,12 +136,28 @@ export const aiNavigation: CategoryNavigation = {
       href: "/tools/ai/best-ai-tools-for-writing",
     },
     {
+      name: "Best AI Tools for Coding",
+      href: "/tools/ai/best-ai-tools-for-coding",
+    },
+    {
+      name: "Best AI Tools for Research",
+      href: "/tools/ai/best-ai-tools-for-research",
+    },
+    {
+      name: "Best AI Tools for Video Editing",
+      href: "/tools/ai/best-ai-tools-for-video-editing",
+    },
+    {
+      name: "Best AI Tools for Productivity",
+      href: "/tools/ai/best-ai-tools-for-productivity",
+    },
+    {
       name: "Alternatives to ChatGPT",
       href: "/tools/ai/alternatives-to-chatgpt",
     },
     {
-      name: "Best AI Tools for Coding",
-      href: "/tools/ai/best-ai-tools-for-coding",
+      name: "Alternatives to Midjourney",
+      href: "/tools/ai/alternatives-to-midjourney",
     },
   ],
   tools: [],
