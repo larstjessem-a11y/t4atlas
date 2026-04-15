@@ -152,6 +152,18 @@ export const aiNavigation: CategoryNavigation = {
       href: "/tools/ai/best-ai-tools-for-productivity",
     },
     {
+      name: "Best AI Tools for Meetings",
+      href: "/tools/ai/best-ai-tools-for-meetings",
+    },
+    {
+      name: "Best AI Tools for Students",
+      href: "/tools/ai/best-ai-tools-for-students",
+    },
+    {
+      name: "Best AI Tools for Marketing",
+      href: "/tools/ai/best-ai-tools-for-marketing",
+    },
+    {
       name: "Alternatives to ChatGPT",
       href: "/tools/ai/alternatives-to-chatgpt",
     },

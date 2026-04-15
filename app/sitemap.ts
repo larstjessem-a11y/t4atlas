@@ -26,12 +26,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   // AI editorial sider
-  const aiPages = [
+   const aiPages = [
     "/tools/ai/best-ai-tools-for-writing",
     "/tools/ai/best-ai-tools-for-coding",
     "/tools/ai/best-ai-tools-for-research",
     "/tools/ai/best-ai-tools-for-video-editing",
     "/tools/ai/best-ai-tools-for-productivity",
+    "/tools/ai/best-ai-tools-for-meetings",
+    "/tools/ai/best-ai-tools-for-students",
+    "/tools/ai/best-ai-tools-for-marketing",
     "/tools/ai/alternatives-to-chatgpt",
     "/tools/ai/alternatives-to-midjourney",
     "/tools/ai/chatgpt-vs-claude",
