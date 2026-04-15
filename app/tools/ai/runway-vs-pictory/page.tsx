@@ -3,18 +3,19 @@ import Link from "next/link";
 import AiRelatedLinks from "@/components/AiRelatedLinks";
 
 export const metadata: Metadata = {
-  title: "Claude vs Perplexity | Which AI Is Better? | T4 Atlas",
+  title: "Runway vs Pictory | Which AI Video Tool Is Better? | T4 Atlas",
   description:
-    "Compare Claude vs Perplexity for research, writing, document analysis, and everyday AI workflows. See strengths, weaknesses, and best use cases.",
+    "Compare Runway vs Pictory for AI video generation, editing, short-form content, and creative workflows. See strengths, weaknesses, and best use cases.",
   keywords: [
-    "claude vs perplexity",
-    "perplexity vs claude",
-    "which is better claude or perplexity",
-    "ai research tool comparison",
+    "runway vs pictory",
+    "pictory vs runway",
+    "which is better runway or pictory",
+    "ai video tool comparison",
+    "ai video generator comparison",
   ],
 };
 
-export default function ClaudeVsPerplexityPage() {
+export default function RunwayVsPictoryPage() {
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-5xl">
@@ -28,7 +29,7 @@ export default function ClaudeVsPerplexityPage() {
               AI Tools
             </Link>
             <span>→</span>
-            <span>Claude vs Perplexity</span>
+            <span>Runway vs Pictory</span>
           </div>
 
           <div className="mb-3">
@@ -38,14 +39,14 @@ export default function ClaudeVsPerplexityPage() {
           </div>
 
           <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-            Claude vs Perplexity
+            Runway vs Pictory
           </h1>
 
           <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
-            Claude and Perplexity serve different kinds of AI workflows. Claude
-            is generally stronger for long-form reasoning, writing, and document
-            work, while Perplexity is better for fast research, source discovery,
-            and question-driven exploration.
+            Runway and Pictory both help creators produce video faster, but they
+            target different workflows. Runway is more ambitious for creative
+            AI video generation, while Pictory is more focused on fast, practical
+            short-form and repurposed content workflows.
           </p>
         </div>
 
@@ -59,20 +60,20 @@ export default function ClaudeVsPerplexityPage() {
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose Claude if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">Choose Runway if:</h3>
                 <ul className="list-disc pl-5 text-gray-600">
-                  <li>You work with long documents and detailed reasoning</li>
-                  <li>You want stronger long-form writing and synthesis</li>
-                  <li>You care more about analysis than live sourcing</li>
+                  <li>You want AI-first creative video generation</li>
+                  <li>You care about experimentation and visual ambition</li>
+                  <li>You need more than simple repurposing workflows</li>
                 </ul>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose Perplexity if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">Choose Pictory if:</h3>
                 <ul className="list-disc pl-5 text-gray-600">
-                  <li>You need fast research with visible sources</li>
-                  <li>You compare claims and articles often</li>
-                  <li>You want an evidence-first workflow</li>
+                  <li>You want fast social and marketing video output</li>
+                  <li>You turn scripts or articles into videos often</li>
+                  <li>You prioritize speed and simplicity over control</li>
                 </ul>
               </div>
             </div>
@@ -88,35 +89,35 @@ export default function ClaudeVsPerplexityPage() {
                 <thead className="bg-gray-50">
                   <tr>
                     <th className="p-3 text-left">Feature</th>
-                    <th className="p-3 text-left">Claude</th>
-                    <th className="p-3 text-left">Perplexity</th>
+                    <th className="p-3 text-left">Runway</th>
+                    <th className="p-3 text-left">Pictory</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t">
-                    <td className="p-3 font-medium">Long-form writing</td>
-                    <td className="p-3">Excellent</td>
-                    <td className="p-3">Good, but less central</td>
+                    <td className="p-3 font-medium">Core strength</td>
+                    <td className="p-3">Creative AI video generation</td>
+                    <td className="p-3">Fast content repurposing</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="p-3 font-medium">Research</td>
-                    <td className="p-3">Strong analysis</td>
-                    <td className="p-3">Excellent discovery and sourcing</td>
+                    <td className="p-3 font-medium">Ease of use</td>
+                    <td className="p-3">More experimentation required</td>
+                    <td className="p-3">Very accessible</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="p-3 font-medium">Sources</td>
-                    <td className="p-3">More workflow-dependent</td>
-                    <td className="p-3">Core strength</td>
+                    <td className="p-3 font-medium">Creative control</td>
+                    <td className="p-3">Higher potential</td>
+                    <td className="p-3">More template-like workflow</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="p-3 font-medium">Documents</td>
-                    <td className="p-3">Very strong</td>
-                    <td className="p-3">Less document-centered</td>
+                    <td className="p-3 font-medium">Best for</td>
+                    <td className="p-3">Creators and visual experimentation</td>
+                    <td className="p-3">Marketers and short-form publishing</td>
                   </tr>
                   <tr className="border-t">
-                    <td className="p-3 font-medium">Best overall use</td>
-                    <td className="p-3">Deep thinking and synthesis</td>
-                    <td className="p-3">Fast source-backed answers</td>
+                    <td className="p-3 font-medium">Output style</td>
+                    <td className="p-3">More generative and creative</td>
+                    <td className="p-3">More practical and structured</td>
                   </tr>
                 </tbody>
               </table>
@@ -129,40 +130,41 @@ export default function ClaudeVsPerplexityPage() {
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-gray-50 p-5">
                 <h3 className="mb-2 text-lg font-semibold">
-                  Best for document analysis
+                  Best for creative AI video
                 </h3>
                 <p className="text-gray-600">
-                  Claude is usually stronger when the task involves reading,
-                  interpreting, and synthesizing longer documents or structured
-                  material.
+                  Runway is usually the better option if you want more visually
+                  ambitious AI generation and a more experimental creative workflow.
                 </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
                 <h3 className="mb-2 text-lg font-semibold">
-                  Best for fast research
+                  Best for fast content production
                 </h3>
                 <p className="text-gray-600">
-                  Perplexity is better when the goal is quick discovery,
-                  comparison, and source-backed information retrieval.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Best for writing</h3>
-                <p className="text-gray-600">
-                  Claude is usually the better option if your end goal is
-                  polished, long-form output rather than research collection.
+                  Pictory is stronger when speed matters most and you want to
+                  turn written content into videos with minimal effort.
                 </p>
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
                 <h3 className="mb-2 text-lg font-semibold">
-                  Best for evidence-first workflows
+                  Best for social media teams
                 </h3>
                 <p className="text-gray-600">
-                  Perplexity fits better when you want sources visible from the
-                  start instead of relying on later verification.
+                  Pictory often fits better for teams publishing frequent,
+                  practical marketing and social content.
+                </p>
+              </div>
+
+              <div className="rounded-2xl bg-gray-50 p-5">
+                <h3 className="mb-2 text-lg font-semibold">
+                  Best for advanced creators
+                </h3>
+                <p className="text-gray-600">
+                  Runway is the better fit if your process depends on pushing AI
+                  video tools beyond simple templated outputs.
                 </p>
               </div>
             </div>
@@ -172,7 +174,7 @@ export default function ClaudeVsPerplexityPage() {
             Ad slot (middle)
           </div>
 
-          <AiRelatedLinks currentSlug="claude-vs-perplexity" />
+          <AiRelatedLinks currentSlug="runway-vs-pictory" />
 
           <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (bottom)

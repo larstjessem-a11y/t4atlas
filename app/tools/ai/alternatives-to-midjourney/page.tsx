@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AiRelatedLinks from "@/components/AiRelatedLinks";
 
 export const metadata: Metadata = {
   title: "Alternatives to Midjourney | T4 Atlas",
@@ -18,7 +19,6 @@ export default function AlternativesToMidjourneyPage() {
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-5xl">
-        {/* Hero */}
         <div className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
             <Link href="/tools" className="hover:text-gray-900">
@@ -50,13 +50,11 @@ export default function AlternativesToMidjourneyPage() {
           </p>
         </div>
 
-        {/* Top ad */}
         <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
           Ad slot (top)
         </div>
 
         <div className="grid gap-6">
-          {/* Table */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-4 text-2xl font-semibold">
               Top Midjourney alternatives
@@ -102,11 +100,8 @@ export default function AlternativesToMidjourneyPage() {
             </div>
           </section>
 
-          {/* Use cases */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-4 text-2xl font-semibold">
-              Best by use case
-            </h2>
+            <h2 className="mb-4 text-2xl font-semibold">Best by use case</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-gray-50 p-5">
@@ -124,8 +119,8 @@ export default function AlternativesToMidjourneyPage() {
                   Best for full control
                 </h3>
                 <p className="text-gray-600">
-                  Stable Diffusion is ideal if you want full control over models,
-                  prompts, and outputs.
+                  Stable Diffusion is ideal if you want full control over
+                  models, prompts, and outputs.
                 </p>
               </div>
 
@@ -151,42 +146,12 @@ export default function AlternativesToMidjourneyPage() {
             </div>
           </section>
 
-          {/* Middle ad */}
           <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (middle)
           </div>
 
-          {/* Internal linking */}
-          <section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-3 text-2xl font-semibold">
-              Related AI pages
-            </h2>
+          <AiRelatedLinks currentSlug="alternatives-to-midjourney" />
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/ai/best-ai-tools-for-writing"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Writing
-              </Link>
-
-              <Link
-                href="/tools/ai/alternatives-to-chatgpt"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Alternatives to ChatGPT
-              </Link>
-
-              <Link
-                href="/tools/ai/best-ai-tools-for-coding"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Coding
-              </Link>
-            </div>
-          </section>
-
-          {/* Bottom ad */}
           <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (bottom)
           </div>

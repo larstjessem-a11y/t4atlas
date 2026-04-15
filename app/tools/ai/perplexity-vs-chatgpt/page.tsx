@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AiRelatedLinks from "@/components/AiRelatedLinks";
 
 export const metadata: Metadata = {
   title: "Perplexity vs ChatGPT | Which AI Is Better? | T4 Atlas",
@@ -58,7 +59,9 @@ export default function PerplexityVsChatGPTPage() {
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose Perplexity if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Choose Perplexity if:
+                </h3>
                 <ul className="list-disc pl-5 text-gray-600">
                   <li>You mainly do research and information gathering</li>
                   <li>You want source-backed answers quickly</li>
@@ -67,7 +70,9 @@ export default function PerplexityVsChatGPTPage() {
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose ChatGPT if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Choose ChatGPT if:
+                </h3>
                 <ul className="list-disc pl-5 text-gray-600">
                   <li>You need a broader general-purpose assistant</li>
                   <li>You write, code, plan, and brainstorm in one place</li>
@@ -78,7 +83,9 @@ export default function PerplexityVsChatGPTPage() {
           </section>
 
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-4 text-2xl font-semibold">Side-by-side comparison</h2>
+            <h2 className="mb-4 text-2xl font-semibold">
+              Side-by-side comparison
+            </h2>
 
             <div className="overflow-x-auto">
               <table className="w-full overflow-hidden rounded-2xl border text-sm">
@@ -142,7 +149,9 @@ export default function PerplexityVsChatGPTPage() {
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Best for mixed workflows</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Best for mixed workflows
+                </h3>
                 <p className="text-gray-600">
                   ChatGPT is better if you want one assistant for ideation,
                   writing, coding, planning, and general task support.
@@ -150,7 +159,9 @@ export default function PerplexityVsChatGPTPage() {
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Best for evidence-first answers</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Best for evidence-first answers
+                </h3>
                 <p className="text-gray-600">
                   Perplexity stands out when your workflow depends on seeing
                   sources early and often.
@@ -163,32 +174,7 @@ export default function PerplexityVsChatGPTPage() {
             Ad slot (middle)
           </div>
 
-          <section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-3 text-2xl font-semibold">Related AI pages</h2>
-
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/ai/alternatives-to-chatgpt"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Alternatives to ChatGPT
-              </Link>
-
-              <Link
-                href="/tools/ai/chatgpt-vs-claude"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                ChatGPT vs Claude
-              </Link>
-
-              <Link
-                href="/tools/ai/best-ai-tools-for-writing"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Writing
-              </Link>
-            </div>
-          </section>
+          <AiRelatedLinks currentSlug="perplexity-vs-chatgpt" />
 
           <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (bottom)

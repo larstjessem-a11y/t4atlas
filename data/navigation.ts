@@ -1,3 +1,5 @@
+import { aiEditorialPages } from "@/data/aiEditorial";
+
 export type NavLinkItem = {
   name: string;
   href: string;
@@ -22,28 +24,28 @@ export const financeNavigation: CategoryNavigation = {
       name: "What Is Total Return?",
       href: "/tools/finance/what-is-total-return",
     },
-{
-  name: "What Is Annualized Return?",
-  href: "/tools/finance/what-is-annualized-return",
-},
-{
-  name: "What Is the Rule of 72?",
-  href: "/tools/finance/what-is-rule-of-72",
-},
+    {
+      name: "What Is Annualized Return?",
+      href: "/tools/finance/what-is-annualized-return",
+    },
+    {
+      name: "What Is the Rule of 72?",
+      href: "/tools/finance/what-is-rule-of-72",
+    },
   ],
   comparisons: [
     {
       name: "ROI vs CAGR vs Payback",
       href: "/tools/finance/roi-vs-cagr-vs-payback",
     },
-{
-  name: "Annualized Return vs CAGR",
-  href: "/tools/finance/annualized-return-vs-cagr",
-},
-{
-  name: "Total Return vs ROI",
-  href: "/tools/finance/total-return-vs-roi",
-},
+    {
+      name: "Annualized Return vs CAGR",
+      href: "/tools/finance/annualized-return-vs-cagr",
+    },
+    {
+      name: "Total Return vs ROI",
+      href: "/tools/finance/total-return-vs-roi",
+    },
   ],
   moneyPages: [
     {
@@ -54,10 +56,10 @@ export const financeNavigation: CategoryNavigation = {
       name: "Best Passive Income Investments",
       href: "/tools/finance/best-passive-income-investments-ranked",
     },
-{
-  name: "How Long to Reach $100k",
-  href: "/tools/finance/how-long-to-reach-100k",
-},
+    {
+      name: "How Long to Reach $100k",
+      href: "/tools/finance/how-long-to-reach-100k",
+    },
     {
       name: "Mortgage vs Rent Guide",
       href: "/tools/finance/mortgage-vs-rent",
@@ -110,67 +112,20 @@ export const financeNavigation: CategoryNavigation = {
     },
   ],
 };
+
 export const aiNavigation: CategoryNavigation = {
   guides: [],
-  comparisons: [
-    {
-      name: "ChatGPT vs Claude",
-      href: "/tools/ai/chatgpt-vs-claude",
-    },
-    {
-      name: "Perplexity vs ChatGPT",
-      href: "/tools/ai/perplexity-vs-chatgpt",
-    },
-    {
-      name: "Claude vs Perplexity",
-      href: "/tools/ai/claude-vs-perplexity",
-    },
-    {
-      name: "ChatGPT vs Copilot",
-      href: "/tools/ai/chatgpt-vs-copilot",
-    },
-  ],
-  moneyPages: [
-    {
-      name: "Best AI Tools for Writing",
-      href: "/tools/ai/best-ai-tools-for-writing",
-    },
-    {
-      name: "Best AI Tools for Coding",
-      href: "/tools/ai/best-ai-tools-for-coding",
-    },
-    {
-      name: "Best AI Tools for Research",
-      href: "/tools/ai/best-ai-tools-for-research",
-    },
-    {
-      name: "Best AI Tools for Video Editing",
-      href: "/tools/ai/best-ai-tools-for-video-editing",
-    },
-    {
-      name: "Best AI Tools for Productivity",
-      href: "/tools/ai/best-ai-tools-for-productivity",
-    },
-    {
-      name: "Best AI Tools for Meetings",
-      href: "/tools/ai/best-ai-tools-for-meetings",
-    },
-    {
-      name: "Best AI Tools for Students",
-      href: "/tools/ai/best-ai-tools-for-students",
-    },
-    {
-      name: "Best AI Tools for Marketing",
-      href: "/tools/ai/best-ai-tools-for-marketing",
-    },
-    {
-      name: "Alternatives to ChatGPT",
-      href: "/tools/ai/alternatives-to-chatgpt",
-    },
-    {
-      name: "Alternatives to Midjourney",
-      href: "/tools/ai/alternatives-to-midjourney",
-    },
-  ],
+  comparisons: aiEditorialPages
+    .filter((page) => page.type === "comparison")
+    .map((page) => ({
+      name: page.title,
+      href: page.href,
+    })),
+  moneyPages: aiEditorialPages
+    .filter((page) => page.type === "best" || page.type === "alternative")
+    .map((page) => ({
+      name: page.title,
+      href: page.href,
+    })),
   tools: [],
 };

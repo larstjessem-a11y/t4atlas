@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import AiRelatedLinks from "@/components/AiRelatedLinks";
 
 export const metadata: Metadata = {
   title: "ChatGPT vs Claude | Which AI Is Better? | T4 Atlas",
@@ -17,7 +18,6 @@ export default function ChatGPTvsClaudePage() {
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-5xl">
-        {/* Hero */}
         <div className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
             <Link href="/tools" className="hover:text-gray-900">
@@ -48,19 +48,19 @@ export default function ChatGPTvsClaudePage() {
           </p>
         </div>
 
-        {/* Top ad */}
         <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
           Ad slot (top)
         </div>
 
         <div className="grid gap-6">
-          {/* Quick verdict */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-4 text-2xl font-semibold">Quick verdict</h2>
 
             <div className="grid gap-4 md:grid-cols-2">
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose ChatGPT if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Choose ChatGPT if:
+                </h3>
                 <ul className="list-disc pl-5 text-gray-600">
                   <li>You want strong coding capabilities</li>
                   <li>You need a broad ecosystem of tools</li>
@@ -69,7 +69,9 @@ export default function ChatGPTvsClaudePage() {
               </div>
 
               <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold">Choose Claude if:</h3>
+                <h3 className="mb-2 text-lg font-semibold">
+                  Choose Claude if:
+                </h3>
                 <ul className="list-disc pl-5 text-gray-600">
                   <li>You prioritize long-form writing</li>
                   <li>You want more natural, human-like tone</li>
@@ -79,9 +81,10 @@ export default function ChatGPTvsClaudePage() {
             </div>
           </section>
 
-          {/* Comparison table */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-4 text-2xl font-semibold">Side-by-side comparison</h2>
+            <h2 className="mb-4 text-2xl font-semibold">
+              Side-by-side comparison
+            </h2>
 
             <div className="overflow-x-auto">
               <table className="w-full overflow-hidden rounded-2xl border text-sm">
@@ -123,7 +126,6 @@ export default function ChatGPTvsClaudePage() {
             </div>
           </section>
 
-          {/* Detailed breakdown */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-4 text-2xl font-semibold">Detailed comparison</h2>
 
@@ -148,47 +150,19 @@ export default function ChatGPTvsClaudePage() {
               <div className="rounded-2xl bg-gray-50 p-5">
                 <h3 className="mb-2 text-lg font-semibold">Use cases</h3>
                 <p className="text-gray-600">
-                  ChatGPT is a better general-purpose tool, while Claude tends to
-                  excel in writing-heavy or document-focused workflows.
+                  ChatGPT is a better general-purpose tool, while Claude tends
+                  to excel in writing-heavy or document-focused workflows.
                 </p>
               </div>
             </div>
           </section>
 
-          {/* Middle ad */}
           <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (middle)
           </div>
 
-          {/* Internal linking */}
-          <section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-3 text-2xl font-semibold">Related AI pages</h2>
+          <AiRelatedLinks currentSlug="chatgpt-vs-claude" />
 
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/ai/alternatives-to-chatgpt"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Alternatives to ChatGPT
-              </Link>
-
-              <Link
-                href="/tools/ai/best-ai-tools-for-writing"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Writing
-              </Link>
-
-              <Link
-                href="/tools/ai/best-ai-tools-for-coding"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Coding
-              </Link>
-            </div>
-          </section>
-
-          {/* Bottom ad */}
           <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (bottom)
           </div>
