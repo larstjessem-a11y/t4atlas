@@ -25,6 +25,13 @@ const featuredVideoCluster = aiEditorialPages.filter((page) =>
   page.topics.includes("video")
 );
 
+const featuredCreatorCluster = aiEditorialPages.filter(
+  (page) =>
+    page.topics.includes("creators") ||
+    page.topics.includes("youtube") ||
+    page.topics.includes("avatars")
+);
+
 export default function AiHubPage() {
   return (
     <main className="py-10 px-4 md:px-6">
@@ -51,7 +58,7 @@ export default function AiHubPage() {
           <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
             Explore the best AI tools, product alternatives, and head-to-head
             comparisons for writing, coding, research, productivity, image
-            generation, and more.
+            generation, video creation, and more.
           </p>
         </div>
 
@@ -110,6 +117,35 @@ export default function AiHubPage() {
 
               <div className="grid gap-3 sm:grid-cols-2">
                 {featuredVideoCluster.map((page) => (
+                  <Link
+                    key={page.href}
+                    href={page.href}
+                    className="rounded-2xl border px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
+                  >
+                    {page.title}
+                  </Link>
+                ))}
+              </div>
+            </section>
+
+            <section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
+              <div className="mb-3">
+                <span className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
+                  Featured cluster
+                </span>
+              </div>
+
+              <h2 className="mb-3 text-2xl font-semibold">
+                Creator and avatar workflows
+              </h2>
+
+              <p className="mb-5 text-gray-600">
+                This cluster highlights YouTube workflows, creator tooling, and
+                avatar-based video systems for scalable content production.
+              </p>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {featuredCreatorCluster.map((page) => (
                   <Link
                     key={page.href}
                     href={page.href}
@@ -197,6 +233,9 @@ export default function AiHubPage() {
                 "productivity",
                 "images",
                 "video",
+                "creators",
+                "avatars",
+                "youtube",
               ].map((item) => (
                 <span
                   key={item}

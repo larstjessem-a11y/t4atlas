@@ -10,12 +10,19 @@ export type AiEditorialTopic =
   | "students"
   | "marketing"
   | "images"
+  | "avatars"
+  | "youtube"
+  | "creators"
   | "chatgpt"
   | "claude"
   | "perplexity"
   | "copilot"
   | "midjourney"
-  | "dalle";
+  | "dalle"
+  | "runway"
+  | "pictory"
+  | "synthesia"
+  | "descript";
 
 export type AiEditorialPage = {
   slug: string;
@@ -52,14 +59,35 @@ export const aiEditorialPages: AiEditorialPage[] = [
     title: "Best AI Tools for Video Editing",
     type: "best",
     href: "/tools/ai/best-ai-tools-for-video-editing",
-    topics: ["video"],
+    topics: ["video", "descript", "runway", "pictory"],
   },
   {
     slug: "best-ai-video-generators",
     title: "Best AI Video Generators",
     type: "best",
     href: "/tools/ai/best-ai-video-generators",
-    topics: ["video", "marketing"],
+    topics: ["video", "marketing", "runway", "pictory", "synthesia"],
+  },
+  {
+    slug: "best-ai-tools-for-youtube",
+    title: "Best AI Tools for YouTube",
+    type: "best",
+    href: "/tools/ai/best-ai-tools-for-youtube",
+    topics: ["video", "youtube", "creators", "runway", "pictory", "descript"],
+  },
+  {
+    slug: "best-ai-tools-for-content-creators",
+    title: "Best AI Tools for Content Creators",
+    type: "best",
+    href: "/tools/ai/best-ai-tools-for-content-creators",
+    topics: ["creators", "video", "marketing", "images", "chatgpt", "runway", "descript"],
+  },
+  {
+    slug: "best-ai-avatar-generators",
+    title: "Best AI Avatar Generators",
+    type: "best",
+    href: "/tools/ai/best-ai-avatar-generators",
+    topics: ["avatars", "video", "marketing", "synthesia"],
   },
   {
     slug: "best-ai-tools-for-productivity",
@@ -87,7 +115,7 @@ export const aiEditorialPages: AiEditorialPage[] = [
     title: "Best AI Tools for Marketing",
     type: "best",
     href: "/tools/ai/best-ai-tools-for-marketing",
-    topics: ["marketing", "writing", "images"],
+    topics: ["marketing", "writing", "images", "video"],
   },
   {
     slug: "best-ai-image-generators",
@@ -145,11 +173,32 @@ export const aiEditorialPages: AiEditorialPage[] = [
     href: "/tools/ai/midjourney-vs-dalle",
     topics: ["midjourney", "dalle", "images"],
   },
-{
-  slug: "runway-vs-pictory",
-  title: "Runway vs Pictory",
-  type: "comparison",
-  href: "/tools/ai/runway-vs-pictory",
-  topics: ["video", "marketing"],
-},
+  {
+    slug: "runway-vs-pictory",
+    title: "Runway vs Pictory",
+    type: "comparison",
+    href: "/tools/ai/runway-vs-pictory",
+    topics: ["video", "marketing", "runway", "pictory", "creators"],
+  },
+  {
+    slug: "synthesia-vs-runway",
+    title: "Synthesia vs Runway",
+    type: "comparison",
+    href: "/tools/ai/synthesia-vs-runway",
+    topics: ["video", "marketing", "avatars", "synthesia", "runway"],
+  },
+  {
+    slug: "synthesia-vs-pictory",
+    title: "Synthesia vs Pictory",
+    type: "comparison",
+    href: "/tools/ai/synthesia-vs-pictory",
+    topics: ["video", "marketing", "avatars", "synthesia", "pictory"],
+  },
+  {
+    slug: "runway-vs-descript",
+    title: "Runway vs Descript",
+    type: "comparison",
+    href: "/tools/ai/runway-vs-descript",
+    topics: ["video", "creators", "runway", "descript"],
+  },
 ];
