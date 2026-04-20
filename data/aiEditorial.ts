@@ -8,6 +8,7 @@ export type AiEditorialTopic =
   | "productivity"
   | "meetings"
   | "students"
+  | "seo"
   | "marketing"
   | "images"
   | "avatars"
@@ -22,6 +23,7 @@ export type AiEditorialTopic =
   | "runway"
   | "pictory"
   | "synthesia"
+  | "conversion"
   | "descript";
 
 export type AiEditorialPage = {
@@ -201,4 +203,32 @@ export const aiEditorialPages: AiEditorialPage[] = [
     href: "/tools/ai/runway-vs-descript",
     topics: ["video", "creators", "runway", "descript"],
   },
+{
+  slug: "best-ai-tools-for-small-business",
+  title: "Best AI Tools for Small Business",
+  type: "best",
+  href: "/tools/ai/best-ai-tools-for-small-business",
+  topics: ["marketing", "productivity", "video", "chatgpt"],
+},
+{
+  slug: "best-ai-tools-for-seo",
+  title: "Best AI Tools for SEO",
+  type: "best",
+  href: "/tools/ai/best-ai-tools-for-seo",
+  topics: ["seo", "marketing", "chatgpt"],
+},
+{
+  slug: "best-ai-tools-for-freelancers",
+  title: "Best AI Tools for Freelancers",
+  type: "best",
+  href: "/tools/ai/best-ai-tools-for-freelancers",
+  topics: ["productivity", "marketing", "chatgpt"],
+},
+{
+  slug: "best-ai-tools-for-ecommerce",
+  title: "Best AI Tools for E-commerce",
+  type: "best",
+  href: "/tools/ai/best-ai-tools-for-ecommerce",
+  topics: ["marketing", "conversion", "chatgpt"],
+},
 ];

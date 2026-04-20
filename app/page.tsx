@@ -3,70 +3,137 @@ import { hubs } from "@/data/hubs";
 
 export default function HomePage() {
   return (
-    <main className="py-16 px-4">
-      <div className="max-w-6xl mx-auto">
-        {/* Hero */}
-        <section className="mb-16 text-center">
-          <h1 className="text-5xl font-semibold tracking-tight mb-4">
-            T4 Atlas
-          </h1>
+    <main className="px-4 py-16">
+      <div className="mx-auto max-w-6xl">
+        <section className="mb-16 overflow-hidden rounded-[2rem] border bg-gradient-to-br from-white via-gray-50 to-gray-100 shadow-sm">
+          <div className="grid gap-10 px-6 py-10 md:px-10 md:py-12 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+            <div>
+              <div className="mb-4 inline-flex rounded-full border bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-gray-600">
+                Multi-hub tools platform
+              </div>
 
-          <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-6">
-            A growing library of tools, calculators, guides, and decision pages
-            organized into focused hubs.
-          </p>
+              <h1 className="mb-4 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl lg:text-6xl">
+                T4 Atlas
+              </h1>
 
-          <Link
-            href="/tools"
-            className="inline-block rounded-xl bg-black text-white px-6 py-3 text-lg font-medium hover:bg-gray-800"
-          >
-            Explore Tools
-          </Link>
+              <p className="mb-6 max-w-2xl text-lg leading-8 text-gray-600 md:text-xl">
+                A growing library of tools, calculators, guides, comparison
+                pages, and decision systems organized into focused hubs.
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/tools"
+                  className="inline-flex items-center rounded-2xl bg-gray-900 px-5 py-3 text-sm font-medium text-white transition hover:bg-gray-800"
+                >
+                  Explore all tools
+                </Link>
+
+                <Link
+                  href="/tools/ai"
+                  className="inline-flex items-center rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
+                >
+                  Explore AI hub
+                </Link>
+              </div>
+            </div>
+
+            <div className="rounded-[1.75rem] border bg-white/80 p-5 shadow-sm backdrop-blur">
+              <div className="mb-4 flex items-center justify-between">
+                <div>
+                  <div className="text-sm font-semibold text-gray-900">
+                    Platform structure
+                  </div>
+                  <div className="text-sm text-gray-500">
+                    Hubs, tools, guides, and decision pages
+                  </div>
+                </div>
+
+                <div className="rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
+                  Atlas view
+                </div>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                {hubs.map((hub) => (
+                  <Link
+                    key={hub.slug}
+                    href={hub.href}
+                    className="rounded-2xl border bg-gray-50 px-4 py-4 transition hover:bg-white hover:shadow-sm"
+                  >
+                    <div className="mb-1 text-sm font-semibold text-gray-900">
+                      {hub.name}
+                    </div>
+                    <div className="text-sm leading-6 text-gray-600">
+                      {hub.description}
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
         </section>
 
-        {/* Hubs */}
         <section className="mb-16">
-          <div className="mb-6">
-            <h2 className="text-2xl font-semibold">Explore hubs</h2>
-            <p className="text-gray-500 mt-1">
-              Start with a hub and then explore calculators, guides, scenarios,
-              and comparison pages within that topic.
-            </p>
+          <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+            <div>
+              <h2 className="text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
+                Explore hubs
+              </h2>
+              <p className="mt-1 max-w-2xl text-gray-600">
+                Start with a hub and then move deeper into calculators, guides,
+                scenario pages, and high-intent comparison content.
+              </p>
+            </div>
+
+            <div className="rounded-full border bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-gray-500">
+              Structured ecosystems
+            </div>
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
             {hubs.map((hub) => (
               <div
                 key={hub.slug}
-                className="rounded-3xl border bg-white p-6 shadow-sm"
+                className="rounded-[1.75rem] border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
               >
-                <div className="mb-3">
-                  <h3 className="text-2xl font-semibold">{hub.name}</h3>
-                  <p className="mt-2 text-gray-600">{hub.description}</p>
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <div>
+                    <h3 className="text-2xl font-semibold tracking-tight text-gray-900">
+                      {hub.name}
+                    </h3>
+                    <p className="mt-2 max-w-xl text-gray-600">
+                      {hub.description}
+                    </p>
+                  </div>
+
+                  <div className="hidden rounded-full border bg-gray-50 px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-500 sm:inline-flex">
+                    Hub
+                  </div>
                 </div>
 
                 <div className="mb-5 flex flex-wrap gap-2">
                   {hub.categories.map((category) => (
                     <span
                       key={category}
-                      className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600"
+                      className="inline-flex rounded-full border bg-gray-50 px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600"
                     >
                       {category}
                     </span>
                   ))}
                 </div>
 
-                <div className="mb-5">
-                  <div className="text-sm font-medium text-gray-700 mb-2">
+                <div className="mb-6 rounded-2xl bg-gray-50 p-4">
+                  <div className="mb-3 text-sm font-semibold text-gray-900">
                     Featured pages
                   </div>
 
-                  <div className="flex flex-col gap-2 text-sm">
+                  <div className="grid gap-2 text-sm">
                     {hub.featuredLinks.map((item) => (
                       <Link
                         key={item.href}
                         href={item.href}
-                        className="text-gray-600 hover:text-gray-900"
+                        className="text-gray-600 transition hover:text-gray-900"
                       >
                         {item.name}
                       </Link>
@@ -76,7 +143,7 @@ export default function HomePage() {
 
                 <Link
                   href={hub.href}
-                  className="inline-block rounded-xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+                  className="inline-flex items-center rounded-2xl border bg-white px-4 py-2.5 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
                 >
                   Explore {hub.name}
                 </Link>
@@ -85,17 +152,53 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Simple value block */}
-        <section className="rounded-2xl border bg-white p-8 text-center">
-          <h3 className="text-xl font-semibold mb-2">
-            Built for speed and clarity
-          </h3>
+        <section className="rounded-[1.75rem] border bg-gradient-to-br from-white to-gray-100 p-8 shadow-sm">
+          <div className="grid gap-6 lg:grid-cols-[1fr_0.9fr] lg:items-center">
+            <div>
+              <div className="mb-3 inline-flex rounded-full border bg-white px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-gray-600">
+                Built for speed and clarity
+              </div>
 
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            T4 Atlas is designed as a multi-hub platform where each topic grows
-            into its own structured ecosystem of tools, guides, scenarios, and
-            decision pages.
-          </p>
+              <h3 className="mb-3 text-2xl font-semibold tracking-tight text-gray-900 md:text-3xl">
+                Structured tools, not content chaos
+              </h3>
+
+              <p className="max-w-2xl text-gray-600">
+                T4 Atlas is designed as a multi-hub platform where each topic
+                can grow into its own ecosystem of tools, guides, comparison
+                pages, money pages, and decision frameworks.
+              </p>
+            </div>
+
+            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="rounded-2xl border bg-white px-4 py-4">
+                <div className="mb-1 text-sm font-semibold text-gray-900">
+                  Tools
+                </div>
+                <div className="text-sm text-gray-600">
+                  Calculators and utilities
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-white px-4 py-4">
+                <div className="mb-1 text-sm font-semibold text-gray-900">
+                  Guides
+                </div>
+                <div className="text-sm text-gray-600">
+                  Explainers and decision support
+                </div>
+              </div>
+
+              <div className="rounded-2xl border bg-white px-4 py-4">
+                <div className="mb-1 text-sm font-semibold text-gray-900">
+                  Comparisons
+                </div>
+                <div className="text-sm text-gray-600">
+                  High-intent choice pages
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </div>
     </main>
