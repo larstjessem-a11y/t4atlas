@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AiRelatedLinks from "@/components/AiRelatedLinks";
 import AiMoneyPicks from "@/components/AiMoneyPicks";
+import AffiliateBlock from "@/components/AffiliateBlock";
 
 export const metadata: Metadata = {
   title: "Best AI Tools for E-commerce | T4 Atlas",
@@ -63,7 +64,8 @@ export default function BestAiToolsForEcommercePage() {
               {
                 name: "ChatGPT",
                 bestFor: "Product descriptions and store content",
-                idealFor: "Store owners who need flexible AI support across many workflows",
+                idealFor:
+                  "Store owners who need flexible AI support across many workflows",
                 whyChooseIt:
                   "ChatGPT is strong for product copy, FAQs, email drafts, ad angles, bundles, upsell ideas, and general store operations.",
                 watchOutFor:
@@ -72,7 +74,8 @@ export default function BestAiToolsForEcommercePage() {
               {
                 name: "Jasper",
                 bestFor: "Ad copy and campaign content",
-                idealFor: "Teams running paid traffic and frequent promotions",
+                idealFor:
+                  "Teams running paid traffic and frequent promotions",
                 whyChooseIt:
                   "Jasper is optimized for repeatable marketing production, which makes it valuable for campaigns, promos, and conversion-focused copy.",
                 watchOutFor:
@@ -81,7 +84,8 @@ export default function BestAiToolsForEcommercePage() {
               {
                 name: "Klaviyo AI",
                 bestFor: "Email marketing and retention",
-                idealFor: "Stores with repeat purchase potential and email-driven revenue",
+                idealFor:
+                  "Stores with repeat purchase potential and email-driven revenue",
                 whyChooseIt:
                   "Klaviyo is strong when lifecycle marketing matters, especially for abandoned carts, flows, retention, and segmentation.",
                 watchOutFor:
@@ -90,7 +94,8 @@ export default function BestAiToolsForEcommercePage() {
               {
                 name: "Intercom AI",
                 bestFor: "Customer support automation",
-                idealFor: "Stores dealing with repeated customer questions and support load",
+                idealFor:
+                  "Stores dealing with repeated customer questions and support load",
                 whyChooseIt:
                   "Intercom AI can reduce support pressure and improve response times without adding headcount.",
                 watchOutFor:
@@ -145,6 +150,12 @@ export default function BestAiToolsForEcommercePage() {
           <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (middle)
           </div>
+
+          <AffiliateBlock
+            slug="best-ai-tools-for-ecommerce"
+            placement="editorial_bottom"
+            title="Recommended e-commerce tools"
+          />
 
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">How to choose</h2>

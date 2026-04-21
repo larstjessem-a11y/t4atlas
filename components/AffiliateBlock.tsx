@@ -1,22 +1,23 @@
 import Link from "next/link";
-import { affiliateModules } from "@/data/affiliate";
+import { affiliateModules, pageAffiliateMap } from "@/data/affiliate";
 
 type AffiliateBlockProps = {
-  hub: string;
-  placement: "editorial_bottom" | "sidebar";
+  slug: string;
+  placement?: "editorial_bottom" | "sidebar";
   title?: string;
 };
 
 export default function AffiliateBlock({
-  hub,
-  placement,
+  slug,
   title = "Recommended tools",
 }: AffiliateBlockProps) {
-  const items = affiliateModules.filter(
-    (item) => item.hub === hub && item.placement === placement
-  );
+  const moduleSlugs = pageAffiliateMap[slug] || [];
 
-  if (items.length === 0) {
+  const items = moduleSlugs
+    .map((s) => affiliateModules.find((m) => m.slug === s))
+    .filter(Boolean);
+
+  if (!items.length) {
     return null;
   }
 
@@ -26,23 +27,23 @@ export default function AffiliateBlock({
 
       <div className="grid gap-4 md:grid-cols-2">
         {items.map((item) => (
-          <div key={item.slug} className="rounded-2xl bg-gray-50 p-5">
+          <div key={item!.slug} className="rounded-2xl bg-gray-50 p-5">
             <div className="mb-2">
               <span className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
-                {item.tag}
+                {item!.tag}
               </span>
             </div>
 
             <h3 className="mb-2 text-lg font-semibold text-gray-900">
-              {item.name}
+              {item!.name}
             </h3>
 
-            <p className="mb-4 text-sm leading-6 text-gray-600">
-              {item.description}
+            <p className="mb-4 text-sm text-gray-600">
+              {item!.description}
             </p>
 
             <Link
-              href={item.href}
+              href={item!.href}
               className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-100"
             >
               Learn more

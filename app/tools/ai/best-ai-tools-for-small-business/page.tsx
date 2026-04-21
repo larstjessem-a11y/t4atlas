@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AiRelatedLinks from "@/components/AiRelatedLinks";
 import AiMoneyPicks from "@/components/AiMoneyPicks";
+import AffiliateBlock from "@/components/AffiliateBlock";
 
 export const metadata: Metadata = {
   title: "Best AI Tools for Small Business | T4 Atlas",
@@ -144,6 +145,12 @@ export default function BestAiToolsForSmallBusinessPage() {
           <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
             Ad slot (middle)
           </div>
+
+          <AffiliateBlock
+            slug="best-ai-tools-for-small-business"
+            placement="editorial_bottom"
+            title="Recommended small business tools"
+          />
 
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">How to choose</h2>

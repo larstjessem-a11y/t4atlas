@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import AiRelatedLinks from "@/components/AiRelatedLinks";
 import AiMoneyPicks from "@/components/AiMoneyPicks";
+import AffiliateBlock from "@/components/AffiliateBlock";
 
 export const metadata: Metadata = {
   title: "Best AI Tools for SEO | T4 Atlas",
@@ -64,7 +65,8 @@ export default function BestAiToolsForSeoPage() {
               {
                 name: "ChatGPT",
                 bestFor: "Content scaling and workflow flexibility",
-                idealFor: "Site owners and operators who need fast content production",
+                idealFor:
+                  "Site owners and operators who need fast content production",
                 whyChooseIt:
                   "ChatGPT is the strongest all-rounder for drafting, rewriting, outlining, internal linking ideas, and scaling SEO content workflows.",
                 watchOutFor:
@@ -73,7 +75,8 @@ export default function BestAiToolsForSeoPage() {
               {
                 name: "Surfer SEO",
                 bestFor: "On-page optimization",
-                idealFor: "Teams focused on improving content already being published",
+                idealFor:
+                  "Teams focused on improving content already being published",
                 whyChooseIt:
                   "Surfer helps turn SEO articles into more search-competitive content with clearer structure and optimization guidance.",
                 watchOutFor:
@@ -82,7 +85,8 @@ export default function BestAiToolsForSeoPage() {
               {
                 name: "Ahrefs",
                 bestFor: "Keyword research and competitive analysis",
-                idealFor: "Operators who need strong data before deciding what to publish",
+                idealFor:
+                  "Operators who need strong data before deciding what to publish",
                 whyChooseIt:
                   "Ahrefs remains one of the strongest tools for finding keywords, understanding SERPs, and spotting traffic opportunities.",
                 watchOutFor:
@@ -91,7 +95,8 @@ export default function BestAiToolsForSeoPage() {
               {
                 name: "Frase",
                 bestFor: "Research plus writing workflow",
-                idealFor: "Users who want research, outlines, and draft support in one environment",
+                idealFor:
+                  "Users who want research, outlines, and draft support in one environment",
                 whyChooseIt:
                   "Frase is useful when you want a more integrated SEO writing workflow instead of stitching several tools together.",
                 watchOutFor:
@@ -147,13 +152,27 @@ export default function BestAiToolsForSeoPage() {
             Ad slot (middle)
           </div>
 
+          <AffiliateBlock
+            slug="best-ai-tools-for-seo"
+            placement="editorial_bottom"
+            title="Recommended SEO tools"
+          />
+
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">How to choose</h2>
 
             <ul className="list-disc space-y-2 pl-5 text-gray-600">
-              <li>Start with your bottleneck: content, research, or technical execution.</li>
-              <li>Combine one data tool with one execution tool instead of buying everything at once.</li>
-              <li>Focus on output per hour and ranking impact, not feature lists.</li>
+              <li>
+                Start with your bottleneck: content, research, or technical
+                execution.
+              </li>
+              <li>
+                Combine one data tool with one execution tool instead of buying
+                everything at once.
+              </li>
+              <li>
+                Focus on output per hour and ranking impact, not feature lists.
+              </li>
             </ul>
           </section>
 

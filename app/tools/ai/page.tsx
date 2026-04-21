@@ -274,13 +274,7 @@ export default function AiHubPage() {
           Ad slot (bottom)
         </div>
 
-        <div className="mt-8">
-          <AffiliateBlock
-            hub="ai"
-            placement="editorial_bottom"
-            title="Recommended AI tools"
-          />
-        </div>
+                <div className="mt-8" />
       </div>
     </main>
   );

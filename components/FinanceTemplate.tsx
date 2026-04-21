@@ -8,6 +8,7 @@ import {
   monetizationConfig,
   defaultMonetizationConfig,
 } from "@/data/monetization";
+import AffiliateBlock from "@/components/AffiliateBlock";
 
 type Tool = {
   slug: string;
@@ -1014,6 +1015,13 @@ export default function FinanceTemplate({
     Ad slot (bottom)
   </div>
 )}
+<div className="mt-8">
+  <AffiliateBlock
+    slug={tool.slug}
+    placement="editorial_bottom"
+    title="Recommended finance tools"
+  />
+</div>
 
             <div className="border-t pt-6">
               <h2 className="mb-3 text-xl font-semibold">Related tools</h2>
