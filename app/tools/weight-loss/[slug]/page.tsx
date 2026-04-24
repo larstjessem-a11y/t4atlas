@@ -8,7 +8,8 @@ import { weightLossScenarios } from "@/data/weightLossScenarios";
 import WeightLossCalorieDeficitCalculator from "@/components/WeightLossCalorieDeficitCalculator";
 import WeightLossTimelineCalculator from "@/components/WeightLossTimelineCalculator";
 import TrustBlock from "@/components/TrustBlock";
-
+import WeightLossLandingPageTemplate from "@/components/WeightLossLandingPageTemplate";
+import { weightLossLandingPages } from "@/data/weightLossLandingPages";
 
 type PageProps = {
   params: Promise<{
@@ -25,7 +26,11 @@ export async function generateStaticParams() {
     slug: item.slug,
   }));
 
-  return [...calculatorParams, ...scenarioParams];
+  const landingParams = weightLossLandingPages.map((item) => ({
+  slug: item.slug,
+}));
+
+return [...calculatorParams, ...scenarioParams, ...landingParams];
 }
 
 export async function generateMetadata({
@@ -48,6 +53,13 @@ export async function generateMetadata({
       description: scenario.seoDescription,
     };
   }
+const landingPage = weightLossLandingPages.find((item) => item.slug === slug);
+if (landingPage) {
+  return {
+    title: landingPage.seoTitle,
+    description: landingPage.seoDescription,
+  };
+}
 
   return {
     title: "Weight Loss Tools | T4 Atlas",
@@ -152,7 +164,6 @@ export default async function WeightLossDynamicPage({ params }: PageProps) {
     </section>
   </>
 )}
-
             {parentCalculator ? (
               <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
                 <h2 className="mb-3 text-2xl font-semibold">Related calculator</h2>
@@ -169,7 +180,11 @@ export default async function WeightLossDynamicPage({ params }: PageProps) {
       </main>
     );
   }
+  const landingPage = weightLossLandingPages.find((item) => item.slug === slug);
 
+  if (landingPage) {
+    return <WeightLossLandingPageTemplate page={landingPage} />;
+  }
   notFound();
 }
 

@@ -1,6 +1,7 @@
 import { MetadataRoute } from "next";
 import { tools } from "@/data/tools";
 import { aiEditorialPages } from "@/data/aiEditorial";
+import { financeEditorialPages } from "@/data/financeEditorial";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://t4atlas.com";
@@ -20,17 +21,28 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  // tool-sider (automatisk)
+  // tool-sider
   const toolUrls = tools.map((tool) => ({
     url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
     lastModified: new Date(),
   }));
 
-  // AI editorial sider (data-drevet)
+  // AI editorial sider
   const aiUrls = aiEditorialPages.map((page) => ({
     url: `${baseUrl}${page.href}`,
     lastModified: new Date(),
   }));
 
-  return [...staticUrls, ...toolUrls, ...aiUrls];
+  // Finance editorial sider
+  const financeUrls = financeEditorialPages.map((page) => ({
+    url: `${baseUrl}${page.href}`,
+    lastModified: new Date(),
+  }));
+
+  return [
+    ...staticUrls,
+    ...toolUrls,
+    ...aiUrls,
+    ...financeUrls,
+  ];
 }
