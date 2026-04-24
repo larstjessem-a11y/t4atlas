@@ -101,7 +101,7 @@ export default function WeightLossHubPage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {bestPages.map((page) => (
                   <Link
-                    key={page.slug}
+                    key={`${page.slug}-${page.href}`}
                     href={page.href}
                     className="rounded-2xl border px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
                   >

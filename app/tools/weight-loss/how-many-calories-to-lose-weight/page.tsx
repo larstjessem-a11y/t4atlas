@@ -101,7 +101,14 @@ export default function HowManyCaloriesToLoseWeightPage() {
             <li>Expecting linear progress</li>
           </ul>
         </section>
-
+<section className="mt-6">
+  <h2 className="text-xl font-semibold mb-3">FAQ</h2>
+  <div className="space-y-3 text-sm text-gray-600">
+    <p><strong>How many calories should I eat to lose weight?</strong><br/>Typically 300–500 kcal below your TDEE.</p>
+    <p><strong>Is a 500 calorie deficit enough?</strong><br/>Yes, for most people it produces steady fat loss.</p>
+    <p><strong>How fast can I lose weight?</strong><br/>Usually 0.5 kg per week is realistic.</p>
+  </div>
+</section>
         {/* RELATED */}
         <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
           <h2 className="mb-3 text-2xl font-semibold">

@@ -927,4 +927,155 @@ export const weightLossLandingPages: WeightLossLandingPage[] = [
     { title: "Calorie Deficit Calculator", href: "/tools/weight-loss/calorie-deficit-calculator" },
     { title: "Calories Per Day for Fat Loss", href: "/tools/weight-loss/calories-per-day-for-fat-loss" },
   ],
+}
+,
+{
+  slug: "how-much-protein-to-lose-weight",
+  title: "How Much Protein to Lose Weight",
+  seoTitle: "Protein Intake for Weight Loss | T4 Atlas",
+  seoDescription:
+    "Estimate how much protein you need during weight loss to support fat loss and maintain muscle.",
+  label: "Nutrition",
+  intro:
+    "Protein intake is one of the most important factors during weight loss. It helps maintain muscle mass and can improve satiety, making it easier to stay in a calorie deficit.",
+  quickAnswerTitle: "Typical protein ranges",
+  quickAnswerItems: [
+    "Minimum: ~1.2 g per kg body weight",
+    "Moderate: 1.6 g/kg",
+    "Higher: 2.0–2.2 g/kg (during aggressive dieting)",
+  ],
+  sections: [
+    {
+      title: "Why protein matters",
+      body:
+        "Higher protein intake helps preserve lean mass during a calorie deficit and can reduce hunger compared to lower-protein diets.",
+    },
+    {
+      title: "Common mistake",
+      body:
+        "Many people focus only on calories and ignore protein, which can lead to muscle loss and reduced long-term results.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Calories vs Macros", href: "/tools/weight-loss/calories-vs-macros" },
+    { title: "Calorie Deficit Calculator", href: "/tools/weight-loss/calorie-deficit-calculator" },
+  ],
+},
+{
+  slug: "protein-intake-for-weight-loss",
+  title: "Protein Intake for Weight Loss",
+  seoTitle: "Protein Intake for Weight Loss Guide | T4 Atlas",
+  seoDescription:
+    "Learn how protein intake affects fat loss and how to set a realistic target.",
+  label: "Nutrition",
+  intro:
+    "Protein intake plays a central role in fat loss. It affects satiety, muscle retention, and overall adherence to a calorie deficit.",
+  quickAnswerTitle: "Key takeaways",
+  quickAnswerItems: [
+    "Protein helps reduce hunger",
+    "Higher protein supports muscle retention",
+    "Protein improves diet adherence",
+  ],
+  sections: [
+    {
+      title: "Protein and satiety",
+      body:
+        "Protein-rich meals tend to be more filling, which makes it easier to maintain a calorie deficit over time.",
+    },
+  ],
+  relatedLinks: [
+    { title: "How Much Protein to Lose Weight", href: "/tools/weight-loss/how-much-protein-to-lose-weight" },
+    { title: "Best Diet for Fat Loss", href: "/tools/weight-loss/best-diet-for-fat-loss" },
+  ],
+},
+{
+  slug: "calories-vs-macros",
+  title: "Calories vs Macros",
+  seoTitle: "Calories vs Macros for Weight Loss | T4 Atlas",
+  seoDescription:
+    "Understand the difference between calories and macronutrients for fat loss.",
+  label: "Nutrition fundamentals",
+  intro:
+    "Calories determine whether you lose or gain weight, but macronutrients influence how that process feels and what kind of weight is lost.",
+  quickAnswerTitle: "Short answer",
+  quickAnswerItems: [
+    "Calories drive weight change",
+    "Macros affect body composition",
+    "Both matter for optimal results",
+  ],
+  sections: [
+    {
+      title: "Calories first",
+      body:
+        "A calorie deficit is required for weight loss. Without it, macro composition alone will not produce fat loss.",
+    },
+    {
+      title: "Macros refine results",
+      body:
+        "Protein, carbohydrates, and fat influence satiety, performance, and muscle retention.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Calorie Deficit for Fat Loss", href: "/tools/weight-loss/calorie-deficit-for-fat-loss" },
+    { title: "How Much Protein to Lose Weight", href: "/tools/weight-loss/how-much-protein-to-lose-weight" },
+  ],
+},
+{
+  slug: "fat-vs-carbs-for-fat-loss",
+  title: "Fat vs Carbs for Fat Loss",
+  seoTitle: "Fat vs Carbs for Fat Loss | T4 Atlas",
+  seoDescription:
+    "Compare fat and carbohydrate intake for weight loss and understand what matters most.",
+  label: "Nutrition",
+  intro:
+    "The fat vs carbs debate is common, but for most people, total calories and adherence matter more than macro ratios.",
+  quickAnswerTitle: "Key idea",
+  quickAnswerItems: [
+    "Calories matter most",
+    "Macros affect preference and adherence",
+    "No single ratio works for everyone",
+  ],
+  sections: [
+    {
+      title: "Adherence is key",
+      body:
+        "The best diet is the one you can follow consistently, not the one with the most optimal theoretical macro split.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Calories vs Macros", href: "/tools/weight-loss/calories-vs-macros" },
+    { title: "Best Diet for Fat Loss", href: "/tools/weight-loss/best-diet-for-fat-loss" },
+  ],
+},
+{
+  slug: "best-diet-for-fat-loss",
+  title: "Best Diet for Fat Loss",
+  seoTitle: "Best Diet for Fat Loss | T4 Atlas",
+  seoDescription:
+    "Explore different diet approaches for fat loss and what makes them effective.",
+  label: "Diet strategies",
+  intro:
+    "There is no single best diet for fat loss. The most effective diet is one that creates a calorie deficit and is sustainable for you.",
+  quickAnswerTitle: "What works best",
+  quickAnswerItems: [
+    "Sustainable calorie deficit",
+    "Adequate protein intake",
+    "Consistent adherence over time",
+  ],
+  sections: [
+    {
+      title: "Popular diets",
+      body:
+        "Low-carb, low-fat, intermittent fasting, and balanced diets can all work if they create a consistent calorie deficit.",
+    },
+    {
+      title: "Choosing a diet",
+      body:
+        "Choose a structure that fits your lifestyle rather than forcing a rigid system that is difficult to maintain.",
+    },
+  ],
+  relatedLinks: [
+    { title: "Fat vs Carbs for Fat Loss", href: "/tools/weight-loss/fat-vs-carbs-for-fat-loss" },
+    { title: "Calories Per Day for Fat Loss", href: "/tools/weight-loss/calories-per-day-for-fat-loss" },
+  ],
 }];

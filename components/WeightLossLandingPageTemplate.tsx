@@ -78,7 +78,13 @@ export default function WeightLossLandingPageTemplate({
               ) : null}
             </section>
           ) : null}
-
+<div className="mt-6 p-4 rounded-2xl border bg-blue-50 text-sm">
+  <p className="font-semibold mb-1">Tip</p>
+  <p>
+    Consistency matters more than precision. A smaller, sustainable calorie deficit
+    often produces better long-term results than aggressive dieting.
+  </p>
+</div>
           {page.sections.map((section) => (
             <section
               key={section.title}
@@ -88,11 +94,26 @@ export default function WeightLossLandingPageTemplate({
               <p className="text-gray-600">{section.body}</p>
             </section>
           ))}
-
+<div className="mb-6 p-4 rounded-2xl border bg-gray-50 text-sm">
+  <p className="font-semibold mb-2">Start here</p>
+  <div className="flex flex-wrap gap-2">
+    <Link href="/tools/weight-loss/calorie-deficit-calculator" className="underline">
+      Calorie Deficit Calculator
+    </Link>
+    <Link href="/tools/weight-loss/how-many-calories-to-lose-weight" className="underline">
+      Calories to Lose Weight
+    </Link>
+  </div>
+</div>
           <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">Related tools</h2>
-
-            <div className="flex flex-wrap gap-3">
+<div className="mt-8 text-sm text-gray-500">
+  <Link href="/tools/weight-loss" className="underline">
+    Back to Weight Loss Hub
+  </Link>
+</div>
+            
+<div className="flex flex-wrap gap-3">
               {page.relatedLinks.map((link) => (
                 <Link
                   key={link.href}

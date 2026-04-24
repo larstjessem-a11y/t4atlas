@@ -62,12 +62,5 @@ export const weightLossEditorialPages: WeightLossEditorialPage[] = [
     href: "/tools/weight-loss/how-much-calorie-deficit-is-safe",
     topics: ["calorie-deficit", "guide", "safety"],
   },
-{
-  slug: "best-calorie-tracking-apps",
-  title: "Best Calorie Tracking Apps",
-  type: "best",
-  href: "/tools/weight-loss/best-calorie-tracking-apps",
-  topics: ["apps", "calorie-tracking", "nutrition"],
-  affiliateSlugs: ["myfitnesspal", "lifesum", "cronometer"],
-}
+
 ];
