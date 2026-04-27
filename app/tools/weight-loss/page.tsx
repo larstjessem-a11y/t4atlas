@@ -159,6 +159,21 @@ export default function WeightLossHubPage() {
                 </div>
               </div>
             </section>
+<section className="mb-8">
+  <h2 className="text-2xl font-semibold mb-3">Comparisons</h2>
+  <div className="flex flex-wrap gap-3">
+    <Link href="/tools/weight-loss/intermittent-fasting-vs-calorie-deficit" className="border px-4 py-2 rounded-xl">Fasting vs Deficit</Link>
+    <Link href="/tools/weight-loss/walking-vs-running-for-weight-loss" className="border px-4 py-2 rounded-xl">Walking vs Running</Link>
+  </div>
+</section>
+<section className="mb-8">
+  <h2 className="text-2xl font-semibold mb-3">Guides</h2>
+  <div className="flex flex-wrap gap-3">
+    <Link href="/tools/weight-loss/what-actually-causes-weight-loss" className="border px-4 py-2 rounded-xl">What Causes Weight Loss</Link>
+    <Link href="/tools/weight-loss/how-much-calorie-deficit-is-safe" className="border px-4 py-2 rounded-xl">Safe Deficit</Link>
+    <Link href="/tools/weight-loss/myfitnesspal-alternatives" className="border px-4 py-2 rounded-xl">MyFitnessPal Alternatives</Link>
+  </div>
+</section>
           </div>
 
           <aside className="rounded-3xl border bg-white p-6 shadow-sm">
