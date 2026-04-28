@@ -18,6 +18,9 @@ type Tool = {
   factor?: number;
   unitFrom?: string;
   unitTo?: string;
+  formula?: string;
+  examples?: number[];
+  reverseSlug?: string;
 };
 
 export default function ToolTemplate({ tool }: { tool?: Tool }) {
@@ -31,25 +34,25 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
   const monetization =
     monetizationConfig[tool.category] ?? defaultMonetizationConfig;
 
+  const factor = tool.factor ?? 1;
+  const unitFrom = tool.unitFrom ?? "value";
+  const unitTo = tool.unitTo ?? "result";
+
   const result = useMemo(() => {
     if (!input.trim()) return "";
 
     const value = Number(input);
-    if (isNaN(value)) return "";
+    if (Number.isNaN(value)) return "";
 
-    if (tool.factor) {
-      return (value * tool.factor).toString();
-    }
-
-    return "";
-  }, [input, tool.factor]);
+    return (value * factor).toString();
+  }, [input, factor]);
 
   const relatedTools = tools
     .filter(
-      (t) =>
-        t.category === tool.category &&
-        t.subcategory === tool.subcategory &&
-        t.slug !== tool.slug
+      (item) =>
+        item.category === tool.category &&
+        item.subcategory === tool.subcategory &&
+        item.slug !== tool.slug
     )
     .slice(0, 6);
 
@@ -60,7 +63,9 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
       await navigator.clipboard.writeText(result);
       setCopied(true);
       setTimeout(() => setCopied(false), 1500);
-    } catch {}
+    } catch {
+      // Clipboard may be unavailable in some browsers.
+    }
   }
 
   const categoryLabel = tool.category.replace(/-/g, " ");
@@ -69,8 +74,7 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-6xl">
-        {/* Header */}
-        <div className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
+        <section className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
             <Link href="/tools" className="hover:text-gray-900">
               Tools
@@ -78,54 +82,67 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
             <span>→</span>
             <Link
               href={`/tools/${tool.category}`}
-              className="hover:text-gray-900 capitalize"
+              className="capitalize hover:text-gray-900"
             >
               {categoryLabel}
             </Link>
             <span>→</span>
             <Link
               href={`/tools/${tool.category}/subcategory/${tool.subcategory}`}
-              className="hover:text-gray-900 capitalize"
+              className="capitalize hover:text-gray-900"
             >
               {subcategoryLabel}
             </Link>
           </div>
 
-          <h1 className="text-4xl font-semibold text-gray-900">
-            {tool.name}
-          </h1>
+          <h1 className="text-4xl font-semibold text-gray-900">{tool.name}</h1>
 
           <p className="mt-3 max-w-3xl text-gray-600">
             {tool.description || "Simple conversion tool."}
           </p>
-        </div>
+
+          <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+            <div className="text-sm text-gray-500">Quick conversion</div>
+            <div className="mt-2 text-2xl font-semibold text-gray-900">
+              1 {unitFrom} = {factor.toFixed(4)} {unitTo}
+            </div>
+          </div>
+        </section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),360px]">
-          {/* MAIN */}
           <section className="rounded-3xl border bg-white p-6 shadow-sm">
-            {/* Top ad */}
             {monetization.ads.top && (
               <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
                 Ad slot (top)
               </div>
             )}
 
-            {/* Converter UI */}
             <div className="grid gap-5 md:grid-cols-2">
-              <input
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                placeholder={`Enter ${tool.unitFrom || "value"}...`}
-                className="w-full rounded-2xl border p-4 text-lg"
-              />
+              <div>
+                <label className="mb-2 block text-sm font-medium text-gray-700">
+                  Enter {unitFrom}
+                </label>
+                <input
+                  value={input}
+                  onChange={(event) => setInput(event.target.value)}
+                  placeholder={`Enter ${unitFrom}...`}
+                  className="w-full rounded-2xl border p-4 text-lg"
+                />
+              </div>
 
               <div>
-                <button
-                  onClick={handleCopy}
-                  className="mb-2 rounded border px-3 py-1 text-xs"
-                >
-                  {copied ? "Copied" : "Copy"}
-                </button>
+                <div className="mb-2 flex items-center justify-between">
+                  <label className="block text-sm font-medium text-gray-700">
+                    Result in {unitTo}
+                  </label>
+
+                  <button
+                    onClick={handleCopy}
+                    className="rounded border px-3 py-1 text-xs"
+                  >
+                    {copied ? "Copied" : "Copy"}
+                  </button>
+                </div>
 
                 <input
                   value={result}
@@ -135,42 +152,82 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
               </div>
             </div>
 
-            {/* Middle ad */}
             {monetization.ads.middle && (
               <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
                 Ad slot (middle)
               </div>
             )}
 
-            {/* Simple explanation */}
-            <div className="mt-6 rounded-2xl border p-5">
+            <section className="mt-6 rounded-2xl border p-5">
               <h2 className="mb-2 text-xl font-semibold">How to use</h2>
               <p className="text-gray-600">
-                Enter a value in {tool.unitFrom} to convert it to{" "}
-                {tool.unitTo}.
+                Enter a value in {unitFrom} to convert it to {unitTo}. The result
+                updates automatically using the conversion factor for this unit
+                pair.
               </p>
-            </div>
 
-            {/* Bottom ad */}
+              {tool.formula && (
+                <p className="mt-3 rounded-xl bg-gray-50 p-3 text-sm text-gray-700">
+                  Formula: {tool.formula}
+                </p>
+              )}
+            </section>
+
+            {tool.examples && tool.examples.length > 0 && (
+              <section className="mt-6">
+                <h2 className="text-lg font-semibold">Common conversions</h2>
+                <div className="mt-3 grid gap-2 sm:grid-cols-2">
+                  {tool.examples.map((value) => (
+                    <div
+                      key={value}
+                      className="rounded-xl border px-4 py-2 text-sm text-gray-700"
+                    >
+                      {value} {unitFrom} = {(value * factor).toFixed(2)} {unitTo}
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {tool.reverseSlug && (
+              <section className="mt-6 rounded-2xl border bg-gray-50 p-5">
+                <h2 className="text-lg font-semibold">
+                  Need the opposite conversion?
+                </h2>
+                <p className="mt-2 text-sm text-gray-600">
+                  You can also convert {unitTo} back to {unitFrom}.
+                </p>
+                <Link
+                  href={`/tools/converters/${tool.reverseSlug}`}
+                  className="mt-3 inline-flex rounded-xl border bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
+                >
+                  Convert {unitTo} to {unitFrom}
+                </Link>
+              </section>
+            )}
+
             {monetization.ads.bottom && (
               <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
                 Ad slot (bottom)
               </div>
             )}
+
+            <div className="mt-6 text-center text-xs text-gray-400">
+              Fast, accurate, and free conversion tool
+            </div>
           </section>
 
-          {/* SIDEBAR */}
           <aside className="rounded-3xl border bg-white p-6 shadow-sm">
             <h3 className="mb-3 font-semibold">Related tools</h3>
 
             <div className="mb-6 flex flex-col gap-2 text-sm">
-              {relatedTools.map((t) => (
+              {relatedTools.map((item) => (
                 <Link
-                  key={t.slug}
-                  href={`/tools/${t.category}/${t.slug}`}
+                  key={item.slug}
+                  href={`/tools/${item.category}/${item.slug}`}
                   className="text-gray-600 hover:text-gray-900"
                 >
-                  {t.name}
+                  {item.name}
                 </Link>
               ))}
             </div>
@@ -197,7 +254,6 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
               </div>
             </div>
 
-            {/* Sidebar ad */}
             {monetization.ads.sidebar && (
               <div className="mt-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
                 Sidebar ad slot

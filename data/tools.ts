@@ -71,6 +71,8 @@ export const tools: Tool[] = [
     formula: "1 cm = 0.3937 inches",
     examples: [150, 160, 170, 180],
     reverseSlug: "inches-to-cm",
+    seoTitle: "Centimeter to Inches (CM -> Inches) Converter",
+    seoDescription: "Convert Centimeter to Inches instantly. Fast, simple, and accurate length conversion.",
   },
   {
     slug: "inches-to-cm",
@@ -84,6 +86,8 @@ export const tools: Tool[] = [
     formula: "1 inch = 2.54 cm",
     examples: [10, 20, 30, 40],
     reverseSlug: "cm-to-inches",
+    seoTitle: "Inches to Centimeter (Inches -> CM) Converter",
+    seoDescription: "Convert Inches to Centimeter instantly. Fast, simple, and accurate length conversion.",
   },
   {
     slug: "kg-to-lbs",
@@ -123,6 +127,8 @@ export const tools: Tool[] = [
     formula: "°F = (°C × 9/5) + 32",
     examples: [0, 10, 20, 30],
     reverseSlug: "fahrenheit-to-celsius",
+    seoTitle: "Celsius to Fahrenheit (°C → °F) Converter",
+seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accurate temperature conversion.",
   },
   {
     slug: "fahrenheit-to-celsius",
@@ -136,6 +142,8 @@ export const tools: Tool[] = [
     formula: "°C = (°F - 32) × 5/9",
     examples: [32, 50, 68, 86],
     reverseSlug: "celsius-to-fahrenheit",
+    seoTitle: "Fahrenheit to Celsius (°F → °C) Converter",
+    seoDescription: "Convert Fahrenheit to Celsius instantly. Fast, simple, and accurate temperature conversion.",
   },
 {
   slug: "meters-to-feet",
@@ -149,6 +157,8 @@ export const tools: Tool[] = [
   formula: "1 meter = 3.28084 feet",
   examples: [1, 5, 10, 20],
   reverseSlug: "feet-to-meters",
+  seoTitle: "Meter to Feet Converter",
+  seoDescription: "Convert Meter to Feet instantly. Fast, simple, and accurate length conversion.",
 },
 {
   slug: "feet-to-meters",
@@ -162,6 +172,8 @@ export const tools: Tool[] = [
   formula: "1 foot = 0.3048 meters",
   examples: [3, 6, 10, 20],
   reverseSlug: "meters-to-feet",
+  seoTitle: "Feet to Meter Converter",
+  seoDescription: "Convert Feet to Meter instantly. Fast, simple, and accurate length conversion.",
 },
 {
   slug: "km-to-miles",
@@ -876,46 +888,66 @@ longTailScenarios: [
   type: "finance",
   financeType: "roi-calculator",
   description:
-    "Calculate dividend yield based on annual dividends and share price to evaluate income-generating investments.",
+    "Calculate dividend yield from annual dividend and share price. Use the formula, examples, and scenario presets to compare income-generating investments.",
   seoIntro:
-    "A dividend yield calculator helps you determine how much income you earn from a stock relative to its price. It is widely used by investors to compare dividend-paying stocks and assess passive income potential.",
-seoTitle: "Dividend Yield Calculator – Calculate Stock Dividend Yield",
+    "A dividend yield calculator helps you estimate how much annual dividend income a stock pays relative to its current share price. It is commonly used by income investors to compare dividend-paying stocks, screen for passive income opportunities, and understand whether a yield is realistic or unusually high.",
+seoTitle: "Dividend Yield Calculator (Free + Examples)",
 seoDescription:
-  "Calculate dividend yield from annual dividend and share price using this free dividend yield calculator.",
-longTailScenarios: [
-  {
-    slug: "income-stocks",
-    label: "Dividend yield calculator for income stocks",
-    prefill: {
-      principal: "100",
-      finalValue: "5",
+  "Calculate dividend yield instantly. Includes examples and formula to compare income stocks.",
+  longTailScenarios: [
+    {
+      slug: "100-dollar-stock-3-dollar-dividend",
+      label: "Dividend yield for $100 stock with $3 dividend",
+      seoTitle: "Dividend Yield for $100 Stock With $3 Dividend",
+      seoDescription:
+        "Calculate dividend yield for a $100 stock paying a $3 annual dividend.",
+      intro:
+        "A stock priced at $100 with a $3 annual dividend has a dividend yield of 3%. This is a common example for understanding how dividend yield works.",
+      prefill: {
+        principal: "100",
+        finalValue: "3",
+      },
     },
-  },
-  {
-    slug: "high-vs-low-yield",
-    label: "High dividend yield vs low dividend yield",
-    prefill: {
-      principal: "100",
-      finalValue: "8",
+    {
+      slug: "50-dollar-stock-2-dollar-dividend",
+      label: "Dividend yield for $50 stock with $2 dividend",
+      seoTitle: "Dividend Yield for $50 Stock With $2 Dividend",
+      seoDescription:
+        "Calculate dividend yield for a $50 stock paying a $2 annual dividend.",
+      intro:
+        "A stock priced at $50 with a $2 annual dividend has a dividend yield of 4%. This scenario is useful for comparing income stocks with different prices.",
+      prefill: {
+        principal: "50",
+        finalValue: "2",
+      },
     },
-  },
-  {
-    slug: "by-share-price",
-    label: "Dividend yield calculator by share price",
-    prefill: {
-      principal: "50",
-      finalValue: "2",
+    {
+      slug: "25-dollar-stock-1-dollar-dividend",
+      label: "Dividend yield for $25 stock with $1 dividend",
+      seoTitle: "Dividend Yield for $25 Stock With $1 Dividend",
+      seoDescription:
+        "Calculate dividend yield for a $25 stock paying a $1 annual dividend.",
+      intro:
+        "A stock priced at $25 with a $1 annual dividend has a dividend yield of 4%. Lower-priced stocks can have the same yield as higher-priced stocks if the dividend scales proportionally.",
+      prefill: {
+        principal: "25",
+        finalValue: "1",
+      },
     },
-  },
-  {
-    slug: "long-term-investors",
-    label: "Dividend income calculator for long term investors",
-    prefill: {
-      principal: "120",
-      finalValue: "6",
+    {
+      slug: "high-dividend-yield-example",
+      label: "High dividend yield example",
+      seoTitle: "High Dividend Yield Example",
+      seoDescription:
+        "Use this example to understand how high dividend yields are calculated and why they should be interpreted carefully.",
+      intro:
+        "A high dividend yield can look attractive, but it may also reflect a falling share price or market concern about dividend sustainability.",
+      prefill: {
+        principal: "40",
+        finalValue: "4",
+      },
     },
-  },
-],
+  ],
 },
 {
   slug: "break-even-calculator",

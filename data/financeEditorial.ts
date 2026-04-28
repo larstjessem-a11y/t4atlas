@@ -131,4 +131,41 @@ export const financeEditorialPages: FinanceEditorialPage[] = [
     href: "/tools/finance/ynab-vs-mint",
     topics: ["budgeting"],
   },
+// DIVIDEND CLUSTER
+
+{
+  slug: "what-is-a-good-dividend-yield",
+  title: "What Is a Good Dividend Yield?",
+  type: "best",
+  href: "/tools/finance/what-is-a-good-dividend-yield",
+  topics: ["investing"],
+},
+{
+  slug: "dividend-yield-vs-dividend-rate",
+  title: "Dividend Yield vs Dividend Rate",
+  type: "comparison",
+  href: "/tools/finance/dividend-yield-vs-dividend-rate",
+  topics: ["investing"],
+},
+{
+  slug: "dividend-yield-vs-total-return",
+  title: "Dividend Yield vs Total Return",
+  type: "comparison",
+  href: "/tools/finance/dividend-yield-vs-total-return",
+  topics: ["investing"],
+},
+{
+  slug: "high-dividend-yield-stocks-risk",
+  title: "High Dividend Yield Stocks: Risks Explained",
+  type: "best",
+  href: "/tools/finance/high-dividend-yield-stocks-risk",
+  topics: ["investing"],
+},
+{
+  slug: "dividend-yield-examples",
+  title: "Dividend Yield Examples (Real Scenarios)",
+  type: "best",
+  href: "/tools/finance/dividend-yield-examples",
+  topics: ["investing"],
+},
 ];

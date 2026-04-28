@@ -2,16 +2,15 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "How to Calculate Dividend Yield | T4 Atlas",
-  description:
-    "Learn how to calculate dividend yield, compare dividend-paying stocks, and use our dividend yield calculator for different investing scenarios.",
+ title: "Dividend Yield Formula (With Examples + Calculator)",
+description:
+  "Learn the dividend yield formula, see simple examples, and calculate yield instantly using the calculator.",
   keywords: [
     "how to calculate dividend yield",
+    "dividend yield formula",
     "dividend yield calculator",
-    "dividend investing guide",
-    "high dividend yield stocks",
-    "dividend income investing",
     "stock dividend yield",
+    "dividend investing guide",
   ],
 };
 
@@ -49,6 +48,20 @@ export default function DividendYieldGuidePage() {
             alongside other investing metrics.
           </p>
         </div>
+
+<section className="mb-6 rounded-3xl border bg-white p-5 shadow-sm">
+  <h2 className="text-xl font-semibold">Calculate dividend yield instantly</h2>
+  <p className="mt-3 text-gray-600">
+    Use the calculator if you already know the annual dividend per share and
+    current share price.
+  </p>
+  <Link
+    href="/tools/finance/dividend-yield-calculator"
+    className="mt-4 inline-flex rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+  >
+    Open Dividend Yield Calculator
+  </Link>
+</section>
 
         <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
           Ad slot (top)
@@ -174,17 +187,17 @@ export default function DividendYieldGuidePage() {
               </Link>
 
               <Link
-                href="/tools/finance/dividend-yield-calculator?scenario=income-stocks"
+                href="/tools/finance/dividend-yield-calculator?scenario=100-dollar-stock-3-dollar-dividend"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
               >
-                Income Stock Scenario
+                $100 Stock / $3 Dividend
               </Link>
 
               <Link
-                href="/tools/finance/dividend-yield-calculator?scenario=high-vs-low-yield"
+                href="/tools/finance/dividend-yield-calculator?scenario=high-dividend-yield-example"
                 className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
               >
-                High vs Low Yield Scenario
+                High Yield Example
               </Link>
             </div>
           </section>
