@@ -1534,4 +1534,14 @@ longTailScenarios: [
   seoDescription:
     "Free JWT decoder to inspect token headers and payloads online. Decode JWTs instantly in your browser for debugging and development.",
 },
+{
+  slug: "sleep-assessment",
+  name: "Sleep Assessment",
+  category: "sleep",
+  subcategory: "sleep-tools",
+  type: "dev",
+  description: "Answer a few questions to understand your most likely sleep problem pattern.",
+  seoTitle: "Sleep Assessment Tool – Find Your Sleep Problem Type",
+  seoDescription: "Answer simple questions about insomnia, sleep schedule, stress, and sleep apnea warning signs."
+}
 ];

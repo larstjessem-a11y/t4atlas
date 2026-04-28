@@ -4,6 +4,14 @@ import { Analytics } from "@vercel/analytics/react";
 import { hubs } from "@/data/hubs";
 import "./globals.css";
 
+const sleepHub = {
+  slug: "sleep",
+  href: "/sleep",
+  name: "Sleep",
+};
+
+const navigationHubs = [...hubs, sleepHub];
+
 export const metadata: Metadata = {
   title: "T4 Atlas",
   description:
@@ -44,7 +52,7 @@ export default function RootLayout({
                   <Link href="/tools" className="transition hover:text-gray-900">
                     Tools
                   </Link>
-                  {hubs.map((hub) => (
+                  {navigationHubs.map((hub) => (
                     <Link
                       key={hub.slug}
                       href={hub.href}
@@ -99,7 +107,7 @@ export default function RootLayout({
                     >
                       All Tools
                     </Link>
-                    {hubs.map((hub) => (
+                    {navigationHubs.map((hub) => (
                       <Link
                         key={hub.slug}
                         href={hub.href}
@@ -116,7 +124,7 @@ export default function RootLayout({
                     Featured hubs
                   </div>
                   <div className="flex flex-col gap-2 text-sm text-gray-600">
-                    {hubs.map((hub) => (
+                    {navigationHubs.map((hub) => (
                       <Link
                         key={`${hub.slug}-featured`}
                         href={hub.href}

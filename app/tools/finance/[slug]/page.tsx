@@ -1,31 +1,92 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import FinanceTemplate from "@/components/FinanceTemplate";
+import { tools } from "@/data/tools";
 import { financeEditorialPages } from "@/data/financeEditorial";
+export type FinanceEditorialType = "best" | "alternative" | "comparison";
 
+export type FinanceEditorialTopic =
+  | "credit-cards"
+  | "investing"
+  | "brokers"
+  | "banking"
+  | "saving"
+  | "budgeting"
+  | "loans"
+  | "mortgage"
+  | "side-income";
+
+export type FinanceEditorialPage = {
+  slug: string;
+  title: string;
+  type: FinanceEditorialType;
+  href: string;
+  topics: FinanceEditorialTopic[];
+  affiliateSlugs?: string[];
+};
 type PageProps = {
   params: Promise<{
     slug: string;
   }>;
+  searchParams?: Promise<{
+    scenario?: string;
+  }>;
 };
 
+const financeTools = tools.filter((tool) => tool.category === "finance");
+
 export async function generateStaticParams() {
-  return financeEditorialPages.map((page) => ({
-    slug: page.slug,
-  }));
+  return [
+    ...financeEditorialPages.map((page) => ({
+      slug: page.slug,
+    })),
+    ...financeTools.map((tool) => ({
+      slug: tool.slug,
+    })),
+  ];
 }
 
 export async function generateMetadata({
   params,
+  searchParams,
 }: PageProps): Promise<Metadata> {
   const { slug } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const scenario = resolvedSearchParams?.scenario;
+
+  const tool = financeTools.find((item) => item.slug === slug);
+
+  if (tool) {
+    const activeScenario = tool.longTailScenarios?.find(
+      (item) => item.slug === scenario
+    );
+
+    const title = activeScenario?.seoTitle
+      ? activeScenario.seoTitle
+      : activeScenario
+      ? `${activeScenario.label} | T4 Atlas`
+      : tool.seoTitle ?? `${tool.name} | T4 Atlas`;
+
+    const description = activeScenario?.seoDescription
+      ? activeScenario.seoDescription
+      : activeScenario
+      ? activeScenario.intro ??
+        `Use this ${activeScenario.label.toLowerCase()} tool on T4 Atlas to explore this specific finance scenario.`
+      : tool.seoDescription ?? tool.description ?? `Use the ${tool.name} on T4 Atlas.`;
+
+    return {
+      title,
+      description,
+    };
+  }
 
   const page = financeEditorialPages.find((item) => item.slug === slug);
 
   if (!page) {
     return {
       title: "Finance Tools | T4 Atlas",
-      description: "Explore finance comparisons, best-of pages, and alternatives.",
+      description: "Explore finance calculators, comparisons, best-of pages, and alternatives.",
     };
   }
 
@@ -35,8 +96,19 @@ export async function generateMetadata({
   };
 }
 
-export default async function FinanceDynamicPage({ params }: PageProps) {
+export default async function FinanceDynamicPage({
+  params,
+  searchParams,
+}: PageProps) {
   const { slug } = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : {};
+  const scenario = resolvedSearchParams?.scenario;
+
+  const tool = financeTools.find((item) => item.slug === slug);
+
+  if (tool) {
+    return <FinanceTemplate tool={tool} scenario={scenario} />;
+  }
 
   const page = financeEditorialPages.find((item) => item.slug === slug);
 
@@ -71,9 +143,9 @@ export default async function FinanceDynamicPage({ params }: PageProps) {
           </h1>
 
           <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
-            This page is part of the finance editorial hub and is now connected to
-            the dynamic route system. The next step is to turn these into proper
-            best-of, alternative, and comparison pages.
+            This page is part of the finance editorial hub and supports
+            comparison, best-of, alternative, and personal finance decision
+            content.
           </p>
         </div>
 
@@ -86,7 +158,7 @@ export default async function FinanceDynamicPage({ params }: PageProps) {
           <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
             <h2 className="mb-3 text-2xl font-semibold">Topics</h2>
             <div className="flex flex-wrap gap-2">
-              {page.topics.map((topic) => (
+              {page.topics.map((topic: string) => (
                 <span
                   key={topic}
                   className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600"

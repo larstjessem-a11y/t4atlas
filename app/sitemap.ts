@@ -6,6 +6,7 @@ import { weightLossCalculators } from "@/data/weightLossCalculators";
 import { weightLossScenarios } from "@/data/weightLossScenarios";
 import { weightLossLandingPages } from "@/data/weightLossLandingPages";
 import { weightLossEditorialPages } from "@/data/weightLossEditorial";
+import { sleepLandingPages } from "@/data/sleepLandingPages";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://t4atlas.com";
@@ -13,6 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages = [
     "",
     "/tools",
+    "/sleep",
     "/tools/ai",
     "/tools/finance",
     "/tools/weight-loss",
@@ -24,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
   }));
+
 
   const toolUrls = tools.map((tool) => ({
     url: `${baseUrl}/tools/${tool.category}/${tool.slug}`,
@@ -60,14 +63,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [
-    ...staticUrls,
-    ...toolUrls,
-    ...aiUrls,
-    ...financeUrls,
-    ...weightLossCalculatorUrls,
-    ...weightLossScenarioUrls,
-    ...weightLossLandingUrls,
-    ...weightLossEditorialUrls,
-  ];
+const sleepLandingUrls = sleepLandingPages.map((page) => ({
+  url: `${baseUrl}${page.href}`,
+  lastModified: new Date(),
+}));
+
+ return [
+  ...staticUrls,
+  ...toolUrls,
+  ...aiUrls,
+  ...financeUrls,
+  ...weightLossCalculatorUrls,
+  ...weightLossScenarioUrls,
+  ...weightLossLandingUrls,
+  ...weightLossEditorialUrls,
+  ...sleepLandingUrls,
+];
 }

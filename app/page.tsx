@@ -1,6 +1,31 @@
 import Link from "next/link";
 import { hubs } from "@/data/hubs";
 
+const sleepHub = {
+  slug: "sleep",
+  href: "/sleep",
+  name: "Sleep",
+  description:
+    "Sleep assessment tools, sleep guides, schedule support, insomnia patterns, and possible sleep apnea warning signs.",
+  categories: ["Sleep tools", "Guides", "Assessment"],
+  featuredLinks: [
+    {
+      name: "Sleep Assessment Tool",
+      href: "/tools/sleep/sleep-assessment",
+    },
+    {
+      name: "Why Can’t I Fall Asleep?",
+      href: "/sleep/why-cant-i-fall-asleep",
+    },
+    {
+      name: "How to Fix Your Sleep Schedule",
+      href: "/sleep/how-to-fix-sleep-schedule",
+    },
+  ],
+};
+
+const homepageHubs = [...hubs, sleepHub];
+
 export default function HomePage() {
   return (
     <main className="px-4 py-16">
@@ -30,6 +55,13 @@ export default function HomePage() {
                 </Link>
 
                 <Link
+                  href="/sleep"
+                  className="inline-flex items-center rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
+                >
+                  Explore Sleep hub
+                </Link>
+
+                <Link
                   href="/tools/ai"
                   className="inline-flex items-center rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-gray-900"
                 >
@@ -55,7 +87,7 @@ export default function HomePage() {
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                {hubs.map((hub) => (
+                {homepageHubs.map((hub) => (
                   <Link
                     key={hub.slug}
                     href={hub.href}
@@ -92,7 +124,7 @@ export default function HomePage() {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-2">
-            {hubs.map((hub) => (
+            {homepageHubs.map((hub) => (
               <div
                 key={hub.slug}
                 className="rounded-[1.75rem] border bg-white p-6 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
