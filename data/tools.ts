@@ -150,7 +150,7 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
 },
 {
   slug: "meters-to-feet",
- type: "converter",
+  type: "converter",
   name: "Meters to Feet Converter",
   category: "converters",
   subcategory: "length",
@@ -158,14 +158,16 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
   unitFrom: "meters",
   unitTo: "feet",
   formula: "1 meter = 3.28084 feet",
-  examples: [1, 5, 10, 20],
+  examples: [1, 1.7, 1.75, 1.8, 2, 5, 10, 20],
   reverseSlug: "feet-to-meters",
-  seoTitle: "Meter to Feet Converter",
-  seoDescription: "Convert Meter to Feet instantly. Fast, simple, and accurate length conversion.",
-},
-{
+  seoTitle: "Meters to Feet Converter (m to ft)",
+  seoDescription:
+    "Convert meters to feet instantly. Includes common conversions like 1.8 m to feet, 1.75 m to feet, and 2 meters to feet.",
+  description:
+    "Convert meters to feet using the standard 1 m = 3.28084 ft formula. Includes common height and distance conversions.",
+},{
   slug: "feet-to-meters",
- type: "converter",
+  type: "converter",
   name: "Feet to Meters Converter",
   category: "converters",
   subcategory: "length",
@@ -173,10 +175,13 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
   unitFrom: "feet",
   unitTo: "meters",
   formula: "1 foot = 0.3048 meters",
-  examples: [3, 6, 10, 20],
+  examples: [1, 3, 5, 6, 10, 20, 50, 100],
   reverseSlug: "meters-to-feet",
-  seoTitle: "Feet to Meter Converter",
-  seoDescription: "Convert Feet to Meter instantly. Fast, simple, and accurate length conversion.",
+  seoTitle: "Feet to Meters Converter (ft to m)",
+  seoDescription:
+    "Convert feet to meters instantly. Includes common conversions like 6 ft to meters, 10 ft to meters, and 100 ft to meters.",
+  description:
+    "Convert feet to meters using the standard 1 ft = 0.3048 m formula. Includes common height and distance conversions.",
 },
 {
   slug: "km-to-miles",
