@@ -2,19 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "What Is a Unix Timestamp? | T4 Atlas",
+  title: "Unix Timestamp Explained (With Converter) | T4 Atlas",
   description:
-    "Learn what a Unix timestamp is, how epoch time works, how to convert Unix timestamps to readable dates, and when developers use them in APIs, logs, and databases.",
-  keywords: [
-    "what is a unix timestamp",
-    "what is epoch time",
-    "unix timestamp explained",
-    "epoch timestamp meaning",
-    "unix time converter",
-    "convert unix timestamp to date",
-  ],
+    "Learn what a Unix timestamp is, how epoch time works, and convert Unix timestamps to readable dates instantly.",
 };
-
 export default function WhatIsAUnixTimestampPage() {
   return (
     <main className="py-10 px-4 md:px-6">
@@ -51,9 +42,32 @@ export default function WhatIsAUnixTimestampPage() {
           </p>
         </div>
 
+<section className="mb-6 rounded-3xl border bg-white p-5 shadow-sm">
+  <h2 className="text-xl font-semibold">Convert a Unix timestamp instantly</h2>
+  <p className="mt-3 text-gray-600">
+    Paste a Unix timestamp into the converter to see the readable UTC date,
+    ISO format, and debugging-friendly output.
+  </p>
+  <Link
+    href="/tools/development/unix-timestamp-converter"
+    className="mt-4 inline-flex rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+  >
+    Open Unix Timestamp Converter
+  </Link>
+</section>
+
         <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
           Ad slot (top)
         </div>
+
+<section className="mb-6 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+  <h2 className="mb-3 text-2xl font-semibold">Short answer</h2>
+  <p className="leading-7 text-gray-600">
+    A Unix timestamp is the number of seconds, or sometimes milliseconds, since
+    January 1, 1970 at 00:00:00 UTC. Developers use it because it is compact,
+    easy to compare, and independent of local date formatting.
+  </p>
+</section>
 
         <div className="grid gap-6">
           <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">

@@ -1570,12 +1570,12 @@ longTailScenarios: [
   type: "dev",
   devToolType: "url-encoder",
   description:
-    "Encode text for safe use in URLs, query strings, and technical workflows.",
+    "Encode text into URL-safe format for query parameters, links, APIs, and debugging workflows. Converts spaces and special characters into percent-encoded values.",
   seoIntro:
-    "Use this URL encoder to convert text into URL-safe encoded format for query parameters, links, APIs, and browser-based debugging.",
-  seoTitle: "URL Encoder | Encode URL Components Online",
+    "Use this URL encoder to convert text into URL-safe format. Instantly encode query parameters, spaces, and special characters for APIs, links, and debugging.",
+  seoTitle: "URL Encoder (Encode URL Online)",
   seoDescription:
-    "Free URL encoder to encode text and query parameters online. Convert strings into URL-safe format instantly in your browser.",
+    "Encode URLs and query parameters instantly. Convert spaces and special characters into URL-safe format with this free online URL encoder.",
 },
 {
   slug: "url-decoder",
