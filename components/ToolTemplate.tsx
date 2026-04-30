@@ -101,12 +101,31 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
             {tool.description || "Simple conversion tool."}
           </p>
 
-          <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
-            <div className="text-sm text-gray-500">Quick conversion</div>
-            <div className="mt-2 text-2xl font-semibold text-gray-900">
-              1 {unitFrom} = {factor.toFixed(4)} {unitTo}
-            </div>
-          </div>
+   {tool.subcategory === "temperature" ? (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">
+      Common temperature conversions
+    </div>
+
+    <div className="mt-3 grid grid-cols-2 gap-2 text-sm md:text-base">
+      <div>32°F = 0°C</div>
+      <div>50°F = 10°C</div>
+      <div>68°F = 20°C</div>
+      <div>77°F = 25°C</div>
+      <div>86°F = 30°C</div>
+      <div>98.6°F = 37°C</div>
+      <div>100°F = 37.8°C</div>
+      <div>212°F = 100°C</div>
+    </div>
+  </div>
+) : (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">Quick conversion</div>
+    <div className="mt-2 text-2xl font-semibold text-gray-900">
+      1 {unitFrom} = {factor.toFixed(4)} {unitTo}
+    </div>
+  </div>
+)}
         </section>
 
         <div className="grid gap-6 lg:grid-cols-[minmax(0,2fr),360px]">
