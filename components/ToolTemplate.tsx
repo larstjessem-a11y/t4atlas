@@ -101,23 +101,71 @@ export default function ToolTemplate({ tool }: { tool?: Tool }) {
             {tool.description || "Simple conversion tool."}
           </p>
 
-   {tool.subcategory === "temperature" ? (
+{tool.slug === "fahrenheit-to-celsius" ? (
   <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
-    <div className="text-sm text-gray-500">
-      Common temperature conversions
+    <div className="text-sm text-gray-500">Quick answer</div>
+
+    <div className="mt-2 text-xl font-semibold text-gray-900">
+      32°F = 0°C
     </div>
 
-    <div className="mt-3 grid grid-cols-2 gap-2 text-sm md:text-base">
-      <div>32°F = 0°C</div>
-      <div>50°F = 10°C</div>
-      <div>68°F = 20°C</div>
-      <div>77°F = 25°C</div>
-      <div>86°F = 30°C</div>
-      <div>98.6°F = 37°C</div>
-      <div>100°F = 37.8°C</div>
-      <div>212°F = 100°C</div>
+    <div className="mt-1 text-sm text-gray-600">
+      68°F = 20°C • 77°F = 25°C • 86°F = 30°C
     </div>
   </div>
+
+) : tool.slug === "feet-to-meters" ? (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">Quick answer</div>
+
+    <div className="mt-2 text-xl font-semibold text-gray-900">
+      6 ft = 1.83 m
+    </div>
+
+    <div className="mt-1 text-sm text-gray-600">
+      5 ft = 1.52 m • 10 ft = 3.05 m • 100 ft = 30.48 m
+    </div>
+  </div>
+
+) : tool.slug === "meters-to-feet" ? (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">Quick answer</div>
+
+    <div className="mt-2 text-xl font-semibold text-gray-900">
+      1.8 m = 5.91 ft
+    </div>
+
+    <div className="mt-1 text-sm text-gray-600">
+      1.75 m = 5.74 ft • 2 m = 6.56 ft • 10 m = 32.81 ft
+    </div>
+  </div>
+
+) : tool.slug === "inches-to-cm" ? (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">Quick answer</div>
+
+    <div className="mt-2 text-xl font-semibold text-gray-900">
+      1 inch = 2.54 cm
+    </div>
+
+    <div className="mt-1 text-sm text-gray-600">
+      10 inches = 25.4 cm • 12 inches = 30.48 cm • 20 inches = 50.8 cm
+    </div>
+  </div>
+
+) : tool.slug === "cm-to-inches" ? (
+  <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
+    <div className="text-sm text-gray-500">Quick answer</div>
+
+    <div className="mt-2 text-xl font-semibold text-gray-900">
+      1 cm = 0.39 inches
+    </div>
+
+    <div className="mt-1 text-sm text-gray-600">
+      10 cm = 3.94 in • 20 cm = 7.87 in • 30 cm = 11.81 in
+    </div>
+  </div>
+
 ) : (
   <div className="mt-5 rounded-2xl border bg-gray-50 p-4 text-center">
     <div className="text-sm text-gray-500">Quick conversion</div>

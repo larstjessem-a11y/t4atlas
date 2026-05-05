@@ -69,10 +69,10 @@ export const tools: Tool[] = [
     unitFrom: "cm",
     unitTo: "inches",
     formula: "1 cm = 0.3937 inches",
-    examples: [150, 160, 170, 180],
+    examples: [1, 5, 10, 20, 30, 50, 100],
     reverseSlug: "inches-to-cm",
-    seoTitle: "Centimeter to Inches (CM -> Inches) Converter",
-    seoDescription: "Convert Centimeter to Inches instantly. Fast, simple, and accurate length conversion.",
+    seoTitle: "CM to Inches (cm to in)",
+    seoDescription:  "Convert cm to inches instantly. Includes common conversions like 10 cm to inches, 20 cm to inches, and more.",
   },
   {
     slug: "inches-to-cm",
@@ -84,10 +84,10 @@ export const tools: Tool[] = [
     unitFrom: "inches",
     unitTo: "cm",
     formula: "1 inch = 2.54 cm",
-    examples: [10, 20, 30, 40],
+    examples: [1, 5, 10, 12, 20, 24, 30, 40],
     reverseSlug: "cm-to-inches",
-    seoTitle: "Inches to Centimeter (Inches -> CM) Converter",
-    seoDescription: "Convert Inches to Centimeter instantly. Fast, simple, and accurate length conversion.",
+    seoTitle: "Inches to CM (in to cm)",
+    seoDescription: "Convert inches to centimeters instantly. Includes common conversions like 10 inches to cm, 12 inches to cm, and more.",
   },
   {
     slug: "kg-to-lbs",
@@ -142,9 +142,9 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
   formula: "°C = (°F - 32) × 5/9",
   examples: [32, 50, 68, 86, 98.6, 100, 212],
   reverseSlug: "celsius-to-fahrenheit",
-  seoTitle: "Fahrenheit to Celsius Converter (°F to °C)",
+  seoTitle: "Fahrenheit to Celsius (°F to °C)",
   seoDescription:
-    "Convert Fahrenheit to Celsius instantly. Includes formula, common examples like 32°F, 68°F, 98.6°F and 212°F, plus reverse conversion.",
+  "Convert Fahrenheit to Celsius instantly. Includes common values like 32°F to °C, 68°F to °C, and more.",
   description:
     "Convert Fahrenheit to Celsius instantly using the standard °C = (°F - 32) × 5/9 formula. Includes common temperature examples and reverse conversion.",
 },
@@ -162,7 +162,7 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
   reverseSlug: "feet-to-meters",
   seoTitle: "Meters to Feet Converter (m to ft)",
   seoDescription:
-    "Convert meters to feet instantly. Includes common conversions like 1.8 m to feet, 1.75 m to feet, and 2 meters to feet.",
+    "Convert meters to feet instantly. Includes common conversions like 1.8 m to feet, 1.75 m to feet, and more.",
   description:
     "Convert meters to feet using the standard 1 m = 3.28084 ft formula. Includes common height and distance conversions.",
 },{
@@ -176,10 +176,10 @@ seoDescription:"Convert Celsius to Fahrenheit instantly. Fast, simple, and accur
   unitTo: "meters",
   formula: "1 foot = 0.3048 meters",
   examples: [1, 3, 5, 6, 10, 20, 50, 100],
-  reverseSlug: "meters-to-feet",
+  reverseSlug: "Feet to Meters (ft to m)",
   seoTitle: "Feet to Meters Converter (ft to m)",
   seoDescription:
-    "Convert feet to meters instantly. Includes common conversions like 6 ft to meters, 10 ft to meters, and 100 ft to meters.",
+      "Convert feet to meters instantly. Includes common conversions like 6 ft to meters, 10 ft to meters, and more.",
   description:
     "Convert feet to meters using the standard 1 ft = 0.3048 m formula. Includes common height and distance conversions.",
 },
