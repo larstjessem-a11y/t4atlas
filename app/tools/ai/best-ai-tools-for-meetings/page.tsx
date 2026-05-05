@@ -2,23 +2,43 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Best AI Tools for Meetings | T4 Atlas",
+  title: "Best AI Meeting Tools (Compared by Use Case)",
   description:
-    "Compare the best AI tools for meetings, including tools for transcription, summaries, action items, and meeting productivity workflows.",
-  keywords: [
-    "best ai tools for meetings",
-    "ai meeting tools",
-    "best ai meeting assistant",
-    "ai note taker for meetings",
-    "best ai tools for meeting notes",
-  ],
+    "Compare the best AI meeting tools for transcription, summaries, action items, team workflows, sales calls, and searchable meeting notes.",
 };
+
+const meetingTools = [
+  {
+    name: "Otter",
+    bestFor: "Best all-round AI meeting assistant",
+    strength: "Transcription, summaries, action items, and searchable notes",
+    weakness: "Can feel broader than needed for simple meeting recap workflows",
+  },
+  {
+    name: "Fireflies",
+    bestFor: "Best for team meeting workflows",
+    strength: "Team collaboration, searchable meeting history, and integrations",
+    weakness: "Can feel workflow-heavy for solo users",
+  },
+  {
+    name: "Fathom",
+    bestFor: "Best for fast meeting summaries",
+    strength: "Quick recaps, highlights, and follow-up action items",
+    weakness: "More focused than full knowledge management tools",
+  },
+  {
+    name: "Notta",
+    bestFor: "Best for transcription-first workflows",
+    strength: "Clean transcripts, multilingual notes, and meeting summaries",
+    weakness: "Less dominant brand awareness than some alternatives",
+  },
+];
 
 export default function BestAiToolsForMeetingsPage() {
   return (
     <main className="py-10 px-4 md:px-6">
       <div className="mx-auto max-w-5xl">
-        <div className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
+        <section className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
           <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
             <Link href="/tools" className="hover:text-gray-900">
               Tools
@@ -31,166 +51,200 @@ export default function BestAiToolsForMeetingsPage() {
             <span>Best AI Tools for Meetings</span>
           </div>
 
-          <div className="mb-3">
-            <span className="inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
-              AI comparison
-            </span>
-          </div>
+          <span className="mb-3 inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
+            AI meeting tools
+          </span>
 
           <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-            Best AI Tools for Meetings
+            Best AI Meeting Tools
           </h1>
 
           <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
-            AI meeting tools can transcribe calls, summarize discussions, extract
-            action items, and make meetings easier to search later. The best tool
-            depends on whether you care most about live notes, team workflows,
-            post-meeting summaries, or broader knowledge capture.
+            The best AI meeting tool depends on your workflow. Otter is a strong
+            all-rounder, Fireflies works well for teams, Fathom is excellent for
+            fast recaps, and Notta is useful when clean transcription is the main
+            priority.
           </p>
-        </div>
+
+          <div className="mt-6 flex flex-wrap gap-3">
+            <a
+              href="#comparison"
+              className="rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
+            >
+              Compare tools
+            </a>
+            <a
+              href="#decision-guide"
+              className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
+            >
+              Choose by use case
+            </a>
+          </div>
+        </section>
 
         <div className="mb-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
           Ad slot (top)
         </div>
 
-        <div className="grid gap-6">
-          <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-4 text-2xl font-semibold">
-              Top AI meeting tools
-            </h2>
+        <section className="mb-6 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-3 text-2xl font-semibold">Short answer</h2>
+          <p className="leading-7 text-gray-600">
+            Choose Otter if you want a broad AI meeting assistant, Fireflies if
+            your team needs collaboration and searchable meeting history, Fathom
+            if you mainly want fast summaries, and Notta if transcription quality
+            is your primary need.
+          </p>
+        </section>
 
-            <div className="overflow-x-auto">
-              <table className="w-full overflow-hidden rounded-2xl border text-sm">
-                <thead className="bg-gray-50">
-                  <tr>
-                    <th className="p-3 text-left">Tool</th>
-                    <th className="p-3 text-left">Best for</th>
-                    <th className="p-3 text-left">Strength</th>
-                    <th className="p-3 text-left">Weakness</th>
+        <section
+          id="comparison"
+          className="rounded-3xl border bg-white p-6 shadow-sm md:p-8"
+        >
+          <h2 className="mb-4 text-2xl font-semibold">
+            AI meeting tools compared
+          </h2>
+
+          <div className="overflow-x-auto">
+            <table className="w-full overflow-hidden rounded-2xl border text-sm">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th className="p-3 text-left">Tool</th>
+                  <th className="p-3 text-left">Best for</th>
+                  <th className="p-3 text-left">Strength</th>
+                  <th className="p-3 text-left">Weakness</th>
+                </tr>
+              </thead>
+              <tbody>
+                {meetingTools.map((tool) => (
+                  <tr key={tool.name} className="border-t">
+                    <td className="p-3 font-medium">{tool.name}</td>
+                    <td className="p-3">{tool.bestFor}</td>
+                    <td className="p-3">{tool.strength}</td>
+                    <td className="p-3">{tool.weakness}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr className="border-t">
-                    <td className="p-3 font-medium">Otter</td>
-                    <td className="p-3">All-round meeting capture</td>
-                    <td className="p-3">Transcription, summaries, action items</td>
-                    <td className="p-3">Can feel broad if you want something simpler</td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="p-3 font-medium">Fireflies</td>
-                    <td className="p-3">Team meeting workflows</td>
-                    <td className="p-3">Strong summaries and collaboration features</td>
-                    <td className="p-3">Can feel more workflow-heavy</td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="p-3 font-medium">Fathom</td>
-                    <td className="p-3">Fast post-meeting recaps</td>
-                    <td className="p-3">Instant summaries and action items</td>
-                    <td className="p-3">More focused than broad workspace tools</td>
-                  </tr>
-                  <tr className="border-t">
-                    <td className="p-3 font-medium">Notta</td>
-                    <td className="p-3">Transcription and meeting notes</td>
-                    <td className="p-3">Notes, summaries, and action plans</td>
-                    <td className="p-3">Less top-of-mind than some larger brands</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </section>
-
-          <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-4 text-2xl font-semibold">Best picks by use case</h2>
-
-            <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                  Best all-rounder
-                </h3>
-                <p className="text-gray-600">
-                  Otter is a strong default choice if you want one tool that
-                  handles transcription, summaries, and follow-up across common
-                  meeting workflows.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                  Best for team workflows
-                </h3>
-                <p className="text-gray-600">
-                  Fireflies makes sense if you want collaborative notes, meeting
-                  summaries, and a more workflow-oriented approach for teams.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                  Best for fast summaries
-                </h3>
-                <p className="text-gray-600">
-                  Fathom is especially good when your main goal is quick
-                  summaries and action items right after a meeting ends.
-                </p>
-              </div>
-
-              <div className="rounded-2xl bg-gray-50 p-5">
-                <h3 className="mb-2 text-lg font-semibold text-gray-900">
-                  Best for transcription-first workflows
-                </h3>
-                <p className="text-gray-600">
-                  Notta fits well if you care most about getting clean
-                  transcripts, summaries, and usable notes from meetings or recordings.
-                </p>
-              </div>
-            </div>
-          </section>
-
-          <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-            Ad slot (middle)
+                ))}
+              </tbody>
+            </table>
           </div>
+        </section>
 
-          <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-3 text-2xl font-semibold">How to choose</h2>
+        <section
+          id="decision-guide"
+          className="mt-6 rounded-3xl border bg-white p-6 shadow-sm md:p-8"
+        >
+          <h2 className="mb-4 text-2xl font-semibold">
+            Best AI meeting tool for your use case
+          </h2>
 
-            <ul className="list-disc space-y-2 pl-5 text-gray-600">
-              <li>Choose Otter if you want a broad meeting assistant.</li>
-              <li>Choose Fireflies if you want stronger team collaboration features.</li>
-              <li>Choose Fathom if speed and recap quality matter most.</li>
-              <li>Choose Notta if transcription and structured notes are the priority.</li>
-            </ul>
-          </section>
-
-          <section className="rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
-            <h2 className="mb-3 text-2xl font-semibold">Related AI pages</h2>
-
-            <div className="flex flex-wrap gap-3">
-              <Link
-                href="/tools/ai/best-ai-tools-for-productivity"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Productivity
-              </Link>
-
-              <Link
-                href="/tools/ai/best-ai-tools-for-research"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Best AI Tools for Research
-              </Link>
-
-              <Link
-                href="/tools/ai/alternatives-to-chatgpt"
-                className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-              >
-                Alternatives to ChatGPT
-              </Link>
+          <div className="grid gap-3 md:grid-cols-2">
+            <div className="rounded-2xl border bg-gray-50 p-4">
+              <h3 className="font-semibold">Recurring team meetings</h3>
+              <p className="mt-2 text-sm text-gray-600">
+                Fireflies is usually the better fit if meeting history, team
+                workflows, and collaboration matter.
+              </p>
             </div>
-          </section>
 
-          <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
-            Ad slot (bottom)
+            <div className="rounded-2xl border bg-gray-50 p-4">
+              <h3 className="font-semibold">Fast meeting recaps</h3>
+              <p className="mt-2 text-sm text-gray-600">
+                Fathom is a strong choice when you mainly want highlights,
+                summaries, and follow-up items quickly.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-gray-50 p-4">
+              <h3 className="font-semibold">General meeting notes</h3>
+              <p className="mt-2 text-sm text-gray-600">
+                Otter is a good default if you want transcription, summaries,
+                action items, and searchable notes in one tool.
+              </p>
+            </div>
+
+            <div className="rounded-2xl border bg-gray-50 p-4">
+              <h3 className="font-semibold">Transcription-first workflows</h3>
+              <p className="mt-2 text-sm text-gray-600">
+                Notta is worth considering if transcript quality and structured
+                meeting notes are more important than a full team workflow.
+              </p>
+            </div>
           </div>
+        </section>
+
+        <div className="my-6 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+          Ad slot (middle)
+        </div>
+
+        <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-3 text-2xl font-semibold">
+            What to compare before choosing
+          </h2>
+
+          <div className="grid gap-4 md:grid-cols-2">
+            {[
+              "Transcription accuracy",
+              "Meeting summaries",
+              "Action item extraction",
+              "Calendar and video-call integrations",
+              "Team collaboration features",
+              "Searchable meeting history",
+            ].map((item) => (
+              <div key={item} className="rounded-2xl border bg-gray-50 p-4">
+                <p className="text-sm font-medium text-gray-800">{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-6 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-3 text-2xl font-semibold">
+            Common mistakes when choosing AI meeting tools
+          </h2>
+
+          <ul className="list-disc space-y-2 pl-5 text-gray-600">
+            <li>Choosing a tool without checking video-call integrations.</li>
+            <li>Paying for team features when you only need personal notes.</li>
+            <li>Ignoring privacy and meeting consent requirements.</li>
+            <li>Choosing transcription when you actually need action tracking.</li>
+          </ul>
+        </section>
+
+        <section className="mt-6 rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8">
+          <h2 className="mb-3 text-2xl font-semibold">Related AI pages</h2>
+
+          <div className="flex flex-wrap gap-3">
+            <Link
+              href="/tools/ai/best-ai-tools-for-productivity"
+              className="inline-flex rounded-2xl border bg-white px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+            >
+              Best AI Tools for Productivity
+            </Link>
+
+            <Link
+              href="/tools/ai/best-ai-tools-for-writing"
+              className="inline-flex rounded-2xl border bg-white px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+            >
+              Best AI Writing Tools
+            </Link>
+
+            <Link
+              href="/tools/ai/best-ai-tools-for-research"
+              className="inline-flex rounded-2xl border bg-white px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+            >
+              Best AI Tools for Research
+            </Link>
+
+            <Link
+              href="/tools/ai/alternatives-to-chatgpt"
+              className="inline-flex rounded-2xl border bg-white px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
+            >
+              Alternatives to ChatGPT
+            </Link>
+          </div>
+        </section>
+
+        <div className="my-8 rounded-2xl border border-dashed p-4 text-center text-xs text-gray-400">
+          Ad slot (bottom)
         </div>
       </div>
     </main>
