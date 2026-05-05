@@ -37,21 +37,21 @@ export const weightLossScenarios: WeightLossScenario[] = [
   dailyDeficit: "500",
 },
   },
-  {
-    slug: "how-long-to-lose-10-kg",
-    calculatorSlug: "weight-loss-timeline-calculator",
-    title: "How Long to Lose 10 kg",
-    seoTitle: "How Long Does It Take to Lose 10 kg? | Weight Loss Timeline Calculator",
-    seoDescription:
-      "Estimate how long it may take to lose 10 kg based on calorie deficit and target pace.",
-    intro:
-      "Use this scenario to estimate how long it may take to lose 10 kg based on your expected weekly rate of weight loss.",
-    prefill: {
-  currentWeight: "90",
-  targetWeight: "80",
-  dailyDeficit: "500",
-},
+ {
+  slug: "how-long-to-lose-10-kg",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 10 kg",
+  seoTitle: "How Long Does It Take to Lose 10 kg? Realistic Timeline Calculator",
+  seoDescription:
+    "Estimate how long it may take to lose 10 kg with a realistic calorie deficit, weekly weight loss pace, and timeline calculator.",
+  intro:
+    "Losing 10 kg usually takes several months, depending on your starting weight, calorie deficit, activity level, and how aggressive your target pace is. This calculator scenario estimates a realistic timeline using a 10 kg target weight loss and a default 500 kcal daily deficit.",
+  prefill: {
+    currentWeight: "90",
+    targetWeight: "80",
+    dailyDeficit: "500",
   },
+},
   {
     slug: "how-long-to-lose-15-kg",
     calculatorSlug: "weight-loss-timeline-calculator",
@@ -67,6 +67,21 @@ export const weightLossScenarios: WeightLossScenario[] = [
   dailyDeficit: "500",
 },
   },
+{
+  slug: "how-long-to-lose-20-kg",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 20 kg",
+  seoTitle: "How Long Does It Take to Lose 20 kg? Realistic Timeline",
+  seoDescription:
+    "Estimate how long it takes to lose 20 kg based on calorie deficit, weekly weight loss rate, and realistic expectations.",
+  intro:
+    "Losing 20 kg is a long-term weight loss goal that often takes several months to over a year depending on your calorie deficit, starting weight, and consistency. This scenario helps estimate a realistic timeline using a moderate daily deficit.",
+  prefill: {
+    currentWeight: "100",
+    targetWeight: "80",
+    dailyDeficit: "500",
+  },
+},
   {
     slug: "calorie-deficit-to-lose-0-5-kg-per-week",
     calculatorSlug: "calorie-deficit-calculator",
