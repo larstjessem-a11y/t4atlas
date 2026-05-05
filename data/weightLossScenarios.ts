@@ -82,6 +82,21 @@ export const weightLossScenarios: WeightLossScenario[] = [
     dailyDeficit: "500",
   },
 },
+{
+  slug: "how-much-weight-can-you-lose-in-a-month",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Much Weight Can You Lose in a Month",
+  seoTitle: "How Much Weight Can You Lose in a Month? Realistic Estimates",
+  seoDescription:
+    "Estimate how much weight you can realistically lose in a month based on calorie deficit, activity level, and sustainable weight loss rates.",
+  intro:
+    "Most people can realistically lose between 2 to 4 kg per month depending on their calorie deficit, starting weight, and consistency. This scenario helps estimate your expected monthly weight loss based on a daily calorie deficit.",
+  prefill: {
+    currentWeight: "90",
+    targetWeight: "86",
+    dailyDeficit: "500",
+  },
+},
   {
     slug: "calorie-deficit-to-lose-0-5-kg-per-week",
     calculatorSlug: "calorie-deficit-calculator",
