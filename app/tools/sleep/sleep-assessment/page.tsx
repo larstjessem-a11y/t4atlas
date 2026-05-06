@@ -74,7 +74,7 @@ export default function SleepAssessmentPage() {
           </a>
 
           <a
-            href="/tools/sleep/sleep-apnea-symptoms-test"
+            href="/sleep/sleep-apnea-symptoms-test"
             className="rounded-xl border p-4 hover:bg-gray-50"
           >
             <h3 className="font-semibold">Sleep Apnea Symptoms Test</h3>
