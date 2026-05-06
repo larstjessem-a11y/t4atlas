@@ -46,6 +46,14 @@ const baseAiEditorialPages: AiEditorialPage[] = [
     topics: ["writing", "chatgpt", "claude"],
     affiliateSlugs: ["chatgpt", "claude"],
   },
+{
+  slug: "best-ai-workspace-tools",
+  title: "Best AI Workspace Tools",
+  type: "best",
+  href: "/tools/ai/best-ai-workspace-tools",
+  topics: ["productivity", "meetings", "writing", "research"],
+  affiliateSlugs: ["chatgpt", "claude", "notion-ai", "perplexity"],
+},
   {
     slug: "best-ai-tools-for-coding",
     title: "Best AI Tools for Coding",
