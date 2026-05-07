@@ -2,6 +2,11 @@
 
 import { useMemo, useState } from "react";
 
+type WeightLossBmiCalculatorProps = {
+  initialHeightCm?: string;
+  initialWeightKg?: string;
+};
+
 function getBmiCategory(bmi: number) {
   if (bmi < 18.5) return "Underweight";
   if (bmi < 25) return "Normal weight";
@@ -9,9 +14,12 @@ function getBmiCategory(bmi: number) {
   return "Obesity";
 }
 
-export default function WeightLossBmiCalculator() {
-  const [heightCm, setHeightCm] = useState("");
-  const [weightKg, setWeightKg] = useState("");
+export default function WeightLossBmiCalculator({
+  initialHeightCm = "",
+  initialWeightKg = "",
+}: WeightLossBmiCalculatorProps) {
+  const [heightCm, setHeightCm] = useState(initialHeightCm);
+  const [weightKg, setWeightKg] = useState(initialWeightKg);
 
   const bmiResult = useMemo(() => {
     const h = parseFloat(heightCm);
@@ -22,6 +30,7 @@ export default function WeightLossBmiCalculator() {
     }
 
     const bmi = w / Math.pow(h / 100, 2);
+
     return {
       bmi,
       category: getBmiCategory(bmi),

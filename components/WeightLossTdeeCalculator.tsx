@@ -9,6 +9,14 @@ type ActivityLevel =
   | "active"
   | "very-active";
 
+type WeightLossTdeeCalculatorProps = {
+  initialSex?: "male" | "female";
+  initialAge?: string;
+  initialHeightCm?: string;
+  initialWeightKg?: string;
+  initialActivityLevel?: ActivityLevel;
+};
+
 const activityMultipliers: Record<ActivityLevel, number> = {
   sedentary: 1.2,
   light: 1.375,
@@ -17,13 +25,19 @@ const activityMultipliers: Record<ActivityLevel, number> = {
   "very-active": 1.9,
 };
 
-export default function WeightLossTdeeCalculator() {
-  const [sex, setSex] = useState<"male" | "female">("male");
-  const [age, setAge] = useState("");
-  const [heightCm, setHeightCm] = useState("");
-  const [weightKg, setWeightKg] = useState("");
+export default function WeightLossTdeeCalculator({
+  initialSex = "male",
+  initialAge = "",
+  initialHeightCm = "",
+  initialWeightKg = "",
+  initialActivityLevel = "moderate",
+}: WeightLossTdeeCalculatorProps) {
+  const [sex, setSex] = useState<"male" | "female">(initialSex);
+  const [age, setAge] = useState(initialAge);
+  const [heightCm, setHeightCm] = useState(initialHeightCm);
+  const [weightKg, setWeightKg] = useState(initialWeightKg);
   const [activityLevel, setActivityLevel] =
-    useState<ActivityLevel>("moderate");
+    useState<ActivityLevel>(initialActivityLevel);
 
   const result = useMemo(() => {
     const a = parseFloat(age);

@@ -124,7 +124,7 @@ export default async function WeightLossDynamicPage({ params }: PageProps) {
           </div>
 
           <div className="grid gap-6">
-          {parentCalculator?.type === "timeline" ? (
+{parentCalculator?.type === "timeline" ? (
   <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
     <h2 className="mb-3 text-2xl font-semibold">Scenario calculator</h2>
     <WeightLossTimelineCalculator
@@ -143,6 +143,25 @@ export default async function WeightLossDynamicPage({ params }: PageProps) {
       initialWeightKg={scenario.prefill?.weightKg}
       initialActivityLevel={scenario.prefill?.activityLevel}
       initialWeeklyLossKg={scenario.prefill?.weeklyLossKg}
+    />
+  </section>
+) : parentCalculator?.type === "tdee" ? (
+  <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
+    <h2 className="mb-3 text-2xl font-semibold">Scenario calculator</h2>
+    <WeightLossTdeeCalculator
+      initialSex={scenario.prefill?.sex}
+      initialAge={scenario.prefill?.age}
+      initialHeightCm={scenario.prefill?.heightCm}
+      initialWeightKg={scenario.prefill?.weightKg}
+      initialActivityLevel={scenario.prefill?.activityLevel}
+    />
+  </section>
+) : parentCalculator?.type === "bmi" ? (
+  <section className="rounded-[1.75rem] border bg-white p-6 shadow-sm md:p-8">
+    <h2 className="mb-3 text-2xl font-semibold">Scenario calculator</h2>
+    <WeightLossBmiCalculator
+      initialHeightCm={scenario.prefill?.heightCm}
+      initialWeightKg={scenario.prefill?.weightKg}
     />
   </section>
 ) : (
