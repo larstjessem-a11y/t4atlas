@@ -229,4 +229,71 @@ export const weightLossScenarios: WeightLossScenario[] = [
       weightKg: "90",
     },
   },
+{
+  slug: "how-long-to-lose-10-pounds",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 10 Pounds",
+  seoTitle:
+    "How Long Does It Take to Lose 10 Pounds? | Weight Loss Timeline Calculator",
+  seoDescription:
+    "Estimate how long it may take to lose 10 pounds based on calorie deficit and target pace.",
+  intro:
+    "Use this scenario to estimate how long it may take to lose 10 pounds depending on calorie deficit and expected weekly weight loss.",
+  prefill: {
+    currentWeight: "180",
+    targetWeight: "170",
+    dailyDeficit: "500",
+  },
+},
+
+{
+  slug: "how-long-to-lose-20-pounds",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 20 Pounds",
+  seoTitle:
+    "How Long Does It Take to Lose 20 Pounds? | Weight Loss Timeline Calculator",
+  seoDescription:
+    "Estimate how long it may take to lose 20 pounds using different calorie deficit strategies.",
+  intro:
+    "Use this scenario to estimate how long a 20 pound weight loss journey may take at different calorie deficit levels.",
+  prefill: {
+    currentWeight: "220",
+    targetWeight: "200",
+    dailyDeficit: "500",
+  },
+},
+
+{
+  slug: "how-long-to-lose-30-pounds",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 30 Pounds",
+  seoTitle:
+    "How Long Does It Take to Lose 30 Pounds? | Weight Loss Timeline Calculator",
+  seoDescription:
+    "Estimate how long it may take to lose 30 pounds based on calorie deficit and expected pace.",
+  intro:
+    "Use this scenario to estimate how long it may take to lose 30 pounds while following a consistent calorie deficit.",
+  prefill: {
+    currentWeight: "230",
+    targetWeight: "200",
+    dailyDeficit: "500",
+  },
+},
+
+{
+  slug: "how-long-to-lose-50-pounds",
+  calculatorSlug: "weight-loss-timeline-calculator",
+  title: "How Long to Lose 50 Pounds",
+  seoTitle:
+    "How Long Does It Take to Lose 50 Pounds? | Weight Loss Timeline Calculator",
+  seoDescription:
+    "Estimate how long it may take to lose 50 pounds with different calorie deficit approaches.",
+  intro:
+    "Use this scenario to estimate a realistic timeline for losing 50 pounds using sustainable calorie deficit strategies.",
+  prefill: {
+    currentWeight: "250",
+    targetWeight: "200",
+    dailyDeficit: "500",
+  },
+},
 ];
