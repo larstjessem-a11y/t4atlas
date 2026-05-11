@@ -101,6 +101,51 @@ export default function AiHubPage() {
           Ad slot (top)
         </div>
 
+<section className="mb-8 rounded-3xl border bg-gradient-to-br from-gray-900 to-gray-700 p-6 text-white shadow-sm md:p-8">
+  <span className="mb-3 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-medium uppercase tracking-wide text-white/80">
+    AI statistics
+  </span>
+
+  <h2 className="mb-3 text-2xl font-semibold">
+    AI statistics and market intelligence
+  </h2>
+
+  <p className="mb-5 max-w-3xl text-white/80">
+    Explore AI market share, search demand, growth momentum, and tool-level
+    visibility data across the AI ecosystem.
+  </p>
+
+  <div className="flex flex-wrap gap-3">
+    <Link
+      href="/tools/ai/statistics"
+      className="inline-flex rounded-2xl bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100"
+    >
+      AI Statistics Hub
+    </Link>
+
+    <Link
+      href="/tools/ai/ai-tools-market-share"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      AI Tools Market Share
+    </Link>
+
+    <Link
+      href="/tools/ai/most-searched-ai-tools"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      Most Searched AI Tools
+    </Link>
+
+    <Link
+      href="/tools/ai/fastest-growing-ai-tools"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      Fastest Growing AI Tools
+    </Link>
+  </div>
+</section>
+
         <section
           id="popular"
           className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8"
