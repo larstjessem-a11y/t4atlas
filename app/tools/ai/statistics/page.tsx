@@ -57,6 +57,13 @@ const workflowPages = [
       "Compare two leading AI assistants for writing, coding, reasoning, documents, and productivity.",
     label: "Comparison",
   },
+{
+  title: "Most Used AI Tools for Software Teams",
+  href: "/tools/ai/professions/ai-tools-for-software-teams",
+  description:
+    "See which AI tools software teams use across coding, research, documentation, planning, and codebase workflows.",
+  label: "Profession",
+},
 ];
 
 export default function AiStatisticsHubPage() {
