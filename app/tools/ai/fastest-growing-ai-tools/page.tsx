@@ -1,5 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   fastestGrowingAiToolsData,
   fastestGrowingAiToolsKeyFindings,
@@ -13,254 +19,199 @@ export const metadata: Metadata = {
     "Explore the fastest growing AI tools by category, growth drivers, momentum score, and workflow relevance.",
 };
 
+const relatedPages = [
+  {
+    title: "AI Statistics Hub",
+    href: "/tools/ai/statistics",
+    description:
+      "Explore T4 Atlas AI statistics pages for market share, search demand, growth trends, and tool momentum.",
+    label: "Statistics",
+  },
+  {
+    title: "AI Tools Market Share",
+    href: "/tools/ai/ai-tools-market-share",
+    description:
+      "Compare AI tools by market-share signals, traffic visibility, and T4 Atlas momentum score.",
+    label: "Market share",
+  },
+  {
+    title: "Most Searched AI Tools",
+    href: "/tools/ai/most-searched-ai-tools",
+    description:
+      "See which AI tools attract the strongest search demand and what users are looking for.",
+    label: "Search demand",
+  },
+];
+
 export default function FastestGrowingAiToolsPage() {
   const sortedTools = [...fastestGrowingAiToolsData].sort(
     (a, b) => b.momentumScore - a.momentumScore
   );
 
   return (
-    <main className="py-10 px-4 md:px-6">
-      <div className="mx-auto max-w-6xl">
-        <section className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
-          <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
-            <Link href="/tools" className="hover:text-gray-900">
-              Tools
-            </Link>
-            <span>→</span>
-            <Link href="/tools/ai" className="hover:text-gray-900">
-              AI Tools
-            </Link>
-            <span>→</span>
-            <span>Fastest Growing AI Tools</span>
-          </div>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="AI statistics"
+        title="Fastest Growing AI Tools"
+        description="A structured look at fast-growing AI tools across chatbots, AI search, workspace tools, creative AI, meeting assistants, and productivity workflows."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "Fastest Growing AI Tools" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View ranking",
+            href: "#ranking",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${fastestGrowingAiToolsLastUpdated}`}
+      />
 
-          <span className="mb-3 inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
-            AI statistics
-          </span>
-
-          <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-            Fastest Growing AI Tools
-          </h1>
-
-          <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
-            A structured look at fast-growing AI tools across chatbots, AI
-            search, workspace tools, creative AI, meeting assistants, and
-            productivity workflows.
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="#key-findings"
-              className="rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Key findings
-            </a>
-            <a
-              href="#ranking"
-              className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              View ranking
-            </a>
-            <a
-              href="#methodology"
-              className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              Methodology
-            </a>
-          </div>
-
-          <p className="mt-5 text-sm text-gray-500">
-            Last updated: {fastestGrowingAiToolsLastUpdated}
-          </p>
-        </section>
-
-        <section
-          id="key-findings"
-          className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4"
-        >
-          {fastestGrowingAiToolsKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-3xl border bg-white p-5 shadow-sm"
-            >
-              <h2 className="text-base font-semibold text-gray-900">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </section>
-
-        <section className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-3 text-2xl font-semibold">
-            Growth momentum snapshot
-          </h2>
-          <p className="mb-5 max-w-3xl text-gray-600">
-            This snapshot ranks AI tools by directional growth momentum, category
-            visibility, workflow expansion, and public adoption signals.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-4">
-            {sortedTools.slice(0, 4).map((tool) => (
-              <div
-                key={tool.slug}
-                className="rounded-2xl border bg-gray-50 p-4"
-              >
-                <div className="text-sm text-gray-500">Momentum score</div>
-                <div className="mt-1 text-3xl font-semibold text-gray-900">
-                  {tool.momentumScore}
-                </div>
-                <div className="mt-2 font-medium">{tool.name}</div>
-                <div className="mt-1 text-xs uppercase tracking-wide text-gray-500">
-                  {tool.growthCategory}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="ranking"
-          className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8"
-        >
-          <h2 className="mb-4 text-2xl font-semibold">
-            Fastest growing AI tools table
-          </h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full overflow-hidden rounded-2xl border text-sm">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="p-3 text-left">Tool</th>
-                  <th className="p-3 text-left">Category</th>
-                  <th className="p-3 text-left">Growth</th>
-                  <th className="p-3 text-left">Momentum</th>
-                  <th className="p-3 text-left">Growth drivers</th>
-                  <th className="p-3 text-left">Why it matters</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedTools.map((tool) => (
-                  <tr key={tool.slug} className="border-t">
-                    <td className="p-3 font-medium">{tool.name}</td>
-                    <td className="p-3 capitalize">{tool.category}</td>
-                    <td className="p-3 capitalize">{tool.growthCategory}</td>
-                    <td className="p-3 font-medium">{tool.momentumScore}</td>
-                    <td className="p-3 text-gray-600">
-                      {tool.growthDrivers.join(", ")}
-                    </td>
-                    <td className="p-3 text-gray-600">{tool.whyItMatters}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-4 text-2xl font-semibold">
-            Growth drivers by tool
-          </h2>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {sortedTools.map((tool) => (
-              <div key={tool.slug} className="rounded-2xl border bg-gray-50 p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {tool.name}
-                    </h3>
-                    <p className="mt-1 text-xs uppercase tracking-wide text-gray-500">
-                      {tool.category} · {tool.growthCategory}
-                    </p>
-                  </div>
-
-                  <div className="rounded-full border bg-white px-3 py-1 text-sm font-medium">
-                    {tool.momentumScore}
-                  </div>
-                </div>
-
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {tool.growthDrivers.map((driver) => (
-                    <span
-                      key={driver}
-                      className="rounded-full border bg-white px-3 py-1 text-xs font-medium text-gray-600"
-                    >
-                      {driver}
-                    </span>
-                  ))}
-                </div>
-
-                <p className="mt-4 text-sm leading-6 text-gray-600">
-                  {tool.whyItMatters}
-                </p>
-
-                {tool.relatedPage ? (
-                  <Link
-                    href={tool.relatedPage}
-                    className="mt-4 inline-flex text-sm font-medium text-gray-900 underline"
-                  >
-                    Related T4 Atlas guide
-                  </Link>
-                ) : null}
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="methodology"
-          className="mb-8 rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            {fastestGrowingAiToolsMethodology.title}
-          </h2>
-          <p className="max-w-3xl leading-7 text-gray-600">
-            {fastestGrowingAiToolsMethodology.description}
-          </p>
-        </section>
-
-        <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-3 text-2xl font-semibold">
-            Related AI statistics and guides
-          </h2>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/tools/ai/ai-tools-market-share"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              AI Tools Market Share
-            </Link>
-            <Link
-              href="/tools/ai/most-searched-ai-tools"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Most Searched AI Tools
-            </Link>
-            <Link
-              href="/tools/ai/best-ai-workspace-tools"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Best AI Workspace Tools
-            </Link>
-            <Link
-              href="/tools/ai/best-ai-tools-for-productivity"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Best AI Tools for Productivity
-            </Link>
-            <Link
-              href="/tools/ai/chatgpt-vs-claude"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              ChatGPT vs Claude
-            </Link>
-          </div>
-        </section>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {fastestGrowingAiToolsKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
-    </main>
+
+      <IntelligenceSection
+        title="Growth momentum snapshot"
+        description="This snapshot ranks AI tools by directional growth momentum, category visibility, workflow expansion, and public adoption signals."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedTools.slice(0, 4).map((tool) => (
+            <IntelligenceCard
+              key={tool.slug}
+              eyebrow={tool.growthCategory}
+              title={tool.name}
+              score={tool.momentumScore}
+              description="Momentum score"
+            />
+          ))}
+        </div>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="ranking"
+        title="Fastest growing AI tools table"
+        description="A structured ranking of major AI tools by growth category, momentum score, growth drivers, and why the tool matters."
+      >
+        <IntelligenceTable
+          data={sortedTools}
+          columns={[
+            {
+              key: "name",
+              label: "Tool",
+              render: (tool) => (
+                <span className="font-semibold text-white">{tool.name}</span>
+              ),
+            },
+            {
+              key: "category",
+              label: "Category",
+              render: (tool) => (
+                <span className="capitalize">{tool.category}</span>
+              ),
+            },
+            {
+              key: "growthCategory",
+              label: "Growth",
+              render: (tool) => (
+                <span className="capitalize">{tool.growthCategory}</span>
+              ),
+            },
+            {
+              key: "momentumScore",
+              label: "Momentum",
+              render: (tool) => (
+                <span className="font-semibold text-cyan-200">
+                  {tool.momentumScore}
+                </span>
+              ),
+            },
+            {
+              key: "growthDrivers",
+              label: "Growth drivers",
+              render: (tool) => tool.growthDrivers.join(", "),
+            },
+            {
+              key: "whyItMatters",
+              label: "Why it matters",
+            },
+          ]}
+        />
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        title="Growth drivers by tool"
+        description="Growth does not come from one signal alone. Distribution, workflow adoption, media visibility, integrations, and category expansion all matter."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedTools.map((tool) => (
+            <IntelligenceCard
+              key={tool.slug}
+              eyebrow={`${tool.category} · ${tool.growthCategory}`}
+              title={tool.name}
+              score={tool.momentumScore}
+              description={tool.whyItMatters}
+            >
+              <div className="flex flex-wrap gap-2">
+                {tool.growthDrivers.map((driver) => (
+                  <span
+                    key={driver}
+                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                  >
+                    {driver}
+                  </span>
+                ))}
+              </div>
+
+              {tool.relatedPage ? (
+                <Link
+                  href={tool.relatedPage}
+                  className="mt-4 inline-flex text-sm font-medium text-cyan-200 underline"
+                >
+                  Related T4 Atlas guide
+                </Link>
+              ) : null}
+            </IntelligenceCard>
+          ))}
+        </div>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={fastestGrowingAiToolsMethodology.title}
+        description={fastestGrowingAiToolsMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          Growth categories are directional and designed to compare relative
+          ecosystem momentum, not audited revenue growth or verified user-growth
+          rates.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related AI statistics and guides"
+        description="Use these pages to connect growth momentum with market share, search demand, and practical workflow decisions."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }

@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   aiMarketShareData,
   aiMarketShareKeyFindings,
@@ -14,260 +19,195 @@ export const metadata: Metadata = {
     "Explore AI tools market share, chatbot visibility, AI traffic signals, and T4 Atlas momentum scores for ChatGPT, Gemini, Claude, Perplexity, Copilot, and more.",
 };
 
+const relatedPages = [
+  {
+    title: "AI Statistics Hub",
+    href: "/tools/ai/statistics",
+    description:
+      "Explore T4 Atlas AI statistics pages for market share, search demand, growth trends, and tool momentum.",
+    label: "Statistics",
+  },
+  {
+    title: "Most Searched AI Tools",
+    href: "/tools/ai/most-searched-ai-tools",
+    description:
+      "See which AI tools attract the strongest search demand and what users are looking for.",
+    label: "Search demand",
+  },
+  {
+    title: "Fastest Growing AI Tools",
+    href: "/tools/ai/fastest-growing-ai-tools",
+    description:
+      "Compare AI tools by growth drivers, momentum signals, and workflow expansion.",
+    label: "Growth",
+  },
+];
+
 export default function AiToolsMarketSharePage() {
   const sortedByMomentum = [...aiMarketShareData].sort(
     (a, b) => b.momentumScore - a.momentumScore
   );
 
   return (
-    <main className="py-10 px-4 md:px-6">
-      <div className="mx-auto max-w-6xl">
-        <section className="mb-8 rounded-3xl border bg-gradient-to-br from-white to-gray-50 p-6 shadow-sm md:p-8">
-          <div className="mb-4 flex flex-wrap items-center gap-2 text-sm text-gray-500">
-            <Link href="/tools" className="hover:text-gray-900">
-              Tools
-            </Link>
-            <span>→</span>
-            <Link href="/tools/ai" className="hover:text-gray-900">
-              AI Tools
-            </Link>
-            <span>→</span>
-            <span>AI Tools Market Share</span>
-          </div>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="AI statistics"
+        title="AI Tools Market Share"
+        description="A structured overview of AI tool visibility, chatbot market-share signals, traffic rankings, and T4 Atlas momentum scores across major AI assistants and specialized AI products."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "AI Tools Market Share" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${aiMarketShareLastUpdated}`}
+      />
 
-          <span className="mb-3 inline-flex rounded-full border px-3 py-1 text-xs font-medium uppercase tracking-wide text-gray-600">
-            AI statistics
-          </span>
-
-          <h1 className="mb-3 text-4xl font-semibold tracking-tight text-gray-900 md:text-5xl">
-            AI Tools Market Share
-          </h1>
-
-          <p className="max-w-3xl text-base leading-7 text-gray-600 md:text-lg">
-            A structured overview of AI tool visibility, chatbot market-share
-            signals, traffic rankings, and T4 Atlas momentum scores across major
-            AI assistants and specialized AI products.
-          </p>
-
-          <div className="mt-6 flex flex-wrap gap-3">
-            <a
-              href="#key-findings"
-              className="rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Key findings
-            </a>
-            <a
-              href="#data-table"
-              className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              View data table
-            </a>
-            <a
-              href="#methodology"
-              className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
-            >
-              Methodology
-            </a>
-          </div>
-
-          <p className="mt-5 text-sm text-gray-500">
-            Last updated: {aiMarketShareLastUpdated}
-          </p>
-        </section>
-
-        <section
-          id="key-findings"
-          className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4"
-        >
-          {aiMarketShareKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-3xl border bg-white p-5 shadow-sm"
-            >
-              <h2 className="text-base font-semibold text-gray-900">
-                {item.title}
-              </h2>
-              <p className="mt-3 text-sm leading-6 text-gray-600">
-                {item.description}
-              </p>
-            </div>
-          ))}
-        </section>
-
-        <section className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-3 text-2xl font-semibold">
-            AI market share snapshot
-          </h2>
-          <p className="mb-5 max-w-3xl text-gray-600">
-            The table below combines public chatbot market-share signals,
-            traffic visibility, and a T4 Atlas editorial momentum score. Market
-            share numbers should not be interpreted as revenue share or total
-            active-user share.
-          </p>
-
-          <div className="grid gap-4 md:grid-cols-4">
-            {sortedByMomentum.slice(0, 4).map((tool) => (
-              <div
-                key={tool.slug}
-                className="rounded-2xl border bg-gray-50 p-4"
-              >
-                <div className="text-sm text-gray-500">Momentum score</div>
-                <div className="mt-1 text-3xl font-semibold text-gray-900">
-                  {tool.momentumScore}
-                </div>
-                <div className="mt-2 font-medium">{tool.name}</div>
-                <div className="mt-1 text-xs uppercase tracking-wide text-gray-500">
-                  {tool.category}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="data-table"
-          className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8"
-        >
-          <h2 className="mb-4 text-2xl font-semibold">
-            AI tools market share and momentum table
-          </h2>
-
-          <div className="overflow-x-auto">
-            <table className="w-full overflow-hidden rounded-2xl border text-sm">
-              <thead className="bg-gray-50">
-                <tr>
-                  <th className="p-3 text-left">Tool</th>
-                  <th className="p-3 text-left">Category</th>
-                  <th className="p-3 text-left">Market share</th>
-                  <th className="p-3 text-left">Traffic rank</th>
-                  <th className="p-3 text-left">Momentum</th>
-                  <th className="p-3 text-left">Primary use case</th>
-                </tr>
-              </thead>
-              <tbody>
-                {sortedByMomentum.map((tool) => (
-                  <tr key={tool.slug} className="border-t">
-                    <td className="p-3 font-medium">{tool.name}</td>
-                    <td className="p-3 capitalize">{tool.category}</td>
-                    <td className="p-3">
-                      {tool.marketSharePercent !== undefined
-                        ? `${tool.marketSharePercent}%`
-                        : "—"}
-                    </td>
-                    <td className="p-3">
-                      {tool.trafficRank ? `#${tool.trafficRank}` : "—"}
-                    </td>
-                    <td className="p-3 font-medium">{tool.momentumScore}</td>
-                    <td className="p-3 text-gray-600">
-                      {tool.primaryUseCase}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </section>
-
-        <section className="mb-8 rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-4 text-2xl font-semibold">
-            What the numbers mean
-          </h2>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            {sortedByMomentum.map((tool) => (
-              <div key={tool.slug} className="rounded-2xl border bg-gray-50 p-5">
-                <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <h3 className="font-semibold text-gray-900">
-                      {tool.name}
-                    </h3>
-                    <p className="mt-1 text-xs uppercase tracking-wide text-gray-500">
-                      {tool.category}
-                    </p>
-                  </div>
-                  <div className="rounded-full border bg-white px-3 py-1 text-sm font-medium">
-                    {tool.momentumScore}
-                  </div>
-                </div>
-
-                <p className="mt-3 text-sm leading-6 text-gray-600">
-                  {tool.notes}
-                </p>
-
-                <p className="mt-3 text-xs text-gray-500">
-                  Sources: {tool.sources.join(", ")}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section
-          id="methodology"
-          className="mb-8 rounded-3xl border bg-gradient-to-br from-gray-50 to-white p-6 shadow-sm md:p-8"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            {aiMarketShareMethodology.title}
-          </h2>
-          <p className="max-w-3xl leading-7 text-gray-600">
-            {aiMarketShareMethodology.description}
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-2">
-            {aiMarketShareSources.map((source) => (
-              <a
-                key={source.url}
-                href={source.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-2xl border bg-white p-4 transition hover:bg-gray-50"
-              >
-                <h3 className="font-semibold text-gray-900">{source.name}</h3>
-                <p className="mt-2 text-sm leading-6 text-gray-600">
-                  {source.description}
-                </p>
-              </a>
-            ))}
-          </div>
-        </section>
-
-        <section className="rounded-3xl border bg-white p-6 shadow-sm md:p-8">
-          <h2 className="mb-3 text-2xl font-semibold">Related AI guides</h2>
-
-          <div className="flex flex-wrap gap-3">
-            <Link
-              href="/tools/ai/best-ai-workspace-tools"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Best AI Workspace Tools
-            </Link>
-            <Link
-              href="/tools/ai/best-ai-tools-for-productivity"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Best AI Tools for Productivity
-            </Link>
-            <Link
-              href="/tools/ai/best-ai-tools-for-writing"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Best AI Writing Tools
-            </Link>
-            <Link
-              href="/tools/ai/chatgpt-vs-claude"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              ChatGPT vs Claude
-            </Link>
-            <Link
-              href="/tools/ai/alternatives-to-chatgpt"
-              className="inline-flex rounded-2xl border px-4 py-2.5 text-sm font-medium hover:bg-gray-50"
-            >
-              Alternatives to ChatGPT
-            </Link>
-          </div>
-        </section>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {aiMarketShareKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
-    </main>
+
+      <IntelligenceSection
+        title="AI market share snapshot"
+        description="The table below combines public chatbot market-share signals, traffic visibility, and a T4 Atlas editorial momentum score. Market share numbers should not be interpreted as revenue share or total active-user share."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedByMomentum.slice(0, 4).map((tool) => (
+            <IntelligenceCard
+              key={tool.slug}
+              eyebrow={tool.category}
+              title={tool.name}
+              score={tool.momentumScore}
+              description="Momentum score"
+            />
+          ))}
+        </div>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="data-table"
+        title="AI tools market share and momentum table"
+        description="A structured comparison of major AI tools by category, market-share signal, traffic rank, momentum, and primary use case."
+      >
+        <IntelligenceTable
+          data={sortedByMomentum}
+          columns={[
+            {
+              key: "name",
+              label: "Tool",
+              render: (tool) => (
+                <span className="font-semibold text-white">{tool.name}</span>
+              ),
+            },
+            {
+              key: "category",
+              label: "Category",
+              render: (tool) => (
+                <span className="capitalize">{tool.category}</span>
+              ),
+            },
+            {
+              key: "marketSharePercent",
+              label: "Market share",
+              render: (tool) =>
+                tool.marketSharePercent !== undefined
+                  ? `${tool.marketSharePercent}%`
+                  : "—",
+            },
+            {
+              key: "trafficRank",
+              label: "Traffic rank",
+              render: (tool) => (tool.trafficRank ? `#${tool.trafficRank}` : "—"),
+            },
+            {
+              key: "momentumScore",
+              label: "Momentum",
+              render: (tool) => (
+                <span className="font-semibold text-cyan-200">
+                  {tool.momentumScore}
+                </span>
+              ),
+            },
+            {
+              key: "primaryUseCase",
+              label: "Primary use case",
+            },
+          ]}
+        />
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        title="What the numbers mean"
+        description="Market-share signals, traffic rankings, and momentum scores reflect different dimensions of the AI ecosystem. These cards explain how each tool should be interpreted."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedByMomentum.map((tool) => (
+            <IntelligenceCard
+              key={tool.slug}
+              eyebrow={tool.category}
+              title={tool.name}
+              score={tool.momentumScore}
+              description={tool.notes}
+            >
+              <p className="text-xs text-slate-400">
+                Sources: {tool.sources.join(", ")}
+              </p>
+            </IntelligenceCard>
+          ))}
+        </div>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={aiMarketShareMethodology.title}
+        description={aiMarketShareMethodology.description}
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {aiMarketShareSources.map((source) => (
+            <a
+              key={source.url}
+              href={source.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4 transition hover:border-cyan-500/30 hover:bg-slate-900"
+            >
+              <h3 className="font-semibold text-white">{source.name}</h3>
+              <p className="mt-2 text-sm leading-6 text-slate-300">
+                {source.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related AI statistics and guides"
+        description="Use these pages to connect AI market share with search demand, growth momentum, and practical workflow decisions."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }
