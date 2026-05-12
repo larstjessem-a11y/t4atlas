@@ -337,6 +337,14 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["coding", "productivity", "research"],
   affiliateSlugs: ["chatgpt", "claude", "perplexity"],
 },
+{
+  slug: "typical-ai-stack-for-startups",
+  title: "Typical AI Stack for Startups",
+  type: "best",
+  href: "/tools/ai/workflows/typical-ai-stack-for-startups",
+  topics: ["productivity", "coding", "research", "marketing"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({

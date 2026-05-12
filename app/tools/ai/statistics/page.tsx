@@ -64,6 +64,13 @@ const workflowPages = [
     "See which AI tools software teams use across coding, research, documentation, planning, and codebase workflows.",
   label: "Profession",
 },
+{
+  title: "Typical AI Stack for Startups",
+  href: "/tools/ai/workflows/typical-ai-stack-for-startups",
+  description:
+    "See how startups can combine AI tools across research, coding, workspace, meetings, marketing, sales, and operations.",
+  label: "Workflow",
+},
 ];
 
 export default function AiStatisticsHubPage() {
