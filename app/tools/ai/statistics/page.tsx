@@ -71,6 +71,20 @@ const workflowPages = [
     "See how startups can combine AI tools across research, coding, workspace, meetings, marketing, sales, and operations.",
   label: "Workflow",
 },
+{
+  title: "Most Used AI Tools for Doctors",
+  href: "/tools/ai/professions/ai-tools-for-doctors",
+  description:
+    "See how doctors use AI tools across documentation, medical search, patient communication, research, and practice operations.",
+  label: "Profession",
+},
+{
+  title: "Most Adopted AI Workflows",
+  href: "/tools/ai/workflows/most-adopted-ai-workflows",
+  description:
+    "Explore the AI workflows organizations adopt across writing, coding, meetings, research, healthcare, marketing, operations, and knowledge management.",
+  label: "Workflow",
+},
 ];
 
 export default function AiStatisticsHubPage() {

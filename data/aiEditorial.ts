@@ -345,6 +345,22 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["productivity", "coding", "research", "marketing"],
   affiliateSlugs: ["chatgpt", "claude", "perplexity"],
 },
+{
+  slug: "ai-tools-for-doctors",
+  title: "Most Used AI Tools for Doctors",
+  type: "best",
+  href: "/tools/ai/professions/ai-tools-for-doctors",
+  topics: ["research", "productivity", "chatgpt"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
+{
+  slug: "most-adopted-ai-workflows",
+  title: "Most Adopted AI Workflows",
+  type: "best",
+  href: "/tools/ai/workflows/most-adopted-ai-workflows",
+  topics: ["productivity", "coding", "research", "meetings"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({
