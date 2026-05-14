@@ -85,6 +85,13 @@ const workflowPages = [
     "Explore the AI workflows organizations adopt across writing, coding, meetings, research, healthcare, marketing, operations, and knowledge management.",
   label: "Workflow",
 },
+{
+  title: "AI Tools Replacing Google Search",
+  href: "/tools/ai/replacing/ai-tools-replacing-google-search",
+  description:
+    "Explore which AI tools are replacing parts of traditional Google Search behavior across research, explanations, comparisons, and AI-native workflows.",
+  label: "Replacement",
+},
 ];
 
 export default function AiStatisticsHubPage() {

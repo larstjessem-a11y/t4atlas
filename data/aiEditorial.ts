@@ -361,6 +361,14 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["productivity", "coding", "research", "meetings"],
   affiliateSlugs: ["chatgpt", "claude", "perplexity"],
 },
+{
+  slug: "ai-tools-replacing-google-search",
+  title: "AI Tools Replacing Google Search",
+  type: "best",
+  href: "/tools/ai/replacing/ai-tools-replacing-google-search",
+  topics: ["research", "perplexity", "chatgpt", "productivity"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({
