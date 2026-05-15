@@ -377,6 +377,14 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["writing", "marketing", "productivity", "chatgpt"],
   affiliateSlugs: ["chatgpt", "claude", "jasper"],
 },
+{
+  slug: "ai-tools-replacing-excel",
+  title: "AI Tools Replacing Excel",
+  type: "best",
+  href: "/tools/ai/replacing/ai-tools-replacing-excel",
+  topics: ["productivity", "research", "chatgpt", "copilot"],
+  affiliateSlugs: ["chatgpt", "copilot", "notion"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({

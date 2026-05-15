@@ -99,6 +99,13 @@ const workflowPages = [
     "Explore which AI tools are replacing parts of copywriting workflows across drafts, SEO content, ad copy, brand voice, and editing.",
   label: "Replacement",
 },
+{
+  title: "AI Tools Replacing Excel",
+  href: "/tools/ai/replacing/ai-tools-replacing-excel",
+  description:
+    "Explore which AI tools are replacing spreadsheet workflows across formulas, dashboards, automation, reporting, and operational tracking.",
+  label: "Replacement",
+},
 ];
 
 export default function AiStatisticsHubPage() {
