@@ -92,6 +92,13 @@ const workflowPages = [
     "Explore which AI tools are replacing parts of traditional Google Search behavior across research, explanations, comparisons, and AI-native workflows.",
   label: "Replacement",
 },
+{
+  title: "AI Tools Replacing Copywriters",
+  href: "/tools/ai/replacing/ai-tools-replacing-copywriters",
+  description:
+    "Explore which AI tools are replacing parts of copywriting workflows across drafts, SEO content, ad copy, brand voice, and editing.",
+  label: "Replacement",
+},
 ];
 
 export default function AiStatisticsHubPage() {
