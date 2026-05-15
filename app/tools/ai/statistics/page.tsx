@@ -33,6 +33,34 @@ const statisticsPages = [
       "Track fast-growing AI tools by growth drivers, workflow relevance, and momentum score.",
     label: "Growth trends",
   },
+{
+  title: "Most Visited AI Websites",
+  href: "/tools/ai/statistics/most-visited-ai-websites",
+  description:
+    "Explore high-visibility AI websites by category, traffic position, momentum score, and traffic interpretation.",
+  label: "Traffic",
+},
+{
+  title: "Most Used AI Models",
+  href: "/tools/ai/statistics/most-used-ai-models",
+  description:
+    "Explore widely used AI models across frontier assistants, reasoning systems, multimodal models, open-weight models, and enterprise AI.",
+  label: "Models",
+},
+{
+  title: "Most Funded AI Startups",
+  href: "/tools/ai/statistics/most-funded-ai-startups",
+  description:
+    "Explore heavily funded AI startups across frontier models, AI search, infrastructure, coding, robotics, and enterprise AI.",
+  label: "Funding",
+},
+{
+  title: "AI Startup Valuation Rankings",
+  href: "/tools/ai/statistics/ai-startup-valuation-rankings",
+  description:
+    "Explore high-valuation AI startups across frontier models, AI search, infrastructure, coding, robotics, creative AI, and enterprise AI.",
+  label: "Valuations",
+},
 ];
 
 const workflowPages = [

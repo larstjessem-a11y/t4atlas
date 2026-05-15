@@ -385,6 +385,38 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["productivity", "research", "chatgpt", "copilot"],
   affiliateSlugs: ["chatgpt", "copilot", "notion"],
 },
+{
+  slug: "most-visited-ai-websites",
+  title: "Most Visited AI Websites",
+  type: "best",
+  href: "/tools/ai/statistics/most-visited-ai-websites",
+  topics: ["productivity", "chatgpt", "perplexity", "research"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
+{
+  slug: "most-used-ai-models",
+  title: "Most Used AI Models",
+  type: "best",
+  href: "/tools/ai/statistics/most-used-ai-models",
+  topics: ["chatgpt", "research", "productivity", "copilot"],
+  affiliateSlugs: ["chatgpt", "claude", "copilot"],
+},
+{
+  slug: "most-funded-ai-startups",
+  title: "Most Funded AI Startups",
+  type: "best",
+  href: "/tools/ai/statistics/most-funded-ai-startups",
+  topics: ["research", "chatgpt", "productivity", "perplexity"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
+{
+  slug: "ai-startup-valuation-rankings",
+  title: "AI Startup Valuation Rankings",
+  type: "best",
+  href: "/tools/ai/statistics/ai-startup-valuation-rankings",
+  topics: ["research", "chatgpt", "productivity", "perplexity"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({
