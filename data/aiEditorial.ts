@@ -417,6 +417,30 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["research", "chatgpt", "productivity", "perplexity"],
   affiliateSlugs: ["chatgpt", "claude", "perplexity"],
 },
+{
+  slug: "most-used-ai-apis",
+  title: "Most Used AI APIs",
+  type: "best",
+  href: "/tools/ai/statistics/most-used-ai-apis",
+  topics: ["coding", "research", "chatgpt", "claude"],
+  affiliateSlugs: ["chatgpt", "claude", "perplexity"],
+},
+{
+  slug: "enterprise-ai-adoption-statistics",
+  title: "Enterprise AI Adoption Statistics",
+  type: "best",
+  href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+  topics: ["productivity", "coding", "research", "copilot"],
+  affiliateSlugs: ["chatgpt", "claude", "copilot"],
+},
+{
+  slug: "ai-coding-market-share",
+  title: "AI Coding Market Share",
+  type: "best",
+  href: "/tools/ai/statistics/ai-coding-market-share",
+  topics: ["coding", "productivity", "chatgpt", "claude"],
+  affiliateSlugs: ["chatgpt", "claude", "copilot"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({

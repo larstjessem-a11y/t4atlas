@@ -61,6 +61,27 @@ const statisticsPages = [
     "Explore high-valuation AI startups across frontier models, AI search, infrastructure, coding, robotics, creative AI, and enterprise AI.",
   label: "Valuations",
 },
+{
+  title: "Most Used AI APIs",
+  href: "/tools/ai/statistics/most-used-ai-apis",
+  description:
+    "Explore widely used AI APIs across frontier models, reasoning APIs, multimodal systems, open-model ecosystems, and enterprise AI infrastructure.",
+  label: "APIs",
+},
+{
+  title: "Enterprise AI Adoption Statistics",
+  href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+  description:
+    "Explore enterprise AI adoption across productivity, software development, customer support, research, marketing, operations, knowledge management, and security.",
+  label: "Enterprise",
+},
+{
+  title: "AI Coding Market Share",
+  href: "/tools/ai/statistics/ai-coding-market-share",
+  description:
+    "Explore AI coding market share signals across IDE copilots, AI-native editors, general assistants, codebase tools, and developer workflows.",
+  label: "Coding",
+},
 ];
 
 const workflowPages = [
