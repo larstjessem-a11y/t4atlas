@@ -19,6 +19,13 @@ const statisticsPages = [
       "Compare major AI tools by market-share signals, traffic visibility, and T4 Atlas momentum score.",
     label: "Market share",
   },
+{
+  title: "AI Risk Intelligence",
+  href: "/tools/ai/risk-intelligence",
+  description:
+    "Explore structured AI risk intelligence across enterprise risk, alignment pressure, frontier capabilities, governance, and deployment exposure.",
+  label: "Risk",
+},
   {
     title: "Most Searched AI Tools",
     href: "/tools/ai/most-searched-ai-tools",
