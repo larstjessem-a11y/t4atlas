@@ -18,6 +18,7 @@ const comparisonPages = aiEditorialPages.filter(
 );
 
 const priorityPages = [
+  "/tools/ai/risk-intelligence",
   "/tools/ai/best-ai-tools-for-meetings",
   "/tools/ai/best-ai-tools-for-writing",
   "/tools/ai/best-ai-tools-for-productivity",
@@ -142,6 +143,52 @@ export default function AiHubPage() {
       className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
     >
       Fastest Growing AI Tools
+    </Link>
+  </div>
+</section>
+
+<section className="mb-8 rounded-3xl border bg-gradient-to-br from-slate-950 via-gray-900 to-slate-800 p-6 text-white shadow-sm md:p-8">
+  <span className="mb-3 inline-flex rounded-full border border-cyan-400/30 px-3 py-1 text-xs font-medium uppercase tracking-wide text-cyan-200">
+    AI risk intelligence
+  </span>
+
+  <h2 className="mb-3 text-2xl font-semibold">
+    AI risk, governance, and frontier capability analysis
+  </h2>
+
+  <p className="mb-5 max-w-3xl text-white/80">
+    Explore structured AI risk intelligence across enterprise deployment,
+    alignment pressure, frontier AI capabilities, open versus closed AI systems,
+    and sensitive capability areas.
+  </p>
+
+  <div className="flex flex-wrap gap-3">
+    <Link
+      href="/tools/ai/risk-intelligence"
+      className="inline-flex rounded-2xl bg-cyan-200 px-4 py-2.5 text-sm font-medium text-slate-950 hover:bg-cyan-100"
+    >
+      AI Risk Intelligence Hub
+    </Link>
+
+    <Link
+      href="/tools/ai/risk-intelligence/frontier-ai-risk-matrix"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      Frontier AI Risk Matrix
+    </Link>
+
+    <Link
+      href="/tools/ai/risk-intelligence/enterprise-ai-risk-categories"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      Enterprise AI Risk Categories
+    </Link>
+
+    <Link
+      href="/tools/ai/risk-intelligence/ai-alignment-risk-rankings"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+    >
+      AI Alignment Risk Rankings
     </Link>
   </div>
 </section>
