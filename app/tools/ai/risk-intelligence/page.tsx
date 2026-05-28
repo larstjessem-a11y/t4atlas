@@ -4,6 +4,7 @@ import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
 import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
 import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
 import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
+import IntelligenceSubnav from "@/components/intelligence/IntelligenceSubnav";
 
 export const metadata: Metadata = {
   title: "AI Risk Intelligence | T4 Atlas",
@@ -128,6 +129,15 @@ export default function AiRiskIntelligenceHubPage() {
         ]}
       />
 
+      <IntelligenceSubnav
+        items={[
+          { label: "Risk pages", href: "#risk-pages" },
+          { label: "Framework", href: "#framework" },
+          { label: "Positioning", href: "#positioning" },
+          { label: "Related", href: "#related-intelligence" },
+        ]}
+      />
+
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <IntelligenceCard
           eyebrow="Focus"
@@ -179,6 +189,7 @@ export default function AiRiskIntelligenceHubPage() {
       </IntelligenceSection>
 
       <IntelligenceSection
+        id="positioning"
         eyebrow="Positioning"
         title="How to read AI risk intelligence"
         description="AI risk should be analyzed as a set of operational, technical, governance, and systemic risk factors rather than a single abstract threat."
@@ -207,6 +218,7 @@ export default function AiRiskIntelligenceHubPage() {
       </IntelligenceSection>
 
       <IntelligenceSection
+        id="related-intelligence"
         eyebrow="Related intelligence"
         title="Related AI intelligence pages"
         description="Connect AI risk intelligence with enterprise adoption, model usage, and API infrastructure."

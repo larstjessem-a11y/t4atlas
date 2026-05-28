@@ -4,6 +4,7 @@ import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
 import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
 import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
 import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
+import IntelligenceSubnav from "@/components/intelligence/IntelligenceSubnav";
 
 export const metadata: Metadata = {
   title: "AI Statistics Hub | Market Share, Search Demand & Growth",
@@ -19,13 +20,13 @@ const statisticsPages = [
       "Compare major AI tools by market-share signals, traffic visibility, and T4 Atlas momentum score.",
     label: "Market share",
   },
-{
-  title: "AI Risk Intelligence",
-  href: "/tools/ai/risk-intelligence",
-  description:
-    "Explore structured AI risk intelligence across enterprise risk, alignment pressure, frontier capabilities, governance, and deployment exposure.",
-  label: "Risk",
-},
+  {
+    title: "AI Risk Intelligence",
+    href: "/tools/ai/risk-intelligence",
+    description:
+      "Explore structured AI risk intelligence across enterprise risk, alignment pressure, frontier capabilities, governance, and deployment exposure.",
+    label: "Risk",
+  },
   {
     title: "Most Searched AI Tools",
     href: "/tools/ai/most-searched-ai-tools",
@@ -40,55 +41,55 @@ const statisticsPages = [
       "Track fast-growing AI tools by growth drivers, workflow relevance, and momentum score.",
     label: "Growth trends",
   },
-{
-  title: "Most Visited AI Websites",
-  href: "/tools/ai/statistics/most-visited-ai-websites",
-  description:
-    "Explore high-visibility AI websites by category, traffic position, momentum score, and traffic interpretation.",
-  label: "Traffic",
-},
-{
-  title: "Most Used AI Models",
-  href: "/tools/ai/statistics/most-used-ai-models",
-  description:
-    "Explore widely used AI models across frontier assistants, reasoning systems, multimodal models, open-weight models, and enterprise AI.",
-  label: "Models",
-},
-{
-  title: "Most Funded AI Startups",
-  href: "/tools/ai/statistics/most-funded-ai-startups",
-  description:
-    "Explore heavily funded AI startups across frontier models, AI search, infrastructure, coding, robotics, and enterprise AI.",
-  label: "Funding",
-},
-{
-  title: "AI Startup Valuation Rankings",
-  href: "/tools/ai/statistics/ai-startup-valuation-rankings",
-  description:
-    "Explore high-valuation AI startups across frontier models, AI search, infrastructure, coding, robotics, creative AI, and enterprise AI.",
-  label: "Valuations",
-},
-{
-  title: "Most Used AI APIs",
-  href: "/tools/ai/statistics/most-used-ai-apis",
-  description:
-    "Explore widely used AI APIs across frontier models, reasoning APIs, multimodal systems, open-model ecosystems, and enterprise AI infrastructure.",
-  label: "APIs",
-},
-{
-  title: "Enterprise AI Adoption Statistics",
-  href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
-  description:
-    "Explore enterprise AI adoption across productivity, software development, customer support, research, marketing, operations, knowledge management, and security.",
-  label: "Enterprise",
-},
-{
-  title: "AI Coding Market Share",
-  href: "/tools/ai/statistics/ai-coding-market-share",
-  description:
-    "Explore AI coding market share signals across IDE copilots, AI-native editors, general assistants, codebase tools, and developer workflows.",
-  label: "Coding",
-},
+  {
+    title: "Most Visited AI Websites",
+    href: "/tools/ai/statistics/most-visited-ai-websites",
+    description:
+      "Explore high-visibility AI websites by category, traffic position, momentum score, and traffic interpretation.",
+    label: "Traffic",
+  },
+  {
+    title: "Most Used AI Models",
+    href: "/tools/ai/statistics/most-used-ai-models",
+    description:
+      "Explore widely used AI models across frontier assistants, reasoning systems, multimodal models, open-weight models, and enterprise AI.",
+    label: "Models",
+  },
+  {
+    title: "Most Funded AI Startups",
+    href: "/tools/ai/statistics/most-funded-ai-startups",
+    description:
+      "Explore heavily funded AI startups across frontier models, AI search, infrastructure, coding, robotics, and enterprise AI.",
+    label: "Funding",
+  },
+  {
+    title: "AI Startup Valuation Rankings",
+    href: "/tools/ai/statistics/ai-startup-valuation-rankings",
+    description:
+      "Explore high-valuation AI startups across frontier models, AI search, infrastructure, coding, robotics, creative AI, and enterprise AI.",
+    label: "Valuations",
+  },
+  {
+    title: "Most Used AI APIs",
+    href: "/tools/ai/statistics/most-used-ai-apis",
+    description:
+      "Explore widely used AI APIs across frontier models, reasoning APIs, multimodal systems, open-model ecosystems, and enterprise AI infrastructure.",
+    label: "APIs",
+  },
+  {
+    title: "Enterprise AI Adoption Statistics",
+    href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+    description:
+      "Explore enterprise AI adoption across productivity, software development, customer support, research, marketing, operations, knowledge management, and security.",
+    label: "Enterprise",
+  },
+  {
+    title: "AI Coding Market Share",
+    href: "/tools/ai/statistics/ai-coding-market-share",
+    description:
+      "Explore AI coding market share signals across IDE copilots, AI-native editors, general assistants, codebase tools, and developer workflows.",
+    label: "Coding",
+  },
 ];
 
 const workflowPages = [
@@ -113,55 +114,55 @@ const workflowPages = [
       "Compare two leading AI assistants for writing, coding, reasoning, documents, and productivity.",
     label: "Comparison",
   },
-{
-  title: "Most Used AI Tools for Software Teams",
-  href: "/tools/ai/professions/ai-tools-for-software-teams",
-  description:
-    "See which AI tools software teams use across coding, research, documentation, planning, and codebase workflows.",
-  label: "Profession",
-},
-{
-  title: "Typical AI Stack for Startups",
-  href: "/tools/ai/workflows/typical-ai-stack-for-startups",
-  description:
-    "See how startups can combine AI tools across research, coding, workspace, meetings, marketing, sales, and operations.",
-  label: "Workflow",
-},
-{
-  title: "Most Used AI Tools for Doctors",
-  href: "/tools/ai/professions/ai-tools-for-doctors",
-  description:
-    "See how doctors use AI tools across documentation, medical search, patient communication, research, and practice operations.",
-  label: "Profession",
-},
-{
-  title: "Most Adopted AI Workflows",
-  href: "/tools/ai/workflows/most-adopted-ai-workflows",
-  description:
-    "Explore the AI workflows organizations adopt across writing, coding, meetings, research, healthcare, marketing, operations, and knowledge management.",
-  label: "Workflow",
-},
-{
-  title: "AI Tools Replacing Google Search",
-  href: "/tools/ai/replacing/ai-tools-replacing-google-search",
-  description:
-    "Explore which AI tools are replacing parts of traditional Google Search behavior across research, explanations, comparisons, and AI-native workflows.",
-  label: "Replacement",
-},
-{
-  title: "AI Tools Replacing Copywriters",
-  href: "/tools/ai/replacing/ai-tools-replacing-copywriters",
-  description:
-    "Explore which AI tools are replacing parts of copywriting workflows across drafts, SEO content, ad copy, brand voice, and editing.",
-  label: "Replacement",
-},
-{
-  title: "AI Tools Replacing Excel",
-  href: "/tools/ai/replacing/ai-tools-replacing-excel",
-  description:
-    "Explore which AI tools are replacing spreadsheet workflows across formulas, dashboards, automation, reporting, and operational tracking.",
-  label: "Replacement",
-},
+  {
+    title: "Most Used AI Tools for Software Teams",
+    href: "/tools/ai/professions/ai-tools-for-software-teams",
+    description:
+      "See which AI tools software teams use across coding, research, documentation, planning, and codebase workflows.",
+    label: "Profession",
+  },
+  {
+    title: "Typical AI Stack for Startups",
+    href: "/tools/ai/workflows/typical-ai-stack-for-startups",
+    description:
+      "See how startups can combine AI tools across research, coding, workspace, meetings, marketing, sales, and operations.",
+    label: "Workflow",
+  },
+  {
+    title: "Most Used AI Tools for Doctors",
+    href: "/tools/ai/professions/ai-tools-for-doctors",
+    description:
+      "See how doctors use AI tools across documentation, medical search, patient communication, research, and practice operations.",
+    label: "Profession",
+  },
+  {
+    title: "Most Adopted AI Workflows",
+    href: "/tools/ai/workflows/most-adopted-ai-workflows",
+    description:
+      "Explore the AI workflows organizations adopt across writing, coding, meetings, research, healthcare, marketing, operations, and knowledge management.",
+    label: "Workflow",
+  },
+  {
+    title: "AI Tools Replacing Google Search",
+    href: "/tools/ai/replacing/ai-tools-replacing-google-search",
+    description:
+      "Explore which AI tools are replacing parts of traditional Google Search behavior across research, explanations, comparisons, and AI-native workflows.",
+    label: "Replacement",
+  },
+  {
+    title: "AI Tools Replacing Copywriters",
+    href: "/tools/ai/replacing/ai-tools-replacing-copywriters",
+    description:
+      "Explore which AI tools are replacing parts of copywriting workflows across drafts, SEO content, ad copy, brand voice, and editing.",
+    label: "Replacement",
+  },
+  {
+    title: "AI Tools Replacing Excel",
+    href: "/tools/ai/replacing/ai-tools-replacing-excel",
+    description:
+      "Explore which AI tools are replacing spreadsheet workflows across formulas, dashboards, automation, reporting, and operational tracking.",
+    label: "Replacement",
+  },
 ];
 
 export default function AiStatisticsHubPage() {
@@ -186,6 +187,15 @@ export default function AiStatisticsHubPage() {
             href: "#methodology",
             variant: "secondary",
           },
+        ]}
+      />
+
+      <IntelligenceSubnav
+        items={[
+          { label: "Statistics pages", href: "#statistics-pages" },
+          { label: "Workflow pages", href: "#workflow-pages" },
+          { label: "Methodology", href: "#methodology" },
+          { label: "Related", href: "#related-intelligence" },
         ]}
       />
 
@@ -219,6 +229,15 @@ export default function AiStatisticsHubPage() {
       </IntelligenceSection>
 
       <IntelligenceSection
+        id="workflow-pages"
+        eyebrow="Workflow layer"
+        title="Related AI workflow and replacement pages"
+        description="Use these pages to connect AI statistics with practical workflows, professional use cases, and AI replacement patterns."
+      >
+        <RelatedIntelligencePages pages={workflowPages} />
+      </IntelligenceSection>
+
+      <IntelligenceSection
         id="methodology"
         eyebrow="Methodology"
         title="How T4 Atlas tracks AI statistics"
@@ -246,11 +265,36 @@ export default function AiStatisticsHubPage() {
       </IntelligenceSection>
 
       <IntelligenceSection
-        eyebrow="Related guides"
-        title="Related AI workflow guides"
-        description="Use these pages to connect AI statistics with practical workflow and tool-selection decisions."
+        id="related-intelligence"
+        eyebrow="Related intelligence"
+        title="Related AI intelligence pages"
+        description="Continue from the statistics hub into AI risk, workflows, adoption, replacement patterns, and professional AI use cases."
       >
-        <RelatedIntelligencePages pages={workflowPages} />
+        <RelatedIntelligencePages
+          pages={[
+            {
+              title: "AI Risk Intelligence",
+              href: "/tools/ai/risk-intelligence",
+              description:
+                "Explore structured AI risk intelligence across enterprise risk, frontier capabilities, alignment pressure, and governance.",
+              label: "Risk",
+            },
+            {
+              title: "Enterprise AI Adoption Statistics",
+              href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+              description:
+                "Explore enterprise AI adoption across productivity, software development, research, operations, and governance-sensitive workflows.",
+              label: "Enterprise",
+            },
+            {
+              title: "AI Coding Market Share",
+              href: "/tools/ai/statistics/ai-coding-market-share",
+              description:
+                "Explore AI coding adoption across copilots, AI-native editors, general assistants, and codebase tools.",
+              label: "Coding",
+            },
+          ]}
+        />
       </IntelligenceSection>
     </IntelligencePageLayout>
   );

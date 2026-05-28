@@ -3,6 +3,7 @@ import Link from "next/link";
 import { Analytics } from "@vercel/analytics/react";
 import { hubs } from "@/data/hubs";
 import "./globals.css";
+import MobileMenu from "@/components/navigation/MobileMenu";
 
 const sleepHub = {
   slug: "sleep",
@@ -62,6 +63,8 @@ export default function RootLayout({
                     </Link>
                   ))}
                 </nav>
+
+<MobileMenu items={navigationHubs} />
               </div>
             </div>
           </header>
