@@ -489,6 +489,38 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["research", "chatgpt", "claude", "productivity"],
   affiliateSlugs: ["chatgpt", "claude", "perplexity"],
 },
+{
+  slug: "ai-coding-hub",
+  title: "AI Coding Hub",
+  type: "best",
+  href: "/tools/ai/coding",
+  topics: ["coding", "productivity", "chatgpt", "copilot"],
+  affiliateSlugs: ["chatgpt", "claude", "copilot"],
+},
+{
+  slug: "cursor-vs-github-copilot",
+  title: "Cursor vs GitHub Copilot",
+  type: "comparison",
+  href: "/tools/ai/cursor-vs-github-copilot",
+  topics: ["coding", "productivity", "chatgpt", "copilot"],
+  affiliateSlugs: ["copilot", "chatgpt", "claude"],
+},
+{
+  slug: "best-ai-ides",
+  title: "Best AI IDEs",
+  type: "best",
+  href: "/tools/ai/best-ai-ides",
+  topics: ["coding", "productivity", "chatgpt", "copilot"],
+  affiliateSlugs: ["copilot", "chatgpt", "claude"],
+},
+{
+  slug: "best-ai-coding-assistants",
+  title: "Best AI Coding Assistants",
+  type: "best",
+  href: "/tools/ai/best-ai-coding-assistants",
+  topics: ["coding", "productivity", "copilot", "chatgpt"],
+  affiliateSlugs: ["copilot", "chatgpt", "claude"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({

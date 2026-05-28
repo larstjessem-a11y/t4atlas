@@ -100,6 +100,13 @@ const workflowPages = [
       "Compare AI tools for workspace productivity, documents, research, meetings, and daily work.",
     label: "Workflow",
   },
+{
+  title: "AI Coding Hub",
+  href: "/tools/ai/coding",
+  description:
+    "Explore AI coding tools, AI IDEs, coding assistants, developer workflows, AI coding market share, and software-team adoption.",
+  label: "Coding",
+},
   {
     title: "Best AI Tools for Productivity",
     href: "/tools/ai/best-ai-tools-for-productivity",
