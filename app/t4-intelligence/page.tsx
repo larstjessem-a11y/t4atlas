@@ -61,54 +61,57 @@ export default function T4IntelligenceHubPage() {
         </section>
 
         <section className="mb-8 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
-            <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
-              Data layer
-            </div>
-            <h2 className="mt-3 text-lg font-semibold text-white">
-              What the data shows
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              T4 Atlas tools, statistics, rankings, comparisons, and datasets.
-            </p>
-          </div>
+         <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
+  <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
+    Strategic Risk
+  </div>
+  <h2 className="mt-3 text-lg font-semibold text-white">
+    Signals Before They Become Headlines
+  </h2>
+  <p className="mt-2 text-sm leading-6 text-slate-300">
+    Identify emerging risks across technology, health, geopolitics, and
+    operations before they become visible to everyone else.
+  </p>
+</div>
 
-          <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
-            <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
-              Intelligence layer
-            </div>
-            <h2 className="mt-3 text-lg font-semibold text-white">
-              What it means
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              Analysis, scenarios, implications, and future-risk interpretation.
-            </p>
-          </div>
+        <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
+  <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
+    Future Scenarios
+  </div>
+  <h2 className="mt-3 text-lg font-semibold text-white">
+    Structured Thinking About Uncertainty
+  </h2>
+  <p className="mt-2 text-sm leading-6 text-slate-300">
+    Explore plausible future developments, second-order effects, and strategic
+    consequences across industries and societies.
+  </p>
+</div>
 
-          <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
-            <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
-              Publishing engine
-            </div>
-            <h2 className="mt-3 text-lg font-semibold text-white">
-              Multi-channel output
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              Articles designed for newsletters, LinkedIn, reports, and video.
-            </p>
-          </div>
+       <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
+  <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
+    Operational Resilience
+  </div>
+  <h2 className="mt-3 text-lg font-semibold text-white">
+    From Risk Awareness to Preparedness
+  </h2>
+  <p className="mt-2 text-sm leading-6 text-slate-300">
+    Understand how organizations can improve resilience, continuity planning,
+    workforce readiness, and decision-making under uncertainty.
+  </p>
+</div>
 
-          <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
-            <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
-              Commercial layer
-            </div>
-            <h2 className="mt-3 text-lg font-semibold text-white">
-              Built for monetization
-            </h2>
-            <p className="mt-2 text-sm leading-6 text-slate-300">
-              Newsletter, lead generation, reports, affiliates, and sponsored
-              analysis.
-            </p>
-          </div>
+        <div className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30">
+  <div className="text-xs font-medium uppercase tracking-wide text-cyan-200">
+    Technology & Security
+  </div>
+  <h2 className="mt-3 text-lg font-semibold text-white">
+    AI, Biosecurity and Emerging Risks
+  </h2>
+  <p className="mt-2 text-sm leading-6 text-slate-300">
+    Track how AI, biotechnology, cybersecurity, and geopolitical competition
+    are reshaping the global risk landscape.
+  </p>
+</div>
         </section>
 
         <section
