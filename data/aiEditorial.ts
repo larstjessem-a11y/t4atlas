@@ -521,6 +521,14 @@ const baseAiEditorialPages: AiEditorialPage[] = [
   topics: ["coding", "productivity", "copilot", "chatgpt"],
   affiliateSlugs: ["copilot", "chatgpt", "claude"],
 },
+{
+  slug: "best-ai-tools-for-sales",
+  title: "Best AI Tools for Sales",
+  type: "best",
+  href: "/tools/ai/best-ai-tools-for-sales",
+  topics: ["productivity", "marketing", "chatgpt"],
+  affiliateSlugs: ["chatgpt", "claude"],
+},
 ];
 
 const seededAiEditorialPages: AiEditorialPage[] = aiPageSeeds.map((seed) => ({
