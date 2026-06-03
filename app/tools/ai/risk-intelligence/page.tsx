@@ -161,6 +161,28 @@ export default function AiRiskIntelligenceHubPage() {
         />
       </div>
 
+<IntelligenceSection
+  eyebrow="Definition"
+  title="What Is Risk Intelligence?"
+  description="Risk intelligence is the process of collecting, analyzing, and interpreting signals that help organizations anticipate emerging risks before they become operational problems."
+>
+  <div className="space-y-4 leading-7 text-slate-300">
+    <p>
+      Risk intelligence goes beyond traditional risk management. Instead of
+      focusing only on known risks and compliance requirements, risk
+      intelligence attempts to identify emerging threats, capability shifts,
+      geopolitical changes, technological disruptions, and operational
+      vulnerabilities.
+    </p>
+
+    <p>
+      In the AI domain, risk intelligence helps organizations understand how
+      changing AI capabilities, deployment patterns, governance maturity, and
+      frontier-model development may create new forms of operational exposure.
+    </p>
+  </div>
+</IntelligenceSection>
+
       <IntelligenceSection
         id="risk-pages"
         eyebrow="Core pages"
@@ -176,6 +198,31 @@ export default function AiRiskIntelligenceHubPage() {
         title="T4 Atlas AI Risk Framework"
         description="The goal is not to make dramatic predictions. The goal is to compare AI systems and deployment patterns across repeatable risk dimensions."
       >
+<IntelligenceSection
+  eyebrow="Enterprise"
+  title="What Is a Risk Intelligence Platform?"
+  description="Risk intelligence platforms aggregate signals from multiple sources and help organizations convert uncertainty into actionable decisions."
+>
+  <div className="space-y-4 leading-7 text-slate-300">
+    <p>
+      Modern risk intelligence platforms combine data, analytics, monitoring,
+      scenario analysis, and expert interpretation. The goal is not simply to
+      collect information but to identify meaningful changes that affect
+      business operations.
+    </p>
+
+    <p>
+      Risk intelligence platforms are increasingly used to monitor AI
+      development, cyber threats, supply-chain exposure, geopolitical risk,
+      workforce disruption, regulatory change, and emerging technologies.
+    </p>
+
+    <p>
+      AI risk intelligence can be viewed as one specialized branch within the
+      broader field of enterprise risk intelligence.
+    </p>
+  </div>
+</IntelligenceSection>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {frameworkDimensions.map((dimension) => (
             <IntelligenceCard
@@ -214,8 +261,66 @@ export default function AiRiskIntelligenceHubPage() {
             governance, capability thresholds, transparency, and real-world
             exposure.
           </p>
+
+<p>
+  Organizations increasingly need operational intelligence rather than static
+  risk registers. AI systems evolve rapidly, which means risk assessments must
+  continuously adapt to changing capabilities, deployment models, governance
+  practices, and real-world adoption patterns.
+</p>
         </div>
       </IntelligenceSection>
+
+<IntelligenceSection
+  eyebrow="FAQ"
+  title="Frequently Asked Questions"
+>
+  <div className="space-y-6 text-slate-300">
+    <div>
+      <h3 className="font-semibold text-white">
+        What is risk intelligence?
+      </h3>
+      <p className="mt-2">
+        Risk intelligence is the structured analysis of signals, trends, and
+        emerging threats that may affect organizations, markets, technologies,
+        or operations.
+      </p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold text-white">
+        What is a risk intelligence platform?
+      </h3>
+      <p className="mt-2">
+        A risk intelligence platform combines data collection, monitoring,
+        analytics, and interpretation to help organizations anticipate and
+        manage emerging risks.
+      </p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold text-white">
+        What is AI risk intelligence?
+      </h3>
+      <p className="mt-2">
+        AI risk intelligence focuses on the risks created by AI capabilities,
+        deployment practices, governance systems, frontier-model development,
+        and operational exposure.
+      </p>
+    </div>
+
+    <div>
+      <h3 className="font-semibold text-white">
+        How is risk intelligence different from risk management?
+      </h3>
+      <p className="mt-2">
+        Risk management typically focuses on known risks, while risk
+        intelligence focuses on identifying emerging risks and changing threat
+        landscapes before they become operational issues.
+      </p>
+    </div>
+  </div>
+</IntelligenceSection>
 
       <IntelligenceSection
         id="related-intelligence"
