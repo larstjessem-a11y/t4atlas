@@ -5,13 +5,19 @@ import { hubs } from "@/data/hubs";
 import "./globals.css";
 import MobileMenu from "@/components/navigation/MobileMenu";
 
+const intelligenceHub = {
+  slug: "t4-intelligence",
+  href: "/t4-intelligence",
+  name: "Intelligence",
+};
+
 const sleepHub = {
   slug: "sleep",
   href: "/sleep",
   name: "Sleep",
 };
 
-const navigationHubs = [...hubs, sleepHub];
+const navigationHubs = [intelligenceHub, ...hubs, sleepHub];
 
 export const metadata: Metadata = {
   title: "T4 Atlas",

@@ -48,6 +48,37 @@ const featuredIntelligence = [
   },
 ];
 
+const featuredAnalysis = [
+  {
+    title: "The Silent Risk Every Company Ignores",
+    href: "/t4-intelligence/analysis/the-silent-risk-every-company-ignores",
+    label: "Operational Intelligence",
+    description:
+      "Why workforce resilience, absenteeism, and health shocks are becoming strategic business risks.",
+  },
+  {
+    title: "The Next Pandemic Won't Start in a Wet Market",
+    href: "/t4-intelligence/analysis/the-next-pandemic-wont-start-in-a-wet-market",
+    label: "Biosecurity",
+    description:
+      "How synthetic biology and dual-use technologies are changing pandemic risk.",
+  },
+  {
+    title: "Europe's AI Problem Is Not Technology",
+    href: "/t4-intelligence/analysis/europes-ai-problem-is-not-technology",
+    label: "AI",
+    description:
+      "Why Europe has AI talent but struggles with commercialization and scale.",
+  },
+  {
+    title: "The Geography of Risk",
+    href: "/t4-intelligence/analysis/the-geography-of-risk",
+    label: "Geopolitics",
+    description:
+      "Taiwan, Hormuz, Suez, Panama, and the chokepoints that shape global risk.",
+  },
+];
+
 export default function HomePage() {
   return (
     <main className="px-4 py-12 md:py-16">
@@ -171,6 +202,54 @@ export default function HomePage() {
             ))}
           </div>
         </section>
+
+<section className="mb-12 rounded-[1.75rem] border bg-slate-950 p-6 text-white shadow-sm md:p-8">
+  <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+    <div>
+      <div className="mb-3 inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.18em] text-cyan-200">
+        T4 Intelligence
+      </div>
+
+      <h2 className="text-2xl font-semibold tracking-tight md:text-3xl">
+        Analysis, risk and future insight
+      </h2>
+
+      <p className="mt-2 max-w-3xl text-slate-300">
+        Structured analysis across AI, biosecurity, geopolitics, supply chains,
+        preparedness, operational resilience, and future scenarios.
+      </p>
+    </div>
+
+    <Link
+      href="/t4-intelligence"
+      className="inline-flex rounded-2xl border border-white/15 px-4 py-2.5 text-sm font-medium text-white transition hover:bg-white/10"
+    >
+      Explore T4 Intelligence
+    </Link>
+  </div>
+
+  <div className="grid gap-4 md:grid-cols-2">
+    {featuredAnalysis.map((item) => (
+      <Link
+        key={item.href}
+        href={item.href}
+        className="rounded-3xl border border-white/10 bg-white/5 p-5 transition hover:bg-white/10"
+      >
+        <span className="mb-3 inline-flex rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-cyan-200">
+          {item.label}
+        </span>
+
+        <h3 className="text-lg font-semibold">
+          {item.title}
+        </h3>
+
+        <p className="mt-2 text-sm leading-6 text-slate-300">
+          {item.description}
+        </p>
+      </Link>
+    ))}
+  </div>
+</section>
 
         <section className="mb-16">
           <div className="mb-6 flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
