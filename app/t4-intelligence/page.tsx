@@ -28,20 +28,38 @@ export default function T4IntelligenceHubPage() {
             <span>T4 Intelligence</span>
           </div>
 
-          <span className="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-cyan-200 md:text-xs">
-            Analysis layer
-          </span>
+         <span className="mb-4 inline-flex rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-cyan-200 md:text-xs">
+  Risk · Strategy · Futures
+</span>
 
           <h1 className="max-w-4xl text-3xl font-semibold tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
             T4 Intelligence
           </h1>
 
-          <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base md:mt-5 md:text-lg md:leading-8">
-            Structured analysis on AI, biosecurity, geopolitics, supply-chain
-            risk, operational resilience, preparedness, and future scenarios.
-            T4 Intelligence connects data, risk signals, and strategic
-            interpretation.
-          </p>
+         <p className="mt-4 max-w-3xl text-sm leading-7 text-slate-300 sm:text-base md:mt-5 md:text-lg md:leading-8">
+  T4 Intelligence analyzes emerging risks, technological change, and
+  strategic uncertainty. We combine data, scenario analysis, and
+  operational insight across AI, biosecurity, geopolitics, supply
+  chains, resilience, and future risk.
+</p>
+
+<div className="mt-6 flex flex-wrap gap-2">
+  {[
+    "AI",
+    "Biosecurity",
+    "Geopolitics",
+    "Supply Chains",
+    "Preparedness",
+    "Future Risk",
+  ].map((item) => (
+    <span
+      key={item}
+      className="inline-flex rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-slate-300"
+    >
+      {item}
+    </span>
+  ))}
+</div>
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a

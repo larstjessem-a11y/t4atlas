@@ -85,76 +85,121 @@ export const intelligenceCategories: {
 
 export const intelligenceArticles: IntelligenceArticle[] = [
   {
-    slug: "the-silent-risk-every-company-ignores",
-    title: "The Silent Risk Every Company Ignores",
-    category: "operational-intelligence",
-    description:
-      "Why absenteeism, pandemics, workforce resilience, and health shocks should be treated as core operational risks rather than HR side issues.",
-    publishedAt: "2026-06-03",
-    readingTime: 8,
-    featured: true,
-    affiliateCategory: "productivity",
-    executiveSummary:
-      "Most companies treat workforce disruption as a human-resources problem. That is too narrow. Absenteeism, pandemics, chronic disease, burnout, seasonal infection waves, and care responsibilities can all disrupt operations, supply chains, and service delivery. Workforce resilience should be treated as a strategic risk category.",
-    keyTakeaways: [
-      "Absenteeism is often managed as a staffing issue even though it can create operational disruption.",
-      "Pandemics and seasonal infection waves expose weak assumptions about workforce availability.",
-      "Companies need better indicators for workforce resilience, not only retrospective absence reports.",
-      "Operational continuity planning should include health shocks, care burdens, and local disease dynamics.",
-    ],
-    mainAnalysis: [
-      {
-        title: "Workforce risk is usually detected too late",
-        body: [
-          "Most organizations understand absenteeism after it has already affected operations. Monthly reports, sick-leave summaries, and HR dashboards are lagging indicators. They show what happened, not what is about to happen.",
-          "The operational problem is that workforce availability is treated as a constant. In reality, it is a fragile input affected by disease patterns, school closures, care responsibilities, public-health shocks, burnout, and local outbreaks.",
-        ],
-      },
-      {
-        title: "Pandemics revealed the hidden dependency",
-        body: [
-          "COVID-19 showed that organizations can lose capacity even when buildings, suppliers, and IT systems remain intact. A business can have inventory, contracts, and customers but still fail operationally if the workforce is unavailable.",
-          "This is especially important for healthcare, logistics, manufacturing, education, public services, and customer-facing operations where remote work cannot fully compensate for missing people.",
-        ],
-      },
-      {
-        title: "The missing layer is predictive workforce intelligence",
-        body: [
-          "Companies need to move from retrospective absence measurement to predictive workforce risk intelligence. That means combining internal absence patterns with external signals such as local infection trends, weather, school calendars, public-health alerts, and regional disruption indicators.",
-          "The goal is not perfect prediction. The goal is enough early warning to adjust staffing, logistics, customer promises, and contingency plans before disruption becomes visible.",
-        ],
-      },
-    ],
-    strategicImplications: [
-      "Workforce resilience should be part of enterprise risk management, not only HR reporting.",
-      "Companies with location-based operations need local risk indicators, not only national averages.",
-      "Health intelligence, absence forecasting, and operational continuity planning may become a competitive advantage.",
-      "Boards and executives should ask whether critical workflows depend on unrealistic assumptions about staff availability.",
-    ],
-    whatHappensNext: [
-      "More organizations will begin to connect workforce data with external risk signals.",
-      "Seasonal infection waves, aging populations, burnout, and future pandemics will make workforce resilience more strategically important.",
-      "Enterprise risk platforms may increasingly include health and absenteeism indicators alongside cyber, geopolitical, and supply-chain signals.",
-    ],
-    relatedDatasets: [
-      {
-        title: "AI Risk Intelligence",
-        href: "/tools/ai/risk-intelligence",
-        description:
-          "A structured hub for AI risk, operational exposure, governance maturity, and systemic risk.",
-      },
-      {
-        title: "Enterprise AI Adoption Statistics",
-        href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
-        description:
-          "A structured view of enterprise AI adoption across productivity, operations, research, and security workflows.",
-      },
-    ],
-    relatedArticles: [
-      "why-national-preparedness-models-are-stuck-in-the-past",
-      "the-next-pandemic-wont-start-in-a-wet-market",
-    ],
-  },
+slug: "the-silent-risk-every-company-ignores",
+title: "The Silent Risk Every Company Ignores",
+category: "operational-intelligence",
+description:
+"Why workforce resilience, absenteeism, health shocks, and labor availability should be treated as strategic operational risks rather than HR metrics.",
+publishedAt: "2026-06-03",
+readingTime: 15,
+featured: true,
+affiliateCategory: "productivity",
+
+executiveSummary:
+"Most organizations devote significant resources to financial risk, cybersecurity, compliance, and supply-chain resilience. Far fewer devote the same attention to workforce resilience. Yet the ability of an organization to function ultimately depends on people being available to perform critical tasks. Absenteeism, burnout, seasonal disease waves, chronic illness, caregiving responsibilities, and future pandemics can all disrupt operations long before they appear in management reports. The lesson from recent years is clear: workforce availability is not merely an HR concern. It is a strategic operational dependency. Organizations that fail to understand this risk may discover their vulnerability only after service quality deteriorates, customers are affected, and continuity plans are already under stress.",
+
+keyTakeaways: [
+"Workforce availability is a critical operational dependency, not merely an HR metric.",
+"Most organizations rely on lagging indicators that identify problems after disruption has already begun.",
+"COVID-19 exposed how fragile many organizations were when labor availability suddenly changed.",
+"Workforce resilience should be integrated into enterprise risk management and continuity planning.",
+"Predictive workforce intelligence may become as important as financial forecasting and supply-chain monitoring.",
+],
+
+mainAnalysis: [
+{
+title: "Why Workforce Risk Is Misunderstood",
+body: [
+"For decades, workforce availability has largely been treated as an operational assumption rather than an operational risk. Organizations generally assume that employees will arrive at work, critical functions will remain staffed, and labor shortages will be temporary and manageable.",
+"As a result, workforce disruption is often categorized as an HR issue rather than an enterprise-risk issue. Management teams may monitor absenteeism rates, but rarely ask deeper questions about organizational resilience, concentration of expertise, or vulnerability to sudden reductions in labor availability.",
+"This creates a blind spot. The organization may invest heavily in cybersecurity, financial controls, supplier diversification, and disaster recovery while overlooking the possibility that a shortage of people could become the primary limiting factor in maintaining operations."
+],
+},
+
+{
+  title: "What COVID Actually Revealed",
+  body: [
+    "The COVID-19 pandemic revealed a weakness that had existed long before the crisis itself. Many organizations discovered that they could possess functioning facilities, sufficient inventory, reliable technology systems, and strong customer demand while still being unable to operate effectively.",
+    "Healthcare systems experienced staffing shortages even when physical infrastructure remained intact. Logistics providers struggled to maintain service levels because of workforce disruptions rather than equipment failures. Schools, public services, manufacturers, and transportation systems encountered similar challenges.",
+    "The lesson was not simply that pandemics are dangerous. The deeper lesson was that workforce availability represents a hidden dependency embedded throughout modern organizations."
+  ],
+},
+
+{
+  title: "The Hidden Cost of Absenteeism",
+  body: [
+    "Most discussions about absenteeism focus on direct costs such as sick-pay obligations, overtime expenses, temporary staffing, and productivity losses. These costs are real but often represent only part of the picture.",
+    "The larger impact frequently emerges through indirect effects. Delayed projects, reduced service quality, slower customer response times, operational bottlenecks, management distraction, and reputational damage can all result from workforce disruption.",
+    "In highly specialized environments, the absence of a small number of key individuals can create disproportionately large operational consequences. Organizations may believe they have redundancy until a disruption reveals otherwise."
+  ],
+},
+
+{
+  title: "Why Traditional HR Reporting Fails",
+  body: [
+    "Most workforce reporting relies on lagging indicators. Monthly absence reports, staffing summaries, and historical metrics describe what has already happened.",
+    "Executives, however, are rarely interested only in historical performance. They need to understand emerging risks. They need to know whether absenteeism is likely to increase, whether critical teams are becoming vulnerable, and whether external conditions are creating operational pressure.",
+    "The difference between these perspectives mirrors the difference between looking through a rear-view mirror and looking through a windshield. Historical reporting remains useful, but it cannot serve as the primary early-warning system."
+  ],
+},
+
+{
+  title: "The Case for Workforce Intelligence",
+  body: [
+    "Organizations increasingly collect large amounts of internal operational data. Yet many fail to integrate external signals that influence workforce availability.",
+    "Disease activity, weather events, school schedules, demographic trends, local outbreaks, transportation disruptions, and broader public-health developments can all influence labor availability before internal metrics detect a problem.",
+    "Workforce intelligence seeks to combine these signals into a more predictive framework. The goal is not perfect forecasting. The goal is to identify elevated risk early enough for organizations to adjust staffing, customer commitments, contingency plans, and operational priorities."
+  ],
+},
+
+{
+  title: "What CEOs Should Monitor",
+  body: [
+    "Leaders should think beyond headline absenteeism percentages and instead focus on resilience indicators. These include workforce availability, concentration of expertise, recovery time from staffing disruptions, local disease pressure, and dependency on a small number of critical individuals.",
+    "Organizations should also assess whether operational continuity depends on assumptions that have never been tested under stress. A business may appear efficient during normal conditions while remaining highly vulnerable during periods of disruption.",
+    "The most resilient organizations are often those that understand their dependencies before they are forced to discover them."
+  ],
+},
+
+],
+
+strategicImplications: [
+"Workforce resilience should be incorporated into enterprise risk management frameworks.",
+"Boards should view labor availability as a strategic dependency rather than a staffing metric.",
+"Operational continuity planning should include workforce disruption scenarios alongside cyber, supply-chain, and financial risks.",
+"Organizations with geographically distributed operations should monitor local risk indicators rather than relying solely on national averages.",
+"Predictive workforce intelligence may become a competitive advantage in labor-intensive industries.",
+],
+
+whatHappensNext: [
+"Aging populations and chronic disease burdens will increase pressure on workforce availability across many sectors.",
+"Future pandemics and biological disruptions will continue to test organizational resilience.",
+"AI-enabled forecasting systems will improve the ability to anticipate workforce-related operational risks.",
+"Enterprise risk platforms are likely to integrate workforce resilience indicators alongside cyber, geopolitical, and supply-chain intelligence.",
+"Organizations that treat workforce resilience as a strategic capability may gain measurable operational advantages.",
+],
+
+relatedDatasets: [
+{
+title: "AI Risk Intelligence",
+href: "/tools/ai/risk-intelligence",
+description:
+"Structured analysis of operational exposure, governance maturity, systemic risk, and frontier AI capabilities.",
+},
+{
+title: "Enterprise AI Adoption Statistics",
+href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+description:
+"Data on enterprise adoption across productivity, operations, research, support, and organizational workflows.",
+},
+],
+
+relatedArticles: [
+"why-national-preparedness-models-are-stuck-in-the-past",
+"the-next-pandemic-wont-start-in-a-wet-market",
+],
+},
+
   {
     slug: "the-next-pandemic-wont-start-in-a-wet-market",
     title: "The Next Pandemic Won't Start in a Wet Market",
