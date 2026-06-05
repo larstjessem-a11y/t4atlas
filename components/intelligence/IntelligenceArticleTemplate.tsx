@@ -159,9 +159,6 @@ export default function IntelligenceArticleTemplate({
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <NewsletterSignup />
-              <button className="rounded-2xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
-                Join newsletter
-              </button>
             </div>
           </section>
 
