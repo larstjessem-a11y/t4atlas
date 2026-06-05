@@ -27,14 +27,11 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
         "api-key": apiKey,
       },
-      body: JSON.stringify({
-        email,
-        listIds: [Number(listId)],
-        updateEnabled: true,
-        attributes: {
-          SOURCE: "T4 Intelligence",
-        },
-      }),
+    body: JSON.stringify({
+  email,
+  listIds: [Number(listId)],
+  updateEnabled: true,
+}),
     });
 
     if (!response.ok) {
