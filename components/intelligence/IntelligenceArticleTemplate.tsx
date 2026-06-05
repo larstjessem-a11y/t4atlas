@@ -5,6 +5,7 @@ import {
   getIntelligenceArticle,
   intelligenceCategories,
 } from "@/data/intelligenceArticles";
+import NewsletterSignup from "@/components/intelligence/NewsletterSignup";
 
 type IntelligenceArticleTemplateProps = {
   article: IntelligenceArticle;
@@ -157,11 +158,7 @@ export default function IntelligenceArticleTemplate({
             </p>
 
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <input
-                type="email"
-                placeholder="Email address"
-                className="min-w-0 flex-1 rounded-2xl border border-cyan-400/20 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none"
-              />
+              <NewsletterSignup />
               <button className="rounded-2xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200">
                 Join newsletter
               </button>
