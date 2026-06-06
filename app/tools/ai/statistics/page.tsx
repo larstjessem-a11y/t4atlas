@@ -90,6 +90,41 @@ const statisticsPages = [
       "Explore AI coding market share signals across IDE copilots, AI-native editors, general assistants, codebase tools, and developer workflows.",
     label: "Coding",
   },
+{
+  title: "Most Used AI Agents",
+  href: "/tools/ai/statistics/most-used-ai-agents",
+  description:
+    "Compare leading AI agents across general assistants, enterprise productivity, AI search, coding, and agentic workflows.",
+  label: "Agents",
+},
+{
+  title: "AI Browser Market Share",
+  href: "/tools/ai/statistics/ai-browser-market-share",
+  description:
+    "Compare AI browser positioning across Chrome, Edge, Safari, Arc, Perplexity Comet, Brave, Opera, and Dia.",
+  label: "Browsers",
+},
+{
+  title: "Most Used AI Coding Models",
+  href: "/tools/ai/statistics/most-used-ai-coding-models",
+  description:
+    "Compare influential AI coding models across commercial and open-source developer ecosystems.",
+  label: "Coding models",
+},
+{
+  title: "Enterprise AI Vendor Rankings",
+  href: "/tools/ai/statistics/enterprise-ai-vendor-rankings",
+  description:
+    "Compare leading enterprise AI vendors by distribution, workflow ownership, cloud integration, governance, and operational fit.",
+  label: "Enterprise",
+},
+{
+  title: "Open Source AI Rankings",
+  href: "/tools/ai/statistics/open-source-ai-rankings",
+  description:
+    "Compare leading open-source and open-weight AI model ecosystems by adoption, deployment flexibility, and community strength.",
+  label: "Open source",
+},
 ];
 
 const workflowPages = [
