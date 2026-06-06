@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   mostUsedAiAgentsCategories,
   mostUsedAiAgentsData,
@@ -12,169 +16,191 @@ import {
 export const metadata: Metadata = {
   title: "Most Used AI Agents (2026) | T4 Atlas",
   description:
-    "Explore the most used AI agents, including ChatGPT, Claude, Gemini, Microsoft Copilot, Perplexity, Cursor Agent, Devin, Manus, and more.",
+    "Explore the most used AI agents across general assistants, enterprise productivity, AI search, coding agents, computer-use agents, and agentic workflows.",
 };
 
+const relatedPages = [
+  {
+    title: "AI Tools Market Share",
+    href: "/tools/ai/ai-tools-market-share",
+    description:
+      "Compare major AI tools by market-share signals, visibility, traffic rankings, and T4 Atlas momentum score.",
+    label: "Market share",
+  },
+  {
+    title: "AI Browser Market Share",
+    href: "/tools/ai/statistics/ai-browser-market-share",
+    description:
+      "Compare AI browser positioning across mainstream browsers, AI-native browsers, enterprise browsers, and search-agent browsers.",
+    label: "Browsers",
+  },
+  {
+    title: "Most Used AI Coding Models",
+    href: "/tools/ai/statistics/most-used-ai-coding-models",
+    description:
+      "Compare influential AI coding models across commercial and open-source developer ecosystems.",
+    label: "Coding models",
+  },
+];
+
 export default function MostUsedAiAgentsPage() {
+  const sortedAgents = [...mostUsedAiAgentsData].sort(
+    (a, b) => b.momentumScore - a.momentumScore
+  );
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <div className="mb-8">
-        <nav className="mb-4 text-sm text-slate-400">
-          <Link href="/" className="hover:text-cyan-400">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai" className="hover:text-cyan-400">
-            AI
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai/statistics" className="hover:text-cyan-400">
-            Statistics
-          </Link>
-        </nav>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="AI agent statistics"
+        title="Most Used AI Agents"
+        description="A structured overview of the most visible AI agents across general assistants, enterprise productivity, AI search, coding, computer-use, and multi-step task workflows."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "Most Used AI Agents" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${mostUsedAiAgentsLastUpdated}`}
+      />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white">
-          Most Used AI Agents
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          AI agents are evolving from simple chat interfaces into workflow
-          engines that can research, browse, code, plan, and execute tasks.
-          This ranking highlights the most visible and influential AI agents
-          across consumer, enterprise, search, and developer ecosystems.
-        </p>
-
-        <p className="mt-4 text-sm text-slate-500">
-          Last updated: {mostUsedAiAgentsLastUpdated}
-        </p>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {mostUsedAiAgentsKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Key Findings
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {mostUsedAiAgentsKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4"
-            >
-              <h3 className="font-medium text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {item.description}
-              </p>
-            </div>
+      <IntelligenceSection
+        title="AI agent momentum snapshot"
+        description="AI agents are moving beyond chat toward research, coding, enterprise productivity, browsing, and multi-step execution. The cards below show the highest-scoring agents in this T4 Atlas editorial ranking."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedAgents.slice(0, 4).map((agent) => (
+            <IntelligenceCard
+              key={agent.agent}
+              eyebrow={agent.category}
+              title={agent.agent}
+              score={agent.momentumScore}
+              description="Momentum score"
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 overflow-hidden rounded-3xl border border-slate-800">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-slate-900">
-              <tr>
-                <th className="px-4 py-3 text-left">Agent</th>
-                <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-left">Primary Use Case</th>
-                <th className="px-4 py-3 text-left">Adoption Signal</th>
-                <th className="px-4 py-3 text-left">Momentum</th>
-              </tr>
-            </thead>
+      <IntelligenceSection
+        id="data-table"
+        title="Most used AI agents table"
+        description="A structured comparison of leading AI agents by category, primary use case, adoption signal, and T4 Atlas momentum score."
+      >
+        <IntelligenceTable
+          data={sortedAgents}
+          columns={[
+            {
+              key: "agent",
+              label: "Agent",
+              render: (item) => (
+                <span className="font-semibold text-white">{item.agent}</span>
+              ),
+            },
+            {
+              key: "category",
+              label: "Category",
+            },
+            {
+              key: "primaryUseCase",
+              label: "Primary use case",
+            },
+            {
+              key: "adoptionSignal",
+              label: "Adoption signal",
+            },
+            {
+              key: "momentumScore",
+              label: "Momentum",
+              render: (item) => (
+                <span className="font-semibold text-cyan-200">
+                  {item.momentumScore}
+                </span>
+              ),
+            },
+          ]}
+        />
+      </IntelligenceSection>
 
-            <tbody>
-              {mostUsedAiAgentsData.map((item) => (
-                <tr
-                  key={item.agent}
-                  className="border-t border-slate-800"
-                >
-                  <td className="px-4 py-3 font-medium text-white">
-                    {item.agent}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.category}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.primaryUseCase}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.adoptionSignal}
-                  </td>
-
-                  <td className="px-4 py-3 text-cyan-400">
-                    {item.momentumScore}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          AI Agent Categories
-        </h2>
-
+      <IntelligenceSection
+        title="AI agent categories"
+        description="The AI-agent market is still early. These categories help separate broad assistants from more specialized agents for enterprise productivity, coding, research, and browsing."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {mostUsedAiAgentsCategories.map((category) => (
-            <div
+            <IntelligenceCard
               key={category.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5"
-            >
-              <h3 className="font-medium text-white">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {category.description}
-              </p>
-            </div>
+              eyebrow="Category"
+              title={category.title}
+              description={category.description}
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Methodology
-        </h2>
-
-        <p className="text-slate-300">
-          {mostUsedAiAgentsMethodology.description}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Related AI Statistics
-        </h2>
-
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/tools/ai/statistics/ai-tools-market-share"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            AI Tools Market Share
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/most-funded-ai-startups"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Funded AI Startups
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/ai-startup-valuation-rankings"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            AI Startup Valuation Rankings
-          </Link>
+      <IntelligenceSection
+        title="What the rankings mean"
+        description="AI-agent adoption is not yet measured by one clean public metric. Distribution, workflow relevance, enterprise integration, developer mindshare, and strategic momentum all matter."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedAgents.map((agent) => (
+            <IntelligenceCard
+              key={agent.agent}
+              eyebrow={agent.category}
+              title={agent.agent}
+              score={agent.momentumScore}
+              description={agent.primaryUseCase}
+            >
+              <p className="text-xs text-slate-400">
+                Signal: {agent.adoptionSignal}
+              </p>
+            </IntelligenceCard>
+          ))}
         </div>
-      </section>
-    </main>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={mostUsedAiAgentsMethodology.title}
+        description={mostUsedAiAgentsMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          This page is a structured editorial ranking. It should not be
+          interpreted as official active-user market share, revenue share, or
+          verified product telemetry.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related AI statistics"
+        description="Use these pages to connect AI agents with market share, AI browsers, coding models, and broader AI adoption signals."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }

@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   openSourceAiRankingsCategories,
   openSourceAiRankingsData,
@@ -12,171 +16,194 @@ import {
 export const metadata: Metadata = {
   title: "Open Source AI Rankings (2026) | T4 Atlas",
   description:
-    "Compare leading open-source AI models including Llama, DeepSeek, Qwen, Mistral, Gemma, Phi, OLMo, and Falcon.",
+    "Compare leading open-source and open-weight AI ecosystems including Llama, DeepSeek, Qwen, Mistral, Gemma, Phi, OLMo, and Falcon.",
 };
 
+const relatedPages = [
+  {
+    title: "Most Used AI Coding Models",
+    href: "/tools/ai/statistics/most-used-ai-coding-models",
+    description:
+      "Compare influential AI coding models across commercial and open-source developer ecosystems.",
+    label: "Coding models",
+  },
+  {
+    title: "Most Used AI Models",
+    href: "/tools/ai/statistics/most-used-ai-models",
+    description:
+      "Explore widely used AI models across frontier assistants, reasoning systems, multimodal models, and open-weight models.",
+    label: "Models",
+  },
+  {
+    title: "Enterprise AI Vendor Rankings",
+    href: "/tools/ai/statistics/enterprise-ai-vendor-rankings",
+    description:
+      "Compare leading enterprise AI vendors by distribution, workflow ownership, cloud integration, governance, and operational fit.",
+    label: "Enterprise",
+  },
+];
+
 export default function OpenSourceAiRankingsPage() {
+  const sortedModels = [...openSourceAiRankingsData].sort(
+    (a, b) => b.openSourceScore - a.openSourceScore
+  );
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <div className="mb-8">
-        <nav className="mb-4 text-sm text-slate-400">
-          <Link href="/" className="hover:text-cyan-400">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai" className="hover:text-cyan-400">
-            AI
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai/statistics" className="hover:text-cyan-400">
-            Statistics
-          </Link>
-        </nav>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="Open-source AI statistics"
+        title="Open Source AI Rankings"
+        description="A structured comparison of leading open-source and open-weight AI model ecosystems by adoption, deployment flexibility, community strength, enterprise relevance, and research visibility."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "Open Source AI Rankings" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${openSourceAiRankingsLastUpdated}`}
+      />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white">
-          Open Source AI Rankings
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          Open-source AI models are becoming increasingly capable and are
-          reshaping how developers, researchers, startups, and enterprises
-          deploy artificial intelligence. This ranking compares the most
-          influential open-weight AI ecosystems.
-        </p>
-
-        <p className="mt-4 text-sm text-slate-500">
-          Last updated: {openSourceAiRankingsLastUpdated}
-        </p>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {openSourceAiRankingsKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Key Findings
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {openSourceAiRankingsKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4"
-            >
-              <h3 className="font-medium text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {item.description}
-              </p>
-            </div>
+      <IntelligenceSection
+        title="Open-source AI ecosystem snapshot"
+        description="Open-source and open-weight AI models are becoming central to local deployment, enterprise experimentation, research transparency, fine-tuning, and strategic AI independence."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedModels.slice(0, 4).map((model) => (
+            <IntelligenceCard
+              key={model.model}
+              eyebrow={model.developer}
+              title={model.model}
+              score={model.openSourceScore}
+              description="Open-source score"
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 overflow-hidden rounded-3xl border border-slate-800">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[1000px]">
-            <thead className="bg-slate-900">
-              <tr>
-                <th className="px-4 py-3 text-left">Model</th>
-                <th className="px-4 py-3 text-left">Developer</th>
-                <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-left">Strengths</th>
-                <th className="px-4 py-3 text-left">Ecosystem Signal</th>
-                <th className="px-4 py-3 text-left">Score</th>
-              </tr>
-            </thead>
+      <IntelligenceSection
+        id="data-table"
+        title="Open-source AI ranking table"
+        description="A structured comparison of leading open-source and open-weight AI ecosystems by developer, category, strengths, ecosystem signal, and T4 Atlas open-source score."
+      >
+        <IntelligenceTable
+          data={sortedModels}
+          columns={[
+            {
+              key: "model",
+              label: "Model",
+              render: (item) => (
+                <span className="font-semibold text-white">{item.model}</span>
+              ),
+            },
+            {
+              key: "developer",
+              label: "Developer",
+            },
+            {
+              key: "category",
+              label: "Category",
+            },
+            {
+              key: "strengths",
+              label: "Strengths",
+            },
+            {
+              key: "ecosystemSignal",
+              label: "Ecosystem signal",
+            },
+            {
+              key: "openSourceScore",
+              label: "Score",
+              render: (item) => (
+                <span className="font-semibold text-cyan-200">
+                  {item.openSourceScore}
+                </span>
+              ),
+            },
+          ]}
+        />
+      </IntelligenceSection>
 
-            <tbody>
-              {openSourceAiRankingsData.map((item) => (
-                <tr key={item.model} className="border-t border-slate-800">
-                  <td className="px-4 py-3 font-medium text-white">
-                    {item.model}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.developer}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.category}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.strengths}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.ecosystemSignal}
-                  </td>
-
-                  <td className="px-4 py-3 text-cyan-400">
-                    {item.openSourceScore}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Open Source AI Categories
-        </h2>
-
+      <IntelligenceSection
+        title="Open-source AI categories"
+        description="Open AI ecosystems differ by model size, deployment flexibility, transparency, enterprise usability, coding strength, and community tooling."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {openSourceAiRankingsCategories.map((category) => (
-            <div
+            <IntelligenceCard
               key={category.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5"
-            >
-              <h3 className="font-medium text-white">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {category.description}
-              </p>
-            </div>
+              eyebrow="Category"
+              title={category.title}
+              description={category.description}
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Methodology
-        </h2>
-
-        <p className="text-slate-300">
-          {openSourceAiRankingsMethodology.description}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Related AI Statistics
-        </h2>
-
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/tools/ai/statistics/most-used-ai-coding-models"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI Coding Models
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/most-used-ai-agents"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI Agents
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/enterprise-ai-vendor-rankings"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Enterprise AI Vendor Rankings
-          </Link>
+      <IntelligenceSection
+        title="What the rankings mean"
+        description="This ranking reflects ecosystem relevance rather than official usage share. For open-source AI, community adoption, deployment flexibility, tooling, fine-tuning support, and enterprise control often matter as much as raw model capability."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedModels.map((model) => (
+            <IntelligenceCard
+              key={model.model}
+              eyebrow={model.developer}
+              title={model.model}
+              score={model.openSourceScore}
+              description={model.strengths}
+            >
+              <p className="text-xs text-slate-400">
+                Signal: {model.ecosystemSignal}
+              </p>
+            </IntelligenceCard>
+          ))}
         </div>
-      </section>
-    </main>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={openSourceAiRankingsMethodology.title}
+        description={openSourceAiRankingsMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          This page should not be interpreted as official open-source model
+          usage share, benchmark ranking, or verified deployment telemetry.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related open-source and model statistics"
+        description="Use these pages to connect open-source AI rankings with coding models, general AI model adoption, and enterprise vendor positioning."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }

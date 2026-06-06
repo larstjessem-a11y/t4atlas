@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   enterpriseAiVendorRankingsCategories,
   enterpriseAiVendorRankingsData,
@@ -15,168 +19,191 @@ export const metadata: Metadata = {
     "Compare enterprise AI vendors including Microsoft, OpenAI, Google, Anthropic, AWS, Salesforce, IBM, Databricks, Palantir, and Oracle.",
 };
 
+const relatedPages = [
+  {
+    title: "Enterprise AI Adoption Statistics",
+    href: "/tools/ai/statistics/enterprise-ai-adoption-statistics",
+    description:
+      "Explore enterprise AI adoption across productivity, software development, customer support, research, marketing, operations, knowledge management, and security.",
+    label: "Enterprise",
+  },
+  {
+    title: "AI Tools Market Share",
+    href: "/tools/ai/ai-tools-market-share",
+    description:
+      "Compare major AI tools by market-share signals, visibility, traffic rankings, and T4 Atlas momentum score.",
+    label: "Market share",
+  },
+  {
+    title: "Most Used AI APIs",
+    href: "/tools/ai/statistics/most-used-ai-apis",
+    description:
+      "Explore widely used AI APIs across frontier models, reasoning APIs, multimodal systems, open-model ecosystems, and enterprise AI infrastructure.",
+    label: "APIs",
+  },
+];
+
 export default function EnterpriseAiVendorRankingsPage() {
+  const sortedVendors = [...enterpriseAiVendorRankingsData].sort(
+    (a, b) => b.enterpriseScore - a.enterpriseScore
+  );
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <div className="mb-8">
-        <nav className="mb-4 text-sm text-slate-400">
-          <Link href="/" className="hover:text-cyan-400">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai" className="hover:text-cyan-400">
-            AI
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai/statistics" className="hover:text-cyan-400">
-            Statistics
-          </Link>
-        </nav>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="Enterprise AI statistics"
+        title="Enterprise AI Vendor Rankings"
+        description="A structured comparison of leading enterprise AI vendors by distribution strength, workflow ownership, cloud integration, governance positioning, infrastructure depth, and operational fit."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "Enterprise AI Vendor Rankings" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${enterpriseAiVendorRankingsLastUpdated}`}
+      />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white">
-          Enterprise AI Vendor Rankings
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          Enterprise AI adoption is shaped by more than model quality. This
-          ranking compares leading enterprise AI vendors by distribution,
-          workflow ownership, cloud integration, governance positioning, and
-          operational fit.
-        </p>
-
-        <p className="mt-4 text-sm text-slate-500">
-          Last updated: {enterpriseAiVendorRankingsLastUpdated}
-        </p>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {enterpriseAiVendorRankingsKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Key Findings
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {enterpriseAiVendorRankingsKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4"
-            >
-              <h3 className="font-medium text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {item.description}
-              </p>
-            </div>
+      <IntelligenceSection
+        title="Enterprise AI vendor snapshot"
+        description="Enterprise AI adoption is shaped by more than model quality. Distribution, procurement fit, cloud relationships, governance, security, and integration into existing workflows are often decisive."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedVendors.slice(0, 4).map((vendor) => (
+            <IntelligenceCard
+              key={vendor.vendor}
+              eyebrow={vendor.category}
+              title={vendor.vendor}
+              score={vendor.enterpriseScore}
+              description="Enterprise score"
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 overflow-hidden rounded-3xl border border-slate-800">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[1100px]">
-            <thead className="bg-slate-900">
-              <tr>
-                <th className="px-4 py-3 text-left">Vendor</th>
-                <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-left">Enterprise Positioning</th>
-                <th className="px-4 py-3 text-left">Strengths</th>
-                <th className="px-4 py-3 text-left">Adoption Signal</th>
-                <th className="px-4 py-3 text-left">Score</th>
-              </tr>
-            </thead>
+      <IntelligenceSection
+        id="data-table"
+        title="Enterprise AI vendor ranking table"
+        description="A structured comparison of leading enterprise AI vendors by category, positioning, strengths, adoption signal, and T4 Atlas enterprise score."
+      >
+        <IntelligenceTable
+          data={sortedVendors}
+          columns={[
+            {
+              key: "vendor",
+              label: "Vendor",
+              render: (item) => (
+                <span className="font-semibold text-white">{item.vendor}</span>
+              ),
+            },
+            {
+              key: "category",
+              label: "Category",
+            },
+            {
+              key: "enterprisePositioning",
+              label: "Enterprise positioning",
+            },
+            {
+              key: "strengths",
+              label: "Strengths",
+            },
+            {
+              key: "adoptionSignal",
+              label: "Adoption signal",
+            },
+            {
+              key: "enterpriseScore",
+              label: "Score",
+              render: (item) => (
+                <span className="font-semibold text-cyan-200">
+                  {item.enterpriseScore}
+                </span>
+              ),
+            },
+          ]}
+        />
+      </IntelligenceSection>
 
-            <tbody>
-              {enterpriseAiVendorRankingsData.map((item) => (
-                <tr key={item.vendor} className="border-t border-slate-800">
-                  <td className="px-4 py-3 font-medium text-white">
-                    {item.vendor}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.category}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.enterprisePositioning}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.strengths}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.adoptionSignal}
-                  </td>
-
-                  <td className="px-4 py-3 text-cyan-400">
-                    {item.enterpriseScore}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Enterprise AI Vendor Categories
-        </h2>
-
+      <IntelligenceSection
+        title="Enterprise AI vendor categories"
+        description="Enterprise AI vendors differ by where they sit in the stack: frontier models, cloud infrastructure, workflow platforms, operational systems, governance layers, and data platforms."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {enterpriseAiVendorRankingsCategories.map((category) => (
-            <div
+            <IntelligenceCard
               key={category.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5"
-            >
-              <h3 className="font-medium text-white">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {category.description}
-              </p>
-            </div>
+              eyebrow="Category"
+              title={category.title}
+              description={category.description}
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Methodology
-        </h2>
-
-        <p className="text-slate-300">
-          {enterpriseAiVendorRankingsMethodology.description}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Related AI Statistics
-        </h2>
-
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/tools/ai/statistics/enterprise-ai-adoption-statistics"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Enterprise AI Adoption Statistics
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/most-used-ai-apis"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI APIs
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/ai-startup-valuation-rankings"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            AI Startup Valuation Rankings
-          </Link>
+      <IntelligenceSection
+        title="What the rankings mean"
+        description="The ranking reflects enterprise positioning, not official revenue share. In practice, enterprise buyers evaluate trust, security, integration, support, procurement pathways, governance, and workflow fit."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedVendors.map((vendor) => (
+            <IntelligenceCard
+              key={vendor.vendor}
+              eyebrow={vendor.category}
+              title={vendor.vendor}
+              score={vendor.enterpriseScore}
+              description={vendor.enterprisePositioning}
+            >
+              <p className="text-xs text-slate-400">
+                Signal: {vendor.adoptionSignal}
+              </p>
+            </IntelligenceCard>
+          ))}
         </div>
-      </section>
-    </main>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={enterpriseAiVendorRankingsMethodology.title}
+        description={enterpriseAiVendorRankingsMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          This page should not be interpreted as official enterprise AI revenue
+          share, customer-count share, or verified procurement data.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related enterprise AI statistics"
+        description="Use these pages to connect enterprise vendor rankings with adoption patterns, market share, API usage, and broader AI infrastructure trends."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }

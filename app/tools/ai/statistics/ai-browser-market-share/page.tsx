@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   aiBrowserMarketShareCategories,
   aiBrowserMarketShareData,
@@ -10,164 +14,192 @@ import {
 } from "@/data/aiStats/aiBrowserMarketShare";
 
 export const metadata: Metadata = {
-  title: "AI Browser Market Share | AI Browsers Compared",
+  title: "AI Browser Market Share | T4 Atlas",
   description:
-    "Compare AI browser market positioning, including Chrome, Edge, Safari, Arc, Perplexity Comet, Brave, Opera, and Dia.",
+    "Compare AI browser positioning across Chrome, Edge, Safari, Arc, Perplexity Comet, Brave, Opera, Dia, and emerging AI-native browsers.",
 };
 
+const relatedPages = [
+  {
+    title: "Most Used AI Agents",
+    href: "/tools/ai/statistics/most-used-ai-agents",
+    description:
+      "Compare leading AI agents across assistants, enterprise productivity, coding, AI search, and agentic workflows.",
+    label: "Agents",
+  },
+  {
+    title: "AI Tools Market Share",
+    href: "/tools/ai/ai-tools-market-share",
+    description:
+      "Compare major AI tools by market-share signals, visibility, traffic rankings, and T4 Atlas momentum score.",
+    label: "Market share",
+  },
+  {
+    title: "Most Used AI Models",
+    href: "/tools/ai/statistics/most-used-ai-models",
+    description:
+      "Explore widely used AI models across frontier assistants, reasoning systems, multimodal models, and open-weight models.",
+    label: "Models",
+  },
+];
+
 export default function AiBrowserMarketSharePage() {
+  const sortedBrowsers = [...aiBrowserMarketShareData].sort(
+    (a, b) => b.aiReadinessScore - a.aiReadinessScore
+  );
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <div className="mb-8">
-        <nav className="mb-4 text-sm text-slate-400">
-          <Link href="/" className="hover:text-cyan-400">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai" className="hover:text-cyan-400">
-            AI
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai/statistics" className="hover:text-cyan-400">
-            Statistics
-          </Link>
-        </nav>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="AI browser statistics"
+        title="AI Browser Market Share"
+        description="A structured comparison of AI browser positioning across mainstream browsers, enterprise browsers, AI-native challengers, privacy browsers, and search-agent browsing experiences."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "AI Browser Market Share" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${aiBrowserMarketShareLastUpdated}`}
+      />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white">
-          AI Browser Market Share
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          AI browsers are emerging as a new interface layer between search,
-          assistants, agents, and everyday web workflows. This page compares
-          mainstream browsers, AI-native browsers, enterprise browsers, and
-          privacy-focused browsers by AI positioning and distribution strength.
-        </p>
-
-        <p className="mt-4 text-sm text-slate-500">
-          Last updated: {aiBrowserMarketShareLastUpdated}
-        </p>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {aiBrowserMarketShareKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Key Findings
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {aiBrowserMarketShareKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4"
-            >
-              <h3 className="font-medium text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {item.description}
-              </p>
-            </div>
+      <IntelligenceSection
+        title="AI browser readiness snapshot"
+        description="The AI browser market is still early. Distribution, ecosystem ownership, AI search integration, enterprise positioning, and assistant access may matter more than current AI-native browser usage."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedBrowsers.slice(0, 4).map((browser) => (
+            <IntelligenceCard
+              key={browser.browser}
+              eyebrow={browser.category}
+              title={browser.browser}
+              score={browser.aiReadinessScore}
+              description="AI readiness score"
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 overflow-hidden rounded-3xl border border-slate-800">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[900px]">
-            <thead className="bg-slate-900">
-              <tr>
-                <th className="px-4 py-3 text-left">Browser</th>
-                <th className="px-4 py-3 text-left">Category</th>
-                <th className="px-4 py-3 text-left">AI Positioning</th>
-                <th className="px-4 py-3 text-left">Distribution Signal</th>
-                <th className="px-4 py-3 text-left">AI Readiness</th>
-              </tr>
-            </thead>
+      <IntelligenceSection
+        id="data-table"
+        title="AI browser market positioning table"
+        description="A structured comparison of browsers by category, AI positioning, distribution signal, and T4 Atlas AI-readiness score."
+      >
+        <IntelligenceTable
+          data={sortedBrowsers}
+          columns={[
+            {
+              key: "browser",
+              label: "Browser",
+              render: (item) => (
+                <span className="font-semibold text-white">{item.browser}</span>
+              ),
+            },
+            {
+              key: "category",
+              label: "Category",
+            },
+            {
+              key: "aiPositioning",
+              label: "AI positioning",
+            },
+            {
+              key: "distributionSignal",
+              label: "Distribution signal",
+            },
+            {
+              key: "aiReadinessScore",
+              label: "AI readiness",
+              render: (item) => (
+                <span className="font-semibold text-cyan-200">
+                  {item.aiReadinessScore}
+                </span>
+              ),
+            },
+          ]}
+        />
+      </IntelligenceSection>
 
-            <tbody>
-              {aiBrowserMarketShareData.map((item) => (
-                <tr key={item.browser} className="border-t border-slate-800">
-                  <td className="px-4 py-3 font-medium text-white">
-                    {item.browser}
-                  </td>
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.category}
-                  </td>
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.aiPositioning}
-                  </td>
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.distributionSignal}
-                  </td>
-                  <td className="px-4 py-3 text-cyan-400">
-                    {item.aiReadinessScore}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          AI Browser Categories
-        </h2>
-
+      <IntelligenceSection
+        title="AI browser categories"
+        description="AI browsing is emerging at the intersection of search, assistants, agents, operating systems, and enterprise productivity."
+      >
         <div className="grid gap-4 md:grid-cols-2">
           {aiBrowserMarketShareCategories.map((category) => (
-            <div
+            <IntelligenceCard
               key={category.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5"
-            >
-              <h3 className="font-medium text-white">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {category.description}
-              </p>
-            </div>
+              eyebrow="Category"
+              title={category.title}
+              description={category.description}
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Methodology
-        </h2>
-
-        <p className="text-slate-300">
-          {aiBrowserMarketShareMethodology.description}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Related AI Statistics
-        </h2>
-
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/tools/ai/statistics/most-used-ai-agents"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI Agents
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/most-used-ai-apis"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI APIs
-          </Link>
-
-          <Link
-            href="/tools/ai/statistics/most-used-ai-models"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI Models
-          </Link>
+      <IntelligenceSection
+        title="What the rankings mean"
+        description="This page compares strategic AI-browser positioning rather than official browser usage share. Traditional browsers may dominate through distribution while AI-native challengers shape the future interface."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedBrowsers.map((browser) => (
+            <IntelligenceCard
+              key={browser.browser}
+              eyebrow={browser.category}
+              title={browser.browser}
+              score={browser.aiReadinessScore}
+              description={browser.aiPositioning}
+            >
+              <p className="text-xs text-slate-400">
+                Signal: {browser.distributionSignal}
+              </p>
+            </IntelligenceCard>
+          ))}
         </div>
-      </section>
-    </main>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={aiBrowserMarketShareMethodology.title}
+        description={aiBrowserMarketShareMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          This ranking should not be interpreted as official browser market
+          share, active-user share, or verified traffic telemetry.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related AI statistics"
+        description="Use these pages to connect AI browsers with AI agents, AI market share, and broader model adoption."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }

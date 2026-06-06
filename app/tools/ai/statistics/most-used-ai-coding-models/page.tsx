@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-
+import IntelligenceCard from "@/components/intelligence/IntelligenceCard";
+import IntelligenceHero from "@/components/intelligence/IntelligenceHero";
+import IntelligencePageLayout from "@/components/intelligence/IntelligencePageLayout";
+import IntelligenceSection from "@/components/intelligence/IntelligenceSection";
+import IntelligenceTable from "@/components/intelligence/IntelligenceTable";
+import RelatedIntelligencePages from "@/components/intelligence/RelatedIntelligencePages";
 import {
   mostUsedAiCodingModelsCategories,
   mostUsedAiCodingModelsData,
@@ -12,170 +16,194 @@ import {
 export const metadata: Metadata = {
   title: "Most Used AI Coding Models (2026) | T4 Atlas",
   description:
-    "Compare the most used AI coding models including GPT-5, Claude Sonnet, Gemini 2.5 Pro, DeepSeek Coder, Codestral, Qwen Coder, Llama, and Gemma.",
+    "Compare influential AI coding models including GPT-5, Claude Sonnet, Gemini, DeepSeek Coder, Codestral, Qwen Coder, Llama, and Gemma.",
 };
 
+const relatedPages = [
+  {
+    title: "AI Coding Market Share",
+    href: "/tools/ai/statistics/ai-coding-market-share",
+    description:
+      "Explore AI coding market share signals across IDE copilots, AI-native editors, general assistants, and developer workflows.",
+    label: "Coding",
+  },
+  {
+    title: "Best AI Coding Assistants",
+    href: "/tools/ai/best-ai-coding-assistants",
+    description:
+      "Compare AI coding assistants for developers, software teams, and codebase workflows.",
+    label: "Assistants",
+  },
+  {
+    title: "Open Source AI Rankings",
+    href: "/tools/ai/statistics/open-source-ai-rankings",
+    description:
+      "Compare leading open-source and open-weight AI model ecosystems.",
+    label: "Open source",
+  },
+];
+
 export default function MostUsedAiCodingModelsPage() {
+  const sortedModels = [...mostUsedAiCodingModelsData].sort(
+    (a, b) => b.codingScore - a.codingScore
+  );
+
   return (
-    <main className="mx-auto max-w-7xl px-4 py-8">
-      <div className="mb-8">
-        <nav className="mb-4 text-sm text-slate-400">
-          <Link href="/" className="hover:text-cyan-400">
-            Home
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai" className="hover:text-cyan-400">
-            AI
-          </Link>{" "}
-          /{" "}
-          <Link href="/tools/ai/statistics" className="hover:text-cyan-400">
-            Statistics
-          </Link>
-        </nav>
+    <IntelligencePageLayout hub="ai">
+      <IntelligenceHero
+        eyebrow="AI coding statistics"
+        title="Most Used AI Coding Models"
+        description="A structured comparison of influential AI coding models across commercial frontier systems, open-source model families, developer tools, and AI-native software engineering workflows."
+        breadcrumbs={[
+          { label: "Tools", href: "/tools" },
+          { label: "AI Tools", href: "/tools/ai" },
+          { label: "AI Statistics", href: "/tools/ai/statistics" },
+          { label: "Most Used AI Coding Models" },
+        ]}
+        actions={[
+          { label: "Key findings", href: "#key-findings" },
+          {
+            label: "View data table",
+            href: "#data-table",
+            variant: "secondary",
+          },
+          {
+            label: "Methodology",
+            href: "#methodology",
+            variant: "secondary",
+          },
+        ]}
+        meta={`Last updated: ${mostUsedAiCodingModelsLastUpdated}`}
+      />
 
-        <h1 className="text-4xl font-bold tracking-tight text-white">
-          Most Used AI Coding Models
-        </h1>
-
-        <p className="mt-4 max-w-3xl text-lg text-slate-300">
-          AI coding assistants increasingly rely on a small group of powerful
-          underlying models. This ranking compares the most influential coding
-          models across commercial and open-source ecosystems.
-        </p>
-
-        <p className="mt-4 text-sm text-slate-500">
-          Last updated: {mostUsedAiCodingModelsLastUpdated}
-        </p>
+      <div id="key-findings" className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        {mostUsedAiCodingModelsKeyFindings.map((item) => (
+          <IntelligenceCard
+            key={item.title}
+            eyebrow="Key finding"
+            title={item.title}
+            description={item.description}
+          />
+        ))}
       </div>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Key Findings
-        </h2>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          {mostUsedAiCodingModelsKeyFindings.map((item) => (
-            <div
-              key={item.title}
-              className="rounded-2xl border border-slate-800 bg-slate-950/50 p-4"
-            >
-              <h3 className="font-medium text-white">{item.title}</h3>
-              <p className="mt-2 text-sm text-slate-400">
-                {item.description}
-              </p>
-            </div>
+      <IntelligenceSection
+        title="AI coding model snapshot"
+        description="AI coding tools increasingly compete on workflow, context, and agentic behavior, but the underlying model layer remains critical for reasoning, generation quality, debugging, and codebase understanding."
+      >
+        <div className="grid gap-4 md:grid-cols-4">
+          {sortedModels.slice(0, 4).map((model) => (
+            <IntelligenceCard
+              key={model.model}
+              eyebrow={model.developer}
+              title={model.model}
+              score={model.codingScore}
+              description="Coding score"
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 overflow-hidden rounded-3xl border border-slate-800">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[1000px]">
-            <thead className="bg-slate-900">
-              <tr>
-                <th className="px-4 py-3 text-left">Model</th>
-                <th className="px-4 py-3 text-left">Developer</th>
-                <th className="px-4 py-3 text-left">Family</th>
-                <th className="px-4 py-3 text-left">Strengths</th>
-                <th className="px-4 py-3 text-left">Adoption Signal</th>
-                <th className="px-4 py-3 text-left">Score</th>
-              </tr>
-            </thead>
+      <IntelligenceSection
+        id="data-table"
+        title="Most used AI coding models table"
+        description="A structured comparison of coding models by developer, model family, strengths, adoption signal, and T4 Atlas coding score."
+      >
+        <IntelligenceTable
+          data={sortedModels}
+          columns={[
+            {
+              key: "model",
+              label: "Model",
+              render: (item) => (
+                <span className="font-semibold text-white">{item.model}</span>
+              ),
+            },
+            {
+              key: "developer",
+              label: "Developer",
+            },
+            {
+              key: "modelFamily",
+              label: "Family",
+            },
+            {
+              key: "strengths",
+              label: "Strengths",
+            },
+            {
+              key: "adoptionSignal",
+              label: "Adoption signal",
+            },
+            {
+              key: "codingScore",
+              label: "Score",
+              render: (item) => (
+                <span className="font-semibold text-cyan-200">
+                  {item.codingScore}
+                </span>
+              ),
+            },
+          ]}
+        />
+      </IntelligenceSection>
 
-            <tbody>
-              {mostUsedAiCodingModelsData.map((item) => (
-                <tr key={item.model} className="border-t border-slate-800">
-                  <td className="px-4 py-3 font-medium text-white">
-                    {item.model}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.developer}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.modelFamily}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.strengths}
-                  </td>
-
-                  <td className="px-4 py-3 text-slate-300">
-                    {item.adoptionSignal}
-                  </td>
-
-                  <td className="px-4 py-3 text-cyan-400">
-                    {item.codingScore}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </section>
-
-      <section className="mb-10">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Coding Model Categories
-        </h2>
-
+      <IntelligenceSection
+        title="Coding model categories"
+        description="AI coding models differ by deployment model, enterprise fit, openness, coding specialization, and integration into developer tools."
+      >
         <div className="grid gap-4 md:grid-cols-3">
           {mostUsedAiCodingModelsCategories.map((category) => (
-            <div
+            <IntelligenceCard
               key={category.title}
-              className="rounded-2xl border border-slate-800 bg-slate-900/50 p-5"
-            >
-              <h3 className="font-medium text-white">
-                {category.title}
-              </h3>
-
-              <p className="mt-2 text-sm text-slate-400">
-                {category.description}
-              </p>
-            </div>
+              eyebrow="Category"
+              title={category.title}
+              description={category.description}
+            />
           ))}
         </div>
-      </section>
+      </IntelligenceSection>
 
-      <section className="mb-10 rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Methodology
-        </h2>
-
-        <p className="text-slate-300">
-          {mostUsedAiCodingModelsMethodology.description}
-        </p>
-      </section>
-
-      <section className="rounded-3xl border border-slate-800 bg-slate-900/50 p-6">
-        <h2 className="mb-4 text-2xl font-semibold text-white">
-          Related AI Statistics
-        </h2>
-
-        <div className="flex flex-col gap-3">
-          <Link
-            href="/tools/ai/statistics/most-used-ai-agents"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Most Used AI Agents
-          </Link>
-
-          <Link
-            href="/tools/ai/best-ai-coding-assistants"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Best AI Coding Assistants
-          </Link>
-
-          <Link
-            href="/tools/ai/best-ai-ides"
-            className="text-cyan-400 hover:text-cyan-300"
-          >
-            Best AI IDEs
-          </Link>
+      <IntelligenceSection
+        title="What the rankings mean"
+        description="The ranking reflects model visibility and coding-workflow relevance, not official usage telemetry. In practice, developer adoption depends heavily on which model is embedded inside tools like Cursor, Copilot, Windsurf, and AI IDEs."
+      >
+        <div className="grid gap-4 md:grid-cols-2">
+          {sortedModels.map((model) => (
+            <IntelligenceCard
+              key={model.model}
+              eyebrow={model.developer}
+              title={model.model}
+              score={model.codingScore}
+              description={model.strengths}
+            >
+              <p className="text-xs text-slate-400">
+                Signal: {model.adoptionSignal}
+              </p>
+            </IntelligenceCard>
+          ))}
         </div>
-      </section>
-    </main>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        id="methodology"
+        eyebrow="Methodology"
+        title={mostUsedAiCodingModelsMethodology.title}
+        description={mostUsedAiCodingModelsMethodology.description}
+      >
+        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+          This page should not be interpreted as official model usage share,
+          benchmark ranking, or verified developer telemetry.
+        </p>
+      </IntelligenceSection>
+
+      <IntelligenceSection
+        eyebrow="Related intelligence"
+        title="Related AI coding statistics"
+        description="Use these pages to connect coding models with AI coding assistants, AI IDEs, open-source models, and developer workflows."
+      >
+        <RelatedIntelligencePages pages={relatedPages} />
+      </IntelligenceSection>
+    </IntelligencePageLayout>
   );
 }
