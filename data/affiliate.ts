@@ -13,6 +13,7 @@ export type AffiliateModuleSlug =
   | "apollo"
   | "clay"
   | "hubspot-ai"
+  | "fireflies"
   | "klaviyo-ai"
   | "intercom-ai"
   | "runway"
@@ -174,6 +175,16 @@ export const affiliateModules: AffiliateModule[] = [
     tag: "CRM",
     placement: "editorial_bottom",
   },
+{
+  slug: "fireflies",
+  hub: "ai",
+  name: "Fireflies",
+  href: "https://fireflies.ai/?fpr=lars94",
+  description:
+    "AI meeting assistant for recording calls, generating summaries, extracting action items, and improving sales follow-up.",
+  tag: "Meeting assistant",
+  placement: "editorial_bottom",
+},
   {
     slug: "klaviyo-ai",
     hub: "ai",
@@ -299,6 +310,12 @@ export const pageAffiliateMap: Record<string, AffiliateModuleSlug[]> = {
     "jasper",
     "runway",
   ],
+"best-ai-tools-for-sales": [
+  "hubspot-ai",
+  "apollo",
+  "clay",
+  "fireflies",
+],
 
   "compound-interest": ["nordnet", "interactive-brokers", "etoro"],
   "cagr-calculator": ["nordnet", "interactive-brokers", "etoro"],
