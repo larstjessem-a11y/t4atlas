@@ -316,7 +316,18 @@ export const pageAffiliateMap: Record<string, AffiliateModuleSlug[]> = {
   "clay",
   "fireflies",
 ],
-
+"best-ai-tools-for-marketing": [
+  "chatgpt",
+  "jasper",
+  "hubspot-ai",
+  "klaviyo-ai",
+],
+"best-ai-workspace-tools": [
+  "chatgpt",
+  "notion-ai",
+  "zapier",
+  "fireflies",
+],
   "compound-interest": ["nordnet", "interactive-brokers", "etoro"],
   "cagr-calculator": ["nordnet", "interactive-brokers", "etoro"],
   "investment-return-calculator": [
