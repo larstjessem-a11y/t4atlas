@@ -84,7 +84,145 @@ export const intelligenceCategories: {
 ];
 
 export const intelligenceArticles: IntelligenceArticle[] = [
-  {
+{
+  slug: "ai-biology-and-national-security-are-becoming-the-same-conversation",
+  title: "AI, Biology, and National Security Are Becoming the Same Conversation",
+  category: "biosecurity",
+  description:
+    "Why the convergence of artificial intelligence, synthetic biology, DNA screening, and biosecurity is turning biological risk into a national-security issue.",
+  publishedAt: "2026-06-08",
+  readingTime: 16,
+  featured: true,
+  affiliateCategory: "education",
+
+  executiveSummary:
+    "For decades, public health, biotechnology, artificial intelligence, and national security were treated as separate policy domains. That separation is becoming increasingly difficult to maintain. Recent calls from leading AI companies and synthetic biology firms for mandatory DNA and RNA screening reveal a deeper shift: organizations at the frontier of artificial intelligence increasingly view biological risk as a strategic security challenge rather than solely a scientific or public-health concern. The significance extends beyond one policy proposal. It reflects a new reality in which advances in AI, biotechnology, laboratory capability, and global connectivity are converging into a shared risk landscape. The next generation of biological threats may not emerge solely from nature. They may emerge from the interaction between powerful technologies, distributed capabilities, and governance systems struggling to keep pace.",
+
+  keyTakeaways: [
+    "Biology is increasingly becoming an information technology.",
+    "Artificial intelligence may lower barriers to advanced biological work.",
+    "Major AI companies now view biosecurity as a strategic governance challenge.",
+    "Public health and national security are becoming increasingly intertwined.",
+    "Future preparedness systems must address both natural and technological biological risk.",
+  ],
+
+  mainAnalysis: [
+    {
+      title: "The Old Model of Biological Risk",
+      body: [
+        "For most of modern history, biological risk was largely understood through a public-health lens. Pandemics emerged from nature. Governments responded through surveillance, healthcare systems, vaccines, border controls, and emergency preparedness.",
+        "Whether discussing influenza, SARS, Ebola, or COVID-19, the central challenge was understanding and responding to naturally emerging pathogens.",
+        "This model remains important. Natural spillover, zoonotic disease, antimicrobial resistance, and weak surveillance systems remain major sources of risk.",
+        "But the model is no longer sufficient. The world is entering an era in which biology is becoming increasingly programmable.",
+        "The question is no longer only what nature may produce. The question is also what humans may increasingly become capable of creating, modifying, or accelerating.",
+      ],
+    },
+    {
+      title: "Biology Is Becoming an Information Technology",
+      body: [
+        "The cost of DNA sequencing has collapsed. Gene synthesis has become faster and more accessible. Laboratory automation continues to improve. Machine learning systems increasingly assist researchers in analyzing biological data.",
+        "Taken together, these developments are transforming biology into something that increasingly resembles an information science.",
+        "In software, code can be copied, modified, and distributed. In biology, genetic information is increasingly being digitized, stored, transmitted, analyzed, and synthesized.",
+        "This transformation creates extraordinary opportunities: new medicines, improved vaccines, personalized treatments, faster diagnostics, and accelerated scientific discovery.",
+        "But every powerful technology creates dual-use challenges. The same tools that accelerate beneficial innovation can also increase the potential consequences of accidents, misuse, or malicious activity.",
+      ],
+    },
+    {
+      title: "Why AI Changes the Equation",
+      body: [
+        "Artificial intelligence is not creating biological risk by itself. It is changing the economics of expertise.",
+        "Historically, advanced biological engineering required years of specialized training and access to sophisticated institutions. AI systems may gradually reduce some of those barriers.",
+        "Not by replacing scientists, but by assisting them. AI can help users navigate information, summarize complex literature, generate hypotheses, support analysis, and accelerate research workflows.",
+        "Even modest reductions in knowledge barriers can have significant implications when multiplied across many users and organizations.",
+        "This is why the debate increasingly focuses on capability diffusion rather than any single model or tool. The concern is not only today's systems. The concern is the trajectory.",
+      ],
+    },
+    {
+      title: "Why Silicon Valley Suddenly Wants Biosecurity Regulation",
+      body: [
+        "Technology companies are not generally known for requesting additional regulation. That makes recent calls for mandatory DNA and RNA screening particularly notable.",
+        "The policy proposal itself is important, but the deeper signal is more important. Leading AI developers appear to believe that biological capability is becoming more accessible, that existing voluntary safeguards may be insufficient, and that government involvement is becoming necessary.",
+        "This represents a profound shift. Biosecurity is no longer being treated only as a laboratory issue. It is increasingly being treated as infrastructure.",
+        "If synthetic DNA and RNA orders become part of the security perimeter, then biosecurity begins to resemble cybersecurity: a continuous system of screening, monitoring, standards, and governance.",
+      ],
+    },
+    {
+      title: "The Convergence of AI, Biology, and National Security",
+      body: [
+        "The deeper story is convergence. For decades, governments organized expertise into separate institutions: public health, defense, science, technology, intelligence, and economic policy.",
+        "Today these domains increasingly overlap. Pandemic preparedness affects economic stability. Semiconductor production affects military capability. Artificial intelligence affects scientific productivity. Biotechnology affects national resilience.",
+        "The boundaries separating these fields are becoming increasingly blurred.",
+        "The future security environment may be defined less by traditional military competition alone and more by the interaction between advanced technologies and societal resilience.",
+        "In that environment, biology is no longer merely a health domain. It becomes a strategic domain.",
+      ],
+    },
+    {
+      title: "Preparedness Needs to Move Upstream",
+      body: [
+        "Traditional preparedness often focuses on response: hospital capacity, vaccines, emergency stockpiles, border controls, and crisis coordination.",
+        "Those systems remain necessary. But they are not enough for a world where biological capability is increasingly shaped by technology.",
+        "Preparedness must move upstream. That means stronger laboratory safety, synthetic biology governance, DNA synthesis screening, genomic surveillance, early-warning systems, international coordination, and AI-aware biosecurity policy.",
+        "The goal is not to slow beneficial science. The goal is to ensure that governance evolves alongside capability.",
+      ],
+    },
+    {
+      title: "The Hard Policy Problem",
+      body: [
+        "The central challenge is balance. Excessive restrictions can slow scientific progress, weaken medical innovation, and reduce global collaboration.",
+        "Insufficient safeguards can allow dangerous capabilities to diffuse faster than institutions can manage.",
+        "This makes AI-enabled biology one of the hardest governance problems of the coming decade. It sits at the intersection of openness and security, innovation and control, public health and national defense.",
+        "No single institution can manage this alone. Governments, AI companies, biotech firms, research institutions, public-health agencies, and international organizations will all need to adapt.",
+      ],
+    },
+  ],
+
+  strategicImplications: [
+    "Biosecurity should increasingly be treated as a national-security issue, not only a public-health issue.",
+    "AI governance will expand beyond misinformation, copyright, labor-market effects, and cyber risk toward biological capability risk.",
+    "DNA and RNA synthesis screening may become part of the core infrastructure of modern biosecurity.",
+    "Governments will need closer coordination between public-health agencies, intelligence communities, science funders, and technology regulators.",
+    "Organizations should monitor biological risk as part of operational resilience and continuity planning.",
+    "The most important biological risks of the future may emerge from the interaction between natural systems and technological capability rather than either domain alone.",
+  ],
+
+  whatHappensNext: [
+    "DNA and RNA screening requirements are likely to expand across more jurisdictions and providers.",
+    "AI-assisted scientific workflows will continue improving, increasing both beneficial research capacity and governance pressure.",
+    "Biosecurity will become a more visible part of AI policy debates.",
+    "Public health, technology policy, and national security will continue to converge.",
+    "Companies with global operations may begin treating biological risk as an enterprise-risk and workforce-resilience issue.",
+    "The countries that build strong biosecurity infrastructure early may gain strategic advantages in resilience, preparedness, and biotechnology governance.",
+  ],
+
+  relatedDatasets: [
+    {
+      title: "Most Sensitive AI Capabilities",
+      href: "/tools/ai/risk-intelligence/most-sensitive-ai-capabilities",
+      description:
+        "A structured overview of AI capability areas that create higher operational, cyber, biosecurity, persuasion, and governance risks.",
+    },
+    {
+      title: "Frontier AI Risk Matrix",
+      href: "/tools/ai/risk-intelligence/frontier-ai-risk-matrix",
+      description:
+        "A matrix for comparing frontier AI risk across autonomy, cyber capability, persuasion, biological assistance, and deployment scale.",
+    },
+    {
+      title: "AI Risk Intelligence",
+      href: "/tools/ai/risk-intelligence",
+      description:
+        "A structured hub for mapping AI risk across enterprise deployment, alignment pressure, frontier capabilities, governance maturity, and operational exposure.",
+    },
+  ],
+
+  relatedArticles: [
+    "the-next-pandemic-wont-start-in-a-wet-market",
+    "the-global-antibiotic-crisis-nobody-talks-about",
+    "why-national-preparedness-models-are-stuck-in-the-past",
+    "the-silent-risk-every-company-ignores",
+  ],
+}, 
+ {
 slug: "the-silent-risk-every-company-ignores",
 title: "The Silent Risk Every Company Ignores",
 category: "operational-intelligence",
