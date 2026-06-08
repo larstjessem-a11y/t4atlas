@@ -116,7 +116,7 @@ export default function AiStartupValuationRankingsPage() {
               key: "company",
               label: "Company",
               render: (item) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-[var(--t4-text)]">
                   {item.company}
                 </span>
               ),
@@ -141,7 +141,7 @@ export default function AiStartupValuationRankingsPage() {
               key: "momentumScore",
               label: "Momentum",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.momentumScore}
                 </span>
               ),
@@ -175,7 +175,7 @@ export default function AiStartupValuationRankingsPage() {
                 {category.examples.map((example) => (
                   <span
                     key={example}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                   >
                     {example}
                   </span>
@@ -201,11 +201,11 @@ export default function AiStartupValuationRankingsPage() {
               score={startup.momentumScore}
               description={startup.whyValuationMatters}
             >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Valuation caution
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {startup.valuationCaution}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function AiStartupValuationRankingsPage() {
         title={aiStartupValuationsMethodology.title}
         description={aiStartupValuationsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide investment advice, live valuation data, audited
           capitalization tables, or exact private-market pricing.

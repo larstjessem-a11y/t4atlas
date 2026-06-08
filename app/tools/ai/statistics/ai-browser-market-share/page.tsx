@@ -116,7 +116,7 @@ export default function AiBrowserMarketSharePage() {
               key: "browser",
               label: "Browser",
               render: (item) => (
-                <span className="font-semibold text-white">{item.browser}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{item.browser}</span>
               ),
             },
             {
@@ -135,7 +135,7 @@ export default function AiBrowserMarketSharePage() {
               key: "aiReadinessScore",
               label: "AI readiness",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.aiReadinessScore}
                 </span>
               ),
@@ -173,7 +173,7 @@ export default function AiBrowserMarketSharePage() {
               score={browser.aiReadinessScore}
               description={browser.aiPositioning}
             >
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--t4-muted)]">
                 Signal: {browser.distributionSignal}
               </p>
             </IntelligenceCard>
@@ -187,7 +187,7 @@ export default function AiBrowserMarketSharePage() {
         title={aiBrowserMarketShareMethodology.title}
         description={aiBrowserMarketShareMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This ranking should not be interpreted as official browser market
           share, active-user share, or verified traffic telemetry.
         </p>

@@ -84,11 +84,11 @@ export default function AiHubPage() {
 
           <div className="mt-6 flex flex-wrap gap-3">
             <a
-              href="#popular"
-              className="rounded-2xl bg-black px-5 py-3 text-sm font-medium text-white hover:bg-gray-800"
-            >
-              Popular AI pages
-            </a>
+  href="#popular"
+  className="rounded-2xl bg-[var(--t4-blue)] px-5 py-3 text-sm font-medium text-white transition hover:bg-[#162d49]"
+>
+  Popular AI pages
+</a>
             <a
               href="#clusters"
               className="rounded-2xl border bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-50"
@@ -102,16 +102,16 @@ export default function AiHubPage() {
           Ad slot (top)
         </div>
 
-<section className="mb-8 rounded-3xl border bg-gradient-to-br from-gray-900 to-gray-700 p-6 text-white shadow-sm md:p-8">
-  <span className="mb-3 inline-flex rounded-full border border-white/20 px-3 py-1 text-xs font-medium uppercase tracking-wide text-white/80">
-    AI statistics
-  </span>
+<section className="mb-8 rounded-[1.75rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-6 shadow-sm md:p-8">
+ <span className="mb-3 inline-flex rounded-full border border-[#a67c3d]/30 bg-[#a67c3d]/10 px-3 py-1 text-xs font-medium uppercase tracking-wide text-[#7c5b2d]">
+  AI statistics
+</span>
 
   <h2 className="mb-3 text-2xl font-semibold">
     AI statistics and market intelligence
   </h2>
 
-  <p className="mb-5 max-w-3xl text-white/80">
+  <p className="mb-5 max-w-3xl text-[var(--t4-muted)]">
     Explore AI market share, search demand, growth momentum, and tool-level
     visibility data across the AI ecosystem.
   </p>
@@ -119,36 +119,36 @@ export default function AiHubPage() {
   <div className="flex flex-wrap gap-3">
     <Link
       href="/tools/ai/statistics"
-      className="inline-flex rounded-2xl bg-white px-4 py-2.5 text-sm font-medium text-gray-900 hover:bg-gray-100"
+      className="inline-flex rounded-2xl bg-[var(--t4-blue)] px-4 py-2.5 text-sm font-medium text-white hover:bg-gray-100"
     >
       AI Statistics Hub
     </Link>
 
     <Link
       href="/tools/ai/ai-tools-market-share"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       AI Tools Market Share
     </Link>
 
     <Link
       href="/tools/ai/most-searched-ai-tools"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       Most Searched AI Tools
     </Link>
 
     <Link
       href="/tools/ai/fastest-growing-ai-tools"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       Fastest Growing AI Tools
     </Link>
   </div>
 </section>
 
-<section className="mb-8 rounded-3xl border bg-gradient-to-br from-slate-950 via-gray-900 to-slate-800 p-6 text-white shadow-sm md:p-8">
-  <span className="mb-3 inline-flex rounded-full border border-cyan-400/30 px-3 py-1 text-xs font-medium uppercase tracking-wide text-cyan-200">
+<section className="t4-map-texture t4-contours mb-8 rounded-[1.75rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-6 shadow-sm md:p-8">
+  <span className="mb-3 inline-flex rounded-full border border-cyan-400/30 px-3 py-1 text-xs font-medium uppercase tracking-wide text-[#7c5b2d]">
     AI risk intelligence
   </span>
 
@@ -156,7 +156,7 @@ export default function AiHubPage() {
     AI risk, governance, and frontier capability analysis
   </h2>
 
-  <p className="mb-5 max-w-3xl text-white/80">
+  <p className="mb-5 max-w-3xl text-[var(--t4-muted)]">
     Explore structured AI risk intelligence across enterprise deployment,
     alignment pressure, frontier AI capabilities, open versus closed AI systems,
     and sensitive capability areas.
@@ -165,28 +165,28 @@ export default function AiHubPage() {
   <div className="flex flex-wrap gap-3">
     <Link
       href="/tools/ai/risk-intelligence"
-      className="inline-flex rounded-2xl bg-cyan-200 px-4 py-2.5 text-sm font-medium text-slate-950 hover:bg-cyan-100"
+      className="inline-flex rounded-2xl bg-[var(--t4-blue)] px-4 py-2.5 text-sm font-medium text-white hover:bg-cyan-100"
     >
       AI Risk Intelligence Hub
     </Link>
 
     <Link
       href="/tools/ai/risk-intelligence/frontier-ai-risk-matrix"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       Frontier AI Risk Matrix
     </Link>
 
     <Link
       href="/tools/ai/risk-intelligence/enterprise-ai-risk-categories"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       Enterprise AI Risk Categories
     </Link>
 
     <Link
       href="/tools/ai/risk-intelligence/ai-alignment-risk-rankings"
-      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-white hover:bg-white/10"
+      className="inline-flex rounded-2xl border border-white/20 px-4 py-2.5 text-sm font-medium text-[var(--t4-text)] hover:bg-white/10"
     >
       AI Alignment Risk Rankings
     </Link>

@@ -116,7 +116,9 @@ export default function AiCodingMarketSharePage() {
               key: "name",
               label: "Tool",
               render: (item) => (
-                <span className="font-semibold text-white">{item.name}</span>
+                <span className="font-semibold text-[var(--t4-text)]">
+  {item.name}
+</span>
               ),
             },
             {
@@ -139,9 +141,9 @@ export default function AiCodingMarketSharePage() {
               key: "momentumScore",
               label: "Momentum",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
-                  {item.momentumScore}
-                </span>
+                <span className="t4-score">
+  {item.momentumScore}
+</span>
               ),
             },
             {
@@ -173,7 +175,7 @@ export default function AiCodingMarketSharePage() {
                 {category.examples.map((example) => (
                   <span
                     key={example}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="t4-tag rounded-full px-3 py-1 text-xs font-medium"
                   >
                     {example}
                   </span>
@@ -198,23 +200,24 @@ export default function AiCodingMarketSharePage() {
               title={tool.name}
               score={tool.momentumScore}
               description={tool.whyDevelopersUseIt}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            ><div className="space-y-3">
+              <div className="t4-panel-soft rounded-2xl p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#7c5b2d]">
                   Market position
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {tool.marketPosition}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="t4-panel-soft rounded-2xl p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#7c5b2d]">
                   Risk or limitation
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {tool.risksOrLimitations}
                 </p>
+               </div>
               </div>
             </IntelligenceCard>
           ))}
@@ -227,7 +230,7 @@ export default function AiCodingMarketSharePage() {
         title={aiCodingMarketShareMethodology.title}
         description={aiCodingMarketShareMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not claim audited market share, verified seat counts, exact revenue
           share, or live developer adoption statistics.

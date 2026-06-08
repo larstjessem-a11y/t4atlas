@@ -14,7 +14,7 @@ type IntelligencePageLayoutProps = {
 
 function IntelligenceAdSlot({ label }: { label: string }) {
   return (
-    <div className="rounded-2xl border border-dashed border-slate-700/40 bg-slate-900/40 p-3 text-center text-xs text-slate-400 md:p-4">
+    <div className="rounded-2xl border border-dashed border-[var(--t4-border)] bg-[var(--t4-surface)] p-3 text-center text-xs text-[var(--t4-muted)] md:p-4">
       {label}
     </div>
   );
@@ -31,7 +31,7 @@ export default function IntelligencePageLayout({
   const monetization = monetizationConfig[hub] ?? defaultMonetizationConfig;
 
   return (
-    <main className="min-h-screen max-w-full overflow-x-hidden bg-slate-950 px-3 py-6 text-slate-100 sm:px-4 md:px-6 md:py-10">
+    <main className="min-h-screen max-w-full overflow-x-hidden bg-[var(--t4-background)] px-3 py-6 text-[var(--t4-text)] sm:px-4 md:px-6 md:py-10">
       <div className="mx-auto w-full max-w-6xl">
         {showTopAd && monetization.ads.top ? (
           <div className="mb-5 md:mb-6">

@@ -116,7 +116,7 @@ export default function MostUsedAiApisPage() {
               key: "apiName",
               label: "API",
               render: (item) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-[var(--t4-text)]">
                   {item.apiName}
                 </span>
               ),
@@ -145,7 +145,7 @@ export default function MostUsedAiApisPage() {
               key: "momentumScore",
               label: "Momentum",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.momentumScore}
                 </span>
               ),
@@ -175,7 +175,7 @@ export default function MostUsedAiApisPage() {
                 {category.examples.map((example) => (
                   <span
                     key={example}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                   >
                     {example}
                   </span>
@@ -203,18 +203,18 @@ export default function MostUsedAiApisPage() {
                 {api.strengths.map((strength) => (
                   <span
                     key={strength}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                   >
                     {strength}
                   </span>
                 ))}
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Limitation
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {api.limitations}
                 </p>
               </div>
@@ -229,7 +229,7 @@ export default function MostUsedAiApisPage() {
         title={mostUsedAiApisMethodology.title}
         description={mostUsedAiApisMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not claim audited API call volume, exact market share, verified
           revenue, or live usage data.

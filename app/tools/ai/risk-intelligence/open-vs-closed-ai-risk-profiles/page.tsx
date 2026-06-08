@@ -116,7 +116,7 @@ export default function OpenVsClosedAiRiskProfilesPage() {
               key: "profile",
               label: "Risk profile",
               render: (item) => (
-                <span className="font-semibold text-white">{item.profile}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{item.profile}</span>
               ),
             },
             {
@@ -141,7 +141,7 @@ export default function OpenVsClosedAiRiskProfilesPage() {
               key: "riskScore",
               label: "Risk score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.riskScore}
                 </span>
               ),
@@ -171,20 +171,20 @@ export default function OpenVsClosedAiRiskProfilesPage() {
               title={dimension.dimension}
             >
               <div className="grid gap-4 md:grid-cols-2">
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#1e3a5f]">
                     Open-weight profile
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                  <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                     {dimension.openProfile}
                   </p>
                 </div>
 
-                <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                  <p className="text-xs font-semibold uppercase tracking-wide text-cyan-200">
+                <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                  <p className="text-xs font-semibold uppercase tracking-wide text-[#1e3a5f]">
                     Closed frontier profile
                   </p>
-                  <p className="mt-2 text-sm leading-6 text-slate-300">
+                  <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                     {dimension.closedProfile}
                   </p>
                 </div>
@@ -208,23 +208,25 @@ export default function OpenVsClosedAiRiskProfilesPage() {
               title={profile.profile}
               score={profile.riskScore}
               description={profile.whyItMatters}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+>
+  <div className="space-y-3">
+    <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Primary risk
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {profile.primaryRisk}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Mitigation approach
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {profile.mitigationApproach}
                 </p>
+</div>
               </div>
             </IntelligenceCard>
           ))}
@@ -237,7 +239,7 @@ export default function OpenVsClosedAiRiskProfilesPage() {
         title={openVsClosedAiRiskProfilesMethodology.title}
         description={openVsClosedAiRiskProfilesMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide a formal safety audit, regulatory assessment, legal
           opinion, or vendor-specific evaluation.

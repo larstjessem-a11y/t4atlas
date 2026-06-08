@@ -284,7 +284,7 @@ export default function AiStatisticsHubPage() {
         eyebrow="Methodology"
         title="How T4 Atlas tracks AI statistics"
       >
-        <div className="space-y-4 leading-7 text-slate-300">
+        <div className="space-y-4 leading-7 text-[var(--t4-muted)]">
           <p>
             AI tool markets are still young, fragmented, and difficult to
             measure with a single metric. T4 Atlas separates market-share

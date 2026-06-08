@@ -116,7 +116,7 @@ export default function MostUsedAiAgentsPage() {
               key: "agent",
               label: "Agent",
               render: (item) => (
-                <span className="font-semibold text-white">{item.agent}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{item.agent}</span>
               ),
             },
             {
@@ -135,7 +135,7 @@ export default function MostUsedAiAgentsPage() {
               key: "momentumScore",
               label: "Momentum",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.momentumScore}
                 </span>
               ),
@@ -173,7 +173,7 @@ export default function MostUsedAiAgentsPage() {
               score={agent.momentumScore}
               description={agent.primaryUseCase}
             >
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--t4-muted)]">
                 Signal: {agent.adoptionSignal}
               </p>
             </IntelligenceCard>
@@ -187,7 +187,7 @@ export default function MostUsedAiAgentsPage() {
         title={mostUsedAiAgentsMethodology.title}
         description={mostUsedAiAgentsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is a structured editorial ranking. It should not be
           interpreted as official active-user market share, revenue share, or
           verified product telemetry.

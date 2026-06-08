@@ -116,7 +116,7 @@ export default function EnterpriseAiAdoptionStatisticsPage() {
               key: "category",
               label: "Category",
               render: (item) => (
-                <span className="font-semibold capitalize text-white">
+                <span className="font-semibold capitalize text-[var(--t4-text)]">
                   {item.category.replace(/-/g, " ")}
                 </span>
               ),
@@ -132,7 +132,7 @@ export default function EnterpriseAiAdoptionStatisticsPage() {
               key: "momentumScore",
               label: "Momentum",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.momentumScore}
                 </span>
               ),
@@ -170,7 +170,7 @@ export default function EnterpriseAiAdoptionStatisticsPage() {
                 {category.examples.map((example) => (
                   <span
                     key={example}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                   >
                     {example}
                   </span>
@@ -196,11 +196,11 @@ export default function EnterpriseAiAdoptionStatisticsPage() {
               score={item.momentumScore}
               description={item.whyCompaniesAdoptIt}
             >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Adoption barrier
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {item.adoptionBarrier}
                 </p>
               </div>
@@ -215,7 +215,7 @@ export default function EnterpriseAiAdoptionStatisticsPage() {
         title={enterpriseAiAdoptionMethodology.title}
         description={enterpriseAiAdoptionMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not claim audited enterprise deployment statistics, exact market share,
           or verified company-level adoption rates.

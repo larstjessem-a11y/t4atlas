@@ -116,7 +116,7 @@ export default function EnterpriseAiVendorRankingsPage() {
               key: "vendor",
               label: "Vendor",
               render: (item) => (
-                <span className="font-semibold text-white">{item.vendor}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{item.vendor}</span>
               ),
             },
             {
@@ -139,7 +139,7 @@ export default function EnterpriseAiVendorRankingsPage() {
               key: "enterpriseScore",
               label: "Score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.enterpriseScore}
                 </span>
               ),
@@ -177,7 +177,7 @@ export default function EnterpriseAiVendorRankingsPage() {
               score={vendor.enterpriseScore}
               description={vendor.enterprisePositioning}
             >
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--t4-muted)]">
                 Signal: {vendor.adoptionSignal}
               </p>
             </IntelligenceCard>
@@ -191,7 +191,7 @@ export default function EnterpriseAiVendorRankingsPage() {
         title={enterpriseAiVendorRankingsMethodology.title}
         description={enterpriseAiVendorRankingsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page should not be interpreted as official enterprise AI revenue
           share, customer-count share, or verified procurement data.
         </p>

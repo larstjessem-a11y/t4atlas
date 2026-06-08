@@ -116,7 +116,7 @@ export default function FrontierAiRiskMatrixPage() {
               key: "capabilityArea",
               label: "Capability area",
               render: (item) => (
-                <span className="font-semibold capitalize text-white">
+                <span className="font-semibold capitalize text-[var(--t4-text)]">
                   {item.capabilityArea.replace(/-/g, " ")}
                 </span>
               ),
@@ -153,7 +153,7 @@ export default function FrontierAiRiskMatrixPage() {
               key: "riskScore",
               label: "Risk score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.riskScore}
                 </span>
               ),
@@ -193,38 +193,40 @@ export default function FrontierAiRiskMatrixPage() {
               title={risk.capabilityArea.replace(/-/g, " ")}
               score={risk.riskScore}
               description={risk.whyItMatters}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            > <div className="space-y-3">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Systemic concerns
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {risk.systemicConcerns.map((concern) => (
                     <span
                       key={concern}
-                      className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                      className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                     >
                       {concern}
                     </span>
                   ))}
+
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Mitigation focus
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {risk.mitigationFocus.map((mitigation) => (
                     <span
                       key={mitigation}
-                      className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200"
+                      className="t4-tag rounded-full px-3 py-1 text-xs font-medium"
                     >
                       {mitigation}
                     </span>
                   ))}
                 </div>
               </div>
+</div>
             </IntelligenceCard>
           ))}
         </div>
@@ -236,7 +238,7 @@ export default function FrontierAiRiskMatrixPage() {
         title={frontierAiRiskMatrixMethodology.title}
         description={frontierAiRiskMatrixMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide a formal threat assessment, model safety audit, legal
           opinion, or regulatory evaluation.

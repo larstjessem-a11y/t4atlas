@@ -116,7 +116,7 @@ export default function FastestGrowingAiToolsPage() {
               key: "name",
               label: "Tool",
               render: (tool) => (
-                <span className="font-semibold text-white">{tool.name}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{tool.name}</span>
               ),
             },
             {
@@ -133,15 +133,15 @@ export default function FastestGrowingAiToolsPage() {
                 <span className="capitalize">{tool.growthCategory}</span>
               ),
             },
-            {
-              key: "momentumScore",
-              label: "Momentum",
-              render: (tool) => (
-                <span className="font-semibold text-cyan-200">
-                  {tool.momentumScore}
-                </span>
-              ),
-            },
+          {
+  key: "momentumScore",
+  label: "Momentum",
+  render: (tool) => (
+    <span className="font-semibold text-[#1e3a5f]">
+      {tool.momentumScore}
+    </span>
+  ),
+},
             {
               key: "growthDrivers",
               label: "Growth drivers",
@@ -172,7 +172,7 @@ export default function FastestGrowingAiToolsPage() {
                 {tool.growthDrivers.map((driver) => (
                   <span
                     key={driver}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                   className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                   >
                     {driver}
                   </span>
@@ -182,7 +182,7 @@ export default function FastestGrowingAiToolsPage() {
               {tool.relatedPage ? (
                 <Link
                   href={tool.relatedPage}
-                  className="mt-4 inline-flex text-sm font-medium text-cyan-200 underline"
+                  className="mt-4 inline-flex text-sm font-medium text-[#1e3a5f] underline underline-offset-4"
                 >
                   Related T4 Atlas guide
                 </Link>
@@ -198,7 +198,7 @@ export default function FastestGrowingAiToolsPage() {
         title={fastestGrowingAiToolsMethodology.title}
         description={fastestGrowingAiToolsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           Growth categories are directional and designed to compare relative
           ecosystem momentum, not audited revenue growth or verified user-growth
           rates.

@@ -116,7 +116,7 @@ export default function EnterpriseAiRiskCategoriesPage() {
               key: "riskCategory",
               label: "Risk category",
               render: (item) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-[var(--t4-text)]">
                   {item.riskCategory}
                 </span>
               ),
@@ -148,7 +148,7 @@ export default function EnterpriseAiRiskCategoriesPage() {
               key: "riskScore",
               label: "Risk score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="t4-score">
                   {item.riskScore}
                 </span>
               ),
@@ -178,7 +178,7 @@ export default function EnterpriseAiRiskCategoriesPage() {
                 {layer.controls.map((control) => (
                   <span
                     key={control}
-                    className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                    className="t4-tag rounded-full px-3 py-1 text-xs font-medium"
                   >
                     {control}
                   </span>
@@ -201,23 +201,24 @@ export default function EnterpriseAiRiskCategoriesPage() {
               title={risk.riskCategory}
               score={risk.riskScore}
               description={risk.whyItMatters}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+            ><div className="space-y-3">
+              <div className="t4-panel-soft rounded-2xl p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#7c5b2d]">
                   Where it appears
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {risk.whereItAppears}
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="t4-panel-soft rounded-2xl p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[#7c5b2d]">
                   Mitigation approach
                 </p>
-                <p className="mt-2 text-sm leading-6 text-slate-300">
+                <p className="mt-2 text-sm leading-6 text-[var(--t4-muted)]">
                   {risk.mitigationApproach}
                 </p>
+               </div>
               </div>
             </IntelligenceCard>
           ))}
@@ -230,7 +231,7 @@ export default function EnterpriseAiRiskCategoriesPage() {
         title={enterpriseAiRiskCategoriesMethodology.title}
         description={enterpriseAiRiskCategoriesMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide legal advice, regulatory assessment, formal risk audit, or
           vendor-specific security certification.

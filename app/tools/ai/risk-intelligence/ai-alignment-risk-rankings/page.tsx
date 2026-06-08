@@ -116,7 +116,7 @@ export default function AiAlignmentRiskRankingsPage() {
               key: "systemType",
               label: "System type",
               render: (item) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-[var(--t4-text)]">
                   {item.systemType}
                 </span>
               ),
@@ -155,7 +155,7 @@ export default function AiAlignmentRiskRankingsPage() {
               key: "riskScore",
               label: "Risk score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.riskScore}
                 </span>
               ),
@@ -194,17 +194,18 @@ export default function AiAlignmentRiskRankingsPage() {
               }`}
               title={system.systemType}
               score={system.riskScore}
-              description={system.whyItMatters}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+             description={system.whyItMatters}
+>
+  <div className="space-y-3">
+    <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Key risk drivers
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {system.keyRiskDrivers.map((driver) => (
                     <span
                       key={driver}
-                      className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                      className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                     >
                       {driver}
                     </span>
@@ -212,19 +213,20 @@ export default function AiAlignmentRiskRankingsPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Risk reduction levers
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {system.riskReductionLevers.map((lever) => (
                     <span
                       key={lever}
-                      className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200"
+                 className="t4-tag rounded-full px-3 py-1 text-xs font-medium"
                     >
                       {lever}
                     </span>
                   ))}
+ </div>
                 </div>
               </div>
             </IntelligenceCard>
@@ -238,7 +240,7 @@ export default function AiAlignmentRiskRankingsPage() {
         title={aiAlignmentRiskRankingsMethodology.title}
         description={aiAlignmentRiskRankingsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide formal model safety audits, regulatory assessments,
           technical alignment evaluations, or vendor certifications.

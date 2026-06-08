@@ -116,7 +116,7 @@ export default function OpenSourceAiRankingsPage() {
               key: "model",
               label: "Model",
               render: (item) => (
-                <span className="font-semibold text-white">{item.model}</span>
+                <span className="font-semibold text-[var(--t4-text)]">{item.model}</span>
               ),
             },
             {
@@ -139,7 +139,7 @@ export default function OpenSourceAiRankingsPage() {
               key: "openSourceScore",
               label: "Score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.openSourceScore}
                 </span>
               ),
@@ -177,7 +177,7 @@ export default function OpenSourceAiRankingsPage() {
               score={model.openSourceScore}
               description={model.strengths}
             >
-              <p className="text-xs text-slate-400">
+              <p className="text-xs text-[var(--t4-muted)]">
                 Signal: {model.ecosystemSignal}
               </p>
             </IntelligenceCard>
@@ -191,7 +191,7 @@ export default function OpenSourceAiRankingsPage() {
         title={openSourceAiRankingsMethodology.title}
         description={openSourceAiRankingsMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page should not be interpreted as official open-source model
           usage share, benchmark ranking, or verified deployment telemetry.
         </p>

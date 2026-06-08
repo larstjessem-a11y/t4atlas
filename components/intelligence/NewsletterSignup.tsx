@@ -44,13 +44,13 @@ export default function NewsletterSignup() {
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder="Email address"
-          className="min-w-0 flex-1 rounded-2xl border border-cyan-400/20 bg-slate-950/70 px-4 py-3 text-sm text-white placeholder:text-slate-500 outline-none"
+          className="min-w-0 flex-1 rounded-2xl border border-[var(--t4-border)] bg-white/80 px-4 py-3 text-sm text-[var(--t4-text)] placeholder:text-[var(--t4-muted)] outline-none transition focus:border-[#1e3a5f]/50 focus:bg-white"
         />
 
         <button
           type="submit"
           disabled={status === "loading"}
-          className="rounded-2xl bg-cyan-300 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:opacity-70"
+          className="rounded-2xl bg-[var(--t4-blue)] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#162d49] disabled:cursor-not-allowed disabled:opacity-70"
         >
           {status === "loading" ? "Joining..." : "Join newsletter"}
         </button>
@@ -60,15 +60,15 @@ export default function NewsletterSignup() {
         <p
           className={
             status === "success"
-              ? "mt-3 text-sm text-cyan-200"
-              : "mt-3 text-sm text-red-300"
+              ? "mt-3 text-sm text-[#1e3a5f]"
+              : "mt-3 text-sm text-red-700"
           }
         >
           {message}
         </p>
       ) : null}
 
-      <p className="mt-3 text-xs leading-5 text-slate-400">
+      <p className="mt-3 text-xs leading-5 text-[var(--t4-muted)]">
         No spam. Unsubscribe anytime.
       </p>
     </form>

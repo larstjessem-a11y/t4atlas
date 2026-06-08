@@ -116,7 +116,7 @@ export default function MostSensitiveAiCapabilitiesPage() {
               key: "capability",
               label: "Capability",
               render: (item) => (
-                <span className="font-semibold text-white">
+                <span className="font-semibold text-[var(--t4-text)]">
                   {item.capability}
                 </span>
               ),
@@ -155,7 +155,7 @@ export default function MostSensitiveAiCapabilitiesPage() {
               key: "riskScore",
               label: "Risk score",
               render: (item) => (
-                <span className="font-semibold text-cyan-200">
+                <span className="font-semibold text-[#1e3a5f]">
                   {item.riskScore}
                 </span>
               ),
@@ -194,17 +194,18 @@ export default function MostSensitiveAiCapabilitiesPage() {
               }`}
               title={capability.capability}
               score={capability.riskScore}
-              description={capability.whySensitive}
-            >
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+             description={capability.whySensitive}
+>
+  <div className="space-y-3">
+    <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Systemic concerns
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {capability.systemicConcerns.map((concern) => (
                     <span
                       key={concern}
-                      className="rounded-full border border-slate-700 bg-slate-950/60 px-3 py-1 text-xs font-medium text-slate-300"
+                      className="rounded-full border border-[var(--t4-border)] bg-[#f8f6f1] px-3 py-1 text-xs font-medium text-[var(--t4-muted)]"
                     >
                       {concern}
                     </span>
@@ -212,19 +213,20 @@ export default function MostSensitiveAiCapabilitiesPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-slate-800 bg-slate-950/60 p-4">
-                <p className="text-xs font-semibold uppercase tracking-wide text-slate-400">
+              <div className="rounded-2xl border border-[var(--t4-border)] bg-[#faf8f4] p-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-[var(--t4-muted)]">
                   Governance priorities
                 </p>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {capability.governancePriorities.map((priority) => (
                     <span
                       key={priority}
-                      className="rounded-full border border-cyan-500/20 bg-cyan-500/10 px-3 py-1 text-xs font-medium text-cyan-200"
+                      className="t4-tag rounded-full px-3 py-1 text-xs font-medium"
                     >
                       {priority}
                     </span>
                   ))}
+</div>
                 </div>
               </div>
             </IntelligenceCard>
@@ -238,7 +240,7 @@ export default function MostSensitiveAiCapabilitiesPage() {
         title={mostSensitiveAiCapabilitiesMethodology.title}
         description={mostSensitiveAiCapabilitiesMethodology.description}
       >
-        <p className="max-w-3xl text-sm leading-6 text-slate-400">
+        <p className="max-w-3xl text-sm leading-6 text-[var(--t4-muted)]">
           This page is intended as a directional intelligence overview. It does
           not provide a formal threat assessment, regulatory evaluation, model
           safety audit, or legal opinion.

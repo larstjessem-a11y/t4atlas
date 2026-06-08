@@ -16,20 +16,20 @@ export default function IntelligenceSection({
   return (
     <section
       id={id}
-      className="rounded-[1.5rem] border border-slate-800 bg-slate-900/70 p-5 shadow-xl shadow-slate-950/30 md:rounded-[2rem] md:p-8"
+      className="rounded-[1.5rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-5 shadow-sm md:rounded-[2rem] md:p-8"
     >
       {eyebrow ? (
-        <span className="mb-3 inline-flex rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wide text-cyan-200 md:text-xs">
+        <span className="mb-3 inline-flex rounded-full border border-[#a67c3d]/30 bg-[#a67c3d]/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wide text-[#7c5b2d] md:text-xs">
           {eyebrow}
         </span>
       ) : null}
 
-      <h2 className="max-w-4xl text-2xl font-semibold tracking-tight text-white sm:text-3xl">
+      <h2 className="t4-title max-w-4xl text-2xl font-semibold text-[var(--t4-text)] sm:text-3xl">
         {title}
       </h2>
 
       {description ? (
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-slate-300 md:text-base">
+        <p className="mt-3 max-w-3xl text-sm leading-7 text-[var(--t4-muted)] md:text-base">
           {description}
         </p>
       ) : null}

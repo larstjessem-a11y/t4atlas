@@ -166,7 +166,7 @@ export default function AiRiskIntelligenceHubPage() {
   title="What Is Risk Intelligence?"
   description="Risk intelligence is the process of collecting, analyzing, and interpreting signals that help organizations anticipate emerging risks before they become operational problems."
 >
-  <div className="space-y-4 leading-7 text-slate-300">
+ <div className="space-y-4 leading-7 text-[var(--t4-muted)]">
     <p>
       Risk intelligence goes beyond traditional risk management. Instead of
       focusing only on known risks and compliance requirements, risk
@@ -203,7 +203,7 @@ export default function AiRiskIntelligenceHubPage() {
   title="What Is a Risk Intelligence Platform?"
   description="Risk intelligence platforms aggregate signals from multiple sources and help organizations convert uncertainty into actionable decisions."
 >
-  <div className="space-y-4 leading-7 text-slate-300">
+  <div className="space-y-4 leading-7 text-[var(--t4-muted)]">
     <p>
       Modern risk intelligence platforms combine data, analytics, monitoring,
       scenario analysis, and expert interpretation. The goal is not simply to
@@ -241,7 +241,7 @@ export default function AiRiskIntelligenceHubPage() {
         title="How to read AI risk intelligence"
         description="AI risk should be analyzed as a set of operational, technical, governance, and systemic risk factors rather than a single abstract threat."
       >
-        <div className="space-y-4 leading-7 text-slate-300">
+        <div className="space-y-4 leading-7 text-[var(--t4-muted)]">
           <p>
             The most useful risk question is usually not whether a model is
             simply “safe” or “unsafe.” A better question is which capabilities it
@@ -275,9 +275,9 @@ export default function AiRiskIntelligenceHubPage() {
   eyebrow="FAQ"
   title="Frequently Asked Questions"
 >
-  <div className="space-y-6 text-slate-300">
+  <div className="space-y-6 text-[var(--t4-muted)]">
     <div>
-      <h3 className="font-semibold text-white">
+      <h3 className="font-semibold text-[var(--t4-text)]">
         What is risk intelligence?
       </h3>
       <p className="mt-2">
@@ -288,7 +288,7 @@ export default function AiRiskIntelligenceHubPage() {
     </div>
 
     <div>
-      <h3 className="font-semibold text-white">
+      <h3 className="font-semibold text-[var(--t4-text)]">
         What is a risk intelligence platform?
       </h3>
       <p className="mt-2">
@@ -299,7 +299,7 @@ export default function AiRiskIntelligenceHubPage() {
     </div>
 
     <div>
-      <h3 className="font-semibold text-white">
+      <h3 className="font-semibold text-[var(--t4-text)]">
         What is AI risk intelligence?
       </h3>
       <p className="mt-2">
@@ -310,7 +310,7 @@ export default function AiRiskIntelligenceHubPage() {
     </div>
 
     <div>
-      <h3 className="font-semibold text-white">
+      <h3 className="font-semibold text-[var(--t4-text)]">
         How is risk intelligence different from risk management?
       </h3>
       <p className="mt-2">
