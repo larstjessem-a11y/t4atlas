@@ -31,6 +31,8 @@ export type IntelligenceArticle = {
   }[];
   relatedArticles: string[];
   affiliateCategory?: string;
+  whyThisMatters?: string;
+  watching?: string;
 };
 
 export const intelligenceCategories: {
@@ -84,6 +86,151 @@ export const intelligenceCategories: {
 ];
 
 export const intelligenceArticles: IntelligenceArticle[] = [
+{
+  slug: "the-new-strategic-infrastructure-dna-chips-and-compute",
+  title: "The New Strategic Infrastructure: DNA, Chips, and Compute",
+  category: "geopolitics",
+  description:
+    "Why strategic power is moving toward the infrastructure layers that enable artificial intelligence, biotechnology, semiconductors, and national resilience.",
+  publishedAt: "2026-06-10",
+  readingTime: 18,
+  featured: true,
+  affiliateCategory: "education",
+
+  executiveSummary:
+    "Strategic power is moving down the stack. For much of the twentieth century, states competed over territory, oil, shipping lanes, weapons systems, and industrial capacity. Those still matter. But the next era of strategic competition is increasingly being shaped by deeper infrastructure layers: DNA synthesis networks, advanced semiconductor manufacturing, AI compute, cloud capacity, energy systems, and biosecurity screening. The strongest signal is not any single news event. It is the convergence of several trends at once: AI labs and synthetic biology firms calling for mandatory DNA and RNA screening, Taiwan's export surge revealing the scale of global AI infrastructure demand, and the United States tightening controls over advanced chip manufacturing routes. The next decade may be defined less by who builds the best individual AI model and more by who controls the infrastructure that makes intelligence, biology, and industrial scale possible.",
+
+  keyTakeaways: [
+    "Strategic power is increasingly moving from products and platforms to infrastructure layers.",
+    "AI is becoming an industrial system dependent on chips, data centers, energy, cloud capacity, and advanced manufacturing.",
+    "Taiwan remains one of the most important geographic chokepoints in the global AI economy.",
+    "DNA synthesis screening is emerging as a biosecurity infrastructure layer, similar to how cybersecurity became essential to digital infrastructure.",
+    "Export controls are becoming infrastructure controls: the central question is who can access chips, fabs, compute, and manufacturing capacity.",
+    "The countries and companies that control DNA, chips, and compute will shape the next era of technological, economic, and national-security competition.",
+  ],
+
+  mainAnalysis: [
+    {
+      title: "Strategic Power Is Moving Down the Stack",
+      body: [
+        "The visible layer of technology is usually where public attention goes. People focus on applications, products, models, platforms, and companies. But strategic power often sits deeper.",
+        "Oil mattered not because oil itself was glamorous, but because it powered transportation, industry, warfare, and economic growth. Semiconductor manufacturing matters not because chips are interesting objects, but because they enable computing, defense systems, telecommunications, and artificial intelligence.",
+        "The same pattern is now emerging across AI and biotechnology. The most important layer may not be the chatbot, the application, or the final product. It may be the infrastructure underneath: chips, compute clusters, cloud platforms, biological databases, DNA synthesis networks, and screening systems.",
+        "This is the central thesis of the new strategic infrastructure. Power is migrating from the surface layer of technology to the systems that determine who can build, scale, control, and secure advanced capabilities.",
+      ],
+    },
+    {
+      title: "Compute Is Becoming the New Oil",
+      body: [
+        "Artificial intelligence is often described as software. That framing is incomplete. Modern AI is an industrial system.",
+        "Frontier AI depends on advanced semiconductors, GPU clusters, high-bandwidth memory, networking hardware, data centers, cloud platforms, cooling systems, and enormous amounts of electricity.",
+        "This changes the nature of competition. The question is not only which company has the best model. It is who has access to enough compute to train and deploy frontier systems at scale.",
+        "Compute is becoming a strategic resource because it determines what kinds of AI systems can be built, who can build them, and how quickly they can be deployed across the economy.",
+        "The analogy to oil is imperfect but useful. Oil powered the industrial and military systems of the twentieth century. Compute may power the intelligence systems of the twenty-first.",
+      ],
+    },
+    {
+      title: "Taiwan Is the Geographic Chokepoint of the AI Economy",
+      body: [
+        "The AI boom is increasingly visible in Taiwan's economic data. When demand for AI chips, servers, and data-center infrastructure rises, Taiwan's export numbers move with it.",
+        "This matters because Taiwan is not merely one node among many. It is the central geographic concentration of advanced semiconductor manufacturing capacity.",
+        "The strategic importance of Taiwan has often been discussed through the lens of China, military deterrence, and the so-called silicon shield. AI makes this even more important, not less.",
+        "If advanced AI systems depend on advanced chips, and advanced chips depend heavily on Taiwanese manufacturing capacity, then Taiwan becomes a structural chokepoint in the global AI economy.",
+        "This means a Taiwan crisis would not only be a regional military or diplomatic crisis. It would be an AI infrastructure crisis, a supply-chain crisis, and an industrial shock with global consequences.",
+      ],
+    },
+    {
+      title: "DNA Synthesis Is Becoming Biosecurity Infrastructure",
+      body: [
+        "The biosecurity side of the story is less visible but just as important. Biology is increasingly becoming programmable, digitized, and information-rich.",
+        "DNA can be sequenced, stored as data, analyzed by software, modified digitally, and synthesized physically. That means biological capability increasingly depends on infrastructure that links digital information to physical biological material.",
+        "DNA synthesis providers therefore occupy a critical position. They are one of the points where digital biological designs can become real biological material.",
+        "This is why mandatory screening of DNA and RNA orders has become such an important policy proposal. It turns synthesis providers into a security checkpoint.",
+        "The deeper implication is that biosecurity may start to resemble cybersecurity. It becomes a continuous infrastructure problem involving screening, monitoring, standards, auditing, and institutional coordination.",
+      ],
+    },
+    {
+      title: "The Chip War Is Becoming an Infrastructure War",
+      body: [
+        "Export controls are often described as restrictions on chips. But the broader shift is toward infrastructure control.",
+        "The United States and its allies are not only trying to restrict access to finished chips. They are increasingly focused on manufacturing equipment, advanced fabs, overseas subsidiaries, supply-chain routes, and indirect access pathways.",
+        "This reflects a strategic judgment: advanced AI capability depends on access to the underlying infrastructure of semiconductor production.",
+        "The difficult question is whether export controls slow competitors, accelerate domestic self-reliance, or do both at the same time.",
+        "Either way, the policy direction is clear. Compute access, semiconductor manufacturing, and supply-chain control are now treated as national-security assets rather than ordinary commercial flows.",
+      ],
+    },
+    {
+      title: "Biosecurity, AI, and Semiconductors Are Converging",
+      body: [
+        "At first glance, DNA synthesis, chip manufacturing, and AI compute appear to be separate domains. In practice, they are converging.",
+        "AI accelerates scientific discovery. Scientific discovery increasingly depends on biological data and computational models. Biological capability increasingly depends on digital design and synthesis infrastructure. Advanced AI depends on chips, compute, and energy. Each layer reinforces the others.",
+        "This convergence is why traditional policy silos are becoming less useful. Public health, technology policy, national security, industrial policy, and economic resilience increasingly overlap.",
+        "A country that lacks compute capacity may fall behind in AI. A country that lacks biosecurity screening may become more vulnerable to biological misuse. A country that lacks semiconductor access may become dependent on others for the foundations of its digital economy.",
+        "The new strategic map is not organized only around borders. It is organized around infrastructure dependencies.",
+      ],
+    },
+    {
+      title: "The New Map of Power",
+      body: [
+        "The old map of power was built around territory, population, energy, military force, and industrial capacity. Those factors remain important. But a new map is being drawn on top of them.",
+        "On this map, strategic chokepoints include semiconductor fabs, GPU supply chains, cloud regions, energy grids, DNA synthesis providers, biological databases, and screening infrastructure.",
+        "The most powerful actors may not simply be the states with the largest armies or the companies with the most popular products. They may be the actors that control the infrastructure others depend on.",
+        "This has major implications for national resilience. The ability to absorb shocks, maintain compute access, secure biological infrastructure, and protect supply chains may become as important as traditional defense planning.",
+        "In the coming decade, strategic competition will increasingly be a competition over the infrastructure that turns knowledge into capability.",
+      ],
+    },
+  ],
+
+  strategicImplications: [
+    "AI policy should be treated as infrastructure policy, not only software regulation.",
+    "Semiconductor access, compute capacity, cloud infrastructure, and energy availability are becoming core strategic assets.",
+    "DNA synthesis screening may become one of the most important biosecurity checkpoints of the next decade.",
+    "Taiwan's role in advanced semiconductor manufacturing makes it central to the global AI economy.",
+    "Export controls are likely to expand from finished chips toward manufacturing capacity, subsidiaries, supply-chain routes, and compute access.",
+    "Organizations should monitor infrastructure dependencies as part of operational resilience and strategic risk planning.",
+    "The most important future risks may emerge from the interaction between AI, biotechnology, energy systems, semiconductors, and geopolitics.",
+  ],
+
+whyThisMatters:
+  "The central strategic shift is that power is moving from visible products to enabling infrastructure. AI models, biotechnology applications, and digital services all depend on deeper layers: chips, compute, energy, DNA synthesis, screening systems, and cloud capacity. Countries and companies that control these layers will shape what others can build, scale, and secure. This makes infrastructure mapping a core part of geopolitical risk analysis, not a technical footnote.",
+
+watching:
+  "T4 Intelligence will be watching five signals over the next 6–24 months: Taiwan semiconductor exports, US and allied export-control expansion, hyperscaler AI infrastructure spending, formal DNA/RNA synthesis screening rules, and whether biosecurity screening begins to resemble cybersecurity as a permanent infrastructure industry.",
+
+  whatHappensNext: [
+    "Governments are likely to expand controls around advanced chips, manufacturing equipment, and compute access.",
+    "AI infrastructure spending will remain a key indicator of the broader AI cycle.",
+    "DNA and RNA synthesis screening requirements are likely to become more formalized across jurisdictions.",
+    "Taiwan's semiconductor exports will remain a leading signal for global AI infrastructure demand.",
+    "Cloud providers, chipmakers, and biosecurity infrastructure firms will become more important actors in national-security planning.",
+    "Companies with global operations will increasingly need to map exposure to compute, semiconductor, energy, and biological-infrastructure risks.",
+  ],
+
+  relatedDatasets: [
+    {
+      title: "AI Risk Intelligence",
+      href: "/tools/ai/risk-intelligence",
+      description:
+        "Structured AI risk intelligence across frontier capabilities, enterprise deployment, governance, and operational exposure.",
+    },
+    {
+      title: "Most Sensitive AI Capabilities",
+      href: "/tools/ai/risk-intelligence/most-sensitive-ai-capabilities",
+      description:
+        "A structured overview of AI capabilities that create higher operational, cyber, biosecurity, persuasion, and governance risks.",
+    },
+    {
+      title: "AI Statistics Hub",
+      href: "/tools/ai/statistics",
+      description:
+        "Market-share signals, search demand, growth momentum, and AI infrastructure indicators from T4 Atlas.",
+    },
+  ],
+
+  relatedArticles: [
+    "ai-biology-and-national-security-are-becoming-the-same-conversation",
+  ],
+},
 {
   slug: "ai-biology-and-national-security-are-becoming-the-same-conversation",
   title: "AI, Biology, and National Security Are Becoming the Same Conversation",

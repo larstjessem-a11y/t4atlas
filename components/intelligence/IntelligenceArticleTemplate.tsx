@@ -7,6 +7,7 @@ import {
 } from "@/data/intelligenceArticles";
 import NewsletterSignup from "@/components/intelligence/NewsletterSignup";
 import T4BiosecurityConvergenceDiagram from "@/components/intelligence/T4BiosecurityConvergenceDiagram";
+import T4StrategicInfrastructureDiagram from "@/components/intelligence/T4StrategicInfrastructureDiagram";
 import T4Divider from "@/components/intelligence/T4Divider";
 import T4SignalBadge from "@/components/intelligence/T4SignalBadge";
 import T4CompassIcon from "@/components/intelligence/T4CompassIcon";
@@ -150,6 +151,11 @@ export default function IntelligenceArticleTemplate({
 "ai-biology-and-national-security-are-becoming-the-same-conversation" ? (
   <T4BiosecurityConvergenceDiagram />
 ) : null}
+
+{article.slug ===
+"the-new-strategic-infrastructure-dna-chips-and-compute" ? (
+  <T4StrategicInfrastructureDiagram />
+) : null}
 <T4Divider />
           <section className="rounded-[1.5rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-5 shadow-sm md:rounded-[2rem] md:p-8">
             <span className="mb-3 inline-flex rounded-full border border-[#a67c3d]/30 bg-[#a67c3d]/10 px-3 py-1 text-[10px] font-medium uppercase tracking-wide text-[#7c5b2d] md:text-xs">
@@ -179,11 +185,10 @@ export default function IntelligenceArticleTemplate({
     Why This Matters
   </h2>
 
-  <p className="max-w-3xl leading-7 text-[var(--t4-muted)]">
-    The most important implication is not the individual event itself, but what
-    it reveals about larger trends. Strategic signals often matter long before
-    they become visible in traditional headlines.
-  </p>
+<p className="max-w-3xl leading-7 text-[var(--t4-muted)]">
+  {article.whyThisMatters ??
+    "The most important implication is not the individual event itself, but what it reveals about larger trends. Strategic signals often matter long before they become visible in traditional headlines."}
+</p>
 </section>
 <T4Divider />
           <section className="rounded-[1.5rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-5 shadow-sm md:rounded-[2rem] md:p-8">
@@ -198,6 +203,7 @@ export default function IntelligenceArticleTemplate({
             </ul>
           </section>
 <T4Divider />
+
           <section className="rounded-[1.5rem] border border-[var(--t4-border)] bg-[var(--t4-surface)] p-5 shadow-sm md:rounded-[2rem] md:p-8">
             <h2 className="t4-title text-2xl font-semibold text-[var(--t4-text)] sm:text-3xl">
               What Happens Next?
@@ -222,10 +228,10 @@ export default function IntelligenceArticleTemplate({
     What We Are Watching
   </h2>
 
-  <p className="max-w-3xl leading-7 text-[var(--t4-muted)]">
-    T4 Intelligence monitors developments that may materially change the
-    trajectory of this topic over the next 6–24 months.
-  </p>
+<p className="max-w-3xl leading-7 text-[var(--t4-muted)]">
+  {article.watching ??
+    "T4 Intelligence monitors developments that may materially change the trajectory of this topic over the next 6–24 months."}
+</p>
 </section>
 
           <section className="rounded-[1.5rem] border border-[#1e3a5f]/20 bg-[#e7eef5] p-5 shadow-sm md:rounded-[2rem] md:p-8">
